@@ -1,0 +1,37 @@
+# Datos sensibles o voluminosos (no versionar)
+data/raw/
+data/interim/
+*.csv.gz
+*.parquet
+*.feather
+*.h5
+*.hdf5
+*.rds
+*.RData
+*.mat
+
+# Resultados regenerables (opcional: quitar si quieres versionar figuras finales)
+# results/figures/*.pdf
+# results/figures/*.png
+
+# Entornos y caché
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.Rproj.user/
+.Rhistory
+.RData
+.renv/
+renv/library/
+
+# IDE y sistema
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+
+# Logs
+*.log
+logs/
