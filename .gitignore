@@ -1,4 +1,4 @@
-# Datos sensibles o voluminosos (no versionar)
+# Sensitive or large data (do not version)
 data/raw/
 data/interim/
 *.csv.gz
@@ -10,11 +10,11 @@ data/interim/
 *.RData
 *.mat
 
-# Resultados regenerables (opcional: quitar si quieres versionar figuras finales)
+# Regenerable results (optional: remove if you want to version final figures)
 # results/figures/*.pdf
 # results/figures/*.png
 
-# Entornos y caché
+# Environments and cache
 .venv/
 venv/
 __pycache__/
@@ -25,7 +25,7 @@ __pycache__/
 .renv/
 renv/library/
 
-# IDE y sistema
+# IDE and system
 .DS_Store
 .idea/
 .vscode/

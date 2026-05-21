@@ -1,13 +1,13 @@
 # Scripts
 
-Organización por etapas del flujo de análisis. Prefijo numérico = orden de ejecución.
+Organized by analysis pipeline stage. Numeric prefix = execution order.
 
-| Carpeta | Uso |
-|---------|-----|
-| `01_import/` | Lectura de wearables, EHR, tablas clínicas; unión por `patient_id` |
-| `02_preprocess/` | Filtrado, imputación, sincronización temporal, control de calidad |
-| `03_features/` | Trayectorias conductuales y fisiológicas; variables para modelos |
-| `04_analysis/` | Asociación con progresión, estado biológico del huésped, predicción |
-| `05_figures/` | Figuras del manuscrito (salida típica: `results/figures/`) |
+| Folder | Purpose |
+|--------|---------|
+| `01_import/` | Read wearables, EHR, clinical tables; merge on `patient_id` |
+| `02_preprocess/` | Filtering, imputation, temporal sync, quality control |
+| `03_features/` | Behavioral and physiologic trajectories; model variables |
+| `04_analysis/` | Association with progression, host biologic state, prediction |
+| `05_figures/` | Manuscript figures (typical output: `results/figures/`) |
 
-Convención: un script principal por análisis (`04_progression_models.R`) y funciones auxiliares en el mismo directorio o en `scripts/utils/` si crece el proyecto.
+Convention: one main script per analysis (e.g. `04_progression_models.R`) and helper functions in the same directory or in `scripts/utils/` as the project grows.

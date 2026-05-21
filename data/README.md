@@ -1,33 +1,33 @@
-# Datos
+# Data
 
-Solo se versionan aquí datos **procesados y anonimizados** listos para análisis. Los datos en bruto o identificables deben quedarse en `data/raw/` (local, no en git) o fuera del repositorio.
+Only **processed, anonymized** data ready for analysis are versioned here. Raw or identifiable data should remain in `data/raw/` (local, not in git) or outside the repository.
 
-## Estructura
+## Structure
 
-| Ruta | Contenido esperado |
+| Path | Expected contents |
 |------|-------------------|
-| `processed/behavioral/` | Series o resúmenes de monitoreo conductual (p. ej. actividad, sueño, pasos) alineados por paciente y ventana temporal |
-| `processed/physiologic/` | Señales o derivados fisiológicos (p. ej. frecuencia cardíaca, HRV) con la misma granularidad |
-| `processed/clinical/` | Progresión, estadio, tratamientos, biomarcadores de estado del huésped, fechas de eventos |
-| `metadata/` | Diccionario de variables (`variables.csv` o similar), definición de cohorte, mapas de códigos |
+| `processed/behavioral/` | Behavioral monitoring series or summaries (e.g. activity, sleep, steps) aligned by patient and time window |
+| `processed/physiologic/` | Physiologic signals or derivatives (e.g. heart rate, HRV) at the same granularity |
+| `processed/clinical/` | Progression, stage, treatments, host-state biomarkers, event dates |
+| `metadata/` | Variable dictionary (`variables.csv` or similar), cohort definition, code maps |
 
-## Convenciones sugeridas
+## Suggested conventions
 
-- Nombres de archivo: `snake_case`, prefijo de cohorte o estudio si aplica (`cohort_behavioral_daily.parquet`).
-- Incluir una columna de identificador anonimizado (`patient_id`) consistente entre carpetas.
-- Documentar en este README cada archivo añadido: origen, transformación, versión, fecha.
+- File names: `snake_case`, with a cohort or study prefix if applicable (`cohort_behavioral_daily.parquet`).
+- Include a consistent anonymized identifier column (`patient_id`) across folders.
+- Document each added file in this README: source, transformation, version, date.
 
-## Archivos previstos (rellenar al subir datos)
+## Planned files (fill in when uploading data)
 
-<!-- Ejemplo:
-- `processed/behavioral/daily_features.parquet` — agregados diarios por paciente
-- `processed/physiologic/hrv_windows.parquet` — HRV en ventanas de 5 min
-- `processed/clinical/progression_events.csv` — fechas de progresión RECIST u otro criterio
-- `metadata/variable_dictionary.csv` — nombre, unidad, descripción
+<!-- Example:
+- `processed/behavioral/daily_features.parquet` — daily aggregates per patient
+- `processed/physiologic/hrv_windows.parquet` — HRV in 5-minute windows
+- `processed/clinical/progression_events.csv` — RECIST or other progression dates
+- `metadata/variable_dictionary.csv` — name, unit, description
 -->
 
-_(Sin archivos de datos aún.)_
+_(No data files yet.)_
 
-## Acceso
+## Access
 
-Si los datos no pueden publicarse abiertamente, describir aquí el procedimiento de solicitud (comité de ética, acuerdo de transferencia, contacto).
+If data cannot be shared openly, describe here how to request access (ethics committee, data transfer agreement, contact).

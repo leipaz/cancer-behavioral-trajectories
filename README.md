@@ -1,14 +1,14 @@
 # Remote monitoring of behavioral–physiologic trajectories predict progression and reflect biologic host state in metastatic cancer in women
 
-Este repositorio contiene el código, los datos analizados y los flujos de trabajo utilizados en la investigación sobre el monitoreo remoto de trayectorias conductuales y fisiológicas en pacientes con cáncer metastásico en mujeres.
+This repository contains the code, analysis-ready data, and workflows used in the study on remote monitoring of behavioral and physiologic trajectories in patients with metastatic cancer.
 
-## Autores
+## Authors
 
-<sup>\*</sup> LP y LG contribuyeron por igual a este manuscrito.
+<sup>\*</sup> LP and LG contributed equally to this manuscript.
 
 Leire Paz<sup>1,\*</sup>, Leonardo Garma<sup>2,\*</sup>, Sonia Pernas<sup>3,4</sup>, Juan Antonio Guerra<sup>5</sup>, Rosario García-Campelo<sup>6</sup>, Jacobo Rogado<sup>7</sup>, David Vicente-Baz<sup>8</sup>, Josefa Terrasa<sup>9</sup>, Begoña Bermejo<sup>10</sup>, Ruth Vera<sup>11</sup>, Santiago González Santiago<sup>12</sup>, Sandra Gallach<sup>13,14,15</sup>, Berta Nasarre<sup>5</sup>, Bartomeu Fullana<sup>3</sup>, Desirée Jiménez<sup>2</sup>, Cristina Reboredo-Rendo<sup>6</sup>, Oscar Padilla<sup>3</sup>, Rodrigo Oliver<sup>1</sup>, Cristina Simarro<sup>8</sup>, Antonia Perelló<sup>9</sup>, Berta Hernández-Martín<sup>10</sup>, Aída Morillas<sup>2</sup>, Silvana Mourón<sup>2</sup>, María J. Bueno<sup>2</sup>, Antonio Lopez<sup>2</sup>, Pablo Martínez Olmos<sup>1</sup>, Silvia Calabuig<sup>13,14,15</sup>, Ramon Colomer<sup>7,16</sup>, Antonio Artes<sup>1</sup>, Miguel Quintela-Fandino<sup>2,7</sup>
 
-## Afiliaciones
+## Affiliations
 
 1. Communications and Signal Theory, Escuela Politécnica Superior, Universidad Carlos III, Leganés (Madrid), Spain
 2. Breast Cancer Clinical Research Unit, CNIO – Spanish National Cancer Research Center, Madrid, Spain
@@ -27,59 +27,59 @@ Leire Paz<sup>1,\*</sup>, Leonardo Garma<sup>2,\*</sup>, Sonia Pernas<sup>3,4</s
 15. Molecular Oncology Laboratory, Fundación Investigación Hospital General Universitario de Valencia, Valencia, Spain
 16. Roche Endowed Chair of Precision and Personalized Medicine, Universidad Autónoma de Madrid, Madrid, Spain
 
-## Estructura del repositorio
+## Repository structure
 
 ```
 .
-├── data/                 # Datos procesados y anonimizados
-│   ├── processed/        # Tablas listas para análisis
-│   │   ├── behavioral/   # Trayectorias conductuales (actividad, sueño, etc.)
-│   │   ├── physiologic/  # Trayectorias fisiológicas (FC, HRV, etc.)
-│   │   └── clinical/     # Desenlaces y variables clínicas
-│   └── metadata/         # Diccionarios de variables, cohortes, códigos
-├── scripts/              # Código de procesamiento, análisis y modelado
-│   ├── 01_import/        # Carga y unión de fuentes
-│   ├── 02_preprocess/    # Limpieza, alineación temporal, QC
-│   ├── 03_features/      # Extracción de trayectorias y biomarcadores
-│   ├── 04_analysis/      # Modelos estadísticos y predicción
-│   └── 05_figures/       # Figuras del manuscrito
-└── results/              # Salidas reproducibles (no datos crudos)
-    ├── figures/          # Gráficos y figuras del paper
-    ├── tables/           # Tablas suplementarias exportadas
-    └── models/           # Objetos de modelos entrenados (si aplica)
+├── data/                 # Processed, anonymized data
+│   ├── processed/        # Analysis-ready tables
+│   │   ├── behavioral/   # Behavioral trajectories (activity, sleep, etc.)
+│   │   ├── physiologic/  # Physiologic trajectories (HR, HRV, etc.)
+│   │   └── clinical/     # Outcomes and clinical variables
+│   └── metadata/         # Variable dictionaries, cohort definitions, code maps
+├── scripts/              # Processing, analysis, and modeling code
+│   ├── 01_import/        # Load and merge data sources
+│   ├── 02_preprocess/    # Cleaning, temporal alignment, QC
+│   ├── 03_features/      # Trajectory and biomarker extraction
+│   ├── 04_analysis/      # Statistical models and prediction
+│   └── 05_figures/       # Manuscript figures
+└── results/              # Reproducible outputs (not raw data)
+    ├── figures/          # Paper figures and plots
+    ├── tables/           # Exported supplementary tables
+    └── models/           # Saved model objects (if applicable)
 ```
 
-Ver `data/README.md` para el detalle de cada subcarpeta de datos.
+See `data/README.md` for details on each data subdirectory.
 
-## Requisitos e instalación
+## Requirements and installation
 
-<!-- Actualizar según el stack que uses (R, Python, MATLAB, o combinación). -->
+<!-- Update based on your stack (R, Python, MATLAB, or a combination). -->
 
-Entorno y dependencias: pendiente de documentar.
+Environment and dependencies: to be documented.
 
 ```bash
-# Ejemplo Python (descomentar y adaptar cuando exista requirements.txt)
+# Python example (uncomment when requirements.txt exists)
 # python -m venv .venv && source .venv/bin/activate
 # pip install -r requirements.txt
 
-# Ejemplo R (descomentar cuando exista renv o DESCRIPTION)
+# R example (uncomment when renv or DESCRIPTION exists)
 # Rscript -e 'renv::restore()'
 ```
 
-## Reproducibilidad
+## Reproducibility
 
-1. Colocar o generar los datos en `data/processed/` según `data/README.md`.
-2. Ejecutar los scripts en orden numérico (`01_` → `05_`).
-3. Las figuras y tablas del manuscrito se escriben en `results/`.
+1. Place or generate data in `data/processed/` as described in `data/README.md`.
+2. Run scripts in numeric order (`01_` → `05_`).
+3. Manuscript figures and tables are written to `results/`.
 
-## Datos y privacidad
+## Data and privacy
 
-Los datos de pacientes no se publican en crudo. Solo se incluyen en el repositorio conjuntos **procesados y anonimizados** acordes con la normativa aplicable y el consentimiento informado. Los datos en bruto permanecen fuera del control de versiones (ver `.gitignore`).
+Raw patient data are not published. Only **processed, anonymized** datasets that comply with applicable regulations and informed consent are included in this repository. Raw data remain outside version control (see `.gitignore`).
 
-## Licencia
+## License
 
-Código bajo [Apache License 2.0](LICENSE). Los datos pueden tener condiciones de uso adicionales; consultar `data/README.md`.
+Code is under the [Apache License 2.0](LICENSE). Data may have additional use conditions; see `data/README.md`.
 
-## Cita
+## Citation
 
-Si usas este material, cita el manuscrito (referencia bibliográfica pendiente de publicación).
+If you use this material, please cite the manuscript (bibliographic reference pending publication).
