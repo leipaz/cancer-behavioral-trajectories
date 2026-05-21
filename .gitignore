@@ -1,6 +1,5 @@
-# Sensitive or large data (do not version)
-data/raw/
-data/interim/
+# Patient data and derivatives (local only; not versioned)
+data/
 *.csv.gz
 *.parquet
 *.feather
