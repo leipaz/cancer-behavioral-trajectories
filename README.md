@@ -52,13 +52,13 @@ See `data/README.md`, `scripts/README.md`, and `results/README.md` for folder-le
 
 ---
 
-## Guía de análisis (reproducir figuras y tablas)
+## Analysis guide (reproducing figures and tables)
 
-Esta sección resume **cómo preparar el entorno**, **qué hace el LDA en el estudio** y **qué comando genera cada figura o tabla**. El código proviene de los notebooks (`1_2`, `4_01`, `5`, `6_1`) refactorizado en `scripts/`.
+This section explains **how to set up the environment**, **what LDA does in this study**, and **which command produces each figure or table**. The code was refactored from notebooks (`1_2`, `4_01`, `5`, `6_1`) into `scripts/`.
 
-### Idea general del flujo
+### Pipeline overview
 
-El monitorizado remoto genera **resúmenes diarios** (Garmin / móvil). Un **VQ-VAE** asigna a cada día un **perfil discretizado** (ID de day-type). El **LDA** (Latent Dirichlet Allocation) agrupa esos perfiles en **6 patrones conductuales** recurrentes (“topics” / “patterns”) a lo largo de la serie temporal de cada paciente. Después se cruza con **progresión (PD)**, se **decodifican** los day-types a variables interpretables y se dibuja el **heatmap mensual** de patrón predominante.
+Remote monitoring produces **daily behavioral summaries** (Garmin / phone). A **VQ-VAE** assigns each day a discrete **day-type profile** (token ID). **LDA** (Latent Dirichlet Allocation) groups those profiles into **6 recurring behavioral patterns** (“topics” or “patterns”) along each patient’s timeline. Downstream steps link patterns to **progression (PD)**, **decode** day-types into interpretable features, and plot a **monthly predominant-pattern heatmap**.
 
 ```mermaid
 flowchart LR
@@ -72,15 +72,15 @@ flowchart LR
   F --> J[Monthly topic heatmap]
 ```
 
-| Etapa | Carpeta | Qué responde |
-|-------|---------|--------------|
-| **01** | `scripts/01_preprocess/lda/` | ¿Están limpios y homogéneos los daily summaries? |
-| **02** | `scripts/02_univariate_analysis/lda/` | ¿Las variables crudas difieren entre E.PD y no-E.PD en ventanas fijas? |
-| **03** | `scripts/03_analysis/lda/` | ¿Cuáles son los 6 patrones LDA, quién los muestra y cómo se relacionan con PD? |
+| Stage | Folder | Question it answers |
+|-------|--------|---------------------|
+| **01** | `scripts/01_preprocess/lda/` | Are daily summaries clean and consistent? |
+| **02** | `scripts/02_univariate_analysis/lda/` | Do raw variables differ between E.PD and no-E.PD in fixed windows? |
+| **03** | `scripts/03_analysis/lda/` | What are the 6 LDA patterns, who shows them, and how do they relate to PD? |
 
-### Preparación del entorno
+### Environment setup
 
-Los datos y el entorno virtual **no** están en git (ver `.gitignore`). En el servidor de análisis, crea y activa un venv local (recomendado Python 3.10):
+Data and the virtual environment are **not** in git (see `.gitignore`). On the analysis server, create and activate a local venv (Python 3.10 recommended):
 
 ```bash
 cd /path/to/cancer-behavioral-trajectories
@@ -92,107 +92,107 @@ source env/bin/activate
 pip install pandas numpy matplotlib seaborn scipy gensim openpyxl
 ```
 
-Activa el entorno antes de cada comando: `source env/bin/activate`.
+Activate the environment before every command: `source env/bin/activate`.
 
-**Datos externos** (ficheros grandes en rutas CNIO): si no están bajo `data/`, los scripts usan por defecto `/export/gts_usuarios/lparbaiza/cnio/` (Excel clínico, embeddings decodificados, tabla mensual de topics, modelo LDA de 100k passes del notebook 6_1). Copia lo que necesites a `data/raw/` o `data/processed/` para trabajar sin depender de CNIO.
+**External inputs** (large files on CNIO paths): if missing under `data/`, scripts default to `/export/gts_usuarios/lparbaiza/cnio/` (clinical Excel, decoded embeddings, monthly topic table, 100k-pass LDA model from notebook 6_1). Copy what you need into `data/raw/` or `data/processed/` to run without CNIO paths.
 
-### LDA en este proyecto (intuición)
+### LDA in this project (intuition)
 
-1. **Entrada:** Por paciente, lista ordenada de **IDs de day-type** (`embedding_ids` en el CSV de topics, o perfiles del PKL del VQ-VAE).
-2. **Documentos:** El LDA agrupa **30 días consecutivos** en un “documento” (ventanas deslizantes / meses en pasos posteriores).
-3. **Modelo:** LDA de `gensim` con **6 topics** aprende qué day-types co-ocurren en cada patrón.
-4. **Salida por paciente:** Probabilidades por topic, **patrón predominante** y, para figuras, **top-10 day-types** por patrón.
+1. **Input:** Per patient, an ordered list of **day-type IDs** (`embedding_ids` in the topics CSV, or profiles from the VQ-VAE PKL).
+2. **Documents:** LDA groups **30 consecutive days** into one “document” (sliding / monthly windows in later steps).
+3. **Model:** `gensim` LDA with **6 topics** learns which day-types co-occur in each pattern.
+4. **Output per patient:** Topic probabilities, **predominant pattern**, and (for figures) **top-10 day-types** per pattern.
 
-El entrenamiento con todos los passes (`--passes 10000`) es lento; usa `--skip-train` si ya existe `data/processed/lda/lda_model_6topics.gensim`.
+Training with full passes (`--passes 10000`) is slow; use `--skip-train` when `data/processed/lda/lda_model_6topics.gensim` already exists.
 
-### Paso a paso: comandos y salidas
+### Step-by-step: commands and outputs
 
-Ejecuta desde la raíz del repositorio con `env` activado.
+Run from the repository root with `env` activated.
 
-#### 1 — Preprocesado de daily summaries
+#### 1 — Preprocess daily summaries
 
-Limpia un export crudo (sentinelas de FC, `sleep_start` inválidos).
+Cleans one raw daily-summary export (HR sentinels, invalid `sleep_start`).
 
 ```bash
 python scripts/01_preprocess/lda/preprocess_daily_summaries.py
 ```
 
-| Salida | Ruta |
+| Output | Path |
 |--------|------|
-| Daily summary filtrado | `data/raw/daily_summary_eb2prod_dic25_enriched_filtered.csv` |
+| Filtered daily summary | `data/raw/daily_summary_eb2prod_dic25_enriched_filtered.csv` |
 
-#### 2 — Análisis univariado (E.PD vs no-E.PD)
+#### 2 — Univariate analysis (E.PD vs no-E.PD)
 
-Requiere el daily summary filtrado y la tabla de matching `PD_noPD_Matching_fechas_finales_dic25.csv` (`data/raw/` o CNIO).
+Requires the filtered daily summary and matching table `PD_noPD_Matching_fechas_finales_dic25.csv` (`data/raw/` or CNIO).
 
 ```bash
 python scripts/02_univariate_analysis/lda/run_univariate_analysis.py
 ```
 
-| Salida | Ruta |
+| Output | Path |
 |--------|------|
-| Comparación de densidades | `results/univariate/figures/univariate_matched_dens_2dates.png` |
-| Histogramas | `results/univariate/figures/univariate_matched_hist_absolute_2dates.png` |
-| Tabla resumen de variables | `results/univariate/tables/variable_summary_full_stats_EPD.csv` |
-| Cohortes exportadas | `data/processed/lda/df_15_primeros_EB2_prog.csv`, `df_15_previos_HDM_prog.csv` |
+| Density comparison | `results/univariate/figures/univariate_matched_dens_2dates.png` |
+| Histogram comparison | `results/univariate/figures/univariate_matched_hist_absolute_2dates.png` |
+| Variable summary table | `results/univariate/tables/variable_summary_full_stats_EPD.csv` |
+| Cohort extracts | `data/processed/lda/df_15_primeros_EB2_prog.csv`, `df_15_previos_HDM_prog.csv` |
 
-#### 3a — LDA: entrenar, asignar topics, merge clínico, figuras PD
+#### 3a — LDA: train, assign topics, merge clinical, PD figures
 
-Requiere `data/processed/vq-vae/profiles_per_sample_oncology_28_12_2025.pkl` y el Excel clínico (CNIO o `data/raw/`).
+Requires `data/processed/vq-vae/profiles_per_sample_oncology_28_12_2025.pkl` and clinical Excel (CNIO or `data/raw/`).
 
 ```bash
-# Ejecución completa (el entrenamiento puede tardar horas con passes por defecto)
+# Full run (training can take hours with default passes)
 python scripts/03_analysis/lda/run_lda_pipeline.py
 
-# Si ya existen modelo y diccionario en data/processed/lda/
+# If model and dictionary already exist under data/processed/lda/
 python scripts/03_analysis/lda/run_lda_pipeline.py --skip-train
 ```
 
-| Salida | Ruta |
+| Output | Path |
 |--------|------|
-| Modelo y diccionario LDA | `data/processed/lda/lda_model_6topics.gensim`, `dictionary_lda_180patients.dict` |
-| Asignación de topics por usuario | `data/processed/lda/user_topic_cluster_6topics_lda.csv` |
-| Top-10 day-types por patrón | `results/lda/tables/lda_topics_top10.csv` |
-| Grid de términos top | `results/lda/figures/lda_top_terms_grid.png` |
-| Topic predominante según evento PD | `results/lda/figures/topics_by_event.png` |
-| Distribución media de topics PD vs no-PD | `results/lda/figures/avg_topic_distribution_by_event.png` |
-| Merge topics + clínica | `data/processed/lda/merged_topics_clinical.csv` |
+| LDA model and dictionary | `data/processed/lda/lda_model_6topics.gensim`, `dictionary_lda_180patients.dict` |
+| Per-user topic assignment | `data/processed/lda/user_topic_cluster_6topics_lda.csv` |
+| Top-10 day-types per pattern | `results/lda/tables/lda_topics_top10.csv` |
+| Top-terms grid | `results/lda/figures/lda_top_terms_grid.png` |
+| Predominant topic by PD event | `results/lda/figures/topics_by_event.png` |
+| Mean topic distribution PD vs no-PD | `results/lda/figures/avg_topic_distribution_by_event.png` |
+| Topics + clinical merge | `data/processed/lda/merged_topics_clinical.csv` |
 
-#### 3b — Decodificar day-types → variables conductuales
+#### 3b — Decode day-types → behavioral features
 
-Une cada day-type del top-10 con el vector **decodificado** del VQ-VAE (sueño, pasos, localización, etc.).
+Maps each top day-type token to VQ-VAE **decoded** feature vectors (sleep, steps, location, etc.).
 
 ```bash
 python scripts/03_analysis/lda/run_decode_profiles.py
 ```
 
-| Salida | Ruta |
+| Output | Path |
 |--------|------|
-| Features decodificadas (raw / z-score) | `data/processed/lda/decoded_profiles_top10.csv`, `decoded_profiles_top10_scaled.csv` |
-| Grid principal de patrones (manuscrito) | `results/lda/figures/decoded_topic_plots/final_pattern_analysis_grid.svg` |
-| Paneles patrones 0 y 3 | `results/lda/figures/decoded_topic_plots/pattern_0_individual.svg`, `pattern_3_individual.svg` |
-| Boxplot opcional | `results/lda/figures/behavioral_features_by_pattern_boxplot.svg` |
+| Decoded features (raw / z-score) | `data/processed/lda/decoded_profiles_top10.csv`, `decoded_profiles_top10_scaled.csv` |
+| Main pattern grid (manuscript) | `results/lda/figures/decoded_topic_plots/final_pattern_analysis_grid.svg` |
+| Pattern 0 and 3 panels | `results/lda/figures/decoded_topic_plots/pattern_0_individual.svg`, `pattern_3_individual.svg` |
+| Optional boxplot | `results/lda/figures/behavioral_features_by_pattern_boxplot.svg` |
 
-#### 3c — Heatmap de patrón predominante por mes
+#### 3c — Monthly predominant-pattern heatmap
 
-Una fila por paciente, una columna por mes; el recuadro negro marca el mes de progresión en casos PD.
+One row per patient, one column per month; a black rectangle marks the progression month in PD cases.
 
 ```bash
 python scripts/03_analysis/lda/run_monthly_topics_heatmap.py
 ```
 
-Por defecto lee `PD_cutoff_dic_2025s_eB2_MonthPredom.csv` en CNIO. Para reconstruir esa tabla desde embeddings diarios:
+By default reads `PD_cutoff_dic_2025s_eB2_MonthPredom.csv` from CNIO. To rebuild that table from per-day embeddings:
 
 ```bash
 python scripts/03_analysis/lda/run_monthly_topics_heatmap.py --rebuild-table
 ```
 
-| Salida | Ruta |
+| Output | Path |
 |--------|------|
 | Heatmap PNG / SVG | `results/lda/figures/predominant_topics_per_month.png`, `.svg` |
-| Tabla mensual (si se reconstruye) | `data/processed/lda/monthly_predominant_topics.csv` |
+| Monthly table (if rebuilt) | `data/processed/lda/monthly_predominant_topics.csv` |
 
-### Orden recomendado (rama LDA)
+### Recommended run order (LDA branch)
 
 ```text
 source env/bin/activate
@@ -204,9 +204,9 @@ python scripts/03_analysis/lda/run_decode_profiles.py
 python scripts/03_analysis/lda/run_monthly_topics_heatmap.py
 ```
 
-Las **figuras** para el manuscrito van a `results/lda/figures/` y `results/univariate/figures/`; las **tablas** a `results/lda/tables/` y `results/univariate/tables/`. Modelos y CSV intermedios por paciente quedan en `data/processed/lda/` (gitignored).
+Manuscript **figures** go under `results/lda/figures/` and `results/univariate/figures/`; **tables** under `results/lda/tables/` and `results/univariate/tables/`. Intermediate models and patient-level CSVs stay in `data/processed/lda/` (gitignored).
 
-Opciones y rutas por script: [`scripts/README.md`](scripts/README.md).
+Per-script options and paths: [`scripts/README.md`](scripts/README.md).
 
 ---
 
