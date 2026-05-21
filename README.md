@@ -54,8 +54,6 @@ See `data/README.md`, `scripts/README.md`, and `results/README.md` for folder-le
 
 ## Analysis guide
 
-Scripts (from notebooks `1_2`, `4_01`, `5`, `6_1`) run in order: **clean daily summaries → univariate QC → LDA (6 behavioral patterns) → decode day-types → monthly heatmap**. LDA builds 30-day “documents” from VQ-VAE day-type sequences and assigns each patient a predominant pattern over time.
-
 **Environment:** `python3 -m venv env && source env/bin/activate && pip install -r requirements.txt`
 
 ### Run pipeline

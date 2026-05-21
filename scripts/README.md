@@ -67,7 +67,7 @@ python scripts/02_univariate_analysis/lda/run_univariate_analysis.py
 
 ## `03_analysis/lda/train_lda_from_profiles.py`
 
-**LDA training** from the VQ-VAE profiles PKL through document construction and ``LdaMulticore`` (notebook ``4_01_LDA_dec25.ipynb``, up to model training).
+**LDA training** from the VQ-VAE profiles PKL through document construction and ``LdaMulticore``.
 
 - **Input:** `data/processed/vq-vae/profiles_per_sample_oncology_28_12_2025.pkl`
 - **Outputs (local):** `data/processed/lda/user_embeddings_from_pkl.csv`, `dictionary_lda_180patients.dict`, `lda_model_6topics.gensim`
@@ -92,7 +92,7 @@ python scripts/03_analysis/lda/run_lda_pipeline.py --skip-train
 
 ## `03_analysis/lda/decode_profiles.py`
 
-**Decode LDA top-10 profile tokens** to behavioral feature vectors (notebook ``5_decodificar_perfiles.ipynb``). Requires LDA top-terms table and VQ-VAE decoded embeddings pickle.
+**Decode LDA top-10 profile tokens** to behavioral feature vectors. Requires LDA top-terms table and VQ-VAE decoded embeddings pickle.
 
 - **Inputs:** `results/lda/tables/lda_topics_top10.csv`, `decoded_embedding_vectors_a0.pkl` (cnio or `data/processed/vq-vae/`)
 - **Outputs (local):** `data/processed/lda/decoded_profiles_top10.csv`, `decoded_profiles_top10_scaled.csv`
@@ -112,7 +112,7 @@ python scripts/03_analysis/lda/run_decode_profiles.py --skip-plots
 
 ## `03_analysis/lda/plot_monthly_topics_heatmap.py`
 
-**Monthly predominant topics heatmap** (notebook ``6_1_entropy_variability_cleaned_dec25.ipynb``, cell 32). Patients sorted by PD event and data availability; black box marks progression month for PD cases.
+**Monthly predominant topics heatmap.** Patients sorted by PD event and data availability; black box marks progression month in PD cases.
 
 - **Input:** `PD_cutoff_dic_2025s_eB2_MonthPredom.csv` (cnio) or `data/processed/lda/monthly_predominant_topics.csv`
 - **Optional rebuild:** `build_monthly_predominant_topics.py` from per-day embeddings + LDA model
