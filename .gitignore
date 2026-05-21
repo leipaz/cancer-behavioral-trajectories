@@ -13,9 +13,10 @@ data/
 # results/figures/*.pdf
 # results/figures/*.png
 
-# Environments and cache
+# Python virtual environment (requirements.txt is versioned)
 .venv/
 venv/
+env/
 __pycache__/
 *.py[cod]
 .Rproj.user/
