@@ -61,7 +61,7 @@ Clinical merges, drug covariates, and user embeddings belong in **`02_univariate
 | `data/processed/lda/df_15_previos_HDM_prog.csv` | Window 2 cohort (local) |
 
 ```bash
-source env/bin/activate
+source env/bin/activate   # see requirements.txt in repo root
 python scripts/02_univariate_analysis/lda/run_univariate_analysis.py
 ```
 
@@ -74,7 +74,6 @@ python scripts/02_univariate_analysis/lda/run_univariate_analysis.py
 
 ```bash
 source env/bin/activate
-pip install gensim openpyxl
 
 # Full pipeline (train → topics → clinical merge → plots)
 python scripts/03_analysis/lda/run_lda_pipeline.py
