@@ -2,7 +2,7 @@
 data/
 
 # Local exploratory notebooks (not part of the published pipeline)
-notebooks/
+
 *.csv.gz
 *.parquet
 *.feather
