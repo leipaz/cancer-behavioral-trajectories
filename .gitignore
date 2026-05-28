@@ -1,5 +1,10 @@
 # Patient data and derivatives (local only; not versioned)
-data/
+# Keep only selected subfolders versioned.
+data/*
+!data/processed/
+!data/processed/**
+!data/raw/
+!data/raw/**
 
 # Local exploratory notebooks (not part of the published pipeline)
 
