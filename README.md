@@ -35,6 +35,8 @@ Leire Paz<sup>1,\*</sup>, Leonardo Garma<sup>2,\*</sup>, Sonia Pernas<sup>3,4</s
 │   │   ├── physiologic/  # Physiologic trajectories (HR, HRV, etc.)
 │   │   └── clinical/     # Outcomes and clinical variables
 │   └── metadata/         # Variable dictionaries, cohort definitions, code maps
+├── models/               # Saved models / checkpoints (optional)
+├── notebooks/            # Local exploratory notebooks (optional)
 ├── scripts/              # Processing, analysis, and modeling code
 │   ├── utils/            # Shared code across methods
 │   ├── 01_preprocess/    # Per method: lda/, vq-vae/
