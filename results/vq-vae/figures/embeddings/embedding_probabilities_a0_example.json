@@ -1,0 +1,134 @@
+[
+  {
+    "patient_id": 11001,
+    "model": "a0",
+    "rank": 1,
+    "embedding_id": 59.0,
+    "label": "59",
+    "count": 69,
+    "probability": 0.07867730900798175,
+    "is_others": false,
+    "total": 877
+  },
+  {
+    "patient_id": 11001,
+    "model": "a0",
+    "rank": 2,
+    "embedding_id": 8.0,
+    "label": "8",
+    "count": 68,
+    "probability": 0.07753705815279362,
+    "is_others": false,
+    "total": 877
+  },
+  {
+    "patient_id": 11001,
+    "model": "a0",
+    "rank": 3,
+    "embedding_id": 129.0,
+    "label": "129",
+    "count": 41,
+    "probability": 0.046750285062713795,
+    "is_others": false,
+    "total": 877
+  },
+  {
+    "patient_id": 11001,
+    "model": "a0",
+    "rank": 4,
+    "embedding_id": 180.0,
+    "label": "180",
+    "count": 35,
+    "probability": 0.039908779931584946,
+    "is_others": false,
+    "total": 877
+  },
+  {
+    "patient_id": 11001,
+    "model": "a0",
+    "rank": 5,
+    "embedding_id": 57.0,
+    "label": "57",
+    "count": 34,
+    "probability": 0.03876852907639681,
+    "is_others": false,
+    "total": 877
+  },
+  {
+    "patient_id": 11001,
+    "model": "a0",
+    "rank": 6,
+    "embedding_id": NaN,
+    "label": "Others",
+    "count": 630,
+    "probability": 0.7183580387685291,
+    "is_others": true,
+    "total": 877
+  },
+  {
+    "patient_id": 51016,
+    "model": "a0",
+    "rank": 1,
+    "embedding_id": 67.0,
+    "label": "67",
+    "count": 4,
+    "probability": 0.3333333333333333,
+    "is_others": false,
+    "total": 12
+  },
+  {
+    "patient_id": 51016,
+    "model": "a0",
+    "rank": 2,
+    "embedding_id": 43.0,
+    "label": "43",
+    "count": 3,
+    "probability": 0.25,
+    "is_others": false,
+    "total": 12
+  },
+  {
+    "patient_id": 51016,
+    "model": "a0",
+    "rank": 3,
+    "embedding_id": 250.0,
+    "label": "250",
+    "count": 2,
+    "probability": 0.16666666666666666,
+    "is_others": false,
+    "total": 12
+  },
+  {
+    "patient_id": 51016,
+    "model": "a0",
+    "rank": 4,
+    "embedding_id": 153.0,
+    "label": "153",
+    "count": 1,
+    "probability": 0.08333333333333333,
+    "is_others": false,
+    "total": 12
+  },
+  {
+    "patient_id": 51016,
+    "model": "a0",
+    "rank": 5,
+    "embedding_id": 121.0,
+    "label": "121",
+    "count": 1,
+    "probability": 0.08333333333333333,
+    "is_others": false,
+    "total": 12
+  },
+  {
+    "patient_id": 51016,
+    "model": "a0",
+    "rank": 6,
+    "embedding_id": NaN,
+    "label": "Others",
+    "count": 1,
+    "probability": 0.08333333333333333,
+    "is_others": true,
+    "total": 12
+  }
+]
