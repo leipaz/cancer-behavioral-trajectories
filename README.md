@@ -29,23 +29,24 @@ Leire Paz<sup>1,\*</sup>, Leonardo Garma<sup>2,\*</sup>, Sonia Pernas<sup>3,4</s
 
 ```
 .
-├── data/                 # Processed, anonymized data
-│   ├── processed/        # Analysis-ready tables
-│   │   ├── behavioral/   # Behavioral trajectories (activity, sleep, etc.)
-│   │   ├── physiologic/  # Physiologic trajectories (HR, HRV, etc.)
-│   │   └── clinical/     # Outcomes and clinical variables
-│   └── metadata/         # Variable dictionaries, cohort definitions, code maps
-├── models/               # Saved models / checkpoints (optional)
-├── notebooks/            # Local exploratory notebooks (optional)
+├── data/                 # Data (raw/ and processed/ contents are gitignored)
+│   ├── raw/              # Source daily summaries and clinical tables
+│   ├── processed/        # Intermediate analysis tables
+│   ├── daily_summaries/  # Per-patient daily summaries (model input)
+│   ├── output_vq_vae/    # VQ-VAE decoded embeddings
+│   └── output_lda/       # LDA outputs
+├── models/               # Trained models
+│   ├── lda/              # LDA model + dictionary
+│   └── vq-vae/
+├── notebooks/            # Analysis notebooks (see pipeline below)
 ├── scripts/              # Processing, analysis, and modeling code
-│   ├── utils/            # Shared code across methods
-│   ├── 01_preprocess/    # Per method: lda/, vq-vae/
+│   ├── vqvae/            # VQ-VAE package
+│   ├── 01_preprocess/
 │   ├── 02_univariate_analysis/
-│   ├── 03_analysis/
-│   └── 04_figures/
-└── results/              # Reproducible outputs (not raw data)
-    ├── lda/              # figures/, tables/, models/
-    └── vq-vae/
+│   └── 03_analysis/      # lda/, vq-vae/
+└── results/              # Reproducible outputs (figures and tables)
+    ├── lda/              # figures/, tables/
+    └── univariate/       # tables/
 ```
 
 See `data/README.md`, `scripts/README.md`, and `results/README.md` for folder-level detail.
@@ -65,27 +66,7 @@ See `data/README.md`, `scripts/README.md`, and `results/README.md` for folder-le
 3. **`profile_decodification.ipynb`** — Decodes the top-10 day-type profiles of each LDA topic back into **behavioral features** (via the VQ-VAE) and plots the feature profile of each pattern (raw and z-scored).
 4. **`lda_dcabp_evolution.ipynb`** — Assigns the **predominant topic per 30-day block** for every patient and draws the per-month heatmaps (6 topics and favorable/unfavorable hypertopics), marking the real progression-event time.
 
-**Scripts** (reproducible pipeline):
-
-```bash
-python scripts/01_preprocess/lda/preprocess_daily_summaries.py
-python scripts/02_univariate_analysis/lda/run_univariate_analysis.py
-python scripts/03_analysis/lda/run_lda_pipeline.py              # --skip-train if model exists
-python scripts/03_analysis/lda/run_decode_profiles.py
-python scripts/03_analysis/lda/run_monthly_topics_heatmap.py    # --rebuild-table to regenerate monthly CSV
-```
-
-### Generated outputs (summary)
-
-| Step | Command | Main figures / tables |
-|------|---------|------------------------|
-| Preprocess | `01_preprocess/lda/preprocess_daily_summaries.py` | Filtered daily summary under `data/raw/` |
-| Univariate | `02_univariate_analysis/lda/run_univariate_analysis.py` | `results/univariate/figures/*`, `tables/variable_summary_full_stats_EPD.csv` |
-| LDA | `03_analysis/lda/run_lda_pipeline.py` | `results/lda/figures/lda_top_terms_grid.png`, `topics_by_event.png`, `avg_topic_distribution_by_event.png`; `tables/lda_topics_top10.csv`; model under `data/processed/lda/` |
-| Decode | `03_analysis/lda/run_decode_profiles.py` | `results/lda/figures/decoded_topic_plots/*.svg`, optional boxplot |
-| Monthly heatmap | `03_analysis/lda/run_monthly_topics_heatmap.py` | `results/lda/figures/predominant_topics_per_month.png` (`.svg`) |
-
-Versioned **figures** → `results/`; intermediate **models and CSVs** → `data/processed/` (gitignored). Details: [`scripts/README.md`](scripts/README.md).
+The equivalent reproducible scripts and the generated figures/tables are documented in the folder-level READMEs: [`scripts/README.md`](scripts/README.md) and [`results/README.md`](results/README.md).
 
 ---
 
