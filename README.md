@@ -58,6 +58,16 @@ See `data/README.md`, `scripts/README.md`, and `results/README.md` for folder-le
 
 ### Run pipeline
 
+**Notebooks** (exploratory workflow, run in this order):
+
+1. **`daily_to_profiles.ipynb`** — Applies the trained **VQ-VAE** to each patient's daily summaries to obtain a sequence of discrete **daily day-type profiles** (embedding IDs). *(patient-level merge step still pending.)*
+2. **`profiles_to_dcabp.ipynb`** — Loads the trained **LDA** model and dictionary, builds the bag-of-words corpus from the day-type sequences, visualizes the topics (pyLDAvis + top-terms grid), exports the top-10 day-types per topic (`lda_topics_top10.csv`), and compares topic distributions between progression (PD) and non-PD patients.
+3. **`profile_decodification.ipynb`** — Decodes the top-10 day-type profiles of each LDA topic back into **behavioral features** (via the VQ-VAE) and plots the feature profile of each pattern (raw and z-scored).
+4. **`lda_dcabp_evolution.ipynb`** — Assigns the **predominant topic per 30-day block** for every patient and draws the per-month heatmaps (6 topics and favorable/unfavorable hypertopics), marking the real progression-event time.
+5. **`lda_topics_entropy.ipynb`** — Tracks each patient's topic distribution over **sliding 30-day windows** and quantifies behavioral variability with the **Shannon entropy**.
+
+**Scripts** (reproducible pipeline):
+
 ```bash
 python scripts/01_preprocess/lda/preprocess_daily_summaries.py
 python scripts/02_univariate_analysis/lda/run_univariate_analysis.py
