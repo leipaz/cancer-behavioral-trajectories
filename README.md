@@ -64,7 +64,6 @@ See `data/README.md`, `scripts/README.md`, and `results/README.md` for folder-le
 2. **`profiles_to_dcabp.ipynb`** — Loads the trained **LDA** model and dictionary, builds the bag-of-words corpus from the day-type sequences, visualizes the topics (pyLDAvis + top-terms grid), exports the top-10 day-types per topic (`lda_topics_top10.csv`), and compares topic distributions between progression (PD) and non-PD patients.
 3. **`profile_decodification.ipynb`** — Decodes the top-10 day-type profiles of each LDA topic back into **behavioral features** (via the VQ-VAE) and plots the feature profile of each pattern (raw and z-scored).
 4. **`lda_dcabp_evolution.ipynb`** — Assigns the **predominant topic per 30-day block** for every patient and draws the per-month heatmaps (6 topics and favorable/unfavorable hypertopics), marking the real progression-event time.
-5. **`lda_topics_entropy.ipynb`** — Tracks each patient's topic distribution over **sliding 30-day windows** and quantifies behavioral variability with the **Shannon entropy**.
 
 **Scripts** (reproducible pipeline):
 
