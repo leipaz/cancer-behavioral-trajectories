@@ -72,7 +72,7 @@ The equivalent reproducible scripts and the generated figures/tables are documen
 
 ## Data and privacy
 
-Raw patient data are not published. Only **processed, anonymized** datasets that comply with applicable regulations and informed consent are included in this repository. Raw data remain outside version control (see `.gitignore`).
+Raw patient data are not published. Only **processed, anonymized** datasets that comply with applicable regulations and informed consent are included in this repository. 
 
 ## License
 
