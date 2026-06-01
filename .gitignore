@@ -1,6 +1,3 @@
-# Patient data and derivatives (local only; not versioned)
-data/raw/
-
 # VQ-VAE profiles PKL (large; regenerate with notebooks/vq-vae_lda_pipeline/daily_to_profiles.ipynb)
 data/output_vq_vae/profiles_per_sample_oncology.pkl
 
