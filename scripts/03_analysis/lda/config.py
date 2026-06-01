@@ -12,9 +12,10 @@ DEFAULT_PROFILES_PKL = (
 
 # LDA intermediates and models (local)
 PROCESSED_LDA_DIR = PROJECT_ROOT / "data/processed/lda"
+MODELS_LDA_DIR = PROJECT_ROOT / "models/lda"
 USER_EMBEDDINGS_CSV = PROCESSED_LDA_DIR / "user_embeddings_from_pkl.csv"
-DICTIONARY_PATH = PROCESSED_LDA_DIR / "dictionary_lda_180patients.dict"
-LDA_MODEL_PATH = PROCESSED_LDA_DIR / "lda_model_6topics.gensim"
+DICTIONARY_PATH = MODELS_LDA_DIR / "dictionary_LDA_vdec25.dict"
+LDA_MODEL_PATH = MODELS_LDA_DIR / "LDA_model_vdec25.gensim"
 
 USER_TOPIC_CLUSTER_CSV = PROCESSED_LDA_DIR / "user_topic_cluster_6topics_lda.csv"
 PATIENT_TOPICS_CLINICAL_CSV = PROCESSED_LDA_DIR / "patient_topics_clinical.csv"
@@ -54,11 +55,11 @@ FALLBACK_MONTH_PREDOM_CSV = PROCESSED_LDA_DIR / "monthly_predominant_topics.csv"
 
 CNIO_LDA_MODEL_DEC25 = Path(
     "/export/gts_usuarios/lparbaiza/cnio/2nd_phase/lda_models/"
-    "LDAvis_6topics_100000_180patients_dec25.gensim"
+    "LDA_model_vdec25.gensim"
 )
 CNIO_DICTIONARY_DEC25 = Path(
     "/export/gts_usuarios/lparbaiza/cnio/2nd_phase/lda_models/"
-    "dictionary_LDA_180patients_100000.dict"
+    "dictionary_LDA_vdec25.dict"
 )
 
 FIGURE_MONTHLY_TOPICS_HEATMAP = (
@@ -175,22 +176,22 @@ def resolve_month_predom_csv() -> Path:
 
 
 def resolve_lda_model_for_monthly() -> Path:
-    if CNIO_LDA_MODEL_DEC25.is_file():
-        return CNIO_LDA_MODEL_DEC25
     if LDA_MODEL_PATH.is_file():
         return LDA_MODEL_PATH
+    if CNIO_LDA_MODEL_DEC25.is_file():
+        return CNIO_LDA_MODEL_DEC25
     raise FileNotFoundError(
-        f"LDA model not found at {CNIO_LDA_MODEL_DEC25} or {LDA_MODEL_PATH}."
+        f"LDA model not found at {LDA_MODEL_PATH} or {CNIO_LDA_MODEL_DEC25}."
     )
 
 
 def resolve_dictionary_for_monthly() -> Path:
-    if CNIO_DICTIONARY_DEC25.is_file():
-        return CNIO_DICTIONARY_DEC25
     if DICTIONARY_PATH.is_file():
         return DICTIONARY_PATH
+    if CNIO_DICTIONARY_DEC25.is_file():
+        return CNIO_DICTIONARY_DEC25
     raise FileNotFoundError(
-        f"LDA dictionary not found at {CNIO_DICTIONARY_DEC25} or {DICTIONARY_PATH}."
+        f"LDA dictionary not found at {DICTIONARY_PATH} or {CNIO_DICTIONARY_DEC25}."
     )
 
 

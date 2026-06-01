@@ -70,7 +70,7 @@ python scripts/02_univariate_analysis/lda/run_univariate_analysis.py
 **LDA training** from the VQ-VAE profiles PKL through document construction and ``LdaMulticore``.
 
 - **Input:** `data/processed/vq-vae/profiles_per_sample_oncology_28_12_2025.pkl`
-- **Outputs (local):** `data/processed/lda/user_embeddings_from_pkl.csv`, `dictionary_lda_180patients.dict`, `lda_model_6topics.gensim`
+- **Outputs (local):** `data/processed/lda/user_embeddings_from_pkl.csv`, `models/lda/dictionary_LDA_vdec25.dict`, `models/lda/LDA_model_vdec25.gensim`
 
 ```bash
 source env/bin/activate

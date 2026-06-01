@@ -3,6 +3,9 @@
 data/processed/
 data/raw/
 
+# VQ-VAE profiles PKL (large; regenerate with notebooks/daily_to_profiles.ipynb)
+data/output_vq_vae/profiles_per_sample_oncology.pkl
+
 # Local exploratory notebooks (not part of the published pipeline)
 
 *.csv.gz
@@ -22,6 +25,7 @@ data/raw/
 .venv/
 venv/
 env/
+neenv/
 __pycache__/
 *.py[cod]
 .Rproj.user/

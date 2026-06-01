@@ -23,7 +23,7 @@ matplotlib==3.10.9
 matplotlib-inline==0.2.2
 nest-asyncio==1.6.0
 numexpr==2.14.1
-numpy==2.2.6
+numpy==1.26.4
 openpyxl==3.1.5
 packaging==26.2
 pandas==2.3.3
@@ -48,6 +48,7 @@ six==1.17.0
 smart_open==7.6.1
 stack-data==0.6.3
 threadpoolctl==3.6.0
+torch==2.2.2
 tornado==6.5.5
 traitlets==5.15.0
 typing_extensions==4.15.0

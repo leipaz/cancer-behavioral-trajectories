@@ -5,7 +5,7 @@
     "time_point": 0,
     "original": NaN,
     "mask": 0,
-    "reconstruction_a0": -4627.13671875
+    "reconstruction_a0": -4627.138671875
   },
   {
     "patient_id": 11001,
@@ -13,7 +13,7 @@
     "time_point": 1,
     "original": 16800.0,
     "mask": 1,
-    "reconstruction_a0": 21542.14453125
+    "reconstruction_a0": 21542.1484375
   },
   {
     "patient_id": 11001,
@@ -21,7 +21,7 @@
     "time_point": 2,
     "original": -7560.0,
     "mask": 1,
-    "reconstruction_a0": -9608.083984375
+    "reconstruction_a0": -9608.0830078125
   },
   {
     "patient_id": 11001,
@@ -29,7 +29,7 @@
     "time_point": 3,
     "original": -3600.0,
     "mask": 1,
-    "reconstruction_a0": -3725.0
+    "reconstruction_a0": -3724.999755859375
   },
   {
     "patient_id": 11001,
@@ -37,7 +37,7 @@
     "time_point": 4,
     "original": 3600.0,
     "mask": 1,
-    "reconstruction_a0": 2739.6669921875
+    "reconstruction_a0": 2739.6640625
   },
   {
     "patient_id": 11001,
@@ -45,7 +45,7 @@
     "time_point": 5,
     "original": -420.0,
     "mask": 1,
-    "reconstruction_a0": 3620.3388671875
+    "reconstruction_a0": 3620.337890625
   },
   {
     "patient_id": 11001,
@@ -53,7 +53,7 @@
     "time_point": 6,
     "original": 6660.0,
     "mask": 1,
-    "reconstruction_a0": 5532.0302734375
+    "reconstruction_a0": 5532.03125
   },
   {
     "patient_id": 11001,
@@ -61,7 +61,7 @@
     "time_point": 7,
     "original": -4680.0,
     "mask": 1,
-    "reconstruction_a0": -1861.525634765625
+    "reconstruction_a0": -1861.526611328125
   },
   {
     "patient_id": 11001,
@@ -69,7 +69,7 @@
     "time_point": 8,
     "original": -3300.0,
     "mask": 1,
-    "reconstruction_a0": 1242.68212890625
+    "reconstruction_a0": 1242.681640625
   },
   {
     "patient_id": 11001,
@@ -77,7 +77,7 @@
     "time_point": 9,
     "original": 7380.0,
     "mask": 1,
-    "reconstruction_a0": 8619.1767578125
+    "reconstruction_a0": 8619.177734375
   },
   {
     "patient_id": 11001,
@@ -85,7 +85,7 @@
     "time_point": 10,
     "original": -6600.0,
     "mask": 1,
-    "reconstruction_a0": -2642.941162109375
+    "reconstruction_a0": -2642.94091796875
   },
   {
     "patient_id": 11001,
@@ -93,7 +93,7 @@
     "time_point": 11,
     "original": -5700.0,
     "mask": 1,
-    "reconstruction_a0": -4323.54638671875
+    "reconstruction_a0": -4323.544921875
   },
   {
     "patient_id": 11001,
@@ -101,7 +101,7 @@
     "time_point": 12,
     "original": -1560.0,
     "mask": 1,
-    "reconstruction_a0": 697.876953125
+    "reconstruction_a0": 697.87646484375
   },
   {
     "patient_id": 11001,
@@ -109,7 +109,7 @@
     "time_point": 13,
     "original": -4920.0,
     "mask": 1,
-    "reconstruction_a0": -4963.97265625
+    "reconstruction_a0": -4963.9716796875
   },
   {
     "patient_id": 11001,
@@ -117,7 +117,7 @@
     "time_point": 14,
     "original": -7560.0,
     "mask": 1,
-    "reconstruction_a0": -3089.515869140625
+    "reconstruction_a0": -3089.51611328125
   },
   {
     "patient_id": 11001,
@@ -125,7 +125,7 @@
     "time_point": 15,
     "original": -60.0,
     "mask": 1,
-    "reconstruction_a0": 1207.95947265625
+    "reconstruction_a0": 1207.95751953125
   },
   {
     "patient_id": 11001,
@@ -141,7 +141,7 @@
     "time_point": 17,
     "original": 9900.0,
     "mask": 1,
-    "reconstruction_a0": 11420.185546875
+    "reconstruction_a0": 11420.18359375
   },
   {
     "patient_id": 11001,
@@ -149,7 +149,7 @@
     "time_point": 18,
     "original": -2580.0,
     "mask": 1,
-    "reconstruction_a0": 978.65234375
+    "reconstruction_a0": 978.65087890625
   },
   {
     "patient_id": 11001,
@@ -157,7 +157,7 @@
     "time_point": 19,
     "original": -9060.0,
     "mask": 1,
-    "reconstruction_a0": -1595.001953125
+    "reconstruction_a0": -1595.00146484375
   },
   {
     "patient_id": 11001,
@@ -165,7 +165,7 @@
     "time_point": 20,
     "original": -2940.0,
     "mask": 1,
-    "reconstruction_a0": -2102.795654296875
+    "reconstruction_a0": -2102.796630859375
   },
   {
     "patient_id": 11001,
@@ -173,7 +173,7 @@
     "time_point": 21,
     "original": -8460.0,
     "mask": 1,
-    "reconstruction_a0": -6655.96484375
+    "reconstruction_a0": -6655.96630859375
   },
   {
     "patient_id": 11001,
@@ -189,7 +189,7 @@
     "time_point": 23,
     "original": -420.0,
     "mask": 1,
-    "reconstruction_a0": -391.83154296875
+    "reconstruction_a0": -391.83203125
   },
   {
     "patient_id": 11001,
@@ -197,7 +197,7 @@
     "time_point": 24,
     "original": -2340.0,
     "mask": 1,
-    "reconstruction_a0": -886.1142578125
+    "reconstruction_a0": -886.11474609375
   },
   {
     "patient_id": 11001,
@@ -205,7 +205,7 @@
     "time_point": 25,
     "original": 3720.0,
     "mask": 1,
-    "reconstruction_a0": 6131.3623046875
+    "reconstruction_a0": 6131.3583984375
   },
   {
     "patient_id": 11001,
@@ -213,7 +213,7 @@
     "time_point": 26,
     "original": 839.99951171875,
     "mask": 1,
-    "reconstruction_a0": -407.62353515625
+    "reconstruction_a0": -407.6240234375
   },
   {
     "patient_id": 11001,
@@ -221,7 +221,7 @@
     "time_point": 27,
     "original": -5220.0,
     "mask": 1,
-    "reconstruction_a0": -4289.68701171875
+    "reconstruction_a0": -4289.68896484375
   },
   {
     "patient_id": 11001,
@@ -229,7 +229,7 @@
     "time_point": 28,
     "original": -7560.0,
     "mask": 1,
-    "reconstruction_a0": -7716.14990234375
+    "reconstruction_a0": -7716.1513671875
   },
   {
     "patient_id": 11001,
@@ -245,7 +245,7 @@
     "time_point": 30,
     "original": -5400.0,
     "mask": 1,
-    "reconstruction_a0": -4190.27685546875
+    "reconstruction_a0": -4190.2763671875
   },
   {
     "patient_id": 11001,
@@ -269,7 +269,7 @@
     "time_point": 33,
     "original": -6600.0,
     "mask": 1,
-    "reconstruction_a0": -2310.08544921875
+    "reconstruction_a0": -2310.084228515625
   },
   {
     "patient_id": 11001,
@@ -277,7 +277,7 @@
     "time_point": 34,
     "original": -4800.0,
     "mask": 1,
-    "reconstruction_a0": -2836.970947265625
+    "reconstruction_a0": -2836.9716796875
   },
   {
     "patient_id": 11001,
@@ -285,7 +285,7 @@
     "time_point": 35,
     "original": 780.0,
     "mask": 1,
-    "reconstruction_a0": 2032.76953125
+    "reconstruction_a0": 2032.7685546875
   },
   {
     "patient_id": 11001,
@@ -293,7 +293,7 @@
     "time_point": 36,
     "original": -7440.0,
     "mask": 1,
-    "reconstruction_a0": -3437.131591796875
+    "reconstruction_a0": -3437.132568359375
   },
   {
     "patient_id": 11001,
@@ -301,7 +301,7 @@
     "time_point": 37,
     "original": -1740.0,
     "mask": 1,
-    "reconstruction_a0": -2666.54345703125
+    "reconstruction_a0": -2666.544921875
   },
   {
     "patient_id": 11001,
@@ -309,7 +309,7 @@
     "time_point": 38,
     "original": 540.0,
     "mask": 1,
-    "reconstruction_a0": 2877.1572265625
+    "reconstruction_a0": 2877.1591796875
   },
   {
     "patient_id": 11001,
@@ -317,7 +317,7 @@
     "time_point": 39,
     "original": -480.0,
     "mask": 1,
-    "reconstruction_a0": -4172.14111328125
+    "reconstruction_a0": -4172.1396484375
   },
   {
     "patient_id": 11001,
@@ -325,7 +325,7 @@
     "time_point": 40,
     "original": -6120.0,
     "mask": 1,
-    "reconstruction_a0": -4369.6376953125
+    "reconstruction_a0": -4369.638671875
   },
   {
     "patient_id": 11001,
@@ -333,7 +333,7 @@
     "time_point": 41,
     "original": 1920.0,
     "mask": 1,
-    "reconstruction_a0": 1468.12109375
+    "reconstruction_a0": 1468.1220703125
   },
   {
     "patient_id": 11001,
@@ -341,7 +341,7 @@
     "time_point": 42,
     "original": -8280.0,
     "mask": 1,
-    "reconstruction_a0": -4890.68359375
+    "reconstruction_a0": -4890.6845703125
   },
   {
     "patient_id": 11001,
@@ -349,7 +349,7 @@
     "time_point": 43,
     "original": -4200.0,
     "mask": 1,
-    "reconstruction_a0": -1375.8603515625
+    "reconstruction_a0": -1375.85986328125
   },
   {
     "patient_id": 11001,
@@ -357,7 +357,7 @@
     "time_point": 44,
     "original": 1560.00048828125,
     "mask": 1,
-    "reconstruction_a0": 5625.390625
+    "reconstruction_a0": 5625.392578125
   },
   {
     "patient_id": 11001,
@@ -365,7 +365,7 @@
     "time_point": 45,
     "original": 900.0,
     "mask": 1,
-    "reconstruction_a0": 4700.400390625
+    "reconstruction_a0": 4700.3974609375
   },
   {
     "patient_id": 11001,
@@ -381,7 +381,7 @@
     "time_point": 47,
     "original": -8040.0,
     "mask": 1,
-    "reconstruction_a0": -7008.30859375
+    "reconstruction_a0": -7008.310546875
   },
   {
     "patient_id": 11001,
@@ -389,7 +389,7 @@
     "time_point": 48,
     "original": 1800.0,
     "mask": 1,
-    "reconstruction_a0": -762.8173828125
+    "reconstruction_a0": -762.81591796875
   },
   {
     "patient_id": 11001,
@@ -397,7 +397,7 @@
     "time_point": 49,
     "original": 3240.0,
     "mask": 1,
-    "reconstruction_a0": 3247.068359375
+    "reconstruction_a0": 3247.0673828125
   },
   {
     "patient_id": 11001,
@@ -405,7 +405,7 @@
     "time_point": 50,
     "original": 6480.0,
     "mask": 1,
-    "reconstruction_a0": 3483.1044921875
+    "reconstruction_a0": 3483.10546875
   },
   {
     "patient_id": 11001,
@@ -413,7 +413,7 @@
     "time_point": 51,
     "original": 1217.0,
     "mask": 1,
-    "reconstruction_a0": 8416.619140625
+    "reconstruction_a0": 8416.6181640625
   },
   {
     "patient_id": 11001,
@@ -421,7 +421,7 @@
     "time_point": 52,
     "original": -2040.0,
     "mask": 1,
-    "reconstruction_a0": -1650.74951171875
+    "reconstruction_a0": -1650.748046875
   },
   {
     "patient_id": 11001,
@@ -429,7 +429,7 @@
     "time_point": 53,
     "original": 5457.0,
     "mask": 1,
-    "reconstruction_a0": 4449.5263671875
+    "reconstruction_a0": 4449.5244140625
   },
   {
     "patient_id": 11001,
@@ -437,7 +437,7 @@
     "time_point": 54,
     "original": -3660.0,
     "mask": 1,
-    "reconstruction_a0": -1647.500244140625
+    "reconstruction_a0": -1647.501220703125
   },
   {
     "patient_id": 11001,
@@ -453,7 +453,7 @@
     "time_point": 56,
     "original": -3780.0,
     "mask": 1,
-    "reconstruction_a0": -1596.418701171875
+    "reconstruction_a0": -1596.41845703125
   },
   {
     "patient_id": 11001,
@@ -485,7 +485,7 @@
     "time_point": 60,
     "original": -3480.0,
     "mask": 1,
-    "reconstruction_a0": -227.80615234375
+    "reconstruction_a0": -227.80712890625
   },
   {
     "patient_id": 11001,
@@ -493,7 +493,7 @@
     "time_point": 61,
     "original": -5700.0,
     "mask": 1,
-    "reconstruction_a0": -5523.8115234375
+    "reconstruction_a0": -5523.8125
   },
   {
     "patient_id": 11001,
@@ -501,7 +501,7 @@
     "time_point": 62,
     "original": -3120.0,
     "mask": 1,
-    "reconstruction_a0": -3356.170166015625
+    "reconstruction_a0": -3356.17138671875
   },
   {
     "patient_id": 11001,
@@ -509,7 +509,7 @@
     "time_point": 63,
     "original": -3720.0,
     "mask": 1,
-    "reconstruction_a0": -2156.06787109375
+    "reconstruction_a0": -2156.068359375
   },
   {
     "patient_id": 11001,
@@ -525,7 +525,7 @@
     "time_point": 65,
     "original": -4140.0,
     "mask": 1,
-    "reconstruction_a0": -717.9990234375
+    "reconstruction_a0": -718.0009765625
   },
   {
     "patient_id": 11001,
@@ -541,7 +541,7 @@
     "time_point": 67,
     "original": 2880.0,
     "mask": 1,
-    "reconstruction_a0": 2859.28515625
+    "reconstruction_a0": 2859.283203125
   },
   {
     "patient_id": 11001,
@@ -549,7 +549,7 @@
     "time_point": 68,
     "original": -120.0,
     "mask": 1,
-    "reconstruction_a0": 1963.2138671875
+    "reconstruction_a0": 1963.21484375
   },
   {
     "patient_id": 11001,
@@ -557,7 +557,7 @@
     "time_point": 69,
     "original": 9360.0,
     "mask": 1,
-    "reconstruction_a0": 14238.587890625
+    "reconstruction_a0": 14238.5859375
   },
   {
     "patient_id": 11001,
@@ -581,7 +581,7 @@
     "time_point": 72,
     "original": -1140.0,
     "mask": 1,
-    "reconstruction_a0": 1358.8310546875
+    "reconstruction_a0": 1358.83154296875
   },
   {
     "patient_id": 11001,
@@ -589,7 +589,7 @@
     "time_point": 73,
     "original": -7200.0,
     "mask": 1,
-    "reconstruction_a0": -2083.127197265625
+    "reconstruction_a0": -2083.127685546875
   },
   {
     "patient_id": 11001,
@@ -597,7 +597,7 @@
     "time_point": 74,
     "original": 5220.0,
     "mask": 1,
-    "reconstruction_a0": 7039.3837890625
+    "reconstruction_a0": 7039.3818359375
   },
   {
     "patient_id": 11001,
@@ -605,7 +605,7 @@
     "time_point": 75,
     "original": -840.0,
     "mask": 1,
-    "reconstruction_a0": -1986.4482421875
+    "reconstruction_a0": -1986.44775390625
   },
   {
     "patient_id": 11001,
@@ -621,7 +621,7 @@
     "time_point": 77,
     "original": -2760.0,
     "mask": 1,
-    "reconstruction_a0": -2417.0146484375
+    "reconstruction_a0": -2417.015380859375
   },
   {
     "patient_id": 11001,
@@ -629,7 +629,7 @@
     "time_point": 78,
     "original": -3480.0,
     "mask": 1,
-    "reconstruction_a0": -653.44140625
+    "reconstruction_a0": -653.4404296875
   },
   {
     "patient_id": 11001,
@@ -637,7 +637,7 @@
     "time_point": 79,
     "original": 4020.0,
     "mask": 1,
-    "reconstruction_a0": -3526.140625
+    "reconstruction_a0": -3526.138427734375
   },
   {
     "patient_id": 11001,
@@ -645,7 +645,7 @@
     "time_point": 80,
     "original": 180.0,
     "mask": 1,
-    "reconstruction_a0": 4827.8134765625
+    "reconstruction_a0": 4827.81640625
   },
   {
     "patient_id": 11001,
@@ -653,7 +653,7 @@
     "time_point": 81,
     "original": 2760.0,
     "mask": 1,
-    "reconstruction_a0": 5320.1240234375
+    "reconstruction_a0": 5320.12109375
   },
   {
     "patient_id": 11001,
@@ -661,7 +661,7 @@
     "time_point": 82,
     "original": 2100.0,
     "mask": 1,
-    "reconstruction_a0": 5531.76953125
+    "reconstruction_a0": 5531.767578125
   },
   {
     "patient_id": 11001,
@@ -677,7 +677,7 @@
     "time_point": 84,
     "original": -4080.0,
     "mask": 1,
-    "reconstruction_a0": -2438.0712890625
+    "reconstruction_a0": -2438.06884765625
   },
   {
     "patient_id": 11001,
@@ -685,7 +685,7 @@
     "time_point": 85,
     "original": -2820.0,
     "mask": 1,
-    "reconstruction_a0": 795.71435546875
+    "reconstruction_a0": 795.7158203125
   },
   {
     "patient_id": 11001,
@@ -693,7 +693,7 @@
     "time_point": 86,
     "original": -2400.0,
     "mask": 1,
-    "reconstruction_a0": -2432.814208984375
+    "reconstruction_a0": -2432.814697265625
   },
   {
     "patient_id": 11001,
@@ -701,7 +701,7 @@
     "time_point": 87,
     "original": -1500.0,
     "mask": 1,
-    "reconstruction_a0": -2883.64892578125
+    "reconstruction_a0": -2883.650390625
   },
   {
     "patient_id": 11001,
@@ -709,7 +709,7 @@
     "time_point": 88,
     "original": 420.0,
     "mask": 1,
-    "reconstruction_a0": 2170.0771484375
+    "reconstruction_a0": 2170.07421875
   },
   {
     "patient_id": 11001,
@@ -717,7 +717,7 @@
     "time_point": 89,
     "original": 3600.0,
     "mask": 1,
-    "reconstruction_a0": -1044.02490234375
+    "reconstruction_a0": -1044.02783203125
   },
   {
     "patient_id": 11001,
@@ -725,7 +725,7 @@
     "time_point": 90,
     "original": -5100.0,
     "mask": 1,
-    "reconstruction_a0": -3641.177490234375
+    "reconstruction_a0": -3641.1787109375
   },
   {
     "patient_id": 11001,
@@ -733,7 +733,7 @@
     "time_point": 91,
     "original": 2580.0,
     "mask": 1,
-    "reconstruction_a0": 4026.517578125
+    "reconstruction_a0": 4026.5166015625
   },
   {
     "patient_id": 11001,
@@ -741,7 +741,7 @@
     "time_point": 92,
     "original": 360.0,
     "mask": 1,
-    "reconstruction_a0": 2891.609375
+    "reconstruction_a0": 2891.6103515625
   },
   {
     "patient_id": 11001,
@@ -749,7 +749,7 @@
     "time_point": 93,
     "original": -780.0,
     "mask": 1,
-    "reconstruction_a0": -4435.16650390625
+    "reconstruction_a0": -4435.16796875
   },
   {
     "patient_id": 11001,
@@ -757,7 +757,7 @@
     "time_point": 94,
     "original": 2280.0,
     "mask": 1,
-    "reconstruction_a0": 2268.2822265625
+    "reconstruction_a0": 2268.28173828125
   },
   {
     "patient_id": 11001,
@@ -765,7 +765,7 @@
     "time_point": 95,
     "original": -4620.0,
     "mask": 1,
-    "reconstruction_a0": -3060.572021484375
+    "reconstruction_a0": -3060.573974609375
   },
   {
     "patient_id": 11001,
@@ -773,7 +773,7 @@
     "time_point": 96,
     "original": -120.0,
     "mask": 1,
-    "reconstruction_a0": -1862.666748046875
+    "reconstruction_a0": -1862.6669921875
   },
   {
     "patient_id": 11001,
@@ -781,7 +781,7 @@
     "time_point": 97,
     "original": -6840.0,
     "mask": 1,
-    "reconstruction_a0": -4927.2998046875
+    "reconstruction_a0": -4927.30078125
   },
   {
     "patient_id": 11001,
@@ -789,7 +789,7 @@
     "time_point": 98,
     "original": -6240.0,
     "mask": 1,
-    "reconstruction_a0": -3015.857177734375
+    "reconstruction_a0": -3015.858154296875
   },
   {
     "patient_id": 11001,
@@ -797,7 +797,7 @@
     "time_point": 99,
     "original": 420.0,
     "mask": 1,
-    "reconstruction_a0": 3257.5322265625
+    "reconstruction_a0": 3257.533203125
   },
   {
     "patient_id": 11001,
@@ -829,7 +829,7 @@
     "time_point": 103,
     "original": 900.0,
     "mask": 1,
-    "reconstruction_a0": -225.96240234375
+    "reconstruction_a0": -225.9638671875
   },
   {
     "patient_id": 11001,
@@ -845,7 +845,7 @@
     "time_point": 105,
     "original": -5880.0,
     "mask": 1,
-    "reconstruction_a0": -11.55078125
+    "reconstruction_a0": -11.55029296875
   },
   {
     "patient_id": 11001,
@@ -853,7 +853,7 @@
     "time_point": 106,
     "original": -4560.0,
     "mask": 1,
-    "reconstruction_a0": -395.7978515625
+    "reconstruction_a0": -395.79931640625
   },
   {
     "patient_id": 11001,
@@ -869,7 +869,7 @@
     "time_point": 108,
     "original": 7800.0,
     "mask": 1,
-    "reconstruction_a0": 11054.68359375
+    "reconstruction_a0": 11054.681640625
   },
   {
     "patient_id": 11001,
@@ -885,7 +885,7 @@
     "time_point": 110,
     "original": -2040.0,
     "mask": 1,
-    "reconstruction_a0": 399.35498046875
+    "reconstruction_a0": 399.3544921875
   },
   {
     "patient_id": 11001,
@@ -901,7 +901,7 @@
     "time_point": 112,
     "original": -5580.0,
     "mask": 1,
-    "reconstruction_a0": -1829.5693359375
+    "reconstruction_a0": -1829.569580078125
   },
   {
     "patient_id": 11001,
@@ -917,7 +917,7 @@
     "time_point": 114,
     "original": -5100.0,
     "mask": 1,
-    "reconstruction_a0": -1080.6455078125
+    "reconstruction_a0": -1080.646484375
   },
   {
     "patient_id": 11001,
@@ -925,7 +925,7 @@
     "time_point": 115,
     "original": -3540.0,
     "mask": 1,
-    "reconstruction_a0": -236.66943359375
+    "reconstruction_a0": -236.6689453125
   },
   {
     "patient_id": 11001,
@@ -933,7 +933,7 @@
     "time_point": 116,
     "original": -5580.0,
     "mask": 1,
-    "reconstruction_a0": -2699.244873046875
+    "reconstruction_a0": -2699.246826171875
   },
   {
     "patient_id": 11001,
@@ -941,7 +941,7 @@
     "time_point": 117,
     "original": 0.0,
     "mask": 1,
-    "reconstruction_a0": 3742.330078125
+    "reconstruction_a0": 3742.3330078125
   },
   {
     "patient_id": 11001,
@@ -949,7 +949,7 @@
     "time_point": 118,
     "original": -540.0,
     "mask": 1,
-    "reconstruction_a0": 3252.96484375
+    "reconstruction_a0": 3252.9638671875
   },
   {
     "patient_id": 11001,
@@ -957,7 +957,7 @@
     "time_point": 119,
     "original": -5520.0,
     "mask": 1,
-    "reconstruction_a0": -3139.5029296875
+    "reconstruction_a0": -3139.50341796875
   },
   {
     "patient_id": 11001,
@@ -973,7 +973,7 @@
     "time_point": 121,
     "original": -780.0,
     "mask": 1,
-    "reconstruction_a0": 333.8642578125
+    "reconstruction_a0": 333.86376953125
   },
   {
     "patient_id": 11001,
@@ -981,7 +981,7 @@
     "time_point": 122,
     "original": 2100.0,
     "mask": 1,
-    "reconstruction_a0": 11309.763671875
+    "reconstruction_a0": 11309.76171875
   },
   {
     "patient_id": 11001,
@@ -989,7 +989,7 @@
     "time_point": 123,
     "original": 6360.0,
     "mask": 1,
-    "reconstruction_a0": 10094.1650390625
+    "reconstruction_a0": 10094.1640625
   },
   {
     "patient_id": 11001,
@@ -1013,7 +1013,7 @@
     "time_point": 126,
     "original": -480.0,
     "mask": 1,
-    "reconstruction_a0": 1785.84716796875
+    "reconstruction_a0": 1785.84814453125
   },
   {
     "patient_id": 11001,
@@ -1029,7 +1029,7 @@
     "time_point": 128,
     "original": 2640.0,
     "mask": 1,
-    "reconstruction_a0": 10336.638671875
+    "reconstruction_a0": 10336.6416015625
   },
   {
     "patient_id": 11001,
@@ -1037,7 +1037,7 @@
     "time_point": 129,
     "original": 7859.9990234375,
     "mask": 1,
-    "reconstruction_a0": 10762.1611328125
+    "reconstruction_a0": 10762.16015625
   },
   {
     "patient_id": 11001,
@@ -1053,7 +1053,7 @@
     "time_point": 131,
     "original": 2820.0,
     "mask": 1,
-    "reconstruction_a0": 1859.18896484375
+    "reconstruction_a0": 1859.18798828125
   },
   {
     "patient_id": 11001,
@@ -1061,7 +1061,7 @@
     "time_point": 132,
     "original": -3000.0,
     "mask": 1,
-    "reconstruction_a0": -2068.715576171875
+    "reconstruction_a0": -2068.716064453125
   },
   {
     "patient_id": 11001,
@@ -1069,7 +1069,7 @@
     "time_point": 133,
     "original": -1320.0,
     "mask": 1,
-    "reconstruction_a0": 1051.517578125
+    "reconstruction_a0": 1051.515625
   },
   {
     "patient_id": 11001,
@@ -1077,7 +1077,7 @@
     "time_point": 134,
     "original": -5820.0,
     "mask": 1,
-    "reconstruction_a0": -3562.146728515625
+    "reconstruction_a0": -3562.14501953125
   },
   {
     "patient_id": 11001,
@@ -1085,7 +1085,7 @@
     "time_point": 135,
     "original": 11160.0,
     "mask": 1,
-    "reconstruction_a0": 7882.0732421875
+    "reconstruction_a0": 7882.072265625
   },
   {
     "patient_id": 11001,
@@ -1093,7 +1093,7 @@
     "time_point": 136,
     "original": -6480.0,
     "mask": 1,
-    "reconstruction_a0": -1890.406005859375
+    "reconstruction_a0": -1890.40625
   },
   {
     "patient_id": 11001,
@@ -1101,7 +1101,7 @@
     "time_point": 137,
     "original": -1680.0,
     "mask": 1,
-    "reconstruction_a0": -2554.0048828125
+    "reconstruction_a0": -2554.006591796875
   },
   {
     "patient_id": 11001,
@@ -1109,7 +1109,7 @@
     "time_point": 138,
     "original": -720.0,
     "mask": 1,
-    "reconstruction_a0": -7850.533203125
+    "reconstruction_a0": -7850.5322265625
   },
   {
     "patient_id": 11001,
@@ -1133,7 +1133,7 @@
     "time_point": 141,
     "original": 60.0,
     "mask": 1,
-    "reconstruction_a0": 1914.142578125
+    "reconstruction_a0": 1914.14208984375
   },
   {
     "patient_id": 11001,
@@ -1141,7 +1141,7 @@
     "time_point": 142,
     "original": -5700.0,
     "mask": 1,
-    "reconstruction_a0": -3631.42236328125
+    "reconstruction_a0": -3631.42138671875
   },
   {
     "patient_id": 11001,
@@ -1149,7 +1149,7 @@
     "time_point": 143,
     "original": -10080.0,
     "mask": 1,
-    "reconstruction_a0": -5288.974609375
+    "reconstruction_a0": -5288.9755859375
   },
   {
     "patient_id": 11001,
@@ -1157,7 +1157,7 @@
     "time_point": 144,
     "original": 1620.0,
     "mask": 1,
-    "reconstruction_a0": 2870.5283203125
+    "reconstruction_a0": 2870.529296875
   },
   {
     "patient_id": 11001,
@@ -1189,7 +1189,7 @@
     "time_point": 148,
     "original": -5640.0,
     "mask": 1,
-    "reconstruction_a0": -2002.548583984375
+    "reconstruction_a0": -2002.548828125
   },
   {
     "patient_id": 11001,
@@ -1197,7 +1197,7 @@
     "time_point": 149,
     "original": -360.0,
     "mask": 1,
-    "reconstruction_a0": -1514.408935546875
+    "reconstruction_a0": -1514.4091796875
   },
   {
     "patient_id": 11001,
@@ -1205,7 +1205,7 @@
     "time_point": 150,
     "original": -5820.0,
     "mask": 1,
-    "reconstruction_a0": -3617.537109375
+    "reconstruction_a0": -3617.53515625
   },
   {
     "patient_id": 11001,
@@ -1213,7 +1213,7 @@
     "time_point": 151,
     "original": 3780.0,
     "mask": 1,
-    "reconstruction_a0": 5069.59765625
+    "reconstruction_a0": 5069.5947265625
   },
   {
     "patient_id": 11001,
@@ -1221,7 +1221,7 @@
     "time_point": 152,
     "original": -2640.0,
     "mask": 1,
-    "reconstruction_a0": -3768.35302734375
+    "reconstruction_a0": -3768.35400390625
   },
   {
     "patient_id": 11001,
@@ -1229,7 +1229,7 @@
     "time_point": 153,
     "original": 552.0,
     "mask": 1,
-    "reconstruction_a0": 809.626953125
+    "reconstruction_a0": 809.625
   },
   {
     "patient_id": 11001,
@@ -1237,7 +1237,7 @@
     "time_point": 154,
     "original": -4800.0,
     "mask": 1,
-    "reconstruction_a0": -2795.23681640625
+    "reconstruction_a0": -2795.2373046875
   },
   {
     "patient_id": 11001,
@@ -1245,7 +1245,7 @@
     "time_point": 155,
     "original": -1560.0,
     "mask": 1,
-    "reconstruction_a0": -1519.946044921875
+    "reconstruction_a0": -1519.9462890625
   },
   {
     "patient_id": 11001,
@@ -1261,7 +1261,7 @@
     "time_point": 157,
     "original": 120.0,
     "mask": 1,
-    "reconstruction_a0": 1971.68212890625
+    "reconstruction_a0": 1971.67919921875
   },
   {
     "patient_id": 11001,
@@ -1269,7 +1269,7 @@
     "time_point": 158,
     "original": 2460.0,
     "mask": 1,
-    "reconstruction_a0": 4188.341796875
+    "reconstruction_a0": 4188.33984375
   },
   {
     "patient_id": 11001,
@@ -1277,7 +1277,7 @@
     "time_point": 159,
     "original": -2100.0,
     "mask": 1,
-    "reconstruction_a0": -1643.838623046875
+    "reconstruction_a0": -1643.839599609375
   },
   {
     "patient_id": 11001,
@@ -1293,7 +1293,7 @@
     "time_point": 161,
     "original": 2940.0,
     "mask": 1,
-    "reconstruction_a0": 2610.84716796875
+    "reconstruction_a0": 2610.8466796875
   },
   {
     "patient_id": 11001,
@@ -1301,7 +1301,7 @@
     "time_point": 162,
     "original": -6120.0,
     "mask": 1,
-    "reconstruction_a0": -2492.927490234375
+    "reconstruction_a0": -2492.929931640625
   },
   {
     "patient_id": 11001,
@@ -1309,7 +1309,7 @@
     "time_point": 163,
     "original": 1500.0,
     "mask": 1,
-    "reconstruction_a0": -3115.846923828125
+    "reconstruction_a0": -3115.84814453125
   },
   {
     "patient_id": 11001,
@@ -1317,7 +1317,7 @@
     "time_point": 164,
     "original": -2700.0,
     "mask": 1,
-    "reconstruction_a0": -2727.994384765625
+    "reconstruction_a0": -2727.99560546875
   },
   {
     "patient_id": 11001,
@@ -1325,7 +1325,7 @@
     "time_point": 165,
     "original": 8640.0,
     "mask": 1,
-    "reconstruction_a0": 9181.88671875
+    "reconstruction_a0": 9181.8857421875
   },
   {
     "patient_id": 11001,
@@ -1333,7 +1333,7 @@
     "time_point": 166,
     "original": -7080.0,
     "mask": 1,
-    "reconstruction_a0": -6887.59619140625
+    "reconstruction_a0": -6887.595703125
   },
   {
     "patient_id": 11001,
@@ -1341,7 +1341,7 @@
     "time_point": 167,
     "original": -10140.0,
     "mask": 1,
-    "reconstruction_a0": -10075.599609375
+    "reconstruction_a0": -10075.59765625
   },
   {
     "patient_id": 11001,
@@ -1349,7 +1349,7 @@
     "time_point": 168,
     "original": -2580.0,
     "mask": 1,
-    "reconstruction_a0": -7718.8447265625
+    "reconstruction_a0": -7718.84716796875
   },
   {
     "patient_id": 11001,
@@ -1357,7 +1357,7 @@
     "time_point": 169,
     "original": -1920.0,
     "mask": 1,
-    "reconstruction_a0": -2426.183349609375
+    "reconstruction_a0": -2426.1845703125
   },
   {
     "patient_id": 11001,
@@ -1365,7 +1365,7 @@
     "time_point": 170,
     "original": -180.0,
     "mask": 1,
-    "reconstruction_a0": 2560.69775390625
+    "reconstruction_a0": 2560.6982421875
   },
   {
     "patient_id": 11001,
@@ -1373,7 +1373,7 @@
     "time_point": 171,
     "original": -2700.0,
     "mask": 1,
-    "reconstruction_a0": -1875.7734375
+    "reconstruction_a0": -1875.7724609375
   },
   {
     "patient_id": 11001,
@@ -1389,7 +1389,7 @@
     "time_point": 173,
     "original": 240.0,
     "mask": 1,
-    "reconstruction_a0": 787.18408203125
+    "reconstruction_a0": 787.18310546875
   },
   {
     "patient_id": 11001,
@@ -1413,7 +1413,7 @@
     "time_point": 176,
     "original": 6180.0,
     "mask": 1,
-    "reconstruction_a0": 4678.806640625
+    "reconstruction_a0": 4678.8046875
   },
   {
     "patient_id": 11001,
@@ -1421,7 +1421,7 @@
     "time_point": 177,
     "original": 4860.0,
     "mask": 1,
-    "reconstruction_a0": 9525.2216796875
+    "reconstruction_a0": 9525.22265625
   },
   {
     "patient_id": 11001,
@@ -1437,7 +1437,7 @@
     "time_point": 179,
     "original": -1080.0,
     "mask": 1,
-    "reconstruction_a0": -1116.27392578125
+    "reconstruction_a0": -1116.27197265625
   },
   {
     "patient_id": 11001,
@@ -1445,7 +1445,7 @@
     "time_point": 180,
     "original": -5760.0,
     "mask": 1,
-    "reconstruction_a0": -5364.94384765625
+    "reconstruction_a0": -5364.943359375
   },
   {
     "patient_id": 11001,
@@ -1453,7 +1453,7 @@
     "time_point": 181,
     "original": -2940.0,
     "mask": 1,
-    "reconstruction_a0": -4441.708984375
+    "reconstruction_a0": -4441.70947265625
   },
   {
     "patient_id": 11001,
@@ -1461,7 +1461,7 @@
     "time_point": 182,
     "original": 4020.0,
     "mask": 1,
-    "reconstruction_a0": 1183.54248046875
+    "reconstruction_a0": 1183.541015625
   },
   {
     "patient_id": 11001,
@@ -1469,7 +1469,7 @@
     "time_point": 183,
     "original": -3960.0,
     "mask": 1,
-    "reconstruction_a0": -3418.33837890625
+    "reconstruction_a0": -3418.338623046875
   },
   {
     "patient_id": 11001,
@@ -1477,7 +1477,7 @@
     "time_point": 184,
     "original": 1740.0,
     "mask": 1,
-    "reconstruction_a0": 4092.4208984375
+    "reconstruction_a0": 4092.419921875
   },
   {
     "patient_id": 11001,
@@ -1485,7 +1485,7 @@
     "time_point": 185,
     "original": 9540.0009765625,
     "mask": 1,
-    "reconstruction_a0": 9661.548828125
+    "reconstruction_a0": 9661.5478515625
   },
   {
     "patient_id": 11001,
@@ -1501,7 +1501,7 @@
     "time_point": 187,
     "original": -4620.0,
     "mask": 1,
-    "reconstruction_a0": -2603.12158203125
+    "reconstruction_a0": -2603.12255859375
   },
   {
     "patient_id": 11001,
@@ -1509,7 +1509,7 @@
     "time_point": 188,
     "original": -7620.0,
     "mask": 1,
-    "reconstruction_a0": -4710.27685546875
+    "reconstruction_a0": -4710.275390625
   },
   {
     "patient_id": 11001,
@@ -1517,7 +1517,7 @@
     "time_point": 189,
     "original": -7800.0,
     "mask": 1,
-    "reconstruction_a0": -7567.455078125
+    "reconstruction_a0": -7567.45654296875
   },
   {
     "patient_id": 11001,
@@ -1525,7 +1525,7 @@
     "time_point": 190,
     "original": -7500.0,
     "mask": 1,
-    "reconstruction_a0": -5315.8564453125
+    "reconstruction_a0": -5315.8583984375
   },
   {
     "patient_id": 11001,
@@ -1533,7 +1533,7 @@
     "time_point": 191,
     "original": -1200.0,
     "mask": 1,
-    "reconstruction_a0": -831.66455078125
+    "reconstruction_a0": -831.666015625
   },
   {
     "patient_id": 11001,
@@ -1541,7 +1541,7 @@
     "time_point": 192,
     "original": -7320.0,
     "mask": 1,
-    "reconstruction_a0": -3182.5576171875
+    "reconstruction_a0": -3182.558837890625
   },
   {
     "patient_id": 11001,
@@ -1549,7 +1549,7 @@
     "time_point": 193,
     "original": -5460.0,
     "mask": 1,
-    "reconstruction_a0": -2072.2705078125
+    "reconstruction_a0": -2072.271728515625
   },
   {
     "patient_id": 11001,
@@ -1557,7 +1557,7 @@
     "time_point": 194,
     "original": -3240.0,
     "mask": 1,
-    "reconstruction_a0": -4106.04736328125
+    "reconstruction_a0": -4106.046875
   },
   {
     "patient_id": 11001,
@@ -1573,7 +1573,7 @@
     "time_point": 196,
     "original": NaN,
     "mask": 0,
-    "reconstruction_a0": -1059.03125
+    "reconstruction_a0": -1059.03076171875
   },
   {
     "patient_id": 11001,
@@ -1581,7 +1581,7 @@
     "time_point": 197,
     "original": -6600.0,
     "mask": 1,
-    "reconstruction_a0": -4166.72021484375
+    "reconstruction_a0": -4166.720703125
   },
   {
     "patient_id": 11001,
@@ -1589,7 +1589,7 @@
     "time_point": 198,
     "original": -1920.0,
     "mask": 1,
-    "reconstruction_a0": -1794.356201171875
+    "reconstruction_a0": -1794.3583984375
   },
   {
     "patient_id": 11001,
@@ -1597,7 +1597,7 @@
     "time_point": 199,
     "original": -1680.0,
     "mask": 1,
-    "reconstruction_a0": -3270.031005859375
+    "reconstruction_a0": -3270.03271484375
   },
   {
     "patient_id": 11001,
@@ -1613,7 +1613,7 @@
     "time_point": 201,
     "original": -960.0,
     "mask": 1,
-    "reconstruction_a0": 1889.5283203125
+    "reconstruction_a0": 1889.525390625
   },
   {
     "patient_id": 11001,
@@ -1621,7 +1621,7 @@
     "time_point": 202,
     "original": 2760.0,
     "mask": 1,
-    "reconstruction_a0": 3901.5439453125
+    "reconstruction_a0": 3901.5419921875
   },
   {
     "patient_id": 11001,
@@ -1645,7 +1645,7 @@
     "time_point": 205,
     "original": -2100.0,
     "mask": 1,
-    "reconstruction_a0": -362.44189453125
+    "reconstruction_a0": -362.4423828125
   },
   {
     "patient_id": 11001,
@@ -1669,7 +1669,7 @@
     "time_point": 208,
     "original": 2100.0,
     "mask": 1,
-    "reconstruction_a0": -3542.78173828125
+    "reconstruction_a0": -3542.783203125
   },
   {
     "patient_id": 11001,
@@ -1677,7 +1677,7 @@
     "time_point": 209,
     "original": -3960.0,
     "mask": 1,
-    "reconstruction_a0": -350.60546875
+    "reconstruction_a0": -350.60595703125
   },
   {
     "patient_id": 11001,
@@ -1685,7 +1685,7 @@
     "time_point": 210,
     "original": 360.0,
     "mask": 1,
-    "reconstruction_a0": 3582.974609375
+    "reconstruction_a0": 3582.9697265625
   },
   {
     "patient_id": 11001,
@@ -1693,7 +1693,7 @@
     "time_point": 211,
     "original": 3300.0,
     "mask": 1,
-    "reconstruction_a0": 4285.68359375
+    "reconstruction_a0": 4285.6826171875
   },
   {
     "patient_id": 11001,
@@ -1701,7 +1701,7 @@
     "time_point": 212,
     "original": -2880.0,
     "mask": 1,
-    "reconstruction_a0": 43.2529296875
+    "reconstruction_a0": 43.25341796875
   },
   {
     "patient_id": 11001,
@@ -1709,7 +1709,7 @@
     "time_point": 213,
     "original": 9960.0,
     "mask": 1,
-    "reconstruction_a0": 11045.33203125
+    "reconstruction_a0": 11045.333984375
   },
   {
     "patient_id": 11001,
@@ -1725,7 +1725,7 @@
     "time_point": 215,
     "original": 7560.0,
     "mask": 1,
-    "reconstruction_a0": 6707.494140625
+    "reconstruction_a0": 6707.4931640625
   },
   {
     "patient_id": 11001,
@@ -1733,7 +1733,7 @@
     "time_point": 216,
     "original": 3480.0,
     "mask": 1,
-    "reconstruction_a0": 5129.390625
+    "reconstruction_a0": 5129.392578125
   },
   {
     "patient_id": 11001,
@@ -1741,7 +1741,7 @@
     "time_point": 217,
     "original": -120.0,
     "mask": 1,
-    "reconstruction_a0": 5875.583984375
+    "reconstruction_a0": 5875.5830078125
   },
   {
     "patient_id": 11001,
@@ -1749,7 +1749,7 @@
     "time_point": 218,
     "original": -1740.0,
     "mask": 1,
-    "reconstruction_a0": 347.93701171875
+    "reconstruction_a0": 347.935546875
   },
   {
     "patient_id": 11001,
@@ -1757,7 +1757,7 @@
     "time_point": 219,
     "original": 10920.0,
     "mask": 1,
-    "reconstruction_a0": 11647.99609375
+    "reconstruction_a0": 11648.0
   },
   {
     "patient_id": 11001,
@@ -1765,7 +1765,7 @@
     "time_point": 220,
     "original": 6840.0,
     "mask": 1,
-    "reconstruction_a0": 12277.53515625
+    "reconstruction_a0": 12277.53125
   },
   {
     "patient_id": 11001,
@@ -1773,7 +1773,7 @@
     "time_point": 221,
     "original": -1560.0,
     "mask": 1,
-    "reconstruction_a0": 4569.166015625
+    "reconstruction_a0": 4569.1650390625
   },
   {
     "patient_id": 11001,
@@ -1781,7 +1781,7 @@
     "time_point": 222,
     "original": -240.0,
     "mask": 1,
-    "reconstruction_a0": 1163.15576171875
+    "reconstruction_a0": 1163.15478515625
   },
   {
     "patient_id": 11001,
@@ -1789,7 +1789,7 @@
     "time_point": 223,
     "original": 12300.0,
     "mask": 1,
-    "reconstruction_a0": 12509.74609375
+    "reconstruction_a0": 12509.744140625
   },
   {
     "patient_id": 11001,
@@ -1805,7 +1805,7 @@
     "time_point": 225,
     "original": 7740.0,
     "mask": 1,
-    "reconstruction_a0": 10900.388671875
+    "reconstruction_a0": 10900.38671875
   },
   {
     "patient_id": 11001,
@@ -1813,7 +1813,7 @@
     "time_point": 226,
     "original": 4980.0,
     "mask": 1,
-    "reconstruction_a0": 4978.0361328125
+    "reconstruction_a0": 4978.033203125
   },
   {
     "patient_id": 11001,
@@ -1821,7 +1821,7 @@
     "time_point": 227,
     "original": 3240.0,
     "mask": 1,
-    "reconstruction_a0": 11363.8203125
+    "reconstruction_a0": 11363.818359375
   },
   {
     "patient_id": 11001,
@@ -1829,7 +1829,7 @@
     "time_point": 228,
     "original": -720.0,
     "mask": 1,
-    "reconstruction_a0": 1296.84375
+    "reconstruction_a0": 1296.8447265625
   },
   {
     "patient_id": 11001,
@@ -1837,7 +1837,7 @@
     "time_point": 229,
     "original": 60.0,
     "mask": 1,
-    "reconstruction_a0": -1013.84765625
+    "reconstruction_a0": -1013.8466796875
   },
   {
     "patient_id": 11001,
@@ -1853,7 +1853,7 @@
     "time_point": 231,
     "original": 10860.0,
     "mask": 1,
-    "reconstruction_a0": 9502.94140625
+    "reconstruction_a0": 9502.9423828125
   },
   {
     "patient_id": 11001,
@@ -1861,7 +1861,7 @@
     "time_point": 232,
     "original": -780.0,
     "mask": 1,
-    "reconstruction_a0": -1054.7578125
+    "reconstruction_a0": -1054.75732421875
   },
   {
     "patient_id": 11001,
@@ -1869,7 +1869,7 @@
     "time_point": 233,
     "original": -2160.0,
     "mask": 1,
-    "reconstruction_a0": -1742.32958984375
+    "reconstruction_a0": -1742.33056640625
   },
   {
     "patient_id": 11001,
@@ -1877,7 +1877,7 @@
     "time_point": 234,
     "original": -1440.0,
     "mask": 1,
-    "reconstruction_a0": -2161.88525390625
+    "reconstruction_a0": -2161.883056640625
   },
   {
     "patient_id": 11001,
@@ -1885,7 +1885,7 @@
     "time_point": 235,
     "original": 60.0,
     "mask": 1,
-    "reconstruction_a0": -1819.359375
+    "reconstruction_a0": -1819.35888671875
   },
   {
     "patient_id": 11001,
@@ -1893,7 +1893,7 @@
     "time_point": 236,
     "original": 9180.0,
     "mask": 1,
-    "reconstruction_a0": 8793.8671875
+    "reconstruction_a0": 8793.8701171875
   },
   {
     "patient_id": 11001,
@@ -1901,7 +1901,7 @@
     "time_point": 237,
     "original": 3120.0,
     "mask": 1,
-    "reconstruction_a0": 4529.84765625
+    "reconstruction_a0": 4529.8447265625
   },
   {
     "patient_id": 11001,
@@ -1909,7 +1909,7 @@
     "time_point": 238,
     "original": 1620.0,
     "mask": 1,
-    "reconstruction_a0": 5112.98046875
+    "reconstruction_a0": 5112.9775390625
   },
   {
     "patient_id": 11001,
@@ -1933,7 +1933,7 @@
     "time_point": 241,
     "original": 11820.0,
     "mask": 1,
-    "reconstruction_a0": 12472.447265625
+    "reconstruction_a0": 12472.451171875
   },
   {
     "patient_id": 11001,
@@ -1941,7 +1941,7 @@
     "time_point": 242,
     "original": 2280.0,
     "mask": 1,
-    "reconstruction_a0": 6632.509765625
+    "reconstruction_a0": 6632.5078125
   },
   {
     "patient_id": 11001,
@@ -1949,7 +1949,7 @@
     "time_point": 243,
     "original": 120.0,
     "mask": 1,
-    "reconstruction_a0": 7052.45703125
+    "reconstruction_a0": 7052.4560546875
   },
   {
     "patient_id": 11001,
@@ -1957,7 +1957,7 @@
     "time_point": 244,
     "original": 1800.0,
     "mask": 1,
-    "reconstruction_a0": 6147.0732421875
+    "reconstruction_a0": 6147.07421875
   },
   {
     "patient_id": 11001,
@@ -1973,7 +1973,7 @@
     "time_point": 246,
     "original": 5340.0,
     "mask": 1,
-    "reconstruction_a0": 485.9931640625
+    "reconstruction_a0": 485.9921875
   },
   {
     "patient_id": 11001,
@@ -1981,7 +1981,7 @@
     "time_point": 247,
     "original": 5220.0,
     "mask": 1,
-    "reconstruction_a0": 4266.107421875
+    "reconstruction_a0": 4266.1083984375
   },
   {
     "patient_id": 11001,
@@ -1989,7 +1989,7 @@
     "time_point": 248,
     "original": -1500.0,
     "mask": 1,
-    "reconstruction_a0": -1870.468017578125
+    "reconstruction_a0": -1870.470703125
   },
   {
     "patient_id": 11001,
@@ -1997,7 +1997,7 @@
     "time_point": 249,
     "original": 5280.0009765625,
     "mask": 1,
-    "reconstruction_a0": 3787.328125
+    "reconstruction_a0": 3787.3271484375
   },
   {
     "patient_id": 11001,
@@ -2005,7 +2005,7 @@
     "time_point": 250,
     "original": 9540.0009765625,
     "mask": 1,
-    "reconstruction_a0": 9194.0244140625
+    "reconstruction_a0": 9194.021484375
   },
   {
     "patient_id": 11001,
@@ -2029,7 +2029,7 @@
     "time_point": 253,
     "original": -2580.0,
     "mask": 1,
-    "reconstruction_a0": -934.92333984375
+    "reconstruction_a0": -934.9248046875
   },
   {
     "patient_id": 11001,
@@ -2037,7 +2037,7 @@
     "time_point": 254,
     "original": 5040.0009765625,
     "mask": 1,
-    "reconstruction_a0": 10903.751953125
+    "reconstruction_a0": 10903.748046875
   },
   {
     "patient_id": 11001,
@@ -2061,7 +2061,7 @@
     "time_point": 257,
     "original": 10020.0,
     "mask": 1,
-    "reconstruction_a0": 11217.732421875
+    "reconstruction_a0": 11217.73046875
   },
   {
     "patient_id": 11001,
@@ -2069,7 +2069,7 @@
     "time_point": 258,
     "original": 6000.0009765625,
     "mask": 1,
-    "reconstruction_a0": 5758.705078125
+    "reconstruction_a0": 5758.7041015625
   },
   {
     "patient_id": 11001,
@@ -2077,7 +2077,7 @@
     "time_point": 259,
     "original": -10680.0,
     "mask": 1,
-    "reconstruction_a0": -7714.62646484375
+    "reconstruction_a0": -7714.625
   },
   {
     "patient_id": 11001,
@@ -2085,7 +2085,7 @@
     "time_point": 260,
     "original": -3360.0,
     "mask": 1,
-    "reconstruction_a0": -2726.5380859375
+    "reconstruction_a0": -2726.539794921875
   },
   {
     "patient_id": 11001,
@@ -2093,7 +2093,7 @@
     "time_point": 261,
     "original": 11040.0,
     "mask": 1,
-    "reconstruction_a0": 11235.48046875
+    "reconstruction_a0": 11235.478515625
   },
   {
     "patient_id": 11001,
@@ -2101,7 +2101,7 @@
     "time_point": 262,
     "original": 6453.0,
     "mask": 1,
-    "reconstruction_a0": 11930.9375
+    "reconstruction_a0": 11930.935546875
   },
   {
     "patient_id": 11001,
@@ -2109,7 +2109,7 @@
     "time_point": 263,
     "original": 2253.0,
     "mask": 1,
-    "reconstruction_a0": 3852.666015625
+    "reconstruction_a0": 3852.6689453125
   },
   {
     "patient_id": 11001,
@@ -2117,7 +2117,7 @@
     "time_point": 264,
     "original": 11253.0,
     "mask": 1,
-    "reconstruction_a0": 12314.115234375
+    "reconstruction_a0": 12314.11328125
   },
   {
     "patient_id": 11001,
@@ -2125,7 +2125,7 @@
     "time_point": 265,
     "original": -10346.0,
     "mask": 1,
-    "reconstruction_a0": -7508.8779296875
+    "reconstruction_a0": -7508.87939453125
   },
   {
     "patient_id": 11001,
@@ -2133,7 +2133,7 @@
     "time_point": 266,
     "original": -3746.0,
     "mask": 1,
-    "reconstruction_a0": -1160.30419921875
+    "reconstruction_a0": -1160.30615234375
   },
   {
     "patient_id": 11001,
@@ -2149,7 +2149,7 @@
     "time_point": 268,
     "original": 6453.0,
     "mask": 1,
-    "reconstruction_a0": 11745.03515625
+    "reconstruction_a0": 11745.037109375
   },
   {
     "patient_id": 11001,
@@ -2157,7 +2157,7 @@
     "time_point": 269,
     "original": 6453.0,
     "mask": 1,
-    "reconstruction_a0": 12347.908203125
+    "reconstruction_a0": 12347.91015625
   },
   {
     "patient_id": 11001,
@@ -2165,7 +2165,7 @@
     "time_point": 270,
     "original": NaN,
     "mask": 0,
-    "reconstruction_a0": -2266.272216796875
+    "reconstruction_a0": -2266.2724609375
   },
   {
     "patient_id": 11001,
@@ -2173,7 +2173,7 @@
     "time_point": 271,
     "original": NaN,
     "mask": 0,
-    "reconstruction_a0": -3092.355224609375
+    "reconstruction_a0": -3092.357421875
   },
   {
     "patient_id": 11001,
@@ -2181,7 +2181,7 @@
     "time_point": 272,
     "original": 12453.0,
     "mask": 1,
-    "reconstruction_a0": 14325.615234375
+    "reconstruction_a0": 14325.611328125
   },
   {
     "patient_id": 11001,
@@ -2189,7 +2189,7 @@
     "time_point": 273,
     "original": 13653.0,
     "mask": 1,
-    "reconstruction_a0": 12915.171875
+    "reconstruction_a0": 12915.17578125
   },
   {
     "patient_id": 11001,
@@ -2197,7 +2197,7 @@
     "time_point": 274,
     "original": -1380.0,
     "mask": 1,
-    "reconstruction_a0": -2314.397705078125
+    "reconstruction_a0": -2314.398193359375
   },
   {
     "patient_id": 11001,
@@ -2205,7 +2205,7 @@
     "time_point": 275,
     "original": -1380.0,
     "mask": 1,
-    "reconstruction_a0": -2188.4072265625
+    "reconstruction_a0": -2188.408203125
   },
   {
     "patient_id": 11001,
@@ -2229,7 +2229,7 @@
     "time_point": 278,
     "original": 1200.00048828125,
     "mask": 1,
-    "reconstruction_a0": 2424.79833984375
+    "reconstruction_a0": 2424.80029296875
   },
   {
     "patient_id": 11001,
@@ -2237,7 +2237,7 @@
     "time_point": 279,
     "original": 11853.0,
     "mask": 1,
-    "reconstruction_a0": 10867.341796875
+    "reconstruction_a0": 10867.33984375
   },
   {
     "patient_id": 11001,
@@ -2245,7 +2245,7 @@
     "time_point": 280,
     "original": -1440.0,
     "mask": 1,
-    "reconstruction_a0": 3340.359375
+    "reconstruction_a0": 3340.3603515625
   },
   {
     "patient_id": 11001,
@@ -2261,7 +2261,7 @@
     "time_point": 282,
     "original": 4260.0,
     "mask": 1,
-    "reconstruction_a0": 10106.1494140625
+    "reconstruction_a0": 10106.150390625
   },
   {
     "patient_id": 11001,
@@ -2269,7 +2269,7 @@
     "time_point": 283,
     "original": 11340.0,
     "mask": 1,
-    "reconstruction_a0": 10600.5908203125
+    "reconstruction_a0": 10600.58984375
   },
   {
     "patient_id": 11001,
@@ -2277,7 +2277,7 @@
     "time_point": 284,
     "original": -5820.0,
     "mask": 1,
-    "reconstruction_a0": -8275.310546875
+    "reconstruction_a0": -8275.3095703125
   },
   {
     "patient_id": 11001,
@@ -2285,7 +2285,7 @@
     "time_point": 285,
     "original": 959.99951171875,
     "mask": 1,
-    "reconstruction_a0": -4581.34130859375
+    "reconstruction_a0": -4581.3408203125
   },
   {
     "patient_id": 11001,
@@ -2293,7 +2293,7 @@
     "time_point": 286,
     "original": -16020.0,
     "mask": 1,
-    "reconstruction_a0": -14573.263671875
+    "reconstruction_a0": -14573.265625
   },
   {
     "patient_id": 11001,
@@ -2301,7 +2301,7 @@
     "time_point": 287,
     "original": -6720.0,
     "mask": 1,
-    "reconstruction_a0": -4673.4033203125
+    "reconstruction_a0": -4673.40380859375
   },
   {
     "patient_id": 11001,
@@ -2309,7 +2309,7 @@
     "time_point": 288,
     "original": -2160.0,
     "mask": 1,
-    "reconstruction_a0": 2687.3642578125
+    "reconstruction_a0": 2687.36328125
   },
   {
     "patient_id": 11001,
@@ -2333,7 +2333,7 @@
     "time_point": 291,
     "original": 4500.0,
     "mask": 1,
-    "reconstruction_a0": 4472.220703125
+    "reconstruction_a0": 4472.2197265625
   },
   {
     "patient_id": 11001,
@@ -2341,7 +2341,7 @@
     "time_point": 292,
     "original": -2340.0,
     "mask": 1,
-    "reconstruction_a0": -786.111328125
+    "reconstruction_a0": -786.11279296875
   },
   {
     "patient_id": 11001,
@@ -2357,7 +2357,7 @@
     "time_point": 294,
     "original": 420.0,
     "mask": 1,
-    "reconstruction_a0": 1287.89892578125
+    "reconstruction_a0": 1287.89990234375
   },
   {
     "patient_id": 11001,
@@ -2381,7 +2381,7 @@
     "time_point": 297,
     "original": NaN,
     "mask": 0,
-    "reconstruction_a0": -2315.34521484375
+    "reconstruction_a0": -2315.34716796875
   },
   {
     "patient_id": 11001,
@@ -2389,7 +2389,7 @@
     "time_point": 298,
     "original": 180.0,
     "mask": 1,
-    "reconstruction_a0": 5763.6552734375
+    "reconstruction_a0": 5763.658203125
   },
   {
     "patient_id": 11001,
@@ -2397,7 +2397,7 @@
     "time_point": 299,
     "original": 4500.0,
     "mask": 1,
-    "reconstruction_a0": 10254.5458984375
+    "reconstruction_a0": 10254.5478515625
   },
   {
     "patient_id": 11001,
@@ -2405,7 +2405,7 @@
     "time_point": 300,
     "original": 300.0,
     "mask": 1,
-    "reconstruction_a0": 1328.19677734375
+    "reconstruction_a0": 1328.1953125
   },
   {
     "patient_id": 11001,
@@ -2413,7 +2413,7 @@
     "time_point": 301,
     "original": 5520.0009765625,
     "mask": 1,
-    "reconstruction_a0": 14126.236328125
+    "reconstruction_a0": 14126.234375
   },
   {
     "patient_id": 11001,
@@ -2437,7 +2437,7 @@
     "time_point": 304,
     "original": 7619.9990234375,
     "mask": 1,
-    "reconstruction_a0": 9856.2353515625
+    "reconstruction_a0": 9856.23046875
   },
   {
     "patient_id": 11001,
@@ -2445,7 +2445,7 @@
     "time_point": 305,
     "original": 7980.0,
     "mask": 1,
-    "reconstruction_a0": 9797.82421875
+    "reconstruction_a0": 9797.822265625
   },
   {
     "patient_id": 11001,
@@ -2453,7 +2453,7 @@
     "time_point": 306,
     "original": -3600.0,
     "mask": 1,
-    "reconstruction_a0": -2290.309326171875
+    "reconstruction_a0": -2290.311279296875
   },
   {
     "patient_id": 11001,
@@ -2461,7 +2461,7 @@
     "time_point": 307,
     "original": 9120.0,
     "mask": 1,
-    "reconstruction_a0": 13456.427734375
+    "reconstruction_a0": 13456.421875
   },
   {
     "patient_id": 11001,
@@ -2477,7 +2477,7 @@
     "time_point": 309,
     "original": 1320.00048828125,
     "mask": 1,
-    "reconstruction_a0": 3067.4248046875
+    "reconstruction_a0": 3067.42578125
   },
   {
     "patient_id": 11001,
@@ -2485,7 +2485,7 @@
     "time_point": 310,
     "original": -1380.0,
     "mask": 1,
-    "reconstruction_a0": -3203.04296875
+    "reconstruction_a0": -3203.043701171875
   },
   {
     "patient_id": 11001,
@@ -2493,7 +2493,7 @@
     "time_point": 311,
     "original": 6000.0009765625,
     "mask": 1,
-    "reconstruction_a0": 8839.056640625
+    "reconstruction_a0": 8839.0546875
   },
   {
     "patient_id": 11001,
@@ -2501,7 +2501,7 @@
     "time_point": 312,
     "original": 9540.0009765625,
     "mask": 1,
-    "reconstruction_a0": 10179.5888671875
+    "reconstruction_a0": 10179.58984375
   },
   {
     "patient_id": 11001,
@@ -2517,7 +2517,7 @@
     "time_point": 314,
     "original": -2760.0,
     "mask": 1,
-    "reconstruction_a0": -1238.6015625
+    "reconstruction_a0": -1238.60107421875
   },
   {
     "patient_id": 11001,
@@ -2541,7 +2541,7 @@
     "time_point": 317,
     "original": -900.0,
     "mask": 1,
-    "reconstruction_a0": 1752.0478515625
+    "reconstruction_a0": 1752.0498046875
   },
   {
     "patient_id": 11001,
@@ -2549,7 +2549,7 @@
     "time_point": 318,
     "original": -720.0,
     "mask": 1,
-    "reconstruction_a0": -1168.8115234375
+    "reconstruction_a0": -1168.8125
   },
   {
     "patient_id": 11001,
@@ -2565,7 +2565,7 @@
     "time_point": 320,
     "original": 10680.0,
     "mask": 1,
-    "reconstruction_a0": 12997.1015625
+    "reconstruction_a0": 12997.09765625
   },
   {
     "patient_id": 11001,
@@ -2581,7 +2581,7 @@
     "time_point": 322,
     "original": -1500.0,
     "mask": 1,
-    "reconstruction_a0": -1768.7373046875
+    "reconstruction_a0": -1768.73779296875
   },
   {
     "patient_id": 11001,
@@ -2597,7 +2597,7 @@
     "time_point": 324,
     "original": -1260.0,
     "mask": 1,
-    "reconstruction_a0": -968.02880859375
+    "reconstruction_a0": -968.029296875
   },
   {
     "patient_id": 11001,
@@ -2605,7 +2605,7 @@
     "time_point": 325,
     "original": 12120.0,
     "mask": 1,
-    "reconstruction_a0": 10420.6435546875
+    "reconstruction_a0": 10420.6416015625
   },
   {
     "patient_id": 11001,
@@ -2613,7 +2613,7 @@
     "time_point": 326,
     "original": 5340.0,
     "mask": 1,
-    "reconstruction_a0": 8664.837890625
+    "reconstruction_a0": 8664.8369140625
   },
   {
     "patient_id": 11001,
@@ -2621,7 +2621,7 @@
     "time_point": 327,
     "original": 7080.0,
     "mask": 1,
-    "reconstruction_a0": 10304.0556640625
+    "reconstruction_a0": 10304.052734375
   },
   {
     "patient_id": 11001,
@@ -2629,7 +2629,7 @@
     "time_point": 328,
     "original": 839.99951171875,
     "mask": 1,
-    "reconstruction_a0": 5544.0908203125
+    "reconstruction_a0": 5544.08984375
   },
   {
     "patient_id": 11001,
@@ -2645,7 +2645,7 @@
     "time_point": 330,
     "original": -660.0,
     "mask": 1,
-    "reconstruction_a0": 1652.81884765625
+    "reconstruction_a0": 1652.81982421875
   },
   {
     "patient_id": 11001,
@@ -2661,7 +2661,7 @@
     "time_point": 332,
     "original": 2580.0,
     "mask": 1,
-    "reconstruction_a0": 7939.51171875
+    "reconstruction_a0": 7939.5087890625
   },
   {
     "patient_id": 11001,
@@ -2693,7 +2693,7 @@
     "time_point": 336,
     "original": 360.0,
     "mask": 1,
-    "reconstruction_a0": -105.61865234375
+    "reconstruction_a0": -105.61962890625
   },
   {
     "patient_id": 11001,
@@ -2701,7 +2701,7 @@
     "time_point": 337,
     "original": 2160.0,
     "mask": 1,
-    "reconstruction_a0": 5044.224609375
+    "reconstruction_a0": 5044.22265625
   },
   {
     "patient_id": 11001,
@@ -2709,7 +2709,7 @@
     "time_point": 338,
     "original": 4200.0,
     "mask": 1,
-    "reconstruction_a0": 10268.18359375
+    "reconstruction_a0": 10268.1826171875
   },
   {
     "patient_id": 11001,
@@ -2725,7 +2725,7 @@
     "time_point": 340,
     "original": 4200.0,
     "mask": 1,
-    "reconstruction_a0": 4112.8125
+    "reconstruction_a0": 4112.8115234375
   },
   {
     "patient_id": 11001,
@@ -2733,7 +2733,7 @@
     "time_point": 341,
     "original": -1080.0,
     "mask": 1,
-    "reconstruction_a0": -2603.535400390625
+    "reconstruction_a0": -2603.53662109375
   },
   {
     "patient_id": 11001,
@@ -2741,7 +2741,7 @@
     "time_point": 342,
     "original": 6900.0,
     "mask": 1,
-    "reconstruction_a0": 7718.0341796875
+    "reconstruction_a0": 7718.0361328125
   },
   {
     "patient_id": 11001,
@@ -2749,7 +2749,7 @@
     "time_point": 343,
     "original": -4260.0,
     "mask": 1,
-    "reconstruction_a0": -2636.181884765625
+    "reconstruction_a0": -2636.18115234375
   },
   {
     "patient_id": 11001,
@@ -2757,7 +2757,7 @@
     "time_point": 344,
     "original": 2940.0,
     "mask": 1,
-    "reconstruction_a0": 7587.6025390625
+    "reconstruction_a0": 7587.6064453125
   },
   {
     "patient_id": 11001,
@@ -2773,7 +2773,7 @@
     "time_point": 346,
     "original": 13380.0,
     "mask": 1,
-    "reconstruction_a0": 14332.47265625
+    "reconstruction_a0": 14332.470703125
   },
   {
     "patient_id": 11001,
@@ -2781,7 +2781,7 @@
     "time_point": 347,
     "original": 8280.0,
     "mask": 1,
-    "reconstruction_a0": 8245.2490234375
+    "reconstruction_a0": 8245.24609375
   },
   {
     "patient_id": 11001,
@@ -2789,7 +2789,7 @@
     "time_point": 348,
     "original": -3060.0,
     "mask": 1,
-    "reconstruction_a0": 3046.6767578125
+    "reconstruction_a0": 3046.673828125
   },
   {
     "patient_id": 11001,
@@ -2797,7 +2797,7 @@
     "time_point": 349,
     "original": 9840.0,
     "mask": 1,
-    "reconstruction_a0": 3765.8447265625
+    "reconstruction_a0": 3765.841796875
   },
   {
     "patient_id": 11001,
@@ -2805,7 +2805,7 @@
     "time_point": 350,
     "original": 4559.9990234375,
     "mask": 1,
-    "reconstruction_a0": 4681.0810546875
+    "reconstruction_a0": 4681.083984375
   },
   {
     "patient_id": 11001,
@@ -2813,7 +2813,7 @@
     "time_point": 351,
     "original": 5340.0,
     "mask": 1,
-    "reconstruction_a0": 8189.0888671875
+    "reconstruction_a0": 8189.087890625
   },
   {
     "patient_id": 11001,
@@ -2837,7 +2837,7 @@
     "time_point": 354,
     "original": 8339.9990234375,
     "mask": 1,
-    "reconstruction_a0": 13084.09765625
+    "reconstruction_a0": 13084.095703125
   },
   {
     "patient_id": 11001,
@@ -2845,7 +2845,7 @@
     "time_point": 355,
     "original": 719.99951171875,
     "mask": 1,
-    "reconstruction_a0": 5860.1025390625
+    "reconstruction_a0": 5860.103515625
   },
   {
     "patient_id": 11001,
@@ -2853,7 +2853,7 @@
     "time_point": 356,
     "original": 5880.0,
     "mask": 1,
-    "reconstruction_a0": 5767.41015625
+    "reconstruction_a0": 5767.4111328125
   },
   {
     "patient_id": 11001,
@@ -2861,7 +2861,7 @@
     "time_point": 357,
     "original": 3480.0,
     "mask": 1,
-    "reconstruction_a0": 6686.6103515625
+    "reconstruction_a0": 6686.611328125
   },
   {
     "patient_id": 11001,
@@ -2885,7 +2885,7 @@
     "time_point": 360,
     "original": -1112.0,
     "mask": 1,
-    "reconstruction_a0": 1437.458984375
+    "reconstruction_a0": 1437.4609375
   },
   {
     "patient_id": 11001,
@@ -2893,7 +2893,7 @@
     "time_point": 361,
     "original": 9656.0,
     "mask": 1,
-    "reconstruction_a0": 10691.3017578125
+    "reconstruction_a0": 10691.3037109375
   },
   {
     "patient_id": 11001,
@@ -2901,7 +2901,7 @@
     "time_point": 362,
     "original": -2634.0,
     "mask": 1,
-    "reconstruction_a0": -1824.255859375
+    "reconstruction_a0": -1824.255126953125
   },
   {
     "patient_id": 11001,
@@ -2909,7 +2909,7 @@
     "time_point": 363,
     "original": -2400.0,
     "mask": 1,
-    "reconstruction_a0": -1771.99462890625
+    "reconstruction_a0": -1771.994384765625
   },
   {
     "patient_id": 11001,
@@ -2917,7 +2917,7 @@
     "time_point": 364,
     "original": -1920.0,
     "mask": 1,
-    "reconstruction_a0": -2460.667724609375
+    "reconstruction_a0": -2460.668212890625
   },
   {
     "patient_id": 11001,
@@ -2925,7 +2925,7 @@
     "time_point": 365,
     "original": 1260.0,
     "mask": 1,
-    "reconstruction_a0": 2368.4501953125
+    "reconstruction_a0": 2368.451171875
   },
   {
     "patient_id": 11001,
@@ -2933,7 +2933,7 @@
     "time_point": 366,
     "original": -1740.0,
     "mask": 1,
-    "reconstruction_a0": -697.64013671875
+    "reconstruction_a0": -697.6396484375
   },
   {
     "patient_id": 11001,
@@ -2941,7 +2941,7 @@
     "time_point": 367,
     "original": 4200.0,
     "mask": 1,
-    "reconstruction_a0": 10222.1083984375
+    "reconstruction_a0": 10222.111328125
   },
   {
     "patient_id": 11001,
@@ -2949,7 +2949,7 @@
     "time_point": 368,
     "original": -60.0,
     "mask": 1,
-    "reconstruction_a0": 1299.0302734375
+    "reconstruction_a0": 1299.03076171875
   },
   {
     "patient_id": 11001,
@@ -2957,7 +2957,7 @@
     "time_point": 369,
     "original": -2520.0,
     "mask": 1,
-    "reconstruction_a0": 1237.9814453125
+    "reconstruction_a0": 1237.98046875
   },
   {
     "patient_id": 11001,
@@ -2965,7 +2965,7 @@
     "time_point": 370,
     "original": -4860.0,
     "mask": 1,
-    "reconstruction_a0": -1826.855712890625
+    "reconstruction_a0": -1826.8583984375
   },
   {
     "patient_id": 11001,
@@ -2973,7 +2973,7 @@
     "time_point": 371,
     "original": -5280.0,
     "mask": 1,
-    "reconstruction_a0": -3027.114990234375
+    "reconstruction_a0": -3027.1162109375
   },
   {
     "patient_id": 11001,
@@ -2981,7 +2981,7 @@
     "time_point": 372,
     "original": 1200.00048828125,
     "mask": 1,
-    "reconstruction_a0": -152.13623046875
+    "reconstruction_a0": -152.13916015625
   },
   {
     "patient_id": 11001,
@@ -2989,7 +2989,7 @@
     "time_point": 373,
     "original": -1320.0,
     "mask": 1,
-    "reconstruction_a0": 1044.736328125
+    "reconstruction_a0": 1044.7353515625
   },
   {
     "patient_id": 11001,
@@ -2997,7 +2997,7 @@
     "time_point": 374,
     "original": 5760.0009765625,
     "mask": 1,
-    "reconstruction_a0": 10875.015625
+    "reconstruction_a0": 10875.01171875
   },
   {
     "patient_id": 11001,
@@ -3005,7 +3005,7 @@
     "time_point": 375,
     "original": 6480.0,
     "mask": 1,
-    "reconstruction_a0": 12160.560546875
+    "reconstruction_a0": 12160.55859375
   },
   {
     "patient_id": 11001,
@@ -3013,7 +3013,7 @@
     "time_point": 376,
     "original": 7859.9990234375,
     "mask": 1,
-    "reconstruction_a0": -37.68408203125
+    "reconstruction_a0": -37.6845703125
   },
   {
     "patient_id": 11001,
@@ -3021,7 +3021,7 @@
     "time_point": 377,
     "original": 9028.0,
     "mask": 1,
-    "reconstruction_a0": 11115.884765625
+    "reconstruction_a0": 11115.88671875
   },
   {
     "patient_id": 11001,
@@ -3029,7 +3029,7 @@
     "time_point": 378,
     "original": -4740.0,
     "mask": 1,
-    "reconstruction_a0": -770.27978515625
+    "reconstruction_a0": -770.27783203125
   },
   {
     "patient_id": 11001,
@@ -3037,7 +3037,7 @@
     "time_point": 379,
     "original": 6600.0,
     "mask": 1,
-    "reconstruction_a0": 2774.802734375
+    "reconstruction_a0": 2774.80078125
   },
   {
     "patient_id": 11001,
@@ -3045,7 +3045,7 @@
     "time_point": 380,
     "original": 480.0,
     "mask": 1,
-    "reconstruction_a0": -333.9228515625
+    "reconstruction_a0": -333.921875
   },
   {
     "patient_id": 11001,
@@ -3053,7 +3053,7 @@
     "time_point": 381,
     "original": 5580.0,
     "mask": 1,
-    "reconstruction_a0": 9828.9345703125
+    "reconstruction_a0": 9828.9306640625
   },
   {
     "patient_id": 11001,
@@ -3061,7 +3061,7 @@
     "time_point": 382,
     "original": 3660.0,
     "mask": 1,
-    "reconstruction_a0": 5194.6357421875
+    "reconstruction_a0": 5194.634765625
   },
   {
     "patient_id": 11001,
@@ -3069,7 +3069,7 @@
     "time_point": 383,
     "original": 6873.0,
     "mask": 1,
-    "reconstruction_a0": 7303.544921875
+    "reconstruction_a0": 7303.5439453125
   },
   {
     "patient_id": 11001,
@@ -3077,7 +3077,7 @@
     "time_point": 384,
     "original": -1020.0,
     "mask": 1,
-    "reconstruction_a0": 224.45166015625
+    "reconstruction_a0": 224.4501953125
   },
   {
     "patient_id": 11001,
@@ -3085,7 +3085,7 @@
     "time_point": 385,
     "original": -1500.0,
     "mask": 1,
-    "reconstruction_a0": -1706.991943359375
+    "reconstruction_a0": -1706.991455078125
   },
   {
     "patient_id": 11001,
@@ -3093,7 +3093,7 @@
     "time_point": 386,
     "original": 6660.0,
     "mask": 1,
-    "reconstruction_a0": 7122.9814453125
+    "reconstruction_a0": 7122.98046875
   },
   {
     "patient_id": 11001,
@@ -3101,7 +3101,7 @@
     "time_point": 387,
     "original": -4440.0,
     "mask": 1,
-    "reconstruction_a0": -2411.337646484375
+    "reconstruction_a0": -2411.339111328125
   },
   {
     "patient_id": 11001,
@@ -3117,7 +3117,7 @@
     "time_point": 389,
     "original": -3240.0,
     "mask": 1,
-    "reconstruction_a0": -587.3701171875
+    "reconstruction_a0": -587.373046875
   },
   {
     "patient_id": 11001,
@@ -3125,7 +3125,7 @@
     "time_point": 390,
     "original": 1560.00048828125,
     "mask": 1,
-    "reconstruction_a0": -1013.9345703125
+    "reconstruction_a0": -1013.9375
   },
   {
     "patient_id": 11001,
@@ -3133,7 +3133,7 @@
     "time_point": 391,
     "original": 6300.0,
     "mask": 1,
-    "reconstruction_a0": 9838.8427734375
+    "reconstruction_a0": 9838.83984375
   },
   {
     "patient_id": 11001,
@@ -3141,7 +3141,7 @@
     "time_point": 392,
     "original": 6540.0,
     "mask": 1,
-    "reconstruction_a0": 4519.767578125
+    "reconstruction_a0": 4519.7666015625
   },
   {
     "patient_id": 11001,
@@ -3149,7 +3149,7 @@
     "time_point": 393,
     "original": 2220.0,
     "mask": 1,
-    "reconstruction_a0": 7357.9462890625
+    "reconstruction_a0": 7357.943359375
   },
   {
     "patient_id": 11001,
@@ -3157,7 +3157,7 @@
     "time_point": 394,
     "original": 1140.0,
     "mask": 1,
-    "reconstruction_a0": -1510.239990234375
+    "reconstruction_a0": -1510.24169921875
   },
   {
     "patient_id": 11001,
@@ -3165,7 +3165,7 @@
     "time_point": 395,
     "original": -1560.0,
     "mask": 1,
-    "reconstruction_a0": -451.24951171875
+    "reconstruction_a0": -451.25048828125
   },
   {
     "patient_id": 11001,
@@ -3181,7 +3181,7 @@
     "time_point": 397,
     "original": -1500.0,
     "mask": 1,
-    "reconstruction_a0": -1430.12060546875
+    "reconstruction_a0": -1430.1220703125
   },
   {
     "patient_id": 11001,
@@ -3189,7 +3189,7 @@
     "time_point": 398,
     "original": -1080.0,
     "mask": 1,
-    "reconstruction_a0": -2440.119140625
+    "reconstruction_a0": -2440.120361328125
   },
   {
     "patient_id": 11001,
@@ -3197,7 +3197,7 @@
     "time_point": 399,
     "original": -4620.0,
     "mask": 1,
-    "reconstruction_a0": -2808.715576171875
+    "reconstruction_a0": -2808.715087890625
   },
   {
     "patient_id": 11001,
@@ -3205,7 +3205,7 @@
     "time_point": 400,
     "original": 599.99951171875,
     "mask": 1,
-    "reconstruction_a0": -901.5615234375
+    "reconstruction_a0": -901.56201171875
   },
   {
     "patient_id": 11001,
@@ -3213,7 +3213,7 @@
     "time_point": 401,
     "original": -960.0,
     "mask": 1,
-    "reconstruction_a0": -1064.3369140625
+    "reconstruction_a0": -1064.33544921875
   },
   {
     "patient_id": 11001,
@@ -3221,7 +3221,7 @@
     "time_point": 402,
     "original": -120.0,
     "mask": 1,
-    "reconstruction_a0": -1212.18701171875
+    "reconstruction_a0": -1212.18798828125
   },
   {
     "patient_id": 11001,
@@ -3229,7 +3229,7 @@
     "time_point": 403,
     "original": 9240.0,
     "mask": 1,
-    "reconstruction_a0": 13893.71875
+    "reconstruction_a0": 13893.71484375
   },
   {
     "patient_id": 11001,
@@ -3237,7 +3237,7 @@
     "time_point": 404,
     "original": 2700.0,
     "mask": 1,
-    "reconstruction_a0": -421.35791015625
+    "reconstruction_a0": -421.3583984375
   },
   {
     "patient_id": 11001,
@@ -3253,7 +3253,7 @@
     "time_point": 406,
     "original": 5040.0009765625,
     "mask": 1,
-    "reconstruction_a0": 3954.2802734375
+    "reconstruction_a0": 3954.2783203125
   },
   {
     "patient_id": 11001,
@@ -3261,7 +3261,7 @@
     "time_point": 407,
     "original": 240.0,
     "mask": 1,
-    "reconstruction_a0": 178.37109375
+    "reconstruction_a0": 178.36962890625
   },
   {
     "patient_id": 11001,
@@ -3269,7 +3269,7 @@
     "time_point": 408,
     "original": 4260.0,
     "mask": 1,
-    "reconstruction_a0": 9670.203125
+    "reconstruction_a0": 9670.19921875
   },
   {
     "patient_id": 11001,
@@ -3285,7 +3285,7 @@
     "time_point": 410,
     "original": -1440.0,
     "mask": 1,
-    "reconstruction_a0": 838.7353515625
+    "reconstruction_a0": 838.73486328125
   },
   {
     "patient_id": 11001,
@@ -3293,7 +3293,7 @@
     "time_point": 411,
     "original": 1920.0,
     "mask": 1,
-    "reconstruction_a0": 9862.912109375
+    "reconstruction_a0": 9862.9091796875
   },
   {
     "patient_id": 11001,
@@ -3301,7 +3301,7 @@
     "time_point": 412,
     "original": 3540.0,
     "mask": 1,
-    "reconstruction_a0": -230.4140625
+    "reconstruction_a0": -230.41455078125
   },
   {
     "patient_id": 11001,
@@ -3309,7 +3309,7 @@
     "time_point": 413,
     "original": 1260.0,
     "mask": 1,
-    "reconstruction_a0": 3448.890625
+    "reconstruction_a0": 3448.888671875
   },
   {
     "patient_id": 11001,
@@ -3317,7 +3317,7 @@
     "time_point": 414,
     "original": 3540.0,
     "mask": 1,
-    "reconstruction_a0": 6094.705078125
+    "reconstruction_a0": 6094.7080078125
   },
   {
     "patient_id": 11001,
@@ -3325,7 +3325,7 @@
     "time_point": 415,
     "original": 4920.0,
     "mask": 1,
-    "reconstruction_a0": 11197.3125
+    "reconstruction_a0": 11197.310546875
   },
   {
     "patient_id": 11001,
@@ -3333,7 +3333,7 @@
     "time_point": 416,
     "original": 1440.00048828125,
     "mask": 1,
-    "reconstruction_a0": 11304.71484375
+    "reconstruction_a0": 11304.7109375
   },
   {
     "patient_id": 11001,
@@ -3349,7 +3349,7 @@
     "time_point": 418,
     "original": 1079.99951171875,
     "mask": 1,
-    "reconstruction_a0": 5585.7353515625
+    "reconstruction_a0": 5585.7373046875
   },
   {
     "patient_id": 11001,
@@ -3357,7 +3357,7 @@
     "time_point": 419,
     "original": NaN,
     "mask": 0,
-    "reconstruction_a0": -293.4755859375
+    "reconstruction_a0": -293.4775390625
   },
   {
     "patient_id": 11001,
@@ -3373,7 +3373,7 @@
     "time_point": 421,
     "original": 7560.0,
     "mask": 1,
-    "reconstruction_a0": 13368.294921875
+    "reconstruction_a0": 13368.29296875
   },
   {
     "patient_id": 11001,
@@ -3389,7 +3389,7 @@
     "time_point": 423,
     "original": 2820.0,
     "mask": 1,
-    "reconstruction_a0": 1364.310546875
+    "reconstruction_a0": 1364.3095703125
   },
   {
     "patient_id": 11001,
@@ -3397,7 +3397,7 @@
     "time_point": 424,
     "original": -720.0,
     "mask": 1,
-    "reconstruction_a0": 3035.3701171875
+    "reconstruction_a0": 3035.3720703125
   },
   {
     "patient_id": 11001,
@@ -3405,7 +3405,7 @@
     "time_point": 425,
     "original": 1320.00048828125,
     "mask": 1,
-    "reconstruction_a0": -1157.3994140625
+    "reconstruction_a0": -1157.39990234375
   },
   {
     "patient_id": 11001,
@@ -3421,7 +3421,7 @@
     "time_point": 427,
     "original": 3960.0,
     "mask": 1,
-    "reconstruction_a0": 3758.962890625
+    "reconstruction_a0": 3758.9619140625
   },
   {
     "patient_id": 11001,
@@ -3429,7 +3429,7 @@
     "time_point": 428,
     "original": 3000.0,
     "mask": 1,
-    "reconstruction_a0": 4126.470703125
+    "reconstruction_a0": 4126.4697265625
   },
   {
     "patient_id": 11001,
@@ -3437,7 +3437,7 @@
     "time_point": 429,
     "original": 1440.00048828125,
     "mask": 1,
-    "reconstruction_a0": 2522.84912109375
+    "reconstruction_a0": 2522.84814453125
   },
   {
     "patient_id": 11001,
@@ -3453,7 +3453,7 @@
     "time_point": 431,
     "original": 1440.00048828125,
     "mask": 1,
-    "reconstruction_a0": 2417.7197265625
+    "reconstruction_a0": 2417.7177734375
   },
   {
     "patient_id": 11001,
@@ -3461,7 +3461,7 @@
     "time_point": 432,
     "original": 1500.0,
     "mask": 1,
-    "reconstruction_a0": 2112.93701171875
+    "reconstruction_a0": 2112.9365234375
   },
   {
     "patient_id": 11001,
@@ -3477,7 +3477,7 @@
     "time_point": 434,
     "original": 420.0,
     "mask": 1,
-    "reconstruction_a0": 945.81103515625
+    "reconstruction_a0": 945.8095703125
   },
   {
     "patient_id": 11001,
@@ -3485,7 +3485,7 @@
     "time_point": 435,
     "original": 5880.0,
     "mask": 1,
-    "reconstruction_a0": 6611.890625
+    "reconstruction_a0": 6611.8916015625
   },
   {
     "patient_id": 11001,
@@ -3493,7 +3493,7 @@
     "time_point": 436,
     "original": -4260.0,
     "mask": 1,
-    "reconstruction_a0": -1901.738525390625
+    "reconstruction_a0": -1901.73876953125
   },
   {
     "patient_id": 11001,
@@ -3501,7 +3501,7 @@
     "time_point": 437,
     "original": 3480.0,
     "mask": 1,
-    "reconstruction_a0": 3929.4140625
+    "reconstruction_a0": 3929.4130859375
   },
   {
     "patient_id": 11001,
@@ -3517,7 +3517,7 @@
     "time_point": 439,
     "original": 2640.0,
     "mask": 1,
-    "reconstruction_a0": 3121.4912109375
+    "reconstruction_a0": 3121.48828125
   },
   {
     "patient_id": 11001,
@@ -3525,7 +3525,7 @@
     "time_point": 440,
     "original": 6600.0,
     "mask": 1,
-    "reconstruction_a0": 3622.642578125
+    "reconstruction_a0": 3622.6396484375
   },
   {
     "patient_id": 11001,
@@ -3541,7 +3541,7 @@
     "time_point": 442,
     "original": -1620.0,
     "mask": 1,
-    "reconstruction_a0": -1797.4658203125
+    "reconstruction_a0": -1797.46630859375
   },
   {
     "patient_id": 11001,
@@ -3549,7 +3549,7 @@
     "time_point": 443,
     "original": 4319.9990234375,
     "mask": 1,
-    "reconstruction_a0": 8026.3125
+    "reconstruction_a0": 8026.310546875
   },
   {
     "patient_id": 11001,
@@ -3557,7 +3557,7 @@
     "time_point": 444,
     "original": -3480.0,
     "mask": 1,
-    "reconstruction_a0": -3575.5888671875
+    "reconstruction_a0": -3575.587890625
   },
   {
     "patient_id": 11001,
@@ -3565,7 +3565,7 @@
     "time_point": 445,
     "original": -6720.0,
     "mask": 1,
-    "reconstruction_a0": -3958.93115234375
+    "reconstruction_a0": -3958.931396484375
   },
   {
     "patient_id": 11001,
@@ -3573,7 +3573,7 @@
     "time_point": 446,
     "original": -1500.0,
     "mask": 1,
-    "reconstruction_a0": -5471.05078125
+    "reconstruction_a0": -5471.0517578125
   },
   {
     "patient_id": 11001,
@@ -3581,7 +3581,7 @@
     "time_point": 447,
     "original": 240.0,
     "mask": 1,
-    "reconstruction_a0": 1083.4267578125
+    "reconstruction_a0": 1083.4287109375
   },
   {
     "patient_id": 11001,
@@ -3589,7 +3589,7 @@
     "time_point": 448,
     "original": -1320.0,
     "mask": 1,
-    "reconstruction_a0": -3255.7265625
+    "reconstruction_a0": -3255.726806640625
   },
   {
     "patient_id": 11001,
@@ -3597,7 +3597,7 @@
     "time_point": 449,
     "original": 3180.0,
     "mask": 1,
-    "reconstruction_a0": 5449.486328125
+    "reconstruction_a0": 5449.4873046875
   },
   {
     "patient_id": 11001,
@@ -3605,7 +3605,7 @@
     "time_point": 450,
     "original": 300.0,
     "mask": 1,
-    "reconstruction_a0": -2925.302490234375
+    "reconstruction_a0": -2925.3017578125
   },
   {
     "patient_id": 11001,
@@ -3613,7 +3613,7 @@
     "time_point": 451,
     "original": 660.0,
     "mask": 1,
-    "reconstruction_a0": 9231.267578125
+    "reconstruction_a0": 9231.2666015625
   },
   {
     "patient_id": 11001,
@@ -3621,7 +3621,7 @@
     "time_point": 452,
     "original": -3900.0,
     "mask": 1,
-    "reconstruction_a0": -1137.57958984375
+    "reconstruction_a0": -1137.5791015625
   },
   {
     "patient_id": 11001,
@@ -3629,7 +3629,7 @@
     "time_point": 453,
     "original": -3480.0,
     "mask": 1,
-    "reconstruction_a0": -4086.94189453125
+    "reconstruction_a0": -4086.94091796875
   },
   {
     "patient_id": 11001,
@@ -3637,7 +3637,7 @@
     "time_point": 454,
     "original": -2520.0,
     "mask": 1,
-    "reconstruction_a0": -2474.508056640625
+    "reconstruction_a0": -2474.507568359375
   },
   {
     "patient_id": 11001,
@@ -3645,7 +3645,7 @@
     "time_point": 455,
     "original": -2940.0,
     "mask": 1,
-    "reconstruction_a0": -6095.30615234375
+    "reconstruction_a0": -6095.30517578125
   },
   {
     "patient_id": 11001,
@@ -3653,7 +3653,7 @@
     "time_point": 456,
     "original": -4920.0,
     "mask": 1,
-    "reconstruction_a0": -3606.94677734375
+    "reconstruction_a0": -3606.94775390625
   },
   {
     "patient_id": 11001,
@@ -3661,7 +3661,7 @@
     "time_point": 457,
     "original": 120.0,
     "mask": 1,
-    "reconstruction_a0": -1412.40966796875
+    "reconstruction_a0": -1412.41064453125
   },
   {
     "patient_id": 11001,
@@ -3669,7 +3669,7 @@
     "time_point": 458,
     "original": -1920.0,
     "mask": 1,
-    "reconstruction_a0": -503.57470703125
+    "reconstruction_a0": -503.57568359375
   },
   {
     "patient_id": 11001,
@@ -3677,7 +3677,7 @@
     "time_point": 459,
     "original": -1500.0,
     "mask": 1,
-    "reconstruction_a0": 3506.982421875
+    "reconstruction_a0": 3506.9814453125
   },
   {
     "patient_id": 11001,
@@ -3685,7 +3685,7 @@
     "time_point": 460,
     "original": 4620.0,
     "mask": 1,
-    "reconstruction_a0": 6459.6904296875
+    "reconstruction_a0": 6459.6865234375
   },
   {
     "patient_id": 11001,
@@ -3709,7 +3709,7 @@
     "time_point": 463,
     "original": 0.0,
     "mask": 1,
-    "reconstruction_a0": 1794.1640625
+    "reconstruction_a0": 1794.16357421875
   },
   {
     "patient_id": 11001,
@@ -3717,7 +3717,7 @@
     "time_point": 464,
     "original": 4799.9990234375,
     "mask": 1,
-    "reconstruction_a0": 6859.8173828125
+    "reconstruction_a0": 6859.8134765625
   },
   {
     "patient_id": 11001,
@@ -3733,7 +3733,7 @@
     "time_point": 466,
     "original": 6900.0,
     "mask": 1,
-    "reconstruction_a0": 9721.87109375
+    "reconstruction_a0": 9721.869140625
   },
   {
     "patient_id": 11001,
@@ -3749,7 +3749,7 @@
     "time_point": 468,
     "original": 8940.0,
     "mask": 1,
-    "reconstruction_a0": 9545.060546875
+    "reconstruction_a0": 9545.05859375
   },
   {
     "patient_id": 11001,
@@ -3757,7 +3757,7 @@
     "time_point": 469,
     "original": -626.0,
     "mask": 1,
-    "reconstruction_a0": -1264.37109375
+    "reconstruction_a0": -1264.37060546875
   },
   {
     "patient_id": 11001,
@@ -3765,7 +3765,7 @@
     "time_point": 470,
     "original": 5340.0,
     "mask": 1,
-    "reconstruction_a0": 9249.623046875
+    "reconstruction_a0": 9249.6220703125
   },
   {
     "patient_id": 11001,
@@ -3773,7 +3773,7 @@
     "time_point": 471,
     "original": -5340.0,
     "mask": 1,
-    "reconstruction_a0": -1131.1845703125
+    "reconstruction_a0": -1131.18310546875
   },
   {
     "patient_id": 11001,
@@ -3781,7 +3781,7 @@
     "time_point": 472,
     "original": 6720.0,
     "mask": 1,
-    "reconstruction_a0": 14706.65234375
+    "reconstruction_a0": 14706.658203125
   },
   {
     "patient_id": 11001,
@@ -3789,7 +3789,7 @@
     "time_point": 473,
     "original": 9540.0009765625,
     "mask": 1,
-    "reconstruction_a0": 9361.4921875
+    "reconstruction_a0": 9361.486328125
   },
   {
     "patient_id": 11001,
@@ -3829,7 +3829,7 @@
     "time_point": 478,
     "original": 13260.0,
     "mask": 1,
-    "reconstruction_a0": 11513.1171875
+    "reconstruction_a0": 11513.115234375
   },
   {
     "patient_id": 11001,
@@ -3837,7 +3837,7 @@
     "time_point": 479,
     "original": -1027.0,
     "mask": 1,
-    "reconstruction_a0": 2533.13427734375
+    "reconstruction_a0": 2533.130859375
   },
   {
     "patient_id": 11001,
@@ -3845,7 +3845,7 @@
     "time_point": 480,
     "original": 3780.0,
     "mask": 1,
-    "reconstruction_a0": 6565.828125
+    "reconstruction_a0": 6565.8251953125
   },
   {
     "patient_id": 11001,
@@ -3853,7 +3853,7 @@
     "time_point": 481,
     "original": 11880.0,
     "mask": 1,
-    "reconstruction_a0": 13527.5390625
+    "reconstruction_a0": 13527.537109375
   },
   {
     "patient_id": 11001,
@@ -3861,7 +3861,7 @@
     "time_point": 482,
     "original": -1620.0,
     "mask": 1,
-    "reconstruction_a0": -462.98583984375
+    "reconstruction_a0": -462.984375
   },
   {
     "patient_id": 11001,
@@ -3877,7 +3877,7 @@
     "time_point": 484,
     "original": 5880.0,
     "mask": 1,
-    "reconstruction_a0": 12772.189453125
+    "reconstruction_a0": 12772.1875
   },
   {
     "patient_id": 11001,
@@ -3893,7 +3893,7 @@
     "time_point": 486,
     "original": 1980.0,
     "mask": 1,
-    "reconstruction_a0": 5722.6328125
+    "reconstruction_a0": 5722.6337890625
   },
   {
     "patient_id": 11001,
@@ -3901,7 +3901,7 @@
     "time_point": 487,
     "original": -1140.0,
     "mask": 1,
-    "reconstruction_a0": 1268.97509765625
+    "reconstruction_a0": 1268.97314453125
   },
   {
     "patient_id": 11001,
@@ -3917,7 +3917,7 @@
     "time_point": 489,
     "original": 3060.0,
     "mask": 1,
-    "reconstruction_a0": 3684.7529296875
+    "reconstruction_a0": 3684.751953125
   },
   {
     "patient_id": 11001,
@@ -3925,7 +3925,7 @@
     "time_point": 490,
     "original": 6240.0,
     "mask": 1,
-    "reconstruction_a0": 6545.84375
+    "reconstruction_a0": 6545.8447265625
   },
   {
     "patient_id": 11001,
@@ -3933,7 +3933,7 @@
     "time_point": 491,
     "original": NaN,
     "mask": 0,
-    "reconstruction_a0": -2681.789306640625
+    "reconstruction_a0": -2681.791748046875
   },
   {
     "patient_id": 11001,
@@ -3949,7 +3949,7 @@
     "time_point": 493,
     "original": 7740.0,
     "mask": 1,
-    "reconstruction_a0": 9182.728515625
+    "reconstruction_a0": 9182.7275390625
   },
   {
     "patient_id": 11001,
@@ -3957,7 +3957,7 @@
     "time_point": 494,
     "original": 5100.0,
     "mask": 1,
-    "reconstruction_a0": 8939.1103515625
+    "reconstruction_a0": 8939.1083984375
   },
   {
     "patient_id": 11001,
@@ -3965,7 +3965,7 @@
     "time_point": 495,
     "original": 3840.0,
     "mask": 1,
-    "reconstruction_a0": 3418.984375
+    "reconstruction_a0": 3418.9833984375
   },
   {
     "patient_id": 11001,
@@ -3973,7 +3973,7 @@
     "time_point": 496,
     "original": 3420.0,
     "mask": 1,
-    "reconstruction_a0": 6304.123046875
+    "reconstruction_a0": 6304.1240234375
   },
   {
     "patient_id": 11001,
@@ -3981,7 +3981,7 @@
     "time_point": 497,
     "original": 2100.0,
     "mask": 1,
-    "reconstruction_a0": 4324.357421875
+    "reconstruction_a0": 4324.3564453125
   },
   {
     "patient_id": 11001,
@@ -3989,7 +3989,7 @@
     "time_point": 498,
     "original": 5220.0,
     "mask": 1,
-    "reconstruction_a0": 9285.673828125
+    "reconstruction_a0": 9285.6728515625
   },
   {
     "patient_id": 11001,
@@ -3997,7 +3997,7 @@
     "time_point": 499,
     "original": 7080.0,
     "mask": 1,
-    "reconstruction_a0": 9385.408203125
+    "reconstruction_a0": 9385.4052734375
   },
   {
     "patient_id": 11001,
@@ -4005,7 +4005,7 @@
     "time_point": 500,
     "original": -2160.0,
     "mask": 1,
-    "reconstruction_a0": -1284.345703125
+    "reconstruction_a0": -1284.3447265625
   },
   {
     "patient_id": 11001,
@@ -4013,7 +4013,7 @@
     "time_point": 501,
     "original": -1920.0,
     "mask": 1,
-    "reconstruction_a0": -1044.2138671875
+    "reconstruction_a0": -1044.21435546875
   },
   {
     "patient_id": 11001,
@@ -4021,7 +4021,7 @@
     "time_point": 502,
     "original": -5220.0,
     "mask": 1,
-    "reconstruction_a0": -1241.72119140625
+    "reconstruction_a0": -1241.72265625
   },
   {
     "patient_id": 11001,
@@ -4029,7 +4029,7 @@
     "time_point": 503,
     "original": 1135.0,
     "mask": 1,
-    "reconstruction_a0": 5808.35546875
+    "reconstruction_a0": 5808.359375
   },
   {
     "patient_id": 11001,
@@ -4037,7 +4037,7 @@
     "time_point": 504,
     "original": 11280.0,
     "mask": 1,
-    "reconstruction_a0": 11214.740234375
+    "reconstruction_a0": 11214.73828125
   },
   {
     "patient_id": 11001,
@@ -4045,7 +4045,7 @@
     "time_point": 505,
     "original": -3840.0,
     "mask": 1,
-    "reconstruction_a0": -1804.602783203125
+    "reconstruction_a0": -1804.604248046875
   },
   {
     "patient_id": 11001,
@@ -4053,7 +4053,7 @@
     "time_point": 506,
     "original": 2220.0,
     "mask": 1,
-    "reconstruction_a0": 1889.27001953125
+    "reconstruction_a0": 1889.27099609375
   },
   {
     "patient_id": 11001,
@@ -4061,7 +4061,7 @@
     "time_point": 507,
     "original": -60.0,
     "mask": 1,
-    "reconstruction_a0": 2629.21484375
+    "reconstruction_a0": 2629.21337890625
   },
   {
     "patient_id": 11001,
@@ -4077,7 +4077,7 @@
     "time_point": 509,
     "original": -9600.0,
     "mask": 1,
-    "reconstruction_a0": -8500.201171875
+    "reconstruction_a0": -8500.203125
   },
   {
     "patient_id": 11001,
@@ -4085,7 +4085,7 @@
     "time_point": 510,
     "original": -2040.0,
     "mask": 1,
-    "reconstruction_a0": -3336.91552734375
+    "reconstruction_a0": -3336.91357421875
   },
   {
     "patient_id": 11001,
@@ -4101,7 +4101,7 @@
     "time_point": 512,
     "original": 4740.0,
     "mask": 1,
-    "reconstruction_a0": 8704.564453125
+    "reconstruction_a0": 8704.5654296875
   },
   {
     "patient_id": 11001,
@@ -4109,7 +4109,7 @@
     "time_point": 513,
     "original": 8640.0,
     "mask": 1,
-    "reconstruction_a0": 8861.1123046875
+    "reconstruction_a0": 8861.111328125
   },
   {
     "patient_id": 11001,
@@ -4117,7 +4117,7 @@
     "time_point": 514,
     "original": -4620.0,
     "mask": 1,
-    "reconstruction_a0": 1868.93359375
+    "reconstruction_a0": 1868.9365234375
   },
   {
     "patient_id": 11001,
@@ -4125,7 +4125,7 @@
     "time_point": 515,
     "original": 6960.0,
     "mask": 1,
-    "reconstruction_a0": 10884.32421875
+    "reconstruction_a0": 10884.328125
   },
   {
     "patient_id": 11001,
@@ -4133,7 +4133,7 @@
     "time_point": 516,
     "original": 4620.0,
     "mask": 1,
-    "reconstruction_a0": 10097.9169921875
+    "reconstruction_a0": 10097.91796875
   },
   {
     "patient_id": 11001,
@@ -4141,7 +4141,7 @@
     "time_point": 517,
     "original": 5760.0009765625,
     "mask": 1,
-    "reconstruction_a0": 8389.916015625
+    "reconstruction_a0": 8389.9140625
   },
   {
     "patient_id": 11001,
@@ -4149,7 +4149,7 @@
     "time_point": 518,
     "original": -6350.0,
     "mask": 1,
-    "reconstruction_a0": -3322.02392578125
+    "reconstruction_a0": -3322.024658203125
   },
   {
     "patient_id": 11001,
@@ -4165,7 +4165,7 @@
     "time_point": 520,
     "original": -1740.0,
     "mask": 1,
-    "reconstruction_a0": -2970.19580078125
+    "reconstruction_a0": -2970.197265625
   },
   {
     "patient_id": 11001,
@@ -4181,7 +4181,7 @@
     "time_point": 522,
     "original": -4380.0,
     "mask": 1,
-    "reconstruction_a0": -1210.46337890625
+    "reconstruction_a0": -1210.46484375
   },
   {
     "patient_id": 11001,
@@ -4189,7 +4189,7 @@
     "time_point": 523,
     "original": 5160.0,
     "mask": 1,
-    "reconstruction_a0": 4897.8515625
+    "reconstruction_a0": 4897.8486328125
   },
   {
     "patient_id": 11001,
@@ -4197,7 +4197,7 @@
     "time_point": 524,
     "original": 3613.0,
     "mask": 1,
-    "reconstruction_a0": 5061.0927734375
+    "reconstruction_a0": 5061.09375
   },
   {
     "patient_id": 11001,
@@ -4205,7 +4205,7 @@
     "time_point": 525,
     "original": -12485.0,
     "mask": 1,
-    "reconstruction_a0": -11717.2880859375
+    "reconstruction_a0": -11717.287109375
   },
   {
     "patient_id": 11001,
@@ -4221,7 +4221,7 @@
     "time_point": 527,
     "original": -2040.0,
     "mask": 1,
-    "reconstruction_a0": -260.3662109375
+    "reconstruction_a0": -260.36669921875
   },
   {
     "patient_id": 11001,
@@ -4229,7 +4229,7 @@
     "time_point": 528,
     "original": 240.0,
     "mask": 1,
-    "reconstruction_a0": 6308.208984375
+    "reconstruction_a0": 6308.20703125
   },
   {
     "patient_id": 11001,
@@ -4237,7 +4237,7 @@
     "time_point": 529,
     "original": 3300.0,
     "mask": 1,
-    "reconstruction_a0": 3804.9560546875
+    "reconstruction_a0": 3804.9541015625
   },
   {
     "patient_id": 11001,
@@ -4245,7 +4245,7 @@
     "time_point": 530,
     "original": -2160.0,
     "mask": 1,
-    "reconstruction_a0": 2393.9970703125
+    "reconstruction_a0": 2393.9951171875
   },
   {
     "patient_id": 11001,
@@ -4253,7 +4253,7 @@
     "time_point": 531,
     "original": -12009.0,
     "mask": 1,
-    "reconstruction_a0": -13928.2431640625
+    "reconstruction_a0": -13928.24609375
   },
   {
     "patient_id": 11001,
@@ -4269,7 +4269,7 @@
     "time_point": 533,
     "original": -3960.0,
     "mask": 1,
-    "reconstruction_a0": -1517.52294921875
+    "reconstruction_a0": -1517.52587890625
   },
   {
     "patient_id": 11001,
@@ -4277,7 +4277,7 @@
     "time_point": 534,
     "original": 6120.0,
     "mask": 1,
-    "reconstruction_a0": 12007.47265625
+    "reconstruction_a0": 12007.46875
   },
   {
     "patient_id": 11001,
@@ -4285,7 +4285,7 @@
     "time_point": 535,
     "original": 4920.0,
     "mask": 1,
-    "reconstruction_a0": 10707.0009765625
+    "reconstruction_a0": 10707.0
   },
   {
     "patient_id": 11001,
@@ -4293,7 +4293,7 @@
     "time_point": 536,
     "original": 2760.0,
     "mask": 1,
-    "reconstruction_a0": 5840.9091796875
+    "reconstruction_a0": 5840.908203125
   },
   {
     "patient_id": 11001,
@@ -4301,7 +4301,7 @@
     "time_point": 537,
     "original": 6840.0,
     "mask": 1,
-    "reconstruction_a0": 5461.255859375
+    "reconstruction_a0": 5461.2548828125
   },
   {
     "patient_id": 11001,
@@ -4309,7 +4309,7 @@
     "time_point": 538,
     "original": -1320.0,
     "mask": 1,
-    "reconstruction_a0": -1203.720703125
+    "reconstruction_a0": -1203.72119140625
   },
   {
     "patient_id": 11001,
@@ -4317,7 +4317,7 @@
     "time_point": 539,
     "original": -960.0,
     "mask": 1,
-    "reconstruction_a0": 2729.2412109375
+    "reconstruction_a0": 2729.240234375
   },
   {
     "patient_id": 11001,
@@ -4341,7 +4341,7 @@
     "time_point": 542,
     "original": 5100.0,
     "mask": 1,
-    "reconstruction_a0": 10496.2744140625
+    "reconstruction_a0": 10496.27734375
   },
   {
     "patient_id": 11001,
@@ -4349,7 +4349,7 @@
     "time_point": 543,
     "original": 9660.0,
     "mask": 1,
-    "reconstruction_a0": 10895.8984375
+    "reconstruction_a0": 10895.896484375
   },
   {
     "patient_id": 11001,
@@ -4357,7 +4357,7 @@
     "time_point": 544,
     "original": 839.99951171875,
     "mask": 1,
-    "reconstruction_a0": 4871.298828125
+    "reconstruction_a0": 4871.2978515625
   },
   {
     "patient_id": 11001,
@@ -4365,7 +4365,7 @@
     "time_point": 545,
     "original": -4440.0,
     "mask": 1,
-    "reconstruction_a0": -2442.09130859375
+    "reconstruction_a0": -2442.090087890625
   },
   {
     "patient_id": 11001,
@@ -4373,7 +4373,7 @@
     "time_point": 546,
     "original": 4559.9990234375,
     "mask": 1,
-    "reconstruction_a0": 7813.3046875
+    "reconstruction_a0": 7813.302734375
   },
   {
     "patient_id": 11001,
@@ -4381,7 +4381,7 @@
     "time_point": 547,
     "original": 1500.0,
     "mask": 1,
-    "reconstruction_a0": 3369.69140625
+    "reconstruction_a0": 3369.689453125
   },
   {
     "patient_id": 11001,
@@ -4389,7 +4389,7 @@
     "time_point": 548,
     "original": -2880.0,
     "mask": 1,
-    "reconstruction_a0": -1915.849609375
+    "reconstruction_a0": -1915.8486328125
   },
   {
     "patient_id": 11001,
@@ -4397,7 +4397,7 @@
     "time_point": 549,
     "original": 3840.0,
     "mask": 1,
-    "reconstruction_a0": -438.63916015625
+    "reconstruction_a0": -438.638671875
   },
   {
     "patient_id": 11001,
@@ -4405,7 +4405,7 @@
     "time_point": 550,
     "original": 7680.0,
     "mask": 1,
-    "reconstruction_a0": 5453.4423828125
+    "reconstruction_a0": 5453.4384765625
   },
   {
     "patient_id": 11001,
@@ -4421,7 +4421,7 @@
     "time_point": 552,
     "original": -2160.0,
     "mask": 1,
-    "reconstruction_a0": -2841.963134765625
+    "reconstruction_a0": -2841.964111328125
   },
   {
     "patient_id": 11001,
@@ -4429,7 +4429,7 @@
     "time_point": 553,
     "original": -4080.0,
     "mask": 1,
-    "reconstruction_a0": -4293.953125
+    "reconstruction_a0": -4293.9521484375
   },
   {
     "patient_id": 11001,
@@ -4437,7 +4437,7 @@
     "time_point": 554,
     "original": -1860.0,
     "mask": 1,
-    "reconstruction_a0": 641.56201171875
+    "reconstruction_a0": 641.56103515625
   },
   {
     "patient_id": 11001,
@@ -4461,7 +4461,7 @@
     "time_point": 557,
     "original": 3834.0,
     "mask": 1,
-    "reconstruction_a0": 7408.3330078125
+    "reconstruction_a0": 7408.3349609375
   },
   {
     "patient_id": 11001,
@@ -4469,7 +4469,7 @@
     "time_point": 558,
     "original": 420.0,
     "mask": 1,
-    "reconstruction_a0": 3917.236328125
+    "reconstruction_a0": 3917.2373046875
   },
   {
     "patient_id": 11001,
@@ -4485,7 +4485,7 @@
     "time_point": 560,
     "original": 599.99951171875,
     "mask": 1,
-    "reconstruction_a0": 5536.69921875
+    "reconstruction_a0": 5536.697265625
   },
   {
     "patient_id": 11001,
@@ -4501,7 +4501,7 @@
     "time_point": 562,
     "original": 7140.0,
     "mask": 1,
-    "reconstruction_a0": 10095.396484375
+    "reconstruction_a0": 10095.390625
   },
   {
     "patient_id": 11001,
@@ -4517,7 +4517,7 @@
     "time_point": 564,
     "original": 9420.0,
     "mask": 1,
-    "reconstruction_a0": 11003.8828125
+    "reconstruction_a0": 11003.880859375
   },
   {
     "patient_id": 11001,
@@ -4541,7 +4541,7 @@
     "time_point": 567,
     "original": 839.99951171875,
     "mask": 1,
-    "reconstruction_a0": 395.3876953125
+    "reconstruction_a0": 395.38818359375
   },
   {
     "patient_id": 11001,
@@ -4557,7 +4557,7 @@
     "time_point": 569,
     "original": -1020.0,
     "mask": 1,
-    "reconstruction_a0": 1034.16552734375
+    "reconstruction_a0": 1034.16650390625
   },
   {
     "patient_id": 11001,
@@ -4565,7 +4565,7 @@
     "time_point": 570,
     "original": 3300.0,
     "mask": 1,
-    "reconstruction_a0": 6076.5869140625
+    "reconstruction_a0": 6076.587890625
   },
   {
     "patient_id": 11001,
@@ -4573,7 +4573,7 @@
     "time_point": 571,
     "original": -3240.0,
     "mask": 1,
-    "reconstruction_a0": -2567.3291015625
+    "reconstruction_a0": -2567.328857421875
   },
   {
     "patient_id": 11001,
@@ -4581,7 +4581,7 @@
     "time_point": 572,
     "original": -1560.0,
     "mask": 1,
-    "reconstruction_a0": -3865.01708984375
+    "reconstruction_a0": -3865.01806640625
   },
   {
     "patient_id": 11001,
@@ -4589,7 +4589,7 @@
     "time_point": 573,
     "original": -7140.0,
     "mask": 1,
-    "reconstruction_a0": -2168.310546875
+    "reconstruction_a0": -2168.310791015625
   },
   {
     "patient_id": 11001,
@@ -4605,7 +4605,7 @@
     "time_point": 575,
     "original": 6360.0,
     "mask": 1,
-    "reconstruction_a0": 5872.97265625
+    "reconstruction_a0": 5872.9716796875
   },
   {
     "patient_id": 11001,
@@ -4613,7 +4613,7 @@
     "time_point": 576,
     "original": 5940.0,
     "mask": 1,
-    "reconstruction_a0": 8939.97265625
+    "reconstruction_a0": 8939.9677734375
   },
   {
     "patient_id": 11001,
@@ -4621,7 +4621,7 @@
     "time_point": 577,
     "original": 6000.0009765625,
     "mask": 1,
-    "reconstruction_a0": 8521.68359375
+    "reconstruction_a0": 8521.6806640625
   },
   {
     "patient_id": 11001,
@@ -4637,7 +4637,7 @@
     "time_point": 579,
     "original": -5880.0,
     "mask": 1,
-    "reconstruction_a0": -2324.797607421875
+    "reconstruction_a0": -2324.796142578125
   },
   {
     "patient_id": 11001,
@@ -4645,7 +4645,7 @@
     "time_point": 580,
     "original": -12120.0,
     "mask": 1,
-    "reconstruction_a0": -13998.7568359375
+    "reconstruction_a0": -13998.7587890625
   },
   {
     "patient_id": 11001,
@@ -4661,7 +4661,7 @@
     "time_point": 582,
     "original": -600.0,
     "mask": 1,
-    "reconstruction_a0": -693.00537109375
+    "reconstruction_a0": -693.0048828125
   },
   {
     "patient_id": 11001,
@@ -4669,7 +4669,7 @@
     "time_point": 583,
     "original": 1320.00048828125,
     "mask": 1,
-    "reconstruction_a0": -464.32177734375
+    "reconstruction_a0": -464.32080078125
   },
   {
     "patient_id": 11001,
@@ -4677,7 +4677,7 @@
     "time_point": 584,
     "original": 5400.0,
     "mask": 1,
-    "reconstruction_a0": 10643.6904296875
+    "reconstruction_a0": 10643.685546875
   },
   {
     "patient_id": 11001,
@@ -4693,7 +4693,7 @@
     "time_point": 586,
     "original": 9180.0,
     "mask": 1,
-    "reconstruction_a0": 13297.10546875
+    "reconstruction_a0": 13297.103515625
   },
   {
     "patient_id": 11001,
@@ -4701,7 +4701,7 @@
     "time_point": 587,
     "original": NaN,
     "mask": 0,
-    "reconstruction_a0": -1174.61474609375
+    "reconstruction_a0": -1174.615234375
   },
   {
     "patient_id": 11001,
@@ -4709,7 +4709,7 @@
     "time_point": 588,
     "original": NaN,
     "mask": 0,
-    "reconstruction_a0": -3779.728759765625
+    "reconstruction_a0": -3779.728515625
   },
   {
     "patient_id": 11001,
@@ -4717,7 +4717,7 @@
     "time_point": 589,
     "original": -840.0,
     "mask": 1,
-    "reconstruction_a0": -2794.97705078125
+    "reconstruction_a0": -2794.978271484375
   },
   {
     "patient_id": 11001,
@@ -4725,7 +4725,7 @@
     "time_point": 590,
     "original": 8040.0,
     "mask": 1,
-    "reconstruction_a0": 11783.982421875
+    "reconstruction_a0": 11783.98046875
   },
   {
     "patient_id": 11001,
@@ -4733,7 +4733,7 @@
     "time_point": 591,
     "original": -2400.0,
     "mask": 1,
-    "reconstruction_a0": 1158.4296875
+    "reconstruction_a0": 1158.4306640625
   },
   {
     "patient_id": 11001,
@@ -4749,7 +4749,7 @@
     "time_point": 593,
     "original": 5940.0,
     "mask": 1,
-    "reconstruction_a0": 7403.23828125
+    "reconstruction_a0": 7403.2392578125
   },
   {
     "patient_id": 11001,
@@ -4757,7 +4757,7 @@
     "time_point": 594,
     "original": 1500.0,
     "mask": 1,
-    "reconstruction_a0": -635.00732421875
+    "reconstruction_a0": -635.00830078125
   },
   {
     "patient_id": 11001,
@@ -4765,7 +4765,7 @@
     "time_point": 595,
     "original": 1438.0,
     "mask": 1,
-    "reconstruction_a0": -1393.7919921875
+    "reconstruction_a0": -1393.79443359375
   },
   {
     "patient_id": 11001,
@@ -4781,7 +4781,7 @@
     "time_point": 597,
     "original": 13440.0,
     "mask": 1,
-    "reconstruction_a0": 11650.8671875
+    "reconstruction_a0": 11650.869140625
   },
   {
     "patient_id": 11001,
@@ -4797,7 +4797,7 @@
     "time_point": 599,
     "original": 8640.0,
     "mask": 1,
-    "reconstruction_a0": 14568.142578125
+    "reconstruction_a0": 14568.14453125
   },
   {
     "patient_id": 11001,
@@ -4805,7 +4805,7 @@
     "time_point": 600,
     "original": 180.0,
     "mask": 1,
-    "reconstruction_a0": 1855.96728515625
+    "reconstruction_a0": 1855.97021484375
   },
   {
     "patient_id": 11001,
@@ -4813,7 +4813,7 @@
     "time_point": 601,
     "original": 3660.0,
     "mask": 1,
-    "reconstruction_a0": 10471.5498046875
+    "reconstruction_a0": 10471.5478515625
   },
   {
     "patient_id": 11001,
@@ -4821,7 +4821,7 @@
     "time_point": 602,
     "original": 0.0,
     "mask": 1,
-    "reconstruction_a0": 1610.0009765625
+    "reconstruction_a0": 1610.0029296875
   },
   {
     "patient_id": 11001,
@@ -4829,7 +4829,7 @@
     "time_point": 603,
     "original": 9660.0,
     "mask": 1,
-    "reconstruction_a0": 11495.8359375
+    "reconstruction_a0": 11495.837890625
   },
   {
     "patient_id": 11001,
@@ -4837,7 +4837,7 @@
     "time_point": 604,
     "original": 2100.0,
     "mask": 1,
-    "reconstruction_a0": 1340.818359375
+    "reconstruction_a0": 1340.82080078125
   },
   {
     "patient_id": 11001,
@@ -4869,7 +4869,7 @@
     "time_point": 608,
     "original": -3000.0,
     "mask": 1,
-    "reconstruction_a0": 708.90380859375
+    "reconstruction_a0": 708.90283203125
   },
   {
     "patient_id": 11001,
@@ -4893,7 +4893,7 @@
     "time_point": 611,
     "original": 660.0,
     "mask": 1,
-    "reconstruction_a0": 5870.064453125
+    "reconstruction_a0": 5870.0625
   },
   {
     "patient_id": 11001,
@@ -4901,7 +4901,7 @@
     "time_point": 612,
     "original": 300.0,
     "mask": 1,
-    "reconstruction_a0": -1448.05029296875
+    "reconstruction_a0": -1448.04931640625
   },
   {
     "patient_id": 11001,
@@ -4909,7 +4909,7 @@
     "time_point": 613,
     "original": 360.0,
     "mask": 1,
-    "reconstruction_a0": 3353.7275390625
+    "reconstruction_a0": 3353.7255859375
   },
   {
     "patient_id": 11001,
@@ -4917,7 +4917,7 @@
     "time_point": 614,
     "original": 2700.0,
     "mask": 1,
-    "reconstruction_a0": 4163.728515625
+    "reconstruction_a0": 4163.7236328125
   },
   {
     "patient_id": 11001,
@@ -4925,7 +4925,7 @@
     "time_point": 615,
     "original": -4440.0,
     "mask": 1,
-    "reconstruction_a0": -3380.8720703125
+    "reconstruction_a0": -3380.873046875
   },
   {
     "patient_id": 11001,
@@ -4949,7 +4949,7 @@
     "time_point": 618,
     "original": -2220.0,
     "mask": 1,
-    "reconstruction_a0": -1528.930908203125
+    "reconstruction_a0": -1528.93212890625
   },
   {
     "patient_id": 11001,
@@ -4957,7 +4957,7 @@
     "time_point": 619,
     "original": 2573.0,
     "mask": 1,
-    "reconstruction_a0": 11142.732421875
+    "reconstruction_a0": 11142.73046875
   },
   {
     "patient_id": 11001,
@@ -4965,7 +4965,7 @@
     "time_point": 620,
     "original": 7560.0,
     "mask": 1,
-    "reconstruction_a0": 1724.8828125
+    "reconstruction_a0": 1724.8837890625
   },
   {
     "patient_id": 11001,
@@ -4973,7 +4973,7 @@
     "time_point": 621,
     "original": -60.0,
     "mask": 1,
-    "reconstruction_a0": 142.765625
+    "reconstruction_a0": 142.76708984375
   },
   {
     "patient_id": 11001,
@@ -4981,7 +4981,7 @@
     "time_point": 622,
     "original": 3120.0,
     "mask": 1,
-    "reconstruction_a0": 9878.2880859375
+    "reconstruction_a0": 9878.2861328125
   },
   {
     "patient_id": 11001,
@@ -4997,7 +4997,7 @@
     "time_point": 624,
     "original": 8339.9990234375,
     "mask": 1,
-    "reconstruction_a0": 15166.541015625
+    "reconstruction_a0": 15166.546875
   },
   {
     "patient_id": 11001,
@@ -5005,7 +5005,7 @@
     "time_point": 625,
     "original": -960.0,
     "mask": 1,
-    "reconstruction_a0": 1901.046875
+    "reconstruction_a0": 1901.04736328125
   },
   {
     "patient_id": 11001,
@@ -5021,7 +5021,7 @@
     "time_point": 627,
     "original": 8640.0,
     "mask": 1,
-    "reconstruction_a0": 8657.1796875
+    "reconstruction_a0": 8657.17578125
   },
   {
     "patient_id": 11001,
@@ -5029,7 +5029,7 @@
     "time_point": 628,
     "original": 13200.0,
     "mask": 1,
-    "reconstruction_a0": 12370.80078125
+    "reconstruction_a0": 12370.798828125
   },
   {
     "patient_id": 11001,
@@ -5045,7 +5045,7 @@
     "time_point": 630,
     "original": 7619.9990234375,
     "mask": 1,
-    "reconstruction_a0": 3487.89453125
+    "reconstruction_a0": 3487.8955078125
   },
   {
     "patient_id": 11001,
@@ -5053,7 +5053,7 @@
     "time_point": 631,
     "original": 2580.0,
     "mask": 1,
-    "reconstruction_a0": 4386.361328125
+    "reconstruction_a0": 4386.3583984375
   },
   {
     "patient_id": 11001,
@@ -5061,7 +5061,7 @@
     "time_point": 632,
     "original": 7920.0,
     "mask": 1,
-    "reconstruction_a0": 6630.306640625
+    "reconstruction_a0": 6630.3037109375
   },
   {
     "patient_id": 11001,
@@ -5069,7 +5069,7 @@
     "time_point": 633,
     "original": -3960.0,
     "mask": 1,
-    "reconstruction_a0": -1325.833984375
+    "reconstruction_a0": -1325.8359375
   },
   {
     "patient_id": 11001,
@@ -5077,7 +5077,7 @@
     "time_point": 634,
     "original": -300.0,
     "mask": 1,
-    "reconstruction_a0": -2316.817138671875
+    "reconstruction_a0": -2316.818603515625
   },
   {
     "patient_id": 11001,
@@ -5085,7 +5085,7 @@
     "time_point": 635,
     "original": 8681.0,
     "mask": 1,
-    "reconstruction_a0": 4753.759765625
+    "reconstruction_a0": 4753.7587890625
   },
   {
     "patient_id": 11001,
@@ -5101,7 +5101,7 @@
     "time_point": 637,
     "original": 1260.0,
     "mask": 1,
-    "reconstruction_a0": 3062.0400390625
+    "reconstruction_a0": 3062.0390625
   },
   {
     "patient_id": 11001,
@@ -5109,7 +5109,7 @@
     "time_point": 638,
     "original": -840.0,
     "mask": 1,
-    "reconstruction_a0": -1399.11181640625
+    "reconstruction_a0": -1399.1142578125
   },
   {
     "patient_id": 11001,
@@ -5125,7 +5125,7 @@
     "time_point": 640,
     "original": 7500.0,
     "mask": 1,
-    "reconstruction_a0": 11775.921875
+    "reconstruction_a0": 11775.919921875
   },
   {
     "patient_id": 11001,
@@ -5133,7 +5133,7 @@
     "time_point": 641,
     "original": -5640.0,
     "mask": 1,
-    "reconstruction_a0": -4835.3642578125
+    "reconstruction_a0": -4835.36328125
   },
   {
     "patient_id": 11001,
@@ -5149,7 +5149,7 @@
     "time_point": 643,
     "original": 2520.0,
     "mask": 1,
-    "reconstruction_a0": 4639.03515625
+    "reconstruction_a0": 4639.033203125
   },
   {
     "patient_id": 11001,
@@ -5165,7 +5165,7 @@
     "time_point": 645,
     "original": 2700.0,
     "mask": 1,
-    "reconstruction_a0": 5094.5859375
+    "reconstruction_a0": 5094.5849609375
   },
   {
     "patient_id": 11001,
@@ -5173,7 +5173,7 @@
     "time_point": 646,
     "original": 4319.9990234375,
     "mask": 1,
-    "reconstruction_a0": 9526.2998046875
+    "reconstruction_a0": 9526.2958984375
   },
   {
     "patient_id": 11001,
@@ -5189,7 +5189,7 @@
     "time_point": 648,
     "original": 11700.0,
     "mask": 1,
-    "reconstruction_a0": 15089.017578125
+    "reconstruction_a0": 15089.013671875
   },
   {
     "patient_id": 11001,
@@ -5197,7 +5197,7 @@
     "time_point": 649,
     "original": 10140.0,
     "mask": 1,
-    "reconstruction_a0": 12014.474609375
+    "reconstruction_a0": 12014.4765625
   },
   {
     "patient_id": 11001,
@@ -5205,7 +5205,7 @@
     "time_point": 650,
     "original": -6720.0,
     "mask": 1,
-    "reconstruction_a0": -2076.91650390625
+    "reconstruction_a0": -2076.919677734375
   },
   {
     "patient_id": 11001,
@@ -5213,7 +5213,7 @@
     "time_point": 651,
     "original": -660.0,
     "mask": 1,
-    "reconstruction_a0": 3378.716796875
+    "reconstruction_a0": 3378.7158203125
   },
   {
     "patient_id": 11001,
@@ -5221,7 +5221,7 @@
     "time_point": 652,
     "original": 8940.0,
     "mask": 1,
-    "reconstruction_a0": 9313.140625
+    "reconstruction_a0": 9313.138671875
   },
   {
     "patient_id": 11001,
@@ -5229,7 +5229,7 @@
     "time_point": 653,
     "original": -1860.0,
     "mask": 1,
-    "reconstruction_a0": -517.99169921875
+    "reconstruction_a0": -517.99365234375
   },
   {
     "patient_id": 11001,
@@ -5237,7 +5237,7 @@
     "time_point": 654,
     "original": 8160.0,
     "mask": 1,
-    "reconstruction_a0": 10433.0205078125
+    "reconstruction_a0": 10433.0185546875
   },
   {
     "patient_id": 11001,
@@ -5245,7 +5245,7 @@
     "time_point": 655,
     "original": 959.99951171875,
     "mask": 1,
-    "reconstruction_a0": 2207.84765625
+    "reconstruction_a0": 2207.84619140625
   },
   {
     "patient_id": 11001,
@@ -5261,7 +5261,7 @@
     "time_point": 657,
     "original": 5880.0,
     "mask": 1,
-    "reconstruction_a0": 8567.857421875
+    "reconstruction_a0": 8567.8544921875
   },
   {
     "patient_id": 11001,
@@ -5269,7 +5269,7 @@
     "time_point": 658,
     "original": 5340.0,
     "mask": 1,
-    "reconstruction_a0": 4482.158203125
+    "reconstruction_a0": 4482.15625
   },
   {
     "patient_id": 11001,
@@ -5277,7 +5277,7 @@
     "time_point": 659,
     "original": 3720.0,
     "mask": 1,
-    "reconstruction_a0": 6272.583984375
+    "reconstruction_a0": 6272.587890625
   },
   {
     "patient_id": 11001,
@@ -5285,7 +5285,7 @@
     "time_point": 660,
     "original": -180.0,
     "mask": 1,
-    "reconstruction_a0": -1003.986328125
+    "reconstruction_a0": -1003.98681640625
   },
   {
     "patient_id": 11001,
@@ -5293,7 +5293,7 @@
     "time_point": 661,
     "original": 15900.0,
     "mask": 1,
-    "reconstruction_a0": 20101.810546875
+    "reconstruction_a0": 20101.8046875
   },
   {
     "patient_id": 11001,
@@ -5301,7 +5301,7 @@
     "time_point": 662,
     "original": 839.99951171875,
     "mask": 1,
-    "reconstruction_a0": 2765.6689453125
+    "reconstruction_a0": 2765.66796875
   },
   {
     "patient_id": 11001,
@@ -5309,7 +5309,7 @@
     "time_point": 663,
     "original": -2100.0,
     "mask": 1,
-    "reconstruction_a0": -718.8046875
+    "reconstruction_a0": -718.806640625
   },
   {
     "patient_id": 11001,
@@ -5333,7 +5333,7 @@
     "time_point": 666,
     "original": 10320.0,
     "mask": 1,
-    "reconstruction_a0": 13976.919921875
+    "reconstruction_a0": 13976.921875
   },
   {
     "patient_id": 11001,
@@ -5341,7 +5341,7 @@
     "time_point": 667,
     "original": 14700.0,
     "mask": 1,
-    "reconstruction_a0": 14598.8046875
+    "reconstruction_a0": 14598.80859375
   },
   {
     "patient_id": 11001,
@@ -5349,7 +5349,7 @@
     "time_point": 668,
     "original": 11940.0,
     "mask": 1,
-    "reconstruction_a0": 13585.615234375
+    "reconstruction_a0": 13585.61328125
   },
   {
     "patient_id": 11001,
@@ -5365,7 +5365,7 @@
     "time_point": 670,
     "original": 4860.0,
     "mask": 1,
-    "reconstruction_a0": 3441.50390625
+    "reconstruction_a0": 3441.5009765625
   },
   {
     "patient_id": 11001,
@@ -5373,7 +5373,7 @@
     "time_point": 671,
     "original": 11880.0,
     "mask": 1,
-    "reconstruction_a0": 13084.310546875
+    "reconstruction_a0": 13084.31640625
   },
   {
     "patient_id": 11001,
@@ -5381,7 +5381,7 @@
     "time_point": 672,
     "original": 2100.0,
     "mask": 1,
-    "reconstruction_a0": -176.5537109375
+    "reconstruction_a0": -176.55517578125
   },
   {
     "patient_id": 11001,
@@ -5389,7 +5389,7 @@
     "time_point": 673,
     "original": 5520.0009765625,
     "mask": 1,
-    "reconstruction_a0": 5314.1943359375
+    "reconstruction_a0": 5314.193359375
   },
   {
     "patient_id": 11001,
@@ -5397,7 +5397,7 @@
     "time_point": 674,
     "original": 3540.0,
     "mask": 1,
-    "reconstruction_a0": 4440.7978515625
+    "reconstruction_a0": 4440.796875
   },
   {
     "patient_id": 11001,
@@ -5405,7 +5405,7 @@
     "time_point": 675,
     "original": 14940.0,
     "mask": 1,
-    "reconstruction_a0": 13157.828125
+    "reconstruction_a0": 13157.830078125
   },
   {
     "patient_id": 11001,
@@ -5413,7 +5413,7 @@
     "time_point": 676,
     "original": 7980.0,
     "mask": 1,
-    "reconstruction_a0": 14065.544921875
+    "reconstruction_a0": 14065.541015625
   },
   {
     "patient_id": 11001,
@@ -5429,7 +5429,7 @@
     "time_point": 678,
     "original": 4740.0,
     "mask": 1,
-    "reconstruction_a0": 11344.759765625
+    "reconstruction_a0": 11344.7578125
   },
   {
     "patient_id": 11001,
@@ -5437,7 +5437,7 @@
     "time_point": 679,
     "original": 9720.0,
     "mask": 1,
-    "reconstruction_a0": 10798.1640625
+    "reconstruction_a0": 10798.166015625
   },
   {
     "patient_id": 11001,
@@ -5445,7 +5445,7 @@
     "time_point": 680,
     "original": -7800.0,
     "mask": 1,
-    "reconstruction_a0": -4625.380859375
+    "reconstruction_a0": -4625.38134765625
   },
   {
     "patient_id": 11001,
@@ -5453,7 +5453,7 @@
     "time_point": 681,
     "original": 4500.0,
     "mask": 1,
-    "reconstruction_a0": 12803.3203125
+    "reconstruction_a0": 12803.318359375
   },
   {
     "patient_id": 11001,
@@ -5477,7 +5477,7 @@
     "time_point": 684,
     "original": -2040.0,
     "mask": 1,
-    "reconstruction_a0": 2524.65185546875
+    "reconstruction_a0": 2524.64794921875
   },
   {
     "patient_id": 11001,
@@ -5485,7 +5485,7 @@
     "time_point": 685,
     "original": 3600.0,
     "mask": 1,
-    "reconstruction_a0": -1164.9853515625
+    "reconstruction_a0": -1164.98828125
   },
   {
     "patient_id": 11001,
@@ -5493,7 +5493,7 @@
     "time_point": 686,
     "original": 6660.0,
     "mask": 1,
-    "reconstruction_a0": 4465.2861328125
+    "reconstruction_a0": 4465.2841796875
   },
   {
     "patient_id": 11001,
@@ -5501,7 +5501,7 @@
     "time_point": 687,
     "original": 4260.0,
     "mask": 1,
-    "reconstruction_a0": 5613.4404296875
+    "reconstruction_a0": 5613.4375
   },
   {
     "patient_id": 11001,
@@ -5509,7 +5509,7 @@
     "time_point": 688,
     "original": 7438.0,
     "mask": 1,
-    "reconstruction_a0": 8644.2236328125
+    "reconstruction_a0": 8644.224609375
   },
   {
     "patient_id": 11001,
@@ -5525,7 +5525,7 @@
     "time_point": 690,
     "original": 4740.0,
     "mask": 1,
-    "reconstruction_a0": 6397.091796875
+    "reconstruction_a0": 6397.0927734375
   },
   {
     "patient_id": 11001,
@@ -5533,7 +5533,7 @@
     "time_point": 691,
     "original": -900.0,
     "mask": 1,
-    "reconstruction_a0": 4474.2626953125
+    "reconstruction_a0": 4474.2646484375
   },
   {
     "patient_id": 11001,
@@ -5549,7 +5549,7 @@
     "time_point": 693,
     "original": 4620.0,
     "mask": 1,
-    "reconstruction_a0": 2014.322265625
+    "reconstruction_a0": 2014.32080078125
   },
   {
     "patient_id": 11001,
@@ -5557,7 +5557,7 @@
     "time_point": 694,
     "original": 4799.9990234375,
     "mask": 1,
-    "reconstruction_a0": 7814.3310546875
+    "reconstruction_a0": 7814.3291015625
   },
   {
     "patient_id": 11001,
@@ -5565,7 +5565,7 @@
     "time_point": 695,
     "original": -1560.0,
     "mask": 1,
-    "reconstruction_a0": -670.0849609375
+    "reconstruction_a0": -670.08544921875
   },
   {
     "patient_id": 11001,
@@ -5573,7 +5573,7 @@
     "time_point": 696,
     "original": 3600.0,
     "mask": 1,
-    "reconstruction_a0": 13134.544921875
+    "reconstruction_a0": 13134.54296875
   },
   {
     "patient_id": 11001,
@@ -5581,7 +5581,7 @@
     "time_point": 697,
     "original": 9360.0,
     "mask": 1,
-    "reconstruction_a0": 12824.736328125
+    "reconstruction_a0": 12824.734375
   },
   {
     "patient_id": 11001,
@@ -5589,7 +5589,7 @@
     "time_point": 698,
     "original": 300.0,
     "mask": 1,
-    "reconstruction_a0": -8.1103515625
+    "reconstruction_a0": -8.109375
   },
   {
     "patient_id": 11001,
@@ -5597,7 +5597,7 @@
     "time_point": 699,
     "original": 6540.0,
     "mask": 1,
-    "reconstruction_a0": 9570.6376953125
+    "reconstruction_a0": 9570.6337890625
   },
   {
     "patient_id": 11001,
@@ -5605,7 +5605,7 @@
     "time_point": 700,
     "original": 8280.0,
     "mask": 1,
-    "reconstruction_a0": 9362.6005859375
+    "reconstruction_a0": 9362.5966796875
   },
   {
     "patient_id": 11001,
@@ -5613,7 +5613,7 @@
     "time_point": 701,
     "original": 2160.0,
     "mask": 1,
-    "reconstruction_a0": 2938.52734375
+    "reconstruction_a0": 2938.529296875
   },
   {
     "patient_id": 11001,
@@ -5629,7 +5629,7 @@
     "time_point": 703,
     "original": 8460.0,
     "mask": 1,
-    "reconstruction_a0": 3441.7587890625
+    "reconstruction_a0": 3441.759765625
   },
   {
     "patient_id": 11001,
@@ -5637,7 +5637,7 @@
     "time_point": 704,
     "original": 13440.0,
     "mask": 1,
-    "reconstruction_a0": 13671.248046875
+    "reconstruction_a0": 13671.244140625
   },
   {
     "patient_id": 11001,
@@ -5645,7 +5645,7 @@
     "time_point": 705,
     "original": 4500.0,
     "mask": 1,
-    "reconstruction_a0": 8919.71484375
+    "reconstruction_a0": 8919.712890625
   },
   {
     "patient_id": 11001,
@@ -5653,7 +5653,7 @@
     "time_point": 706,
     "original": 0.0,
     "mask": 1,
-    "reconstruction_a0": 1881.78076171875
+    "reconstruction_a0": 1881.779296875
   },
   {
     "patient_id": 11001,
@@ -5661,7 +5661,7 @@
     "time_point": 707,
     "original": 14160.0,
     "mask": 1,
-    "reconstruction_a0": 15833.685546875
+    "reconstruction_a0": 15833.681640625
   },
   {
     "patient_id": 11001,
@@ -5669,7 +5669,7 @@
     "time_point": 708,
     "original": 4799.9990234375,
     "mask": 1,
-    "reconstruction_a0": 3028.52734375
+    "reconstruction_a0": 3028.5302734375
   },
   {
     "patient_id": 11001,
@@ -5677,7 +5677,7 @@
     "time_point": 709,
     "original": 4319.9990234375,
     "mask": 1,
-    "reconstruction_a0": 2074.25830078125
+    "reconstruction_a0": 2074.25537109375
   },
   {
     "patient_id": 11001,
@@ -5701,7 +5701,7 @@
     "time_point": 712,
     "original": 1800.0,
     "mask": 1,
-    "reconstruction_a0": 390.17529296875
+    "reconstruction_a0": 390.17236328125
   },
   {
     "patient_id": 11001,
@@ -5717,7 +5717,7 @@
     "time_point": 714,
     "original": -360.0,
     "mask": 1,
-    "reconstruction_a0": -1344.9970703125
+    "reconstruction_a0": -1344.99853515625
   },
   {
     "patient_id": 11001,
@@ -5725,7 +5725,7 @@
     "time_point": 715,
     "original": -420.0,
     "mask": 1,
-    "reconstruction_a0": -1777.516845703125
+    "reconstruction_a0": -1777.51806640625
   },
   {
     "patient_id": 11001,
@@ -5741,7 +5741,7 @@
     "time_point": 717,
     "original": -5340.0,
     "mask": 1,
-    "reconstruction_a0": -3248.314453125
+    "reconstruction_a0": -3248.314208984375
   },
   {
     "patient_id": 11001,
@@ -5749,7 +5749,7 @@
     "time_point": 718,
     "original": -5880.0,
     "mask": 1,
-    "reconstruction_a0": -699.65869140625
+    "reconstruction_a0": -699.66015625
   },
   {
     "patient_id": 11001,
@@ -5757,7 +5757,7 @@
     "time_point": 719,
     "original": 3480.0,
     "mask": 1,
-    "reconstruction_a0": 3744.0224609375
+    "reconstruction_a0": 3744.021484375
   },
   {
     "patient_id": 11001,
@@ -5765,7 +5765,7 @@
     "time_point": 720,
     "original": -1080.0,
     "mask": 1,
-    "reconstruction_a0": -1574.2099609375
+    "reconstruction_a0": -1574.214111328125
   },
   {
     "patient_id": 11001,
@@ -5773,7 +5773,7 @@
     "time_point": 721,
     "original": 1440.00048828125,
     "mask": 1,
-    "reconstruction_a0": -2079.81884765625
+    "reconstruction_a0": -2079.81787109375
   },
   {
     "patient_id": 11001,
@@ -5781,7 +5781,7 @@
     "time_point": 722,
     "original": -720.0,
     "mask": 1,
-    "reconstruction_a0": -734.22998046875
+    "reconstruction_a0": -734.23046875
   },
   {
     "patient_id": 11001,
@@ -5789,7 +5789,7 @@
     "time_point": 723,
     "original": -2040.0,
     "mask": 1,
-    "reconstruction_a0": -3373.94287109375
+    "reconstruction_a0": -3373.943359375
   },
   {
     "patient_id": 11001,
@@ -5797,7 +5797,7 @@
     "time_point": 724,
     "original": 3960.0,
     "mask": 1,
-    "reconstruction_a0": 3516.701171875
+    "reconstruction_a0": 3516.69921875
   },
   {
     "patient_id": 11001,
@@ -5805,7 +5805,7 @@
     "time_point": 725,
     "original": 2760.0,
     "mask": 1,
-    "reconstruction_a0": 3445.5830078125
+    "reconstruction_a0": 3445.58203125
   },
   {
     "patient_id": 11001,
@@ -5813,7 +5813,7 @@
     "time_point": 726,
     "original": -3420.0,
     "mask": 1,
-    "reconstruction_a0": -3253.133056640625
+    "reconstruction_a0": -3253.133544921875
   },
   {
     "patient_id": 11001,
@@ -5821,7 +5821,7 @@
     "time_point": 727,
     "original": 2760.0,
     "mask": 1,
-    "reconstruction_a0": 3014.6025390625
+    "reconstruction_a0": 3014.6005859375
   },
   {
     "patient_id": 11001,
@@ -5829,7 +5829,7 @@
     "time_point": 728,
     "original": -240.0,
     "mask": 1,
-    "reconstruction_a0": -2525.629638671875
+    "reconstruction_a0": -2525.63134765625
   },
   {
     "patient_id": 11001,
@@ -5837,7 +5837,7 @@
     "time_point": 729,
     "original": -2100.0,
     "mask": 1,
-    "reconstruction_a0": -1376.25634765625
+    "reconstruction_a0": -1376.25732421875
   },
   {
     "patient_id": 11001,
@@ -5845,7 +5845,7 @@
     "time_point": 730,
     "original": -5760.0,
     "mask": 1,
-    "reconstruction_a0": -3843.73583984375
+    "reconstruction_a0": -3843.7353515625
   },
   {
     "patient_id": 11001,
@@ -5853,7 +5853,7 @@
     "time_point": 731,
     "original": 719.99951171875,
     "mask": 1,
-    "reconstruction_a0": 6189.021484375
+    "reconstruction_a0": 6189.0205078125
   },
   {
     "patient_id": 11001,
@@ -5861,7 +5861,7 @@
     "time_point": 732,
     "original": 959.99951171875,
     "mask": 1,
-    "reconstruction_a0": 3529.95703125
+    "reconstruction_a0": 3529.9560546875
   },
   {
     "patient_id": 11001,
@@ -5869,7 +5869,7 @@
     "time_point": 733,
     "original": -3000.0,
     "mask": 1,
-    "reconstruction_a0": -2889.492919921875
+    "reconstruction_a0": -2889.494140625
   },
   {
     "patient_id": 11001,
@@ -5885,7 +5885,7 @@
     "time_point": 735,
     "original": -1080.0,
     "mask": 1,
-    "reconstruction_a0": -40.8935546875
+    "reconstruction_a0": -40.89453125
   },
   {
     "patient_id": 11001,
@@ -5901,7 +5901,7 @@
     "time_point": 737,
     "original": NaN,
     "mask": 0,
-    "reconstruction_a0": 228.10107421875
+    "reconstruction_a0": 228.1015625
   },
   {
     "patient_id": 11001,
@@ -5909,7 +5909,7 @@
     "time_point": 738,
     "original": 6900.0,
     "mask": 1,
-    "reconstruction_a0": 13313.060546875
+    "reconstruction_a0": 13313.05859375
   },
   {
     "patient_id": 11001,
@@ -5917,7 +5917,7 @@
     "time_point": 739,
     "original": 13560.0,
     "mask": 1,
-    "reconstruction_a0": 13934.4921875
+    "reconstruction_a0": 13934.490234375
   },
   {
     "patient_id": 11001,
@@ -5925,7 +5925,7 @@
     "time_point": 740,
     "original": 7200.0,
     "mask": 1,
-    "reconstruction_a0": 6253.3466796875
+    "reconstruction_a0": 6253.3486328125
   },
   {
     "patient_id": 11001,
@@ -5933,7 +5933,7 @@
     "time_point": 741,
     "original": -2220.0,
     "mask": 1,
-    "reconstruction_a0": 71.85546875
+    "reconstruction_a0": 71.85498046875
   },
   {
     "patient_id": 11001,
@@ -5941,7 +5941,7 @@
     "time_point": 742,
     "original": -9180.0,
     "mask": 1,
-    "reconstruction_a0": -725.5146484375
+    "reconstruction_a0": -725.51513671875
   },
   {
     "patient_id": 11001,
@@ -5949,7 +5949,7 @@
     "time_point": 743,
     "original": 1920.0,
     "mask": 1,
-    "reconstruction_a0": 9645.4541015625
+    "reconstruction_a0": 9645.453125
   },
   {
     "patient_id": 11001,
@@ -5957,7 +5957,7 @@
     "time_point": 744,
     "original": -360.0,
     "mask": 1,
-    "reconstruction_a0": -1896.849365234375
+    "reconstruction_a0": -1896.848876953125
   },
   {
     "patient_id": 11001,
@@ -5973,7 +5973,7 @@
     "time_point": 746,
     "original": 1140.0,
     "mask": 1,
-    "reconstruction_a0": -324.17431640625
+    "reconstruction_a0": -324.17333984375
   },
   {
     "patient_id": 11001,
@@ -5981,7 +5981,7 @@
     "time_point": 747,
     "original": 3540.0,
     "mask": 1,
-    "reconstruction_a0": 1255.8935546875
+    "reconstruction_a0": 1255.89453125
   },
   {
     "patient_id": 11001,
@@ -6005,7 +6005,7 @@
     "time_point": 750,
     "original": 2280.0,
     "mask": 1,
-    "reconstruction_a0": 4723.1904296875
+    "reconstruction_a0": 4723.19140625
   },
   {
     "patient_id": 11001,
@@ -6013,7 +6013,7 @@
     "time_point": 751,
     "original": 60.0,
     "mask": 1,
-    "reconstruction_a0": -1234.474609375
+    "reconstruction_a0": -1234.4755859375
   },
   {
     "patient_id": 11001,
@@ -6021,7 +6021,7 @@
     "time_point": 752,
     "original": 9960.0,
     "mask": 1,
-    "reconstruction_a0": 12117.1015625
+    "reconstruction_a0": 12117.099609375
   },
   {
     "patient_id": 11001,
@@ -6029,7 +6029,7 @@
     "time_point": 753,
     "original": 3420.0,
     "mask": 1,
-    "reconstruction_a0": 4707.4365234375
+    "reconstruction_a0": 4707.4375
   },
   {
     "patient_id": 11001,
@@ -6037,7 +6037,7 @@
     "time_point": 754,
     "original": -9470.0,
     "mask": 1,
-    "reconstruction_a0": -13665.2822265625
+    "reconstruction_a0": -13665.279296875
   },
   {
     "patient_id": 11001,
@@ -6045,7 +6045,7 @@
     "time_point": 755,
     "original": 1020.0,
     "mask": 1,
-    "reconstruction_a0": 1726.1875
+    "reconstruction_a0": 1726.18603515625
   },
   {
     "patient_id": 11001,
@@ -6053,7 +6053,7 @@
     "time_point": 756,
     "original": 1260.0,
     "mask": 1,
-    "reconstruction_a0": 1178.763671875
+    "reconstruction_a0": 1178.76416015625
   },
   {
     "patient_id": 11001,
@@ -6069,7 +6069,7 @@
     "time_point": 758,
     "original": -8580.0,
     "mask": 1,
-    "reconstruction_a0": -1962.12060546875
+    "reconstruction_a0": -1962.120849609375
   },
   {
     "patient_id": 11001,
@@ -6077,7 +6077,7 @@
     "time_point": 759,
     "original": -1860.0,
     "mask": 1,
-    "reconstruction_a0": -2016.169189453125
+    "reconstruction_a0": -2016.16943359375
   },
   {
     "patient_id": 11001,
@@ -6093,7 +6093,7 @@
     "time_point": 761,
     "original": -4380.0,
     "mask": 1,
-    "reconstruction_a0": -2208.329833984375
+    "reconstruction_a0": -2208.3310546875
   },
   {
     "patient_id": 11001,
@@ -6101,7 +6101,7 @@
     "time_point": 762,
     "original": -1920.0,
     "mask": 1,
-    "reconstruction_a0": -3410.36376953125
+    "reconstruction_a0": -3410.36328125
   },
   {
     "patient_id": 11001,
@@ -6109,7 +6109,7 @@
     "time_point": 763,
     "original": 300.0,
     "mask": 1,
-    "reconstruction_a0": -3169.576416015625
+    "reconstruction_a0": -3169.57666015625
   },
   {
     "patient_id": 11001,
@@ -6117,7 +6117,7 @@
     "time_point": 764,
     "original": -2700.0,
     "mask": 1,
-    "reconstruction_a0": -2461.641357421875
+    "reconstruction_a0": -2461.642333984375
   },
   {
     "patient_id": 11001,
@@ -6125,7 +6125,7 @@
     "time_point": 765,
     "original": -4320.0,
     "mask": 1,
-    "reconstruction_a0": -1077.1259765625
+    "reconstruction_a0": -1077.125
   },
   {
     "patient_id": 11001,
@@ -6141,7 +6141,7 @@
     "time_point": 767,
     "original": 4799.9990234375,
     "mask": 1,
-    "reconstruction_a0": -359.08642578125
+    "reconstruction_a0": -359.08544921875
   },
   {
     "patient_id": 11001,
@@ -6149,7 +6149,7 @@
     "time_point": 768,
     "original": 4980.0,
     "mask": 1,
-    "reconstruction_a0": -612.87353515625
+    "reconstruction_a0": -612.8740234375
   },
   {
     "patient_id": 11001,
@@ -6157,7 +6157,7 @@
     "time_point": 769,
     "original": -720.0,
     "mask": 1,
-    "reconstruction_a0": 878.25244140625
+    "reconstruction_a0": 878.25146484375
   },
   {
     "patient_id": 11001,
@@ -6173,7 +6173,7 @@
     "time_point": 771,
     "original": 1500.0,
     "mask": 1,
-    "reconstruction_a0": 2312.609375
+    "reconstruction_a0": 2312.6083984375
   },
   {
     "patient_id": 11001,
@@ -6205,7 +6205,7 @@
     "time_point": 775,
     "original": -660.0,
     "mask": 1,
-    "reconstruction_a0": -985.2177734375
+    "reconstruction_a0": -985.21826171875
   },
   {
     "patient_id": 11001,
@@ -6213,7 +6213,7 @@
     "time_point": 776,
     "original": 3300.0,
     "mask": 1,
-    "reconstruction_a0": 5349.76953125
+    "reconstruction_a0": 5349.7685546875
   },
   {
     "patient_id": 11001,
@@ -6237,7 +6237,7 @@
     "time_point": 779,
     "original": 1920.0,
     "mask": 1,
-    "reconstruction_a0": 4538.2412109375
+    "reconstruction_a0": 4538.2421875
   },
   {
     "patient_id": 11001,
@@ -6245,7 +6245,7 @@
     "time_point": 780,
     "original": -4380.0,
     "mask": 1,
-    "reconstruction_a0": -1794.151611328125
+    "reconstruction_a0": -1794.15185546875
   },
   {
     "patient_id": 11001,
@@ -6261,7 +6261,7 @@
     "time_point": 782,
     "original": 1200.00048828125,
     "mask": 1,
-    "reconstruction_a0": 1418.72412109375
+    "reconstruction_a0": 1418.72607421875
   },
   {
     "patient_id": 11001,
@@ -6269,7 +6269,7 @@
     "time_point": 783,
     "original": 4680.0,
     "mask": 1,
-    "reconstruction_a0": 8510.74609375
+    "reconstruction_a0": 8510.744140625
   },
   {
     "patient_id": 11001,
@@ -6277,7 +6277,7 @@
     "time_point": 784,
     "original": 2100.0,
     "mask": 1,
-    "reconstruction_a0": -1482.123291015625
+    "reconstruction_a0": -1482.125
   },
   {
     "patient_id": 11001,
@@ -6285,7 +6285,7 @@
     "time_point": 785,
     "original": 3840.0,
     "mask": 1,
-    "reconstruction_a0": 9406.2861328125
+    "reconstruction_a0": 9406.28515625
   },
   {
     "patient_id": 11001,
@@ -6293,7 +6293,7 @@
     "time_point": 786,
     "original": 1560.00048828125,
     "mask": 1,
-    "reconstruction_a0": -2547.396728515625
+    "reconstruction_a0": -2547.396240234375
   },
   {
     "patient_id": 11001,
@@ -6301,7 +6301,7 @@
     "time_point": 787,
     "original": 1680.00048828125,
     "mask": 1,
-    "reconstruction_a0": 6572.5107421875
+    "reconstruction_a0": 6572.513671875
   },
   {
     "patient_id": 11001,
@@ -6309,7 +6309,7 @@
     "time_point": 788,
     "original": -2160.0,
     "mask": 1,
-    "reconstruction_a0": -708.0439453125
+    "reconstruction_a0": -708.04296875
   },
   {
     "patient_id": 11001,
@@ -6317,7 +6317,7 @@
     "time_point": 789,
     "original": 2940.0,
     "mask": 1,
-    "reconstruction_a0": 2374.47607421875
+    "reconstruction_a0": 2374.4775390625
   },
   {
     "patient_id": 11001,
@@ -6325,7 +6325,7 @@
     "time_point": 790,
     "original": -1440.0,
     "mask": 1,
-    "reconstruction_a0": 4993.5673828125
+    "reconstruction_a0": 4993.5703125
   },
   {
     "patient_id": 11001,
@@ -6333,7 +6333,7 @@
     "time_point": 791,
     "original": 11520.0,
     "mask": 1,
-    "reconstruction_a0": 14793.33203125
+    "reconstruction_a0": 14793.328125
   },
   {
     "patient_id": 11001,
@@ -6341,7 +6341,7 @@
     "time_point": 792,
     "original": 1020.0,
     "mask": 1,
-    "reconstruction_a0": 2204.30078125
+    "reconstruction_a0": 2204.2998046875
   },
   {
     "patient_id": 11001,
@@ -6349,7 +6349,7 @@
     "time_point": 793,
     "original": 2220.0,
     "mask": 1,
-    "reconstruction_a0": 1834.5078125
+    "reconstruction_a0": 1834.50439453125
   },
   {
     "patient_id": 11001,
@@ -6357,7 +6357,7 @@
     "time_point": 794,
     "original": 7560.0,
     "mask": 1,
-    "reconstruction_a0": 11262.708984375
+    "reconstruction_a0": 11262.70703125
   },
   {
     "patient_id": 11001,
@@ -6365,7 +6365,7 @@
     "time_point": 795,
     "original": 6960.0,
     "mask": 1,
-    "reconstruction_a0": 8488.28125
+    "reconstruction_a0": 8488.2822265625
   },
   {
     "patient_id": 11001,
@@ -6373,7 +6373,7 @@
     "time_point": 796,
     "original": 4680.0,
     "mask": 1,
-    "reconstruction_a0": 9652.619140625
+    "reconstruction_a0": 9652.6171875
   },
   {
     "patient_id": 11001,
@@ -6381,7 +6381,7 @@
     "time_point": 797,
     "original": NaN,
     "mask": 0,
-    "reconstruction_a0": -3073.25537109375
+    "reconstruction_a0": -3073.255859375
   },
   {
     "patient_id": 11001,
@@ -6397,7 +6397,7 @@
     "time_point": 799,
     "original": -120.0,
     "mask": 1,
-    "reconstruction_a0": -2270.712890625
+    "reconstruction_a0": -2270.714599609375
   },
   {
     "patient_id": 11001,
@@ -6405,7 +6405,7 @@
     "time_point": 800,
     "original": 1140.0,
     "mask": 1,
-    "reconstruction_a0": -664.17724609375
+    "reconstruction_a0": -664.17626953125
   },
   {
     "patient_id": 11001,
@@ -6421,7 +6421,7 @@
     "time_point": 802,
     "original": 7380.0,
     "mask": 1,
-    "reconstruction_a0": 10088.8046875
+    "reconstruction_a0": 10088.8056640625
   },
   {
     "patient_id": 11001,
@@ -6429,7 +6429,7 @@
     "time_point": 803,
     "original": 2400.0,
     "mask": 1,
-    "reconstruction_a0": 3286.0654296875
+    "reconstruction_a0": 3286.0615234375
   },
   {
     "patient_id": 11001,
@@ -6445,7 +6445,7 @@
     "time_point": 805,
     "original": 780.0,
     "mask": 1,
-    "reconstruction_a0": 1002.33056640625
+    "reconstruction_a0": 1002.32763671875
   },
   {
     "patient_id": 11001,
@@ -6453,7 +6453,7 @@
     "time_point": 806,
     "original": 5040.0009765625,
     "mask": 1,
-    "reconstruction_a0": 5435.3359375
+    "reconstruction_a0": 5435.3330078125
   },
   {
     "patient_id": 11001,
@@ -6461,7 +6461,7 @@
     "time_point": 807,
     "original": 2100.0,
     "mask": 1,
-    "reconstruction_a0": 1034.6240234375
+    "reconstruction_a0": 1034.6259765625
   },
   {
     "patient_id": 11001,
@@ -6469,7 +6469,7 @@
     "time_point": 808,
     "original": 10200.0,
     "mask": 1,
-    "reconstruction_a0": 14865.748046875
+    "reconstruction_a0": 14865.74609375
   },
   {
     "patient_id": 11001,
@@ -6477,7 +6477,7 @@
     "time_point": 809,
     "original": -8580.0,
     "mask": 1,
-    "reconstruction_a0": -4439.93994140625
+    "reconstruction_a0": -4439.94140625
   },
   {
     "patient_id": 11001,
@@ -6493,7 +6493,7 @@
     "time_point": 811,
     "original": 2760.0,
     "mask": 1,
-    "reconstruction_a0": 1327.21728515625
+    "reconstruction_a0": 1327.2158203125
   },
   {
     "patient_id": 11001,
@@ -6501,7 +6501,7 @@
     "time_point": 812,
     "original": -1140.0,
     "mask": 1,
-    "reconstruction_a0": -2034.648681640625
+    "reconstruction_a0": -2034.649169921875
   },
   {
     "patient_id": 11001,
@@ -6509,7 +6509,7 @@
     "time_point": 813,
     "original": -1680.0,
     "mask": 1,
-    "reconstruction_a0": 1865.84228515625
+    "reconstruction_a0": 1865.84375
   },
   {
     "patient_id": 11001,
@@ -6517,7 +6517,7 @@
     "time_point": 814,
     "original": -3960.0,
     "mask": 1,
-    "reconstruction_a0": -3400.620361328125
+    "reconstruction_a0": -3400.622802734375
   },
   {
     "patient_id": 11001,
@@ -6525,7 +6525,7 @@
     "time_point": 815,
     "original": -9631.0,
     "mask": 1,
-    "reconstruction_a0": -4815.771484375
+    "reconstruction_a0": -4815.77197265625
   },
   {
     "patient_id": 11001,
@@ -6541,7 +6541,7 @@
     "time_point": 817,
     "original": 4860.0,
     "mask": 1,
-    "reconstruction_a0": 4435.005859375
+    "reconstruction_a0": 4435.0068359375
   },
   {
     "patient_id": 11001,
@@ -6557,7 +6557,7 @@
     "time_point": 819,
     "original": -1200.0,
     "mask": 1,
-    "reconstruction_a0": -1962.2998046875
+    "reconstruction_a0": -1962.300048828125
   },
   {
     "patient_id": 11001,
@@ -6565,7 +6565,7 @@
     "time_point": 820,
     "original": 2820.0,
     "mask": 1,
-    "reconstruction_a0": 3704.2138671875
+    "reconstruction_a0": 3704.212890625
   },
   {
     "patient_id": 11001,
@@ -6573,7 +6573,7 @@
     "time_point": 821,
     "original": 3872.0,
     "mask": 1,
-    "reconstruction_a0": 9514.9404296875
+    "reconstruction_a0": 9514.9384765625
   },
   {
     "patient_id": 11001,
@@ -6581,7 +6581,7 @@
     "time_point": 822,
     "original": 4319.9990234375,
     "mask": 1,
-    "reconstruction_a0": 4747.3330078125
+    "reconstruction_a0": 4747.330078125
   },
   {
     "patient_id": 11001,
@@ -6597,7 +6597,7 @@
     "time_point": 824,
     "original": 1320.00048828125,
     "mask": 1,
-    "reconstruction_a0": 5514.65625
+    "reconstruction_a0": 5514.6552734375
   },
   {
     "patient_id": 11001,
@@ -6605,7 +6605,7 @@
     "time_point": 825,
     "original": 4080.0,
     "mask": 1,
-    "reconstruction_a0": 5975.7802734375
+    "reconstruction_a0": 5975.7822265625
   },
   {
     "patient_id": 11001,
@@ -6613,7 +6613,7 @@
     "time_point": 826,
     "original": 8624.0,
     "mask": 1,
-    "reconstruction_a0": 9715.1787109375
+    "reconstruction_a0": 9715.17578125
   },
   {
     "patient_id": 11001,
@@ -6645,7 +6645,7 @@
     "time_point": 830,
     "original": -2040.0,
     "mask": 1,
-    "reconstruction_a0": 369.59228515625
+    "reconstruction_a0": 369.59033203125
   },
   {
     "patient_id": 11001,
@@ -6653,7 +6653,7 @@
     "time_point": 831,
     "original": -6720.0,
     "mask": 1,
-    "reconstruction_a0": -4035.87890625
+    "reconstruction_a0": -4035.879150390625
   },
   {
     "patient_id": 11001,
@@ -6669,7 +6669,7 @@
     "time_point": 833,
     "original": -7920.0,
     "mask": 1,
-    "reconstruction_a0": -2545.32080078125
+    "reconstruction_a0": -2545.321044921875
   },
   {
     "patient_id": 11001,
@@ -6677,7 +6677,7 @@
     "time_point": 834,
     "original": -240.0,
     "mask": 1,
-    "reconstruction_a0": 1635.2509765625
+    "reconstruction_a0": 1635.24951171875
   },
   {
     "patient_id": 11001,
@@ -6685,7 +6685,7 @@
     "time_point": 835,
     "original": 900.0,
     "mask": 1,
-    "reconstruction_a0": 4214.8828125
+    "reconstruction_a0": 4214.8818359375
   },
   {
     "patient_id": 11001,
@@ -6693,7 +6693,7 @@
     "time_point": 836,
     "original": -900.0,
     "mask": 1,
-    "reconstruction_a0": -2650.2255859375
+    "reconstruction_a0": -2650.224609375
   },
   {
     "patient_id": 11001,
@@ -6709,7 +6709,7 @@
     "time_point": 838,
     "original": 900.0,
     "mask": 1,
-    "reconstruction_a0": 3594.05859375
+    "reconstruction_a0": 3594.0576171875
   },
   {
     "patient_id": 11001,
@@ -6717,7 +6717,7 @@
     "time_point": 839,
     "original": -1620.0,
     "mask": 1,
-    "reconstruction_a0": -1917.648681640625
+    "reconstruction_a0": -1917.6484375
   },
   {
     "patient_id": 11001,
@@ -6725,7 +6725,7 @@
     "time_point": 840,
     "original": 3300.0,
     "mask": 1,
-    "reconstruction_a0": 5514.2861328125
+    "reconstruction_a0": 5514.2880859375
   },
   {
     "patient_id": 11001,
@@ -6733,7 +6733,7 @@
     "time_point": 841,
     "original": 6240.0,
     "mask": 1,
-    "reconstruction_a0": 6289.4814453125
+    "reconstruction_a0": 6289.4775390625
   },
   {
     "patient_id": 11001,
@@ -6741,7 +6741,7 @@
     "time_point": 842,
     "original": 2460.0,
     "mask": 1,
-    "reconstruction_a0": 927.72216796875
+    "reconstruction_a0": 927.7216796875
   },
   {
     "patient_id": 11001,
@@ -6749,7 +6749,7 @@
     "time_point": 843,
     "original": 5460.0,
     "mask": 1,
-    "reconstruction_a0": 12271.158203125
+    "reconstruction_a0": 12271.15625
   },
   {
     "patient_id": 11001,
@@ -6757,7 +6757,7 @@
     "time_point": 844,
     "original": 8940.0,
     "mask": 1,
-    "reconstruction_a0": 3387.8701171875
+    "reconstruction_a0": 3387.8720703125
   },
   {
     "patient_id": 11001,
@@ -6773,7 +6773,7 @@
     "time_point": 846,
     "original": -180.0,
     "mask": 1,
-    "reconstruction_a0": 1133.98291015625
+    "reconstruction_a0": 1133.98193359375
   },
   {
     "patient_id": 11001,
@@ -6781,7 +6781,7 @@
     "time_point": 847,
     "original": 5160.0,
     "mask": 1,
-    "reconstruction_a0": 4831.3388671875
+    "reconstruction_a0": 4831.337890625
   },
   {
     "patient_id": 11001,
@@ -6805,7 +6805,7 @@
     "time_point": 850,
     "original": 4140.0,
     "mask": 1,
-    "reconstruction_a0": 5270.0849609375
+    "reconstruction_a0": 5270.0869140625
   },
   {
     "patient_id": 11001,
@@ -6821,7 +6821,7 @@
     "time_point": 852,
     "original": 1560.00048828125,
     "mask": 1,
-    "reconstruction_a0": -2298.853515625
+    "reconstruction_a0": -2298.852294921875
   },
   {
     "patient_id": 11001,
@@ -6829,7 +6829,7 @@
     "time_point": 853,
     "original": 2340.0,
     "mask": 1,
-    "reconstruction_a0": 6191.2060546875
+    "reconstruction_a0": 6191.2021484375
   },
   {
     "patient_id": 11001,
@@ -6837,7 +6837,7 @@
     "time_point": 854,
     "original": 1079.99951171875,
     "mask": 1,
-    "reconstruction_a0": 3609.9580078125
+    "reconstruction_a0": 3609.9560546875
   },
   {
     "patient_id": 11001,
@@ -6845,7 +6845,7 @@
     "time_point": 855,
     "original": 3240.0,
     "mask": 1,
-    "reconstruction_a0": 4859.931640625
+    "reconstruction_a0": 4859.9306640625
   },
   {
     "patient_id": 11001,
@@ -6861,7 +6861,7 @@
     "time_point": 857,
     "original": 4799.9990234375,
     "mask": 1,
-    "reconstruction_a0": 1486.43994140625
+    "reconstruction_a0": 1486.4443359375
   },
   {
     "patient_id": 11001,
@@ -6869,7 +6869,7 @@
     "time_point": 858,
     "original": 6660.0,
     "mask": 1,
-    "reconstruction_a0": 6303.3330078125
+    "reconstruction_a0": 6303.3310546875
   },
   {
     "patient_id": 11001,
@@ -6893,7 +6893,7 @@
     "time_point": 861,
     "original": 4500.0,
     "mask": 1,
-    "reconstruction_a0": 983.0986328125
+    "reconstruction_a0": 983.10009765625
   },
   {
     "patient_id": 11001,
@@ -6901,7 +6901,7 @@
     "time_point": 862,
     "original": 60.0,
     "mask": 1,
-    "reconstruction_a0": 1803.80859375
+    "reconstruction_a0": 1803.80810546875
   },
   {
     "patient_id": 11001,
@@ -6909,7 +6909,7 @@
     "time_point": 863,
     "original": 5220.0,
     "mask": 1,
-    "reconstruction_a0": -508.97998046875
+    "reconstruction_a0": -508.97900390625
   },
   {
     "patient_id": 11001,
@@ -6925,7 +6925,7 @@
     "time_point": 865,
     "original": 2100.0,
     "mask": 1,
-    "reconstruction_a0": 3894.220703125
+    "reconstruction_a0": 3894.2216796875
   },
   {
     "patient_id": 11001,
@@ -6933,7 +6933,7 @@
     "time_point": 866,
     "original": 5520.0009765625,
     "mask": 1,
-    "reconstruction_a0": 5049.53515625
+    "reconstruction_a0": 5049.537109375
   },
   {
     "patient_id": 11001,
@@ -6949,7 +6949,7 @@
     "time_point": 868,
     "original": -3480.0,
     "mask": 1,
-    "reconstruction_a0": -1621.4404296875
+    "reconstruction_a0": -1621.442138671875
   },
   {
     "patient_id": 11001,
@@ -6957,7 +6957,7 @@
     "time_point": 869,
     "original": 2400.0,
     "mask": 1,
-    "reconstruction_a0": 3877.9501953125
+    "reconstruction_a0": 3877.9482421875
   },
   {
     "patient_id": 11001,
@@ -6973,7 +6973,7 @@
     "time_point": 871,
     "original": -7020.0,
     "mask": 1,
-    "reconstruction_a0": -2768.14599609375
+    "reconstruction_a0": -2768.144775390625
   },
   {
     "patient_id": 11001,
@@ -6981,7 +6981,7 @@
     "time_point": 872,
     "original": -8640.0,
     "mask": 1,
-    "reconstruction_a0": -6785.10400390625
+    "reconstruction_a0": -6785.10546875
   },
   {
     "patient_id": 11001,
@@ -6997,7 +6997,7 @@
     "time_point": 874,
     "original": -3240.0,
     "mask": 1,
-    "reconstruction_a0": -3197.84033203125
+    "reconstruction_a0": -3197.841064453125
   },
   {
     "patient_id": 11001,
@@ -7005,7 +7005,7 @@
     "time_point": 875,
     "original": 540.0,
     "mask": 1,
-    "reconstruction_a0": 1168.4208984375
+    "reconstruction_a0": 1168.419921875
   },
   {
     "patient_id": 11001,
@@ -7013,6 +7013,6 @@
     "time_point": 876,
     "original": -7560.0,
     "mask": 1,
-    "reconstruction_a0": -5050.0458984375
+    "reconstruction_a0": -5050.04638671875
   }
 ]
