@@ -31,11 +31,11 @@ Leire Paz<sup>1,\*</sup>, Leonardo Garma<sup>2,\*</sup>, Sonia Pernas<sup>3,4</s
 .
 ├── data/                         # Datasets (see data/README.md)
 ├── models/
-│   ├── vq-vae/                   # vqvae_a0.pt, scaler, …
-│   └── lda/                      # LDA_model_vdec25.gensim, dictionary_LDA_vdec25.dict
+│   ├── vq-vae/
+│   └── lda/
 ├── notebooks/
-│   ├── README.md
-│   └── vq-vae_lda_pipeline/      # Main 5-notebook pipeline (see below)
+│   ├── Figures/                       # manuscript figure notebooks (Figure1–Figure6)
+│   └── vq-vae_lda_pipeline/           # VQ-VAE → LDA pipeline (5 notebooks)
 ├── scripts/
 │   ├── vqvae/                    # VQ-VAE package (model, inference, plots)
 │   ├── 01_preprocess/            # Daily-summary cleaning; eB2 column rename
@@ -50,7 +50,7 @@ Leire Paz<sup>1,\*</sup>, Leonardo Garma<sup>2,\*</sup>, Sonia Pernas<sup>3,4</s
 └── LICENSE
 ```
 
-More detail per folder: [`data/README.md`](data/README.md), [`scripts/README.md`](scripts/README.md), [`results/README.md`](results/README.md).
+Folder-level notes: [`data/README.md`](data/README.md), [`scripts/README.md`](scripts/README.md), [`results/README.md`](results/README.md), [`notebooks/Figures/README.md`](notebooks/Figures/README.md).
 
 ---
 
