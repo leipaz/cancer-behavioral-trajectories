@@ -83,8 +83,8 @@ def main() -> None:
     merged_df.to_csv(args.merged_out, index=False)
     print(f"Saved wide merge: {args.merged_out} ({len(merged_df)} rows, {merged_df['id'].nunique()} ids)")
 
-    if "Evento PD" in patient_df.columns:
-        print(patient_df["Evento PD"].value_counts())
+    if "PD_event" in patient_df.columns:
+        print(patient_df["PD_event"].value_counts())
 
 
 if __name__ == "__main__":

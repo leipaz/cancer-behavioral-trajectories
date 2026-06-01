@@ -21,14 +21,8 @@ USER_TOPIC_CLUSTER_CSV = PROCESSED_LDA_DIR / "user_topic_cluster_6topics_lda.csv
 PATIENT_TOPICS_CLINICAL_CSV = PROCESSED_LDA_DIR / "patient_topics_clinical.csv"
 MERGED_TOPICS_CLINICAL_CSV = PROCESSED_LDA_DIR / "merged_topics_clinical.csv"
 
-# Clinical Excel
-DEFAULT_CLINICAL_XLSX = Path(
-    "/export/gts_usuarios/lparbaiza/cnio/data/data_dic2025/"
-    "Base con farmacos y covariables final.xlsx"
-)
-FALLBACK_CLINICAL_XLSX = (
-    PROJECT_ROOT / "data/raw/Base con farmacos y covariables final.xlsx"
-)
+# Clinical covariates
+CLINICAL_XLSX = PROJECT_ROOT / "data/processed/clinical/Subjects_data.xlsx"
 
 # LDA results (versioned in git)
 RESULTS_LDA_FIGURES = PROJECT_ROOT / "results/lda/figures"
@@ -149,7 +143,7 @@ DEFAULT_NUM_TOPICS = 6
 DEFAULT_PASSES = 10_000
 DEFAULT_TOP_N_TERMS = 10
 
-CLINICAL_COLS = ["id", "Fecha_entrada_HDM", "Evento PD", "Tiempo Obs Final"]
+CLINICAL_COLS = ["id", "Date_start_HDM", "PD_event", "Obs_time"]
 
 
 def resolve_topics_day_csv() -> Path:
@@ -214,11 +208,8 @@ def resolve_decoded_embeddings_pkl(model_type: str = "a0") -> Path:
 
 
 def resolve_clinical_xlsx() -> Path:
-    if DEFAULT_CLINICAL_XLSX.is_file():
-        return DEFAULT_CLINICAL_XLSX
-    if FALLBACK_CLINICAL_XLSX.is_file():
-        return FALLBACK_CLINICAL_XLSX
+    if CLINICAL_XLSX.is_file():
+        return CLINICAL_XLSX
     raise FileNotFoundError(
-        "Clinical Excel not found. Place 'Base con farmacos y covariables final.xlsx' "
-        f"at {FALLBACK_CLINICAL_XLSX} or {DEFAULT_CLINICAL_XLSX}."
+        f"Clinical Excel not found. Place Subjects_data.xlsx at {CLINICAL_XLSX}."
     )
