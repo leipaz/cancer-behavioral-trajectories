@@ -1,6 +1,9 @@
 # Patient data and derivatives (local only; not versioned)
 # Keep the `data/` folder structure in git, but ignore heavy data subfolders.
-data/processed/
+data/processed/*
+!data/processed/lda/
+data/processed/lda/*
+!data/processed/lda/Base con farmacos y covariables final.xlsx
 data/raw/
 
 # VQ-VAE profiles PKL (large; regenerate with notebooks/daily_to_profiles.ipynb)
