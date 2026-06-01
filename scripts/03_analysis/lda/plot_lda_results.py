@@ -30,7 +30,7 @@ from config import (  # noqa: E402
 
 def plot_topics_by_event(
     df: pd.DataFrame,
-    event_col: str = "Evento PD",
+    event_col: str = "PD_event",
     n_topic: int = 6,
     npatients: int | None = None,
     output_path: Path | None = None,
@@ -76,7 +76,7 @@ def plot_topics_by_event(
 def plot_avg_topic_distribution_by_event(
     df: pd.DataFrame,
     topic_columns: list[str],
-    group_col: str = "Evento PD",
+    group_col: str = "PD_event",
     n_topic: int = 6,
     npatients: int | None = None,
     output_path: Path | None = None,
@@ -123,7 +123,7 @@ def plot_avg_topic_distribution_by_event(
 def main() -> None:
     parser = argparse.ArgumentParser(description="Plot LDA vs clinical event.")
     parser.add_argument("--merged-csv", type=Path, default=MERGED_TOPICS_CLINICAL_CSV)
-    parser.add_argument("--event-col", default="Evento PD")
+    parser.add_argument("--event-col", default="PD_event")
     parser.add_argument("--num-topics", type=int, default=DEFAULT_NUM_TOPICS)
     parser.add_argument("--topics-by-event-out", type=Path, default=FIGURE_TOPICS_BY_EVENT)
     parser.add_argument("--avg-topic-out", type=Path, default=FIGURE_AVG_TOPIC_BY_EVENT)
