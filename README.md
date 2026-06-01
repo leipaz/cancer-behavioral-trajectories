@@ -29,15 +29,7 @@ Leire Paz<sup>1,\*</sup>, Leonardo Garma<sup>2,\*</sup>, Sonia Pernas<sup>3,4</s
 
 ```
 .
-├── data/
-│   ├── daily_summaries/          # Per-patient daily summaries (VQ-VAE model input)
-│   ├── processed/
-│   │   ├── clinical/             # Subjects_data.xlsx (PD dates, covariates)
-│   │   └── lda/                    # LDA inputs / topic tables (e.g. eB2 cohort CSV)
-│   ├── output_vq_vae/            # VQ-VAE inference outputs (profiles, decoded embeddings)
-│   ├── output_lda/               # LDA-side exports
-│   ├── metadata/                 # Variable dictionary, cohort maps
-│   └── raw/                      # Source daily summaries and clinical tables
+├── data/                         # Datasets (see data/README.md)
 ├── models/
 │   ├── vq-vae/                   # vqvae_a0.pt, scaler, …
 │   └── lda/                      # LDA_model_vdec25.gensim, dictionary_LDA_vdec25.dict
@@ -90,27 +82,23 @@ flowchart LR
   E --> G[DCABP evolution]
 ```
 
-| Step | Notebook | What it does | Main inputs | Main outputs |
-|------|----------|--------------|-------------|--------------|
-| 1 | [`daily_to_profiles.ipynb`](notebooks/vq-vae_lda_pipeline/daily_to_profiles.ipynb) | Runs trained **VQ-VAE** on each patient’s daily summaries; assigns a discrete **day-type profile** (embedding ID) per day | `data/daily_summaries/oncology_daily_summary_model_input.csv`, `models/vq-vae/vqvae_a0.pt` | `data/output_vq_vae/profiles_per_sample_oncology.pkl`, `decoded_embedding_vectors_a0.pkl` |
-| 2 | [`profiles_pkl_to_csv.ipynb`](notebooks/vq-vae_lda_pipeline/profiles_pkl_to_csv.ipynb) | Extracts embedding sequences for LDA (`model_type=a0`, window `n=30`) | profiles PKL | `data/processed/lda/user_embeddings_from_pkl.csv` |
-| 3 | [`profiles_to_dcabp.ipynb`](notebooks/vq-vae_lda_pipeline/profiles_to_dcabp.ipynb) | Loads **LDA** model and dictionary; topic grid; merges **clinical** data; compares topic distributions by progression status | `models/lda/LDA_model_vdec25.gensim`, `dictionary_LDA_vdec25.dict`, `data/processed/clinical/Subjects_data.xlsx`, eB2 table `data/processed/lda/PD_cutoff_dic_2025s_eB2_Topics_a0_6topics100000.csv` | `results/lda/tables/lda_topics_top10.csv`, figures under `results/lda/figures/` |
-| 4 | [`profile_decodification.ipynb`](notebooks/vq-vae_lda_pipeline/profile_decodification.ipynb) | Maps each LDA topic’s top-10 profile tokens back to **behavioral feature vectors** (VQ-VAE decoder) | top-10 table, `decoded_embedding_vectors_a0.pkl` | decoded profile tables/plots in `results/lda/` |
-| 5 | [`lda_dcabp_evolution.ipynb`](notebooks/vq-vae_lda_pipeline/lda_dcabp_evolution.ipynb) | **Predominant DCABP** in 30-day blocks; cohort heatmaps; per-patient **DCABP evolution** (daily sliding windows) with progression marker | eB2 CSV, LDA model, profiles / embeddings | `results/lda/figures/predominant_topics_per_month.png`, `results/lda/figures/topic_evolution/topic_evolution_<id>.png` |
+| Step | Notebook | What it does |
+|------|----------|--------------|
+| 1 | [`daily_to_profiles.ipynb`](notebooks/vq-vae_lda_pipeline/daily_to_profiles.ipynb) | Runs trained **VQ-VAE** on daily summaries → discrete **day-type profiles** per day |
+| 2 | [`profiles_pkl_to_csv.ipynb`](notebooks/vq-vae_lda_pipeline/profiles_pkl_to_csv.ipynb) | Builds LDA-ready embedding sequences from the profiles PKL |
+| 3 | [`profiles_to_dcabp.ipynb`](notebooks/vq-vae_lda_pipeline/profiles_to_dcabp.ipynb) | **LDA** topics, clinical merge, topic distributions by progression status |
+| 4 | [`profile_decodification.ipynb`](notebooks/vq-vae_lda_pipeline/profile_decodification.ipynb) | Decodes top profile tokens per topic into **behavioral features** |
+| 5 | [`lda_dcabp_evolution.ipynb`](notebooks/vq-vae_lda_pipeline/lda_dcabp_evolution.ipynb) | Monthly and per-patient **DCABP** evolution over time |
 
-**Terminology:** *DCABP* = digitally characterized activity-based pattern (LDA topic 0–5).
+Input and output paths under `data/` are listed in [`data/README.md`](data/README.md). Figures and tables go to `results/lda/`.
 
-**Script equivalents** (batch / CI-friendly): univariate work in `scripts/02_univariate_analysis/lda/`; LDA train/assign/merge/plots in `scripts/03_analysis/lda/` (`run_lda_pipeline.py`, `run_decode_profiles.py`, `run_monthly_topics_heatmap.py`). Shared helpers include `scripts/03_analysis/lda/monthly_topics_utils.py` (used by notebook 5).
 
-### Other notebook folders
-
-Add collaborator-specific analyses as new subfolders under `notebooks/` (e.g. `notebooks/<name>/`) without changing the main pipeline folder.
 
 ---
 
 ## Data and privacy
 
-Raw patient-identifiable data are kept under `data/raw/` and are not part of the published dataset. Processed, anonymized tables in `data/processed/` and `data/daily_summaries/` comply with applicable regulations and informed consent.
+Study datasets are described in [`data/README.md`](data/README.md). They are processed and anonymized in line with applicable regulations and informed consent.
 
 ## License
 
