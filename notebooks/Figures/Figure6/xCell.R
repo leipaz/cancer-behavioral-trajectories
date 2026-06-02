@@ -13,16 +13,10 @@ local_filename <- "../../../data/references/xCell/TabulaSapiendBlood.xCell2Ref.r
 # Load the downloaded reference
 TabulaSapiendBlood.xCell2Ref <- readRDS(local_filename)
 
-
-tmp <- tempfile(fileext = ".parquet")
-R.utils::gunzip("../../../data/processed/RNA/Norm_counts.parquet.gz", destname = tmp, remove = FALSE)
-expr <- read_parquet(tmp) |> 
-  column_to_rownames("__index_level_0__")
-
-#expr <- fread("../../../data/processed/RNA/norm_counts_filtered.csv", check.names = FALSE)
+expr <- fread("../../../data/processed/RNA/Norm_counts.csv", check.names = FALSE)
 expr <- as.data.frame(expr)
-#rownames(expr) #<- expr[[1]]
-#expr[[1]] <- NULL
+rownames(expr) <- expr[[1]]
+expr[[1]] <- NULL
 
 # The analysis uses a bulk mixture of gene expression data (genes in rows, samples in columns). The input must use the same gene annotation system as the reference object.
 xcell2_results <- xCell2::xCell2Analysis(
