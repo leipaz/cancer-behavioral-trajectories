@@ -1,5 +1,10 @@
 # VQ-VAE profiles PKL (large; regenerate with notebooks/vq-vae_lda_pipeline/daily_to_profiles.ipynb)
 data/output_vq_vae/profiles_per_sample_oncology.pkl
+data/output_vq_vae/revision_cohorts/
+
+# Large multi-cohort daily summary (local; not for git)
+data/daily_summaries/daily_summary_eb2prod_may26.csv
+data/daily_summaries/revision_cohort_samples/
 
 # Local exploratory notebooks (not part of the published pipeline)
 
