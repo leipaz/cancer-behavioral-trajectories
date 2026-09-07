@@ -1,4 +1,4 @@
-# Miniinforme — Alarma de burden y granularidad temporal
+# Alarma de burden y granularidad temporal
 
 **Fecha:** 2026-09-07  
 **Setting principal:** W = 90 d, H = 120 d (también barrido W×H)
