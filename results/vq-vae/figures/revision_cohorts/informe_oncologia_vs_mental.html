@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Informe revisión — Oncología vs Salud mental (raw + VQ-VAE)</title>
+  <style>
+    :root {
+      --bg: #f7f6f3;
+      --ink: #1c1b19;
+      --muted: #5c574f;
+      --line: #d9d4cb;
+      --card: #ffffff;
+      --accent: #2f5d50;
+      --accent2: #8b3a2b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.45;
+    }
+    header {
+      padding: 2.5rem 1.5rem 1.5rem;
+      border-bottom: 1px solid var(--line);
+      background: var(--card);
+    }
+    header .kicker {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 0.5rem;
+    }
+    h1 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 600;
+      margin: 0 0 0.6rem;
+      max-width: 40rem;
+    }
+    header p {
+      margin: 0;
+      max-width: 46rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1rem;
+      padding: 0.9rem 1.5rem;
+      border-bottom: 1px solid var(--line);
+      background: var(--card);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.85rem;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    nav a { color: var(--accent); text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+    section { margin: 2.2rem 0; }
+    h2 {
+      font-size: 1.45rem;
+      margin: 0 0 0.7rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35rem;
+    }
+    h3 { font-size: 1.1rem; margin: 1.2rem 0 0.45rem; }
+    p, li { font-size: 1rem; }
+    .meta {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .grid-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0 1.4rem;
+    }
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 0.9rem 1rem;
+    }
+    .stat .label {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+    .stat .value {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 1.45rem;
+      font-weight: 650;
+      margin-top: 0.2rem;
+      color: var(--accent);
+    }
+    figure {
+      margin: 1rem 0 1.4rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 0.75rem;
+    }
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #fff;
+    }
+    figcaption {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.55rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.84rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+    }
+    th, td {
+      padding: 0.45rem 0.55rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th { background: #efece6; font-weight: 600; }
+    .sig { color: var(--accent); font-weight: 600; }
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--card);
+      padding: 0.85rem 1rem;
+      margin: 1rem 0;
+    }
+    .callout.alt { border-left-color: var(--accent2); }
+    footer {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 1.25rem 2.5rem;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="kicker">Revisión · experimento VQ-VAE · rama revision-experiments</p>
+    <h1>Oncología vs salud mental: comportamiento raw, ocupación de perfiles y decodificación</h1>
+    <p>
+      Informe para presentar la comparación igualada (90 pacientes/cohorte):
+      contraste univariante raw → ocupación de day-types del VQ-VAE → firmas conductuales decodificadas.
+    </p>
+  </header>
+
+  <nav>
+    <a href="#diseno">Diseño</a>
+    <a href="#raw">1. Raw</a>
+    <a href="#ocupacion">2. Ocupación</a>
+    <a href="#decode">3. Decodificación</a>
+    <a href="#raw-vs-vqvae">4. Raw vs VQ-VAE</a>
+    <a href="#conclusiones">Conclusiones</a>
+  </nav>
+
+  <main>
+    <section id="diseno">
+      <h2>Diseño del experimento</h2>
+      <div class="grid-stats">
+        <div class="stat"><div class="label">Pacientes / cohorte</div><div class="value">90</div></div>
+        <div class="stat"><div class="label">Cohortes clínicas</div><div class="value">8 + CNIO</div></div>
+        <div class="stat"><div class="label">Oncología</div><div class="value">CNIO + PMP</div></div>
+        <div class="stat"><div class="label">Salud mental</div><div class="value">CI·ED·SR·TMC…</div></div>
+      </div>
+      <p>
+        Grupos: <strong>CI, das, ED1, ED2, GM, PMP, SR, TMC</strong> (muestreados del daily summary de entrenamiento)
+        y <strong>CNIO</strong> (90 pacientes del cohort oncológico del estudio; <code>cnio_caspar</code> solo tiene ~11 usuarios).
+        Encoding con el mismo pipeline que <code>daily_to_profiles</code> (modelo <code>a0</code>).
+      </p>
+      <div class="callout">
+        <strong>Pregunta de revisión:</strong> ¿el VQ-VAE separa dominios clínicos (cáncer vs mental)
+        de forma coherente con el comportamiento raw, y aporta estructura de perfiles más allá de medias univariantes?
+      </div>
+    </section>
+
+    <section id="raw">
+      <h2>1. Comparación raw (antes del VQ-VAE)</h2>
+      <p class="meta">
+        Unidad de análisis: media por paciente de features diarias · test Mann–Whitney · FDR Benjamini–Hochberg ·
+        oncología n=180 vs mental n=630.
+      </p>
+
+      <h3>Diferencias significativas (FDR &lt; 0.05)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Media oncología</th>
+            <th>Media mental</th>
+            <th>Δ (onc − mental)</th>
+            <th>Cohen’s d</th>
+            <th>p FDR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>location_time_home</td><td>1021</td><td>554</td><td class="sig">+467</td><td>1.29</td><td>&lt;0.001</td></tr>
+          <tr><td>location_distance</td><td>16 673</td><td>32 976</td><td class="sig">−16 303</td><td>−0.38</td><td>0.003</td></tr>
+          <tr><td>sleep_duration</td><td>30 707</td><td>34 460</td><td class="sig">−3 753</td><td>−0.51</td><td>&lt;0.001</td></tr>
+          <tr><td>app_usage_total</td><td>11 444</td><td>8 702</td><td class="sig">+2 742</td><td>0.28</td><td>&lt;0.001</td></tr>
+          <tr><td>steps_steps_total</td><td>7 243</td><td>5 582</td><td class="sig">+1 662</td><td>0.45</td><td>&lt;0.001</td></tr>
+          <tr><td>practiced_sport</td><td>0.46</td><td>0.34</td><td class="sig">+0.12</td><td>0.39</td><td>&lt;0.001</td></tr>
+          <tr><td>activity_walking</td><td>2 968</td><td>3 534</td><td>−566</td><td>−0.07</td><td>0.64 (NS)</td></tr>
+          <tr><td>sleep_start</td><td>−1 366</td><td>−4 444</td><td>+3 078</td><td>0.14</td><td>0.60 (NS)</td></tr>
+        </tbody>
+      </table>
+
+      <figure>
+        <img src="raw_oncology_vs_mental_boxplots.png" alt="Boxplots raw oncology vs mental" />
+        <figcaption>Figura 1. Distribuciones raw (z dentro de cada feature) · oncología vs mental.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="raw_behavioral_patterns_cohort_means.png" alt="Raw cohort means z-scored" />
+        <figcaption>Figura 2. Firma raw por cohorte (medias paciente, z entre cohortes).</figcaption>
+      </figure>
+
+      <div class="callout">
+        <strong>Conclusión raw:</strong> ya hay separación significativa de dominio.
+        Oncología: más tiempo en casa, menos distancia, sueño más corto, más app;
+        también más pasos en media paciente (punto a contrastar con el VQ-VAE).
+      </div>
+    </section>
+
+    <section id="ocupacion">
+      <h2>2. Cómo se ocupan los perfiles (day-types VQ-VAE)</h2>
+      <p>
+        Tras pasar los mismos pacientes por el encoder, cada día se asigna a un código del codebook (0–255).
+        Medimos <em>P(day-type | cohorte)</em> y la distancia entre distribuciones (JS divergence).
+      </p>
+
+      <div class="grid-stats">
+        <div class="stat"><div class="label">JS dentro mental</div><div class="value">0.039</div></div>
+        <div class="stat"><div class="label">JS CNIO–PMP</div><div class="value">0.012</div></div>
+        <div class="stat"><div class="label">JS onc ↔ mental</div><div class="value">0.146</div></div>
+        <div class="stat"><div class="label">Masa top-10 (onc)</div><div class="value">~14%</div></div>
+      </div>
+
+      <figure>
+        <img src="occupancy_js_divergence.png" alt="JS divergence between cohorts" />
+        <figcaption>Figura 3. Distancia de ocupación entre cohortes (JS). Bloque mental compacto; CNIO/PMP juntos y lejos del resto.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="occupancy_top_daytypes_heatmap.png" alt="Top day-type occupancy heatmap" />
+        <figcaption>Figura 4. Day-types más usados por cohorte (unión de tops).</figcaption>
+      </figure>
+
+      <figure>
+        <img src="enrichment_top_daytypes_heatmap.png" alt="Enrichment heatmap" />
+        <figcaption>Figura 5. Enriquecimiento (lift) de day-types respecto a la media entre cohortes.</figcaption>
+      </figure>
+
+      <div class="callout">
+        <strong>Conclusión ocupación:</strong> dos bloques claros.
+        Mental concentra ~45–53% de días en el top-10 (código 126 muy dominante);
+        cáncer reparte más (~14–16% en top-10) y favorece otros códigos (18, 76, 78, 208).
+      </div>
+    </section>
+
+    <section id="decode">
+      <h2>3. Decodificación a patrones conductuales</h2>
+      <p>
+        Cada day-type se traduce a un vector de features con
+        <code>decoded_embedding_vectors_a0.pkl</code>, en z-score respecto al codebook
+        (mismo criterio que las figuras de patrones del manuscript).
+      </p>
+
+      <figure>
+        <img src="behavioral_patterns_cohort_means.png" alt="Decoded cohort mean behavioral patterns" />
+        <figcaption>Figura 6. Patrón medio por cohorte (media ponderada por ocupación, z vs codebook).</figcaption>
+      </figure>
+
+      <figure>
+        <img src="behavioral_patterns_top_daytypes_by_cohort.png" alt="Top day-types behavioral bars" />
+        <figcaption>Figura 7. Top-5 day-types por cohorte en barras de z (estilo manuscript).</figcaption>
+      </figure>
+
+      <figure>
+        <img src="decoded_signature_by_cohort.png" alt="Decoded signature heatmap" />
+        <figcaption>Figura 8. Heatmap de firma decodificada (z entre cohortes).</figcaption>
+      </figure>
+
+      <div class="callout">
+        <strong>Conclusión decode:</strong> oncología se lee como menor movilidad (<code>location_distance</code>, walking/steps en el espacio de prototipos),
+        más app y sueño algo más corto; mental carga day-types de mayor distancia/pasos (p.ej. 126, 162, 201).
+      </div>
+    </section>
+
+    <section id="raw-vs-vqvae">
+      <h2>4. Raw vs VQ-VAE: ¿dicen lo mismo?</h2>
+      <p>
+        Contraste oncología − mental en forma estandarizada: medias raw de paciente vs firma VQ-VAE decodificada.
+        Correlación de rangos de los deltas ≈ <strong>0.77</strong> (p≈0.02): patrón global alineado, no idéntico.
+      </p>
+
+      <figure>
+        <img src="raw_vs_vqvae_oncology_mental_deltas.png" alt="Raw vs VQ-VAE deltas" />
+        <figcaption>Figura 9. Δ (onc − mental) raw vs VQ-VAE (z entre features).</figcaption>
+      </figure>
+
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Acuerdo de signo</th><th>Nota</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>location_distance, sleep_duration, app_usage</td><td class="sig">Sí</td><td>Núcleo estable del contraste</td></tr>
+          <tr><td>steps_steps_total</td><td>No</td><td>Raw: onc ↑ · VQ-VAE decode: onc ↓</td></tr>
+          <tr><td>location_time_home</td><td>No / débil</td><td>Muy fuerte en raw; casi plano en decode ponderado</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout alt">
+        <strong>Lectura metodológica:</strong> el raw demuestra diferencia de dominio;
+        el VQ-VAE organiza esa diferencia en un vocabulario discreto de day-types
+        (ocupación + decodificación). Las discordancias (p.ej. steps) muestran que
+        el codebook no es solo un resumen de medias univariantes.
+      </div>
+    </section>
+
+    <section id="conclusiones">
+      <h2>Conclusiones para la revisión</h2>
+      <ol>
+        <li><strong>Raw:</strong> oncología y mental ya difieren de forma significativa (FDR) en movilidad, sueño, app y deporte.</li>
+        <li><strong>Ocupación:</strong> CNIO ≈ PMP; ambos se separan del bloque mental (JS ~4× mayor entre bloques que dentro de mental).</li>
+        <li><strong>Uso del codebook:</strong> mental más concentrado; cáncer más diverso en day-types.</li>
+        <li><strong>Decode:</strong> firmas conductuales coherentes con menor desplazamiento y más app en cáncer.</li>
+        <li><strong>Raw + VQ-VAE juntos:</strong> el modelo no inventa la separación, pero añade estructura de perfiles que conviene mostrar frente a univariantes.</li>
+      </ol>
+      <p class="meta" style="margin-top:1.2rem">
+        Artefactos: tablas en <code>data/output_vq_vae/revision_cohorts/comparison_tables/</code> ·
+        figuras en este directorio · notebook
+        <code>notebooks/revision_experiments/cohort_vqvae_profile_occupancy.ipynb</code>.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    Generado en la rama <code>revision-experiments</code> · cancer-behavioral-trajectories ·
+    abrir este HTML desde <code>results/vq-vae/figures/revision_cohorts/</code> para ver las imágenes.
+  </footer>
+</body>
+</html>
