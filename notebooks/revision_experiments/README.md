@@ -22,8 +22,11 @@ Notebooks and CLIs for paper revision analyses (branch `revision-experiments`).
 ### CLI
 
 ```bash
-# Monthly paper replication
-.venv/bin/python scripts/03_analysis/alarm/run_granularity_sweep.py --monthly-only
+# Preferred entrypoint
+.venv/bin/python scripts/03_analysis/alarm/run_alarm_pipeline.py --skip-lda
+
+# Monthly paper replication only
+.venv/bin/python scripts/03_analysis/alarm/run_alarm_pipeline.py --monthly-only
 
 # Full granularity × (W,H) sweep using existing pUF tables (fast)
 .venv/bin/python scripts/03_analysis/alarm/run_granularity_sweep.py --skip-lda
@@ -39,6 +42,9 @@ Notebooks and CLIs for paper revision analyses (branch `revision-experiments`).
 .venv/bin/python scripts/03_analysis/alarm/plot_granularity_trajectories.py \
   --patients 62004,23003,31002,41006 --W 90
 ```
+
+Docs: [`scripts/03_analysis/alarm/README.md`](../../scripts/03_analysis/alarm/README.md).
+Report: [`results/alarm/granularidad_alarma.html`](../../results/alarm/granularidad_alarma.html).
 Outputs:
 
 - `results/alarm/tables/` — `daily_sliding_puf.csv`, `collapsed_puf_*.csv`, `granularity_sweep_summary.csv`, decision points, metrics

@@ -15,7 +15,8 @@ scripts/
 │   └── vq-vae/
 ├── 03_analysis/
 │   ├── lda/
-│   └── vq-vae/
+│   ├── vq-vae/
+│   └── alarm/          # rolling-burden alarm (downstream of LDA/DCABP)
 └── 04_figures/
     ├── lda/
     └── vq-vae/
@@ -25,7 +26,7 @@ scripts/
 |-------|---------|
 | `01_preprocess/` | Unify and clean the daily summary dataset |
 | `02_univariate_analysis/` | Univariate analysis (distributions, associations, QC plots) |
-| `03_analysis/` | LDA training, topic assignment, downstream inference |
+| `03_analysis/` | LDA / VQ-VAE training and downstream; **alarm** on DCABP topics |
 | `04_figures/` | Manuscript figures → `results/<method>/figures/` |
 
 ## `01_preprocess/lda/preprocess_daily_summaries.py`
@@ -150,18 +151,44 @@ python scripts/03_analysis/lda/run_monthly_topics_heatmap.py --rebuild-table
 | `data/processed/lda/patient_topics_clinical.csv` | Topics + clinical (inner merge) |
 | `data/processed/lda/merged_topics_clinical.csv` | Wide merge for downstream plots |
 
+## `03_analysis/alarm/` (rolling-burden alarm)
+
+**Prospective rolling-burden alarm** on unfavourable LDA topics (3+4+5 → `pUF`).
+Compares **sampled/sliding** vs **collapsed** constructions across temporal granularities
+and lookback/horizon grids (W, H). Downstream of DCABP / `topics_probs.xlsx`.
+
+```bash
+# Full revision pipeline (reuse existing pUF tables)
+.venv/bin/python scripts/03_analysis/alarm/run_alarm_pipeline.py --skip-lda
+
+# Monthly paper replication only (W=3 months, H=4 months)
+.venv/bin/python scripts/03_analysis/alarm/run_alarm_pipeline.py --monthly-only
+```
+
+| Script | Role |
+|--------|------|
+| `run_alarm_pipeline.py` | Orchestrator |
+| `run_granularity_sweep.py` | Monthly replication + granularity × (W, H) |
+| `build_daily_sliding_puf.py` / `build_collapsed_puf.py` | Build pUF tables |
+| `analyze_missingness_and_wh_grid.py` | Funnel + AUC heatmaps |
+| `plot_patient_trajectories.py` / `plot_granularity_trajectories.py` | Trajectory figures |
+
+**Outputs:** `results/alarm/` (tables, figures, `granularidad_alarma.html`).  
+Detail: [`scripts/03_analysis/alarm/README.md`](03_analysis/alarm/README.md).
+
 ## Methods
 
 | Folder | Description |
 |--------|-------------|
 | `lda/` | Latent Dirichlet Allocation (or related topic / latent structure workflow) |
 | `vq-vae/` | Vector-quantized variational autoencoder workflow |
+| `alarm/` | Rolling-burden alarm on DCABP topics (revision / manuscript) |
 
 ## Conventions
 
 - **One entry script per step**, e.g. `01_preprocess/lda/preprocess_daily_summaries.py`.
 - **Shared logic** → `scripts/utils/`.
-- **Outputs** → `results/lda/` or `results/vq-vae/`.
+- **Outputs** → `results/lda/`, `results/vq-vae/`, or `results/alarm/`.
 - **Method-specific processed data** (if any) → `data/processed/<method>/`.
 
 ## Execution order (LDA example)
@@ -170,5 +197,6 @@ python scripts/03_analysis/lda/run_monthly_topics_heatmap.py --rebuild-table
 python scripts/01_preprocess/lda/preprocess_daily_summaries.py
 scripts/02_univariate_analysis/lda/...
 scripts/03_analysis/lda/...
+scripts/03_analysis/alarm/run_alarm_pipeline.py   # optional downstream
 scripts/04_figures/lda/...
 ```
