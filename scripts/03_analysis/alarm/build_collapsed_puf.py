@@ -76,7 +76,6 @@ def collapsed_puf_for_patient(
             {
                 "period": period,
                 "decision_day": period * block_size,
-                "n_days_in_block": len(window),
                 "pUF": puf,
                 **{f"topic_{k}": float(probs[k]) if k < len(probs) else np.nan for k in range(6)},
             }
