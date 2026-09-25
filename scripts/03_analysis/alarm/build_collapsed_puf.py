@@ -44,14 +44,19 @@ def collapsed_puf_for_patient(
     dictionary,
     block_size: int,
     unfavourable_topics: tuple[int, ...] = UNFAVOURABLE_TOPICS,
-    min_embeddings: int = 15,
+    min_embeddings: int = 1,
 ) -> list[dict]:
-    """Non-overlapping blocks; last incomplete block uses the final ``block_size`` days."""
+    """Non-overlapping blocks; use whatever days are available.
+
+    - If ``n < block_size``: one block with all available embeddings.
+    - If the last block would be incomplete: use the final ``min(block_size, n)`` days.
+    - Patients with fewer than ``min_embeddings`` days are skipped (default 1 = keep all).
+    """
     n = len(embedding_ids)
     if n < min_embeddings:
         return []
     rows: list[dict] = []
-    if min_embeddings <= n < block_size:
+    if n < block_size:
         windows = [embedding_ids]
     else:
         windows = []
@@ -84,6 +89,7 @@ def build_collapsed_puf_table(
     dictionary,
     block_size: int,
     clinical: pd.DataFrame | None = None,
+    min_embeddings: int = 1,
 ) -> pd.DataFrame:
     if clinical is None and default_clinical_path().exists():
         clinical = pd.read_excel(default_clinical_path())
@@ -107,7 +113,9 @@ def build_collapsed_puf_table(
     for _, row in topics_day.iterrows():
         pid = int(row["id"])
         emb = _parse_embedding_ids(row["embedding_ids"])
-        block_rows = collapsed_puf_for_patient(emb, lda_model, dictionary, block_size)
+        block_rows = collapsed_puf_for_patient(
+            emb, lda_model, dictionary, block_size, min_embeddings=min_embeddings
+        )
         if not block_rows:
             continue
         if pid in id_map:
@@ -135,6 +143,12 @@ def build_collapsed_puf_table(
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--block-size", type=int, nargs="+", default=[7, 14], help="Block sizes in days")
+    parser.add_argument(
+        "--min-embeddings",
+        type=int,
+        default=1,
+        help="Minimum days required to include a patient (default 1 = use all available)",
+    )
     parser.add_argument("--topics-day-csv", type=Path, default=None)
     parser.add_argument("--lda-model", type=Path, default=None)
     parser.add_argument("--dictionary", type=Path, default=None)
@@ -164,7 +178,9 @@ def main() -> None:
     args.out_dir.mkdir(parents=True, exist_ok=True)
     name = {7: "weekly", 14: "biweekly", 30: "monthly"}
     for b in args.block_size:
-        table = build_collapsed_puf_table(topics_day, lda_model, dictionary, b)
+        table = build_collapsed_puf_table(
+            topics_day, lda_model, dictionary, b, min_embeddings=args.min_embeddings
+        )
         out = args.out_dir / f"collapsed_puf_{name.get(b, str(b)+'d')}.csv"
         table.to_csv(out, index=False)
         print(f"Wrote {out} ({len(table)} rows, {table['id'].nunique()} patients)")
