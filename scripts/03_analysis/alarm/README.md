@@ -25,6 +25,10 @@ pipeline; not a VQ-VAE training step.
 
 Paper operating point: **monthly collapsed**, W ≈ 3 months, H ≈ 4 months, θ ≈ 1.61 (sum scale).
 
+**Event/censor clock (paper / MAIN):** `Subjects_data.Obs_time` → **1015** decision points  
+(`results/alarm/tables/decision_points_W3_H4.csv`).  
+Alternate eB2 clock (`t_evento_eb2`) → 1012; see [`results/alarm/README.md`](../../../results/alarm/README.md).
+
 ## Quick start
 
 ```bash
@@ -61,7 +65,9 @@ All under `results/alarm/`:
 
 | Path | Content |
 |------|---------|
-| `tables/alarm_metrics_W3_H4.csv` | Monthly paper metrics |
+| `tables/decision_points_W3_H4.csv` | **MAIN** landmarks (Obs_time, n=1015) |
+| `tables/alarm_metrics_W3_H4.csv` | **MAIN** monthly paper metrics |
+| `tables/decision_points_W3_H4_t_evento_eb2.csv` | Alternate eB2 clock (n=1012) |
 | `tables/granularity_sweep_summary.csv` | AUC / Sens / Spec by granularity |
 | `tables/wh_grid_auc.csv` | W×H grid |
 | `tables/missingness_funnel.csv` | Eligible patients / decision points |

@@ -30,7 +30,7 @@ results/
 | `univariate/tables/` | `variable_summary_full_stats_EPD.csv` |
 | `lda/figures/` | LDA top terms, topic vs PD event, decoded profile plots |
 | `lda/tables/` | LDA top-10 terms per topic |
-| `alarm/` | Rolling-burden alarm (see [`alarm/README.md`](alarm/README.md)) |
+| `alarm/` | Rolling-burden alarm — **MAIN = Obs_time (1015)**; see [`alarm/README.md`](alarm/README.md) |
 | `<method>/figures/` | Paper and supplementary plots per method |
 | `<method>/tables/` | Exported tables (CSV, LaTeX, etc.) |
 | `<method>/models/` | Saved models (`.rds`, `.pkl`, checkpoints, etc.) |
