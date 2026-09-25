@@ -356,10 +356,14 @@ def plot_wh_heatmaps(auc_grid: pd.DataFrame, out: Path) -> None:
             for xi, h in enumerate(pivot.columns):
                 val = pivot.loc[w, h]
                 ax.text(xi, yi, f"{val:.2f}", ha="center", va="center", fontsize=7, color="white")
-    axes[-1].axis("off")
-    fig.colorbar(last_im, ax=axes.tolist(), fraction=0.02, pad=0.02, label="ROC-AUC")
-    fig.suptitle("Mini experiment: ROC-AUC across lookback W × horizon H", y=1.01, fontsize=12)
-    fig.tight_layout()
+    # Empty bottom-right cell: inset colorbar so it does not overlap panels.
+    cax_host = axes[-1]
+    cax_host.set_visible(True)
+    cax_host.axis("off")
+    cax = cax_host.inset_axes([0.35, 0.1, 0.2, 0.8])
+    fig.colorbar(last_im, cax=cax, label="ROC-AUC")
+    fig.suptitle("Mini experiment: ROC-AUC across lookback W × horizon H", fontsize=12)
+    fig.tight_layout(rect=(0, 0, 1, 0.96))
     fig.savefig(out.with_suffix(".png"), dpi=200, bbox_inches="tight")
     fig.savefig(out.with_suffix(".svg"), bbox_inches="tight")
     plt.close(fig)
