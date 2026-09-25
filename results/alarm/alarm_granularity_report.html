@@ -96,7 +96,7 @@ code{background:#f5f5f5;padding:.1rem .35rem;border-radius:3px}pre{background:#f
 <p>Outputs live under <code>results/alarm/</code> (<code>tables/</code>, <code>figures/</code>). Primary monthly landmarks: <code>tables/decision_points_W3_H4.csv</code>.</p>
 <hr />
 <h2>4. Results — monthly collapsed baseline (W = 3 mo, H = 4 mo)</h2>
-<p>Score = sum of pUF over W months; θ ≈ 1.61. Cutoff: <code>month × 30 &lt; Obs_time</code>.</p>
+<p>Score = <strong>sum</strong> of pUF over W months; cutoff: <code>month × 30 &lt; Obs_time</code>.</p>
 <table>
 <thead>
 <tr>
@@ -110,7 +110,7 @@ code{background:#f5f5f5;padding:.1rem .35rem;border-radius:3px}pre{background:#f
 <td><strong>0.704</strong></td>
 </tr>
 <tr>
-<td>Sens / Spec (θ≈1.61)</td>
+<td>Sens / Spec (θ≈1.61, sum scale)</td>
 <td>0.704 / 0.626</td>
 </tr>
 <tr>
@@ -123,11 +123,34 @@ code{background:#f5f5f5;padding:.1rem .35rem;border-radius:3px}pre{background:#f
 </tr>
 </tbody>
 </table>
+<p><strong>Threshold scale (same rule, two writings):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Scale</th>
+<th style="text-align: right;">θ</th>
+<th>Relation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sum (as used here)</td>
+<td style="text-align: right;"><strong>1.61</strong></td>
+<td><code>sum</code> of last W=3 monthly pUF</td>
+</tr>
+<tr>
+<td>Mean (equivalent)</td>
+<td style="text-align: right;"><strong>≈ 0.537</strong></td>
+<td><code>1.61 / 3</code></td>
+</tr>
+</tbody>
+</table>
+<p>Youden exact: 1.610762 (sum) ↔ <strong>0.536921</strong> (mean). AUC is identical under either writing; only the threshold number changes. The mean form (~0.54) is on the same ~0–1 scale as sampled / other collapsed configs.</p>
 <p><img alt="ROC monthly collapsed W=3 H=4" src="figures/roc_W3_H4.png" /></p>
 <hr />
 <h2>5. Results — granularity (W = 90 d, H = 120 d)</h2>
 <p>Operating point = Youden threshold per row.<br />
-For monthly collapsed, θ (~1.61) is on the <strong>sum</strong> scale; others use the <strong>mean</strong> scale (~0.5).</p>
+Sampled and non-monthly collapsed use a <strong>mean</strong> burden (~0.4–0.6). Monthly collapsed is reported on the <strong>sum</strong> scale (~1.61); mean-equivalent θ ≈ <strong>0.537</strong> (see §4).</p>
 <table>
 <thead>
 <tr>
@@ -211,6 +234,7 @@ For monthly collapsed, θ (~1.61) is on the <strong>sum</strong> scale; others u
 <li><strong>Sampled</strong> (daily→monthly): AUC nearly flat (~0.68). Subsampling does not improve discrimination; it only reduces n.</li>
 <li><strong>Collapsed</strong> improves somewhat vs sampled (~0.70–0.71). Best point here: <strong>weekly collapsed (AUC 0.707)</strong> ★.</li>
 <li>PPV remains low (~0.21–0.26); NPV high (~0.91–0.94).</li>
+<li>Do not compare monthly θ≈1.61 to sampled θ≈0.55 without converting: use <strong>θ_mean = θ_sum / W</strong>.</li>
 </ul>
 <p><img alt="ROC by granularity" src="figures/roc_granularities_W90_H120.png" /></p>
 <p><img alt="Metric summary by granularity" src="figures/summary_granularities_W90_H120.png" /></p>

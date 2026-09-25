@@ -35,6 +35,8 @@ So monthly collapsed θ≈1.61 is **not** comparable numerically to sampled θ�
 
 Fixed reference used alongside Youden for monthly: θ = 1.61 (same operating point as Youden here).
 
+**Mean equivalent for monthly collapsed (W=3):** θ_mean = 1.61 / 3 ≈ **0.537** (Youden exact: 1.610762 → 0.536921). AUC unchanged; only the threshold number changes.
+
 ## 3. Participants / events (MAIN = Obs_time, W=3, H=4)
 
 | Quantity | Value |
