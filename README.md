@@ -40,7 +40,7 @@ Leire Paz<sup>1,\*</sup>, Leonardo Garma<sup>2,\*</sup>, Sonia Pernas<sup>3,4</s
 │   ├── vqvae/                    # VQ-VAE package (model, inference, plots)
 │   ├── 01_preprocess/            # Daily-summary cleaning; eB2 column rename
 │   ├── 02_univariate_analysis/   # E.PD vs no-E.PD univariate plots
-│   ├── 03_analysis/              # lda/, vq-vae/ training and downstream
+│   ├── 03_analysis/              # lda/, vq-vae/, alarm/ (rolling burden)
 │   └── 04_figures/
 ├── results/
 │   ├── lda/                      # figures/, tables/
