@@ -44,6 +44,9 @@ Daily behavioral summaries for the oncology cohort (~175 patients, ~51k patient-
 | File | Description |
 |------|-------------|
 | `Subjects_data.xlsx` | Per-patient clinical table (`id`, `Date_start_HDM`, `PD_event`, `Obs_time`, …). |
+| `master_table_monthly_topics.xlsx` | Monthly topic probabilities + clinical columns (master table). |
+| `obs_vs_teb2_start_dates.csv` | HDM vs eB2 start dates and Obs_time vs `t_evento_eb2`. |
+| `date_comparison_subjects_vs_maestra.csv` | Subjects vs master table date check. |
 
 **Notebook:** step 3 — [`profiles_to_dcabp.ipynb`](../notebooks/vq-vae_lda_pipeline/profiles_to_dcabp.ipynb).
 

@@ -1,22 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Rolling-burden alarm and temporal granularity</title>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-         max-width: 920px; margin: 2rem auto; padding: 0 1.25rem; line-height: 1.55; color: #222; }
-  h1,h2,h3 { line-height: 1.25; }
-  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.92rem; }
-  th, td { border: 1px solid #ccc; padding: 0.4rem 0.55rem; text-align: left; }
-  th { background: #f4f4f4; }
-  img { max-width: 100%; height: auto; margin: 0.75rem 0; border: 1px solid #eee; }
-  code { background: #f5f5f5; padding: 0.1rem 0.35rem; border-radius: 3px; }
-  pre { background: #f5f5f5; padding: 0.85rem; overflow-x: auto; }
-</style>
-</head>
-<body>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:920px;margin:2rem auto;padding:0 1.25rem;line-height:1.55;color:#222}
+h1,h2,h3{line-height:1.25}table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.92rem}
+th,td{border:1px solid #ccc;padding:.4rem .55rem;text-align:left}th{background:#f4f4f4}
+img{max-width:100%;height:auto;margin:.75rem 0;border:1px solid #eee}
+code{background:#f5f5f5;padding:.1rem .35rem;border-radius:3px}pre{background:#f5f5f5;padding:.85rem;overflow-x:auto}
+</style></head><body>
 <h1>Rolling-burden alarm and temporal granularity</h1>
 <h2>1. What the alarm is</h2>
 <p>The alarm is a <strong>prospective rolling-burden</strong> rule on behavioural topic probabilities from LDA / DCABP.</p>
@@ -348,5 +339,4 @@ For monthly collapsed, θ (~1.61) is on the <strong>sum</strong> scale; others u
 <li><strong>PPV</strong> stays low (~<strong>0.25</strong>): the alarm discriminates but yields many false positives at useful thresholds.  </li>
 <li>Individually, the score can anticipate PD (lead time), mark persistently high burden, or fire late alarms with no event — useful for interpretation beyond aggregate metrics.</li>
 </ol>
-</body>
-</html>
+</body></html>
