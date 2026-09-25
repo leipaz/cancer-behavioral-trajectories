@@ -6,11 +6,18 @@ Outputs of the **rolling-burden alarm** pipeline
 ```
 results/alarm/
 ├── tables/                  # metrics, decision points, pUF series
+│   └── topic_probs_granularities/  # topic_0..5 by daily/weekly/biweekly/monthly
 ├── figures/                 # ROC, granularity summary, trajectories, W×H
 ├── analysis_outputs/        # bundled results: thresholds/scales, summaries
 ├── alarm_granularity_report.html  # analysis report (open in browser)
 └── alarm_granularity_report.md
 ```
+
+## Topic probabilities (for external rolling)
+
+Per-topic LDA probabilities by granularity (so burden/rolling can be recomputed):
+
+[`tables/topic_probs_granularities/`](tables/topic_probs_granularities/) — daily sliding, weekly / biweekly / monthly collapsed (`topic_0`…`topic_5` + `pUF`).
 
 ## Analysis outputs (bundled)
 
