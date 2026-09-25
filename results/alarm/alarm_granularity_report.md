@@ -60,7 +60,6 @@ Score = sum of pUF over W months; θ ≈ 1.61. Cutoff: `month × 30 < Obs_time`.
 
 | Metric | Value |
 |--------|-------|
-| Decision points | **1015** (159 positives; 115 patients) |
 | ROC-AUC | **0.704** |
 | Sens / Spec (θ≈1.61) | 0.704 / 0.626 |
 | PPV / NPV | 0.259 / 0.919 |
