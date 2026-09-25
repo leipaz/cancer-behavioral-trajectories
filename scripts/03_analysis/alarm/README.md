@@ -73,7 +73,7 @@ All under `results/alarm/`:
 | `tables/missingness_funnel.csv` | Eligible patients / decision points |
 | `figures/roc_*.png` | ROC curves |
 | `figures/summary_granularities_*.png` | Granularity comparison |
-| `granularidad_alarma.html` | Human-readable report |
+| `alarm_granularity_report.html` | Human-readable report |
 
 See also [`results/alarm/README.md`](../../../results/alarm/README.md) and notebooks under
 [`notebooks/revision_experiments/`](../../../notebooks/revision_experiments/).

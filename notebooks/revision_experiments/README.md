@@ -44,7 +44,7 @@ Notebooks and CLIs for paper revision analyses (branch `revision-experiments`).
 ```
 
 Docs: [`scripts/03_analysis/alarm/README.md`](../../scripts/03_analysis/alarm/README.md).
-Report: [`results/alarm/granularidad_alarma.html`](../../results/alarm/granularidad_alarma.html).
+Report: [`results/alarm/alarm_granularity_report.html`](../../results/alarm/alarm_granularity_report.html).
 Outputs:
 
 - `results/alarm/tables/` — `daily_sliding_puf.csv`, `collapsed_puf_*.csv`, `granularity_sweep_summary.csv`, decision points, metrics

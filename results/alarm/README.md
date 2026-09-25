@@ -7,8 +7,8 @@ Outputs of the **rolling-burden alarm** pipeline
 results/alarm/
 ├── tables/                  # metrics, decision points, pUF series
 ├── figures/                 # ROC, granularity summary, trajectories, W×H
-├── granularidad_alarma.html # revision report (open in browser)
-└── granularidad_alarma.md
+├── alarm_granularity_report.html  # analysis report (open in browser)
+└── alarm_granularity_report.md
 ```
 
 ## Which file is the main result?
@@ -28,7 +28,7 @@ Same content also saved as `*_Obs_time.csv` for clarity when comparing clocks.
 |------|------|---|
 | Backup / eB2 clock | [`tables/decision_points_W3_H4_t_evento_eb2.csv`](tables/decision_points_W3_H4_t_evento_eb2.csv) | **1012** |
 
-Difference **1015 − 1012 = 3** landmarks that pass `mes×30 < Obs_time` but fail `mes×30 < t_evento_eb2` (patients **53001** mes 8, **72001** mes 7, **73001** mes 8), because eB2 start is later than HDM start for those IDs.
+Difference **1015 − 1012 = 3** landmarks that pass `month×30 < Obs_time` but fail `month×30 < t_evento_eb2` (patients **53001** month 8, **72001** month 7, **73001** month 8), because eB2 start is later than HDM start for those IDs.
 
 Related clinical date table: [`data/processed/clinical/obs_vs_teb2_start_dates.csv`](../../data/processed/clinical/obs_vs_teb2_start_dates.csv).
 
@@ -37,7 +37,7 @@ Related clinical date table: [`data/processed/clinical/obs_vs_teb2_start_dates.c
 | File | Content |
 |------|---------|
 | `tables/decision_points_W3_H4.csv` | **MAIN** monthly landmarks (Obs_time) |
-| `tables/alarm_metrics_W3_H4.csv` | **MAIN** monthly paper metrics |
+| `tables/alarm_metrics_W3_H4.csv` | **MAIN** monthly metrics |
 | `tables/decision_points_W3_H4_Obs_time.csv` | Copy of MAIN (explicit name) |
 | `tables/alarm_metrics_W3_H4_Obs_time.csv` | Copy of MAIN metrics |
 | `tables/decision_points_W3_H4_t_evento_eb2.csv` | Alternate: eB2 event clock (1012) |
@@ -51,8 +51,8 @@ Related clinical date table: [`data/processed/clinical/obs_vs_teb2_start_dates.c
 
 | File | Content |
 |------|---------|
-| [`granularidad_alarma.md`](granularidad_alarma.md) | Full write-up (MAIN = Obs_time, n=1015) |
-| [`granularidad_alarma.html`](granularidad_alarma.html) | Same report (open in browser) |
+| [`alarm_granularity_report.md`](alarm_granularity_report.md) | Full write-up (MAIN = Obs_time, n=1015) |
+| [`alarm_granularity_report.html`](alarm_granularity_report.html) | Same report (open in browser) |
 
 Regenerate HTML from markdown:
 
@@ -61,9 +61,9 @@ Regenerate HTML from markdown:
 from pathlib import Path
 import markdown
 from datetime import date
-md = Path('results/alarm/granularidad_alarma.md').read_text()
+md = Path('results/alarm/alarm_granularity_report.md').read_text()
 body = markdown.markdown(md, extensions=['tables','fenced_code'])
-Path('results/alarm/granularidad_alarma.html').write_text(
+Path('results/alarm/alarm_granularity_report.html').write_text(
   '<!DOCTYPE html><html><head><meta charset=utf-8><title>Alarm report</title></head><body>'
   + body + f'<p>Generated {date.today()}</p></body></html>')
 "
