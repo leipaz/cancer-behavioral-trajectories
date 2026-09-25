@@ -56,14 +56,23 @@ Outputs live under `results/alarm/` (`tables/`, `figures/`). Primary monthly lan
 
 ## 4. Results — monthly collapsed baseline (W = 3 mo, H = 4 mo)
 
-Score = sum of pUF over W months; θ ≈ 1.61. Cutoff: `month × 30 < Obs_time`.
+Score = **sum** of pUF over W months; cutoff: `month × 30 < Obs_time`.
 
 | Metric | Value |
 |--------|-------|
 | ROC-AUC | **0.704** |
-| Sens / Spec (θ≈1.61) | 0.704 / 0.626 |
+| Sens / Spec (θ≈1.61, sum scale) | 0.704 / 0.626 |
 | PPV / NPV | 0.259 / 0.919 |
 | TP / FN / FP / TN | 112 / 47 / 320 / 536 |
+
+**Threshold scale (same rule, two writings):**
+
+| Scale | θ | Relation |
+|-------|---:|----------|
+| Sum (as used here) | **1.61** | `sum` of last W=3 monthly pUF |
+| Mean (equivalent) | **≈ 0.537** | `1.61 / 3` |
+
+Youden exact: 1.610762 (sum) ↔ **0.536921** (mean). AUC is identical under either writing; only the threshold number changes. The mean form (~0.54) is on the same ~0–1 scale as sampled / other collapsed configs.
 
 ![ROC monthly collapsed W=3 H=4](figures/roc_W3_H4.png)
 
@@ -72,7 +81,7 @@ Score = sum of pUF over W months; θ ≈ 1.61. Cutoff: `month × 30 < Obs_time`.
 ## 5. Results — granularity (W = 90 d, H = 120 d)
 
 Operating point = Youden threshold per row.  
-For monthly collapsed, θ (~1.61) is on the **sum** scale; others use the **mean** scale (~0.5).
+Sampled and non-monthly collapsed use a **mean** burden (~0.4–0.6). Monthly collapsed is reported on the **sum** scale (~1.61); mean-equivalent θ ≈ **0.537** (see §4).
 
 | Granularity | n | AUC | Sens | Spec | PPV | NPV |
 |-------------|--:|----:|-----:|-----:|----:|----:|
@@ -89,6 +98,7 @@ For monthly collapsed, θ (~1.61) is on the **sum** scale; others use the **mean
 - **Sampled** (daily→monthly): AUC nearly flat (~0.68). Subsampling does not improve discrimination; it only reduces n.
 - **Collapsed** improves somewhat vs sampled (~0.70–0.71). Best point here: **weekly collapsed (AUC 0.707)** ★.
 - PPV remains low (~0.21–0.26); NPV high (~0.91–0.94).
+- Do not compare monthly θ≈1.61 to sampled θ≈0.55 without converting: use **θ_mean = θ_sum / W**.
 
 ![ROC by granularity](figures/roc_granularities_W90_H120.png)
 
