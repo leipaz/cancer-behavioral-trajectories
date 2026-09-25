@@ -15,9 +15,20 @@ results/alarm/
 
 ## Topic probabilities (for external rolling)
 
-Per-topic LDA probabilities by granularity (so burden/rolling can be recomputed):
+**Canonical CSVs** (per-topic LDA probs + `pUF`, 175 patients; short series included):
 
-[`tables/topic_probs_granularities/`](tables/topic_probs_granularities/) — daily sliding, weekly / biweekly / monthly collapsed (`topic_0`…`topic_5` + `pUF`).
+[`tables/topic_probs_granularities/`](tables/topic_probs_granularities/)
+
+| File | Granularity |
+|------|-------------|
+| `topic_probs_daily_sliding.csv` | Daily sliding |
+| `topic_probs_weekly_collapsed.csv` | Weekly collapsed |
+| `topic_probs_biweekly_collapsed.csv` | Biweekly collapsed |
+| `topic_probs_monthly_collapsed.csv` | Monthly collapsed (30 d blocks) |
+
+Same collapsed tables also under `tables/collapsed_puf_*.csv`.
+
+Alarm metrics / landmarks / thresholds: [`analysis_outputs/`](analysis_outputs/) and `tables/decision_points_*.csv`.
 
 ## Analysis outputs (bundled)
 
