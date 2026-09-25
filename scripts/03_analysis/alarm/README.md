@@ -23,7 +23,7 @@ pipeline; not a VQ-VAE training step.
 | **W** | Lookback (burden window) |
 | **H** | Horizon for PD label after the decision |
 
-Paper operating point: **monthly collapsed**, W ≈ 3 months, H ≈ 4 months, θ ≈ 1.61 (sum scale).
+Operating point used here: **monthly collapsed**, W ≈ 3 months, H ≈ 4 months, θ ≈ 1.61 (sum scale).
 
 ## Quick start
 
@@ -61,13 +61,14 @@ All under `results/alarm/`:
 
 | Path | Content |
 |------|---------|
-| `tables/alarm_metrics_W3_H4.csv` | Monthly paper metrics |
+| `tables/decision_points_W3_H4.csv` | Monthly landmarks (W=3, H=4) |
+| `tables/alarm_metrics_W3_H4.csv` | Monthly metrics |
 | `tables/granularity_sweep_summary.csv` | AUC / Sens / Spec by granularity |
 | `tables/wh_grid_auc.csv` | W×H grid |
 | `tables/missingness_funnel.csv` | Eligible patients / decision points |
 | `figures/roc_*.png` | ROC curves |
 | `figures/summary_granularities_*.png` | Granularity comparison |
-| `granularidad_alarma.html` | Human-readable report |
+| `alarm_granularity_report.html` | Human-readable report |
 
 See also [`results/alarm/README.md`](../../../results/alarm/README.md) and notebooks under
 [`notebooks/revision_experiments/`](../../../notebooks/revision_experiments/).

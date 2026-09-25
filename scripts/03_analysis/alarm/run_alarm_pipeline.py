@@ -135,7 +135,7 @@ def main() -> None:
         print("\nSkipping: trajectories (pass --with-trajectories to enable)")
 
     print("\nAlarm pipeline completed.")
-    print("Report: results/alarm/granularidad_alarma.html")
+    print("Report: results/alarm/alarm_granularity_report.html")
 
 
 if __name__ == "__main__":
