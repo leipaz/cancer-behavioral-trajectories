@@ -7,9 +7,14 @@ Outputs of the **rolling-burden alarm** pipeline
 results/alarm/
 ├── tables/                  # metrics, decision points, pUF series
 ├── figures/                 # ROC, granularity summary, trajectories, W×H
+├── analysis_outputs/        # bundled results: thresholds/scales, summaries
 ├── alarm_granularity_report.html  # analysis report (open in browser)
 └── alarm_granularity_report.md
 ```
+
+## Analysis outputs (bundled)
+
+See [`analysis_outputs/`](analysis_outputs/) — thresholds and scales for **all** W×H configs (`thresholds_and_scales.csv`), plus landmark/metrics CSVs and cohort summaries. The file `thresholds_and_scales_W90_H120.csv` is only the main comparison slice (W=90, H=120); the full table is `thresholds_and_scales.csv`.
 
 ## Key tables
 
