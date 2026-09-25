@@ -1,0 +1,2 @@
+setting,event_clock,n_decision_points,n_patients_with_decision_points,n_positive_landmarks,n_patients_with_PD_flag,threshold_youden,threshold_fixed_ref,score_scale,roc_auc
+monthly_collapsed_W3_H4,Subjects_data.Obs_time (MAIN / current decision_points_W3_H4.csv),1015,115,159,45,1.610762,1.61,SUM of pUF over W=3 months,0.704211
