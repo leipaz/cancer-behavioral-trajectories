@@ -173,7 +173,7 @@ and lookback/horizon grids (W, H). Downstream of DCABP / `topics_probs.xlsx`.
 | `analyze_missingness_and_wh_grid.py` | Funnel + AUC heatmaps |
 | `plot_patient_trajectories.py` / `plot_granularity_trajectories.py` | Trajectory figures |
 
-**Outputs:** `results/alarm/` (tables, figures, `granularidad_alarma.html`).  
+**Outputs:** `results/alarm/` (tables, figures, `alarm_granularity_report.html`).  
 Detail: [`scripts/03_analysis/alarm/README.md`](03_analysis/alarm/README.md).
 
 ## Methods

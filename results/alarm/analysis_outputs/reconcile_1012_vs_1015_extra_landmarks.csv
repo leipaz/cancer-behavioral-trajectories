@@ -1,0 +1,4 @@
+id,month,decision_day_month_x_30,Obs_time,t_evento_eb2,included_if_Obs_time,included_if_t_evento_eb2,fecha_inicio_CNIO_HDM,fecha_inicio_eb2,start_shift_days,target,burden_score
+53001,8,240,246.0,236.0,True,False,2023-10-24,2023-11-03,10,1,0.6786715690977866
+72001,7,210,217.0,203.0,True,False,2024-11-15,2024-11-29,14,1,2.381372305564579
+73001,8,240,241.0,240.0,True,False,2023-04-24,2023-04-25,1,1,2.509444704279302

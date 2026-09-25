@@ -7,20 +7,48 @@ Outputs of the **rolling-burden alarm** pipeline
 results/alarm/
 ├── tables/                  # metrics, decision points, pUF series
 ├── figures/                 # ROC, granularity summary, trajectories, W×H
-├── granularidad_alarma.html # revision report (open in browser)
-└── granularidad_alarma.md
+├── analysis_outputs/        # bundled results: thresholds/scales, summaries
+├── alarm_granularity_report.html  # analysis report (open in browser)
+└── alarm_granularity_report.md
 ```
+
+## Analysis outputs (bundled)
+
+See [`analysis_outputs/`](analysis_outputs/) — thresholds and scales for **all** W×H configs (`thresholds_and_scales.csv`), plus landmark/metrics CSVs and cohort summaries. The file `thresholds_and_scales_W90_H120.csv` is only the main comparison slice (W=90, H=120); the full table is `thresholds_and_scales.csv`.
 
 ## Key tables
 
 | File | Content |
 |------|---------|
-| `tables/alarm_metrics_W3_H4.csv` | Monthly paper replication |
+| `tables/decision_points_W3_H4.csv` | Monthly landmarks (W=3, H=4) |
+| `tables/alarm_metrics_W3_H4.csv` | Monthly metrics |
 | `tables/granularity_sweep_summary.csv` | Sampled vs collapsed by granularity |
 | `tables/wh_grid_auc.csv` | Lookback × horizon AUC grid |
 | `tables/missingness_funnel.csv` | Eligibility / decision-point counts |
 | `tables/daily_sliding_puf.csv` | Daily sliding pUF (large; regenerable) |
 | `tables/collapsed_puf_weekly.csv` / `*_biweekly.csv` | Collapsed pUF |
+
+## Report
+
+| File | Content |
+|------|---------|
+| [`alarm_granularity_report.md`](alarm_granularity_report.md) | Full write-up |
+| [`alarm_granularity_report.html`](alarm_granularity_report.html) | Same report (open in browser) |
+
+Regenerate HTML from markdown:
+
+```bash
+.venv/bin/python -c "
+from pathlib import Path
+import markdown
+from datetime import date
+md = Path('results/alarm/alarm_granularity_report.md').read_text()
+body = markdown.markdown(md, extensions=['tables','fenced_code'])
+Path('results/alarm/alarm_granularity_report.html').write_text(
+  '<!DOCTYPE html><html><head><meta charset=utf-8><title>Alarm report</title></head><body>'
+  + body + f'<p>Generated {date.today()}</p></body></html>')
+"
+```
 
 ## Regenerate
 

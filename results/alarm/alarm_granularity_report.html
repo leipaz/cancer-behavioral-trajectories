@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><title>Rolling-burden alarm and temporal granularity</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:920px;margin:2rem auto;padding:0 1.25rem;line-height:1.55;color:#222}
+table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.92rem}th,td{border:1px solid #ccc;padding:.4rem .55rem}th{background:#f4f4f4}
+img{max-width:100%;height:auto;margin:.75rem 0;border:1px solid #eee}code{background:#f5f5f5;padding:.1rem .35rem}
+</style></head><body><h1>Rolling-burden alarm and temporal granularity</h1>
+<h2>1. What the alarm is</h2>
+<p>The alarm is a <strong>prospective rolling-burden</strong> rule on behavioural topic probabilities from LDA / DCABP.</p>
+<p>At each decision time (t):</p>
+<ol>
+<li>Build <strong>pUF</strong> = P(topic 3) + P(topic 4) + P(topic 5) (unfavourable day-types).</li>
+<li>Aggregate pUF over a <strong>lookback window W</strong> into a <strong>burden</strong> score.</li>
+<li>Raise an alarm if burden ≥ threshold (\theta).</li>
+<li>Label the decision as positive if progression (PD) occurs within a future <strong>horizon H</strong> after (t).</li>
+</ol>
+<p>Only decisions with enough history (full W) and enough follow-up to score the label (or a known PD time) are kept. Those eligible ((patient, t)) pairs are the <strong>decision points</strong>.</p>
+<hr />
+<h2>2. Parameters that can be varied</h2>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Role</th>
+<th>Typical choices</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>W (lookback)</strong></td>
+<td>How much past burden is summarised at (t)</td>
+<td>60 / 90 / 120 days (≈ 2 / 3 / 4 months)</td>
+</tr>
+<tr>
+<td><strong>H (horizon)</strong></td>
+<td>How far ahead PD counts as a hit</td>
+<td>90 / 120 / 180 days (≈ 3 / 4 / 6 months)</td>
+</tr>
+<tr>
+<td><strong>Granularity</strong></td>
+<td>How often decisions are made and how LDA is built</td>
+<td>daily, weekly, biweekly, monthly</td>
+</tr>
+<tr>
+<td><strong>Score family</strong></td>
+<td>How pUF / burden are constructed</td>
+<td><strong>sampled</strong> vs <strong>collapsed</strong> (below)</td>
+</tr>
+<tr>
+<td><strong>θ (threshold)</strong></td>
+<td>Alarm cutoff on the burden scale</td>
+<td>Youden-optimal, or a fixed operating point (e.g. ~1.61 on monthly <em>sum</em> scale)</td>
+</tr>
+<tr>
+<td><strong>Event / censor time</strong></td>
+<td>Clock used to stop landmarks and label PD</td>
+<td>clinical follow-up days (<code>Obs_time</code>) or eB2-aligned event time</td>
+</tr>
+</tbody>
+</table>
+<h3>Sampled vs collapsed</h3>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Idea</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sampled</strong></td>
+<td>Daily sliding LDA (30-day window) → daily pUF; weekly / biweekly / monthly only change <em>when</em> you decide (same underlying daily signal). Burden = rolling mean over the last <strong>W days</strong>.</td>
+</tr>
+<tr>
+<td><strong>Collapsed</strong></td>
+<td>One LDA per non-overlapping block (7 / 14 / 30 d) → block pUF; burden = rolling mean over the last <code>round(W/block)</code> blocks.</td>
+</tr>
+</tbody>
+</table>
+<p>Collapsed block pUF is <strong>not</strong> the mean of daily pUF inside the block: each family is its own LDA construction.</p>
+<h3>Monthly collapsed landmarks</h3>
+<p>On the monthly scale, month (m) is placed at day (t = m \times 30). A landmark is kept only if (t) is strictly before the event/censor time. Burden is the <strong>sum</strong> of pUF over the last W months (so thresholds are on a sum scale, ~1.61, not the mean scale ~0.5 used elsewhere).</p>
+<hr />
+<h2>3. Experiment in this report</h2>
+<p>We fix a main operating region and then sweep the knobs above:</p>
+<ol>
+<li><strong>Monthly collapsed baseline</strong> — W = 3 months, H = 4 months, clinical <code>Obs_time</code> as event/censor clock, Youden / fixed θ ≈ 1.61.  </li>
+<li><strong>Granularity comparison</strong> — W = 90 d, H = 120 d; sampled (daily→monthly) vs collapsed (weekly / biweekly / monthly).  </li>
+<li><strong>W × H grid</strong> — W ∈ {60, 90, 120} d × H ∈ {90, 120, 180} d.  </li>
+<li><strong>Individual trajectories</strong> — example patients with and without PD.</li>
+</ol>
+<p>Outputs live under <code>results/alarm/</code> (<code>tables/</code>, <code>figures/</code>). Primary monthly landmarks: <code>tables/decision_points_W3_H4.csv</code>.</p>
+<hr />
+<h2>4. Results — monthly collapsed baseline (W = 3 mo, H = 4 mo)</h2>
+<p>Score = <strong>sum</strong> of pUF over W months; cutoff: <code>month × 30 &lt; Obs_time</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ROC-AUC</td>
+<td><strong>0.704</strong></td>
+</tr>
+<tr>
+<td>Sens / Spec (θ≈1.61, sum scale)</td>
+<td>0.704 / 0.626</td>
+</tr>
+<tr>
+<td>PPV / NPV</td>
+<td>0.259 / 0.919</td>
+</tr>
+<tr>
+<td>TP / FN / FP / TN</td>
+<td>112 / 47 / 320 / 536</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Threshold scale (same rule, two writings):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Scale</th>
+<th style="text-align: right;">θ</th>
+<th>Relation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sum (as used here)</td>
+<td style="text-align: right;"><strong>1.61</strong></td>
+<td><code>sum</code> of last W=3 monthly pUF</td>
+</tr>
+<tr>
+<td>Mean (equivalent)</td>
+<td style="text-align: right;"><strong>≈ 0.537</strong></td>
+<td><code>1.61 / 3</code></td>
+</tr>
+</tbody>
+</table>
+<p>Youden exact: 1.610762 (sum) ↔ <strong>0.536921</strong> (mean). AUC is identical under either writing; only the threshold number changes. The mean form (~0.54) is on the same ~0–1 scale as sampled / other collapsed configs.</p>
+<p><img alt="ROC monthly collapsed W=3 H=4" src="figures/roc_W3_H4.png" /></p>
+<hr />
+<h2>5. Results — granularity (W = 90 d, H = 120 d)</h2>
+<p>Operating point = Youden threshold per row.<br />
+Sampled and non-monthly collapsed use a <strong>mean</strong> burden (~0.4–0.6). Monthly collapsed is reported on the <strong>sum</strong> scale (~1.61); mean-equivalent θ ≈ <strong>0.537</strong> (see §4).</p>
+<table>
+<thead>
+<tr>
+<th>Granularity</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">AUC</th>
+<th style="text-align: right;">Sens</th>
+<th style="text-align: right;">Spec</th>
+<th style="text-align: right;">PPV</th>
+<th style="text-align: right;">NPV</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>daily (sampled)</td>
+<td style="text-align: right;">36279</td>
+<td style="text-align: right;">0.686</td>
+<td style="text-align: right;">0.644</td>
+<td style="text-align: right;">0.647</td>
+<td style="text-align: right;">0.243</td>
+<td style="text-align: right;">0.912</td>
+</tr>
+<tr>
+<td>weekly sampled</td>
+<td style="text-align: right;">5231</td>
+<td style="text-align: right;">0.686</td>
+<td style="text-align: right;">0.648</td>
+<td style="text-align: right;">0.647</td>
+<td style="text-align: right;">0.243</td>
+<td style="text-align: right;">0.913</td>
+</tr>
+<tr>
+<td>biweekly sampled</td>
+<td style="text-align: right;">2649</td>
+<td style="text-align: right;">0.683</td>
+<td style="text-align: right;">0.678</td>
+<td style="text-align: right;">0.614</td>
+<td style="text-align: right;">0.233</td>
+<td style="text-align: right;">0.917</td>
+</tr>
+<tr>
+<td>monthly sampled</td>
+<td style="text-align: right;">1277</td>
+<td style="text-align: right;">0.681</td>
+<td style="text-align: right;">0.829</td>
+<td style="text-align: right;">0.476</td>
+<td style="text-align: right;">0.213</td>
+<td style="text-align: right;">0.942</td>
+</tr>
+<tr>
+<td><strong>weekly collapsed ★</strong></td>
+<td style="text-align: right;">4115</td>
+<td style="text-align: right;"><strong>0.707</strong></td>
+<td style="text-align: right;">0.751</td>
+<td style="text-align: right;">0.591</td>
+<td style="text-align: right;">0.251</td>
+<td style="text-align: right;">0.929</td>
+</tr>
+<tr>
+<td>biweekly collapsed</td>
+<td style="text-align: right;">2118</td>
+<td style="text-align: right;">0.697</td>
+<td style="text-align: right;">0.714</td>
+<td style="text-align: right;">0.603</td>
+<td style="text-align: right;">0.260</td>
+<td style="text-align: right;">0.915</td>
+</tr>
+<tr>
+<td>monthly collapsed (30 d)</td>
+<td style="text-align: right;"><strong>1015</strong></td>
+<td style="text-align: right;"><strong>0.704</strong></td>
+<td style="text-align: right;">0.704</td>
+<td style="text-align: right;">0.626</td>
+<td style="text-align: right;">0.259</td>
+<td style="text-align: right;">0.919</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Short read</strong></p>
+<ul>
+<li><strong>Sampled</strong> (daily→monthly): AUC nearly flat (~0.68). Subsampling does not improve discrimination; it only reduces n.</li>
+<li><strong>Collapsed</strong> improves somewhat vs sampled (~0.70–0.71). Best point here: <strong>weekly collapsed (AUC 0.707)</strong> ★.</li>
+<li>PPV remains low (~0.21–0.26); NPV high (~0.91–0.94).</li>
+<li>Do not compare monthly θ≈1.61 to sampled θ≈0.55 without converting: use <strong>θ_mean = θ_sum / W</strong>.</li>
+</ul>
+<p><img alt="ROC by granularity" src="figures/roc_granularities_W90_H120.png" /></p>
+<p><img alt="Metric summary by granularity" src="figures/summary_granularities_W90_H120.png" /></p>
+<hr />
+<h2>6. Results — W × H grid</h2>
+<p>Grid: <strong>W ∈ {60, 90, 120} d</strong> × <strong>H ∈ {90, 120, 180} d</strong>.</p>
+<h3>AUC (selected)</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">H=90</th>
+<th style="text-align: right;">H=120</th>
+<th style="text-align: right;">H=180</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Daily</strong> W=60/90/120</td>
+<td style="text-align: right;">0.662 / 0.672 / 0.681</td>
+<td style="text-align: right;">0.675 / 0.686 / 0.694</td>
+<td style="text-align: right;">0.706 / 0.713 / 0.716</td>
+</tr>
+<tr>
+<td><strong>Weekly collapsed ★</strong></td>
+<td style="text-align: right;">0.673 / 0.697 / 0.709</td>
+<td style="text-align: right;">0.688 / <strong>0.707</strong> / 0.719</td>
+<td style="text-align: right;">0.717 / 0.732 / <strong>0.740</strong></td>
+</tr>
+<tr>
+<td><strong>Monthly collapsed</strong></td>
+<td style="text-align: right;">0.675 / 0.692 / 0.702</td>
+<td style="text-align: right;">0.683 / 0.704 / 0.715</td>
+<td style="text-align: right;">0.713 / 0.730 / 0.737</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Read</strong></p>
+<ul>
+<li><strong>↑H</strong> → AUC rises monotonically.</li>
+<li><strong>↑W</strong> → AUC rises moderately (more historical load).</li>
+<li>Ranking <strong>collapsed ≳ sampled</strong> holds across almost the whole grid.</li>
+<li>W≈90 / H≈120 sits in the mid region of the map.</li>
+</ul>
+<p><img alt="AUC heatmaps W×H" src="figures/wh_auc_heatmaps.png" /></p>
+<p><img alt="AUC vs horizon H" src="figures/wh_auc_vs_horizon.png" /></p>
+<p>Table: <code>tables/wh_grid_auc.csv</code></p>
+<hr />
+<h2>7. Results — individual trajectories</h2>
+<p>Patients: <strong>62004</strong>, <strong>23003</strong>, <strong>31002</strong>, <strong>41006</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Profile</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>62004</td>
+<td>PD (day 317)</td>
+<td>1st alarm ~month 7 (lead before PD)</td>
+</tr>
+<tr>
+<td>23003</td>
+<td>PD (day 206)</td>
+<td>High burden from the start; early alarm</td>
+</tr>
+<tr>
+<td>31002</td>
+<td>No PD</td>
+<td>Late alarm (~month 21) with no event in follow-up</td>
+</tr>
+<tr>
+<td>41006</td>
+<td>No PD</td>
+<td>Below threshold; no alarm</td>
+</tr>
+</tbody>
+</table>
+<h3>7.1 Monthly collapsed (pUF + rolling burden)</h3>
+<p>W=3 months, H=4 months, θ=1.61 (mean-scale θ/W≈0.54).</p>
+<p><img alt="Monthly panel" src="figures/trajectories_panel_paper_W3_H4.png" /></p>
+<h3>7.2 Sampled vs collapsed (W = 90 d)</h3>
+<p><img alt="Granularity panel" src="figures/trajectories_panel_W90.png" /></p>
+<ul>
+<li><strong>Blues:</strong> daily sliding pUF + daily/sampled burden  </li>
+<li><strong>Reds:</strong> monthly collapsed pUF + monthly collapsed burden  </li>
+<li>Steps: weekly / biweekly collapsed burden  </li>
+<li>Markers: sampled evaluation (7 / 14 / 30 d) on the daily burden  </li>
+</ul>
+<p><img alt="62004 W90" src="figures/trajectory_patient_62004_W90.png" /></p>
+<p><img alt="23003 W90" src="figures/trajectory_patient_23003_W90.png" /></p>
+<p><img alt="31002 W90" src="figures/trajectory_patient_31002_W90.png" /></p>
+<p><img alt="41006 W90" src="figures/trajectory_patient_41006_W90.png" /></p>
+<hr />
+<h2>8. How to reproduce</h2>
+<pre><code class="language-bash"># Monthly baseline + ROC sweep
+.venv/bin/python scripts/03_analysis/alarm/run_granularity_sweep.py --monthly-only
+.venv/bin/python scripts/03_analysis/alarm/run_granularity_sweep.py --skip-lda
+
+# W×H mini-experiment (+ heatmaps)
+.venv/bin/python scripts/03_analysis/alarm/analyze_missingness_and_wh_grid.py
+
+# Monthly trajectories
+.venv/bin/python scripts/03_analysis/alarm/plot_patient_trajectories.py \
+  --patients 62004,23003,31002,41006
+
+# Sampled vs collapsed trajectories
+.venv/bin/python scripts/03_analysis/alarm/plot_granularity_trajectories.py \
+  --patients 62004,23003,31002,41006 --W 90
+</code></pre>
+<p>File map: <a href="README.md"><code>README.md</code></a>.</p>
+<hr />
+<h2>9. Conclusions</h2>
+<ol>
+<li><strong>Subsampling</strong> the same daily signal (sampled) <strong>does not improve</strong> discrimination: AUC stays ~<strong>0.68</strong> from daily→monthly.  </li>
+<li><strong>Collapsing</strong> LDA into non-overlapping blocks (7/14/30 d) <strong>does improve</strong> somewhat: AUC ~<strong>0.70–0.71</strong> at W=90 d, H=120 d.  </li>
+<li>The <strong>best point</strong> in that setting is <strong>weekly collapsed</strong> (AUC <strong>0.707</strong>; Youden Sens/Spec ≈ 0.75/0.59).  </li>
+<li><strong>↑W</strong> and <strong>↑H</strong> raise AUC in an ordered way; ranking collapsed ≳ sampled holds on the grid.  </li>
+<li><strong>PPV</strong> stays low (~<strong>0.25</strong>): the alarm discriminates but yields many false positives at useful thresholds.  </li>
+<li>Individually, the score can anticipate PD (lead time), mark persistently high burden, or fire late alarms with no event — useful for interpretation beyond aggregate metrics.</li>
+</ol></body></html>

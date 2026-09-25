@@ -20,7 +20,7 @@ results/
 └── alarm/
     ├── figures/          # ROC, granularity, trajectories, W×H
     ├── tables/           # metrics, pUF, decision points
-    ├── granularidad_alarma.html
+    ├── alarm_granularity_report.html
     └── README.md
 ```
 
