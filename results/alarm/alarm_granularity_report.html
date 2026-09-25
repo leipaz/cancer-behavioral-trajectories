@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Rolling-burden alarm and temporal granularity</title>
+<html lang="en"><head><meta charset="utf-8"/><title>Rolling-burden alarm and temporal granularity</title>
 <style>
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;max-width:920px;margin:2rem auto;padding:0 1.25rem;line-height:1.55;color:#222}
-h1,h2,h3{line-height:1.25}table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.92rem}
-th,td{border:1px solid #ccc;padding:.4rem .55rem;text-align:left}th{background:#f4f4f4}
-img{max-width:100%;height:auto;margin:.75rem 0;border:1px solid #eee}
-code{background:#f5f5f5;padding:.1rem .35rem;border-radius:3px}pre{background:#f5f5f5;padding:.85rem;overflow-x:auto}
-</style></head><body>
-<h1>Rolling-burden alarm and temporal granularity</h1>
+table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.92rem}th,td{border:1px solid #ccc;padding:.4rem .55rem}th{background:#f4f4f4}
+img{max-width:100%;height:auto;margin:.75rem 0;border:1px solid #eee}code{background:#f5f5f5;padding:.1rem .35rem}
+</style></head><body><h1>Rolling-burden alarm and temporal granularity</h1>
 <h2>1. What the alarm is</h2>
 <p>The alarm is a <strong>prospective rolling-burden</strong> rule on behavioural topic probabilities from LDA / DCABP.</p>
 <p>At each decision time (t):</p>
@@ -266,9 +262,9 @@ Sampled and non-monthly collapsed use a <strong>mean</strong> burden (~0.4–0.6
 </tr>
 <tr>
 <td><strong>Monthly collapsed</strong></td>
-<td style="text-align: right;">0.668 / 0.688 / 0.703</td>
-<td style="text-align: right;">0.681 / 0.704 / 0.717</td>
-<td style="text-align: right;">0.713 / 0.731 / 0.738</td>
+<td style="text-align: right;">0.675 / 0.692 / 0.702</td>
+<td style="text-align: right;">0.683 / 0.704 / 0.715</td>
+<td style="text-align: right;">0.713 / 0.730 / 0.737</td>
 </tr>
 </tbody>
 </table>
@@ -358,5 +354,4 @@ Sampled and non-monthly collapsed use a <strong>mean</strong> burden (~0.4–0.6
 <li><strong>↑W</strong> and <strong>↑H</strong> raise AUC in an ordered way; ranking collapsed ≳ sampled holds on the grid.  </li>
 <li><strong>PPV</strong> stays low (~<strong>0.25</strong>): the alarm discriminates but yields many false positives at useful thresholds.  </li>
 <li>Individually, the score can anticipate PD (lead time), mark persistently high burden, or fire late alarms with no event — useful for interpretation beyond aggregate metrics.</li>
-</ol>
-</body></html>
+</ol></body></html>
