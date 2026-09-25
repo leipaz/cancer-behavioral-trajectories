@@ -15,6 +15,8 @@ Same content also saved as `collapsed_puf_*.csv` (legacy names).
 
 `id`, `period`, `block_size_days`, `decision_day`, `pUF`, `topic_0`…`topic_5`, `Evento PD`, `t_evento_eb2`, `follow_up_days`
 
+Short series are included (`min_embeddings=1`): collapsed uses whatever days are available (column `n_days_in_block`).
+
 ### Rebuild
 
 ```bash
