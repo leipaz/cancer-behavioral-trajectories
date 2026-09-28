@@ -64,6 +64,7 @@ See [`analysis_outputs/`](analysis_outputs/) — thresholds and scales for **all
 |------|---------|
 | [`alarm_granularity_report.md`](alarm_granularity_report.md) | Full write-up |
 | [`alarm_granularity_report.html`](alarm_granularity_report.html) | Same report (open in browser) |
+| [`alarm_granularity_report.pdf`](alarm_granularity_report.pdf) | Same report as PDF (easier to share / review) |
 
 Regenerate HTML from markdown:
 
