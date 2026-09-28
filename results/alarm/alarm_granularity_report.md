@@ -107,13 +107,7 @@ Sampled and non-monthly collapsed use a **mean** burden (~0.4–0.6). Monthly co
 
 High-resolution delivery panel (metrics table + AUROC points with 95% CI + ROC; no winner star):
 
-![Metric summary by granularity (analysis figures)](analysis_figures/summary_granularities_W90_H120.png)
-
-Pipeline figures (same setting; older layout):
-
-![ROC by granularity](figures/roc_granularities_W90_H120.png)
-
-![Metric summary by granularity](figures/summary_granularities_W90_H120.png)
+![Alarm performance across temporal granularities](analysis_figures/summary_granularities_W90_H120.png)
 
 ---
 
