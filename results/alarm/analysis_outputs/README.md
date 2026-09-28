@@ -18,7 +18,13 @@ General results for the rolling-burden alarm and temporal-granularity analysis
 | `missingness_funnel.csv` | Eligibility funnel |
 
 **Report:** [`../alarm_granularity_report.html`](../alarm_granularity_report.html)  
+**Delivery figures:** [`../analysis_figures/`](../analysis_figures/) (Obs_time-aligned summary + trajectories; AUROC patient-bootstrap CIs)  
 **Scripts:** `scripts/03_analysis/alarm/`
+
+### Clinical clock & AUROC CIs (summary figure)
+
+- All granularities in `analysis_figures/summary_granularities_W90_H120.*` use **`Obs_time`** (same follow-up field as `decision_points_W3_H4.csv`, n=1015).
+- AUROC 95% intervals are **patient-clustered bootstrap** (see `../analysis_figures/auc_ci_W90_H120.csv`).
 
 ### Score scale (short)
 
