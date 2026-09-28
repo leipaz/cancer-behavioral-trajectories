@@ -1,0 +1,8 @@
+granularity,label,auc,ci_low,ci_high,n_decision_points,n_patients,n_boot,ci_method,event_time_field
+daily,Daily,0.6840879950185597,0.6114067068484113,0.7507437043768443,36316,147,2000,patient-clustered bootstrap percentile 95%,Obs_time
+weekly,Weekly (sampled),0.6834911459681736,0.6101288167228825,0.749590566493837,5235,143,2000,patient-clustered bootstrap percentile 95%,Obs_time
+biweekly,Biweekly (sampled),0.6799894540773003,0.6065028066951816,0.7460402511858785,2651,143,2000,patient-clustered bootstrap percentile 95%,Obs_time
+monthly_sample,Monthly (sampled),0.6815261739323955,0.6098376814209451,0.7468787204214422,1278,143,2000,patient-clustered bootstrap percentile 95%,Obs_time
+weekly_collapsed,Weekly (collapsed 7 d),0.706678809301186,0.6252942210150922,0.7803517034528308,4127,113,2000,patient-clustered bootstrap percentile 95%,Obs_time
+biweekly_collapsed,Biweekly (collapsed 14 d),0.6948330843019683,0.6141896922866934,0.7671531437249592,2125,116,2000,patient-clustered bootstrap percentile 95%,Obs_time
+monthly_collapsed,Monthly (collapsed 30 d),0.7042114853347439,0.6317429034868626,0.776890698320011,1015,115,2000,patient-clustered bootstrap percentile 95%,Obs_time
