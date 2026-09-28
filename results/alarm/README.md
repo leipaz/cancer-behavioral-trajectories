@@ -77,8 +77,18 @@ md = Path('results/alarm/alarm_granularity_report.md').read_text()
 body = markdown.markdown(md, extensions=['tables','fenced_code'])
 Path('results/alarm/alarm_granularity_report.html').write_text(
   '<!DOCTYPE html><html><head><meta charset=utf-8><title>Alarm report</title></head><body>'
-  + body + f'<p>Generated {date.today()}</p></body></html>')
+  + body + f'<p><em>Generated {date.today()}</em></p></body></html>')
 "
+```
+
+PDF (from the HTML, via Chrome headless):
+
+```bash
+HTML="$(pwd)/results/alarm/alarm_granularity_report.html"
+PDF="$(pwd)/results/alarm/alarm_granularity_report.pdf"
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --disable-gpu --no-pdf-header-footer \
+  --print-to-pdf="$PDF" "file://$HTML"
 ```
 
 ## Regenerate
