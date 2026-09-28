@@ -50,7 +50,9 @@ We fix a main operating region and then sweep the knobs above:
 3. **W × H grid** — W ∈ {60, 90, 120} d × H ∈ {90, 120, 180} d.  
 4. **Individual trajectories** — example patients with and without PD.
 
-Outputs live under `results/alarm/` (`tables/`, `figures/`). Primary monthly landmarks: `tables/decision_points_W3_H4.csv`.
+Outputs live under `results/alarm/` (`tables/`, `figures/`, `analysis_figures/`, `analysis_outputs/`). Primary monthly landmarks: `tables/decision_points_W3_H4.csv` (**Obs_time**, n=1015).
+
+**Delivery summary figures** (high-res, Obs_time-aligned, AUROC with patient-bootstrap CIs): [`analysis_figures/`](analysis_figures/).
 
 ---
 
@@ -83,22 +85,31 @@ Youden exact: 1.610762 (sum) ↔ **0.536921** (mean). AUC is identical under eit
 Operating point = Youden threshold per row.  
 Sampled and non-monthly collapsed use a **mean** burden (~0.4–0.6). Monthly collapsed is reported on the **sum** scale (~1.61); mean-equivalent θ ≈ **0.537** (see §4).
 
-| Granularity | n | AUC | Sens | Spec | PPV | NPV |
-|-------------|--:|----:|-----:|-----:|----:|----:|
-| daily (sampled) | 36279 | 0.686 | 0.644 | 0.647 | 0.243 | 0.912 |
-| weekly sampled | 5231 | 0.686 | 0.648 | 0.647 | 0.243 | 0.913 |
-| biweekly sampled | 2649 | 0.683 | 0.678 | 0.614 | 0.233 | 0.917 |
-| monthly sampled | 1277 | 0.681 | 0.829 | 0.476 | 0.213 | 0.942 |
-| **weekly collapsed ★** | 4115 | **0.707** | 0.751 | 0.591 | 0.251 | 0.929 |
-| biweekly collapsed | 2118 | 0.697 | 0.714 | 0.603 | 0.260 | 0.915 |
-| monthly collapsed (30 d) | **1015** | **0.704** | 0.704 | 0.626 | 0.259 | 0.919 |
+**Clinical clock:** all rows below use the same follow-up field as the monthly baseline — **`Obs_time`** (sampled/collapsed pUF aligned to `Subjects_data.Obs_time` before scoring).  
+**AUROC uncertainty:** 95% CIs from **patient-clustered bootstrap** (resample patients with replacement; 2000 reps). See `analysis_figures/auc_ci_W90_H120.csv`.
+
+| Granularity | n | AUC | 95% CI | Sens | Spec | PPV | NPV |
+|-------------|--:|----:|--------|-----:|-----:|----:|----:|
+| daily (sampled) | 36316 | 0.684 | 0.611–0.751 | 0.643 | 0.646 | 0.240 | 0.912 |
+| weekly sampled | 5235 | 0.683 | 0.610–0.750 | 0.645 | 0.646 | 0.239 | 0.913 |
+| biweekly sampled | 2651 | 0.680 | 0.607–0.746 | 0.674 | 0.613 | 0.230 | 0.917 |
+| monthly sampled | 1278 | 0.682 | 0.610–0.747 | 0.827 | 0.475 | 0.210 | 0.942 |
+| weekly collapsed | 4127 | 0.707 | 0.625–0.780 | 0.753 | 0.590 | 0.251 | 0.929 |
+| biweekly collapsed | 2125 | 0.695 | 0.614–0.767 | 0.713 | 0.601 | 0.259 | 0.914 |
+| monthly collapsed (30 d) | **1015** | **0.704** | 0.632–0.777 | 0.704 | 0.626 | 0.259 | 0.919 |
 
 **Short read**
 
 - **Sampled** (daily→monthly): AUC nearly flat (~0.68). Subsampling does not improve discrimination; it only reduces n.
-- **Collapsed** improves somewhat vs sampled (~0.70–0.71). Best point here: **weekly collapsed (AUC 0.707)** ★.
+- **Collapsed** improves somewhat vs sampled (~0.70–0.71). Highest point estimate here: **weekly collapsed (AUC 0.707)**; CIs overlap across collapsed configs.
 - PPV remains low (~0.21–0.26); NPV high (~0.91–0.94).
 - Do not compare monthly θ≈1.61 to sampled θ≈0.55 without converting: use **θ_mean = θ_sum / W**.
+
+High-resolution delivery panel (metrics table + AUROC points with 95% CI + ROC; no winner star):
+
+![Metric summary by granularity (analysis figures)](analysis_figures/summary_granularities_W90_H120.png)
+
+Pipeline figures (same setting; older layout):
 
 ![ROC by granularity](figures/roc_granularities_W90_H120.png)
 
@@ -152,6 +163,14 @@ W=3 months, H=4 months, θ=1.61 (mean-scale θ/W≈0.54).
 
 ### 7.2 Sampled vs collapsed (W = 90 d)
 
+Simplified high-res delivery plots (daily/sampled burden vs monthly collapsed; Obs_time clock; construction-specific Youden θ labelled):
+
+![62004 simplified](analysis_figures/trajectory_patient_62004_W90_simplified.png)
+
+![41006 simplified](analysis_figures/trajectory_patient_41006_W90_simplified.png)
+
+Full multi-panel trajectories:
+
 ![Granularity panel](figures/trajectories_panel_W90.png)
 
 - **Blues:** daily sliding pUF + daily/sampled burden  
@@ -186,9 +205,12 @@ W=3 months, H=4 months, θ=1.61 (mean-scale θ/W≈0.54).
 # Sampled vs collapsed trajectories
 .venv/bin/python scripts/03_analysis/alarm/plot_granularity_trajectories.py \
   --patients 62004,23003,31002,41006 --W 90
+
+# High-res delivery figures (Obs_time-aligned; AUROC patient-bootstrap CIs)
+.venv/bin/python scripts/03_analysis/alarm/plot_analysis_figures.py
 ```
 
-File map: [`README.md`](README.md).
+File map: [`README.md`](README.md). Delivery panel: [`analysis_figures/`](analysis_figures/).
 
 ---
 
@@ -196,7 +218,8 @@ File map: [`README.md`](README.md).
 
 1. **Subsampling** the same daily signal (sampled) **does not improve** discrimination: AUC stays ~**0.68** from daily→monthly.  
 2. **Collapsing** LDA into non-overlapping blocks (7/14/30 d) **does improve** somewhat: AUC ~**0.70–0.71** at W=90 d, H=120 d.  
-3. The **best point** in that setting is **weekly collapsed** (AUC **0.707**; Youden Sens/Spec ≈ 0.75/0.59).  
+3. The **highest point estimate** in that setting is **weekly collapsed** (AUC **0.707**; Youden Sens/Spec ≈ 0.75/0.59); patient-bootstrap 95% CIs overlap across collapsed configs.  
 4. **↑W** and **↑H** raise AUC in an ordered way; ranking collapsed ≳ sampled holds on the grid.  
 5. **PPV** stays low (~**0.25**): the alarm discriminates but yields many false positives at useful thresholds.  
-6. Individually, the score can anticipate PD (lead time), mark persistently high burden, or fire late alarms with no event — useful for interpretation beyond aggregate metrics.
+6. Individually, the score can anticipate PD (lead time), mark persistently high burden, or fire late alarms with no event — useful for interpretation beyond aggregate metrics.  
+7. The delivery summary figure uses the **same clinical follow-up field (`Obs_time`)** for all granularities as the monthly baseline (n=1015), with **AUROC 95% CIs from patient-level bootstrap**.

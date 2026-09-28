@@ -54,6 +54,7 @@ Operating point used here: **monthly collapsed**, W ≈ 3 months, H ≈ 4 months
 | `analyze_missingness_and_wh_grid.py` | Funnel + AUC heatmaps vs W/H |
 | `plot_patient_trajectories.py` | Paper-style trajectories |
 | `plot_granularity_trajectories.py` | Sampled vs collapsed trajectories |
+| `plot_analysis_figures.py` | High-res summary (Obs_time + AUROC patient-bootstrap CIs) + simplified trajectories |
 
 ## Outputs
 
@@ -61,13 +62,14 @@ All under `results/alarm/`:
 
 | Path | Content |
 |------|---------|
-| `tables/decision_points_W3_H4.csv` | Monthly landmarks (W=3, H=4) |
+| `tables/decision_points_W3_H4.csv` | Monthly landmarks (W=3, H=4; Obs_time; n=1015) |
 | `tables/alarm_metrics_W3_H4.csv` | Monthly metrics |
 | `tables/granularity_sweep_summary.csv` | AUC / Sens / Spec by granularity |
 | `tables/wh_grid_auc.csv` | W×H grid |
 | `tables/missingness_funnel.csv` | Eligible patients / decision points |
 | `figures/roc_*.png` | ROC curves |
-| `figures/summary_granularities_*.png` | Granularity comparison |
+| `figures/summary_granularities_*.png` | Granularity comparison (pipeline) |
+| `analysis_figures/` | Delivery figures (hi-res; Obs_time; bootstrap CIs) |
 | `alarm_granularity_report.html` | Human-readable report |
 
 See also [`results/alarm/README.md`](../../../results/alarm/README.md) and notebooks under
