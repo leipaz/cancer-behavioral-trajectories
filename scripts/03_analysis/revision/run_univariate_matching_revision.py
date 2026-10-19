@@ -257,15 +257,11 @@ def write_matching_fechas_auxiliar(matching: pd.DataFrame, cov: pd.DataFrame) ->
     aux = aux.sort_values(["match_set_id", "match_role", "ID"], ascending=[True, False, True])
 
     out_csv = OUT_DIR / "matching_ventanas_fechas_auxiliar.csv"
-    out_xlsx = OUT_DIR / "matching_ventanas_fechas_auxiliar.xlsx"
     # also under univariate data for visibility next to matching Excel
     out_csv2 = COHORT_DIR.parent / "matching_ventanas_fechas_auxiliar.csv"
-    out_xlsx2 = COHORT_DIR.parent / "matching_ventanas_fechas_auxiliar.xlsx"
     for p in (out_csv, out_csv2):
         aux.to_csv(p, index=False)
-    for p in (out_xlsx, out_xlsx2):
-        aux.to_excel(p, index=False)
-    print(f"Wrote auxiliar fechas → {out_xlsx2}")
+    print(f"Wrote auxiliar fechas → {out_csv}")
     return aux
 
 
@@ -441,8 +437,6 @@ def main() -> None:
 
     df_first.to_csv(COHORT_DIR / "cohort_ventana1_basal.csv", index=False)
     df_previous.to_csv(COHORT_DIR / "cohort_ventana2_prePD_matching.csv", index=False)
-    df_first.to_excel(COHORT_DIR / "cohort_ventana1_basal.xlsx", index=False)
-    df_previous.to_excel(COHORT_DIR / "cohort_ventana2_prePD_matching.xlsx", index=False)
 
     # For stats_utils Early PD filter
     df_first_f = filter_by_response(df_first)
@@ -499,9 +493,9 @@ def main() -> None:
                 "| `variable_summary_mean_medianIQR_var_EPDvsnoEPD_2dates.csv` | Same without min/max |",
                 "| `variable_period_comparison_intra_group.csv` | First vs Previous within E.PD / no-E.PD |",
                 "| `matching_window_coverage.csv` | Days available in daily per window (long) |",
-                "| `matching_ventanas_fechas_auxiliar.csv/.xlsx` | Matching structure + concrete V1/V2 dates + coverage |",
+                "| `matching_ventanas_fechas_auxiliar.csv` | Matching structure + concrete V1/V2 dates + coverage |",
                 "",
-                "Also copied to `data/processed/univariate/matching_ventanas_fechas_auxiliar.xlsx`.",
+                "Also copied to `data/processed/univariate/matching_ventanas_fechas_auxiliar.csv`.",
                 "",
                 f"Variables used ({len(sel_cols)}): " + ", ".join(sel_cols),
                 "",
