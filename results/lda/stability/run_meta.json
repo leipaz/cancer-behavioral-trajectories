@@ -1,7 +1,7 @@
 {
   "label": "reconciled_CNIO_DB1",
   "profiles_csv": "data/processed/lda/user_embeddings_from_pkl.csv",
-  "daily_summary": "data/revision/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv",
+  "daily_summary": "data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv",
   "reference_model": "models/lda/LDA_model_vdec25.gensim",
   "dictionary": "models/lda/dictionary_LDA_vdec25.dict",
   "n_reps": 50,

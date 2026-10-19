@@ -4,7 +4,7 @@ Documento para double-check / respuesta a colaboradores: **qué se ha hecho, en 
 
 **Entrega canónica (corpus reconciliado CNIO/DB1):** `results/lda/stability/`  
 **Embeddings:** `data/processed/lda/user_embeddings_from_pkl.csv`  
-**Daily upstream:** `data/revision/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv`  
+**Daily upstream:** `data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv`  
 **Referencia LDA:** publicada (`LDA_model_vdec25`), sin reentrenar
 
 ---

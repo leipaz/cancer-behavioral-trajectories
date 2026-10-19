@@ -2,12 +2,12 @@
 """Univariate matched analysis — revision (new CNIO date filter + 1:5 matching).
 
 Uses:
-  - data/revision/univariate/Base_Matching_matched_1to5_followup.xlsx
-  - data/revision/daily_summary_oficial_filtrado_rangos_CNIO.csv
+  - data/processed/univariate/Base_Matching_matched_1to5_followup.xlsx
+  - data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv
   - enriched extras left-joined from dic25_enriched (7 vars)
 
 Writes:
-  - cohorts (first/previous 15 days) under data/revision/univariate/cohorts/
+  - cohorts under data/processed/univariate/cohorts/
   - stats tables under results/univariate/tables/revision/
   - matching_ventanas_fechas_auxiliar (structure + concrete V1/V2 dates)
 """
@@ -31,11 +31,11 @@ from stats_utils import (  # noqa: E402
     filter_by_response,
 )
 
-MATCHING = PROJECT_ROOT / "data/revision/univariate/Base_Matching_matched_1to5_followup.xlsx"
-# Prefer VQ-clip daily; then origin-validity; then dedup; then filtrado
+MATCHING = PROJECT_ROOT / "data/processed/univariate/Base_Matching_matched_1to5_followup.xlsx"
+# Canonical CNIO daily (git); local intermediates may exist under data/revision/ (ignored)
 DAILY_VQCLIP = (
     PROJECT_ROOT
-    / "data/revision/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv"
+    / "data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv"
 )
 DAILY_VALIDITY = (
     PROJECT_ROOT
@@ -45,14 +45,14 @@ DAILY_DEDUP = PROJECT_ROOT / "data/revision/daily_summary_oficial_filtrado_rango
 DAILY = PROJECT_ROOT / "data/revision/daily_summary_oficial_filtrado_rangos_CNIO.csv"
 DAILY_ENRICHED_OUT = (
     PROJECT_ROOT
-    / "data/revision/daily_summary_oficial_filtrado_rangos_CNIO_enriched_vqclip.csv"
+    / "data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_enriched_vqclip.csv"
 )
 ENRICHED_SRC = Path(
     "/export/gts_usuarios/lparbaiza/cnio/data/data_dic2025/"
     "daily_summary_eb2prod_dic25_enriched.csv"
 )
 OUT_DIR = PROJECT_ROOT / "results/univariate/tables/revision"
-COHORT_DIR = PROJECT_ROOT / "data/revision/univariate/cohorts"
+COHORT_DIR = PROJECT_ROOT / "data/processed/univariate/cohorts"
 
 ID_COL = "ID"
 FECHA_COL = "date_time"
@@ -481,8 +481,8 @@ def main() -> None:
             [
                 "# Univariate tables — revision (Evento_DB1 / rangos CNIO)",
                 "",
-                "Matching: `data/revision/univariate/Base_Matching_matched_1to5_followup.xlsx` (1:5, same pathology, at-risk ≥ case FU).",
-                "Daily: `data/revision/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv` "
+                "Matching: `data/processed/univariate/Base_Matching_matched_1to5_followup.xlsx` (1:5, same pathology, at-risk ≥ case FU).",
+                "Daily: `data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv` "
                 "(origin validity + VQ-VAE CLIP_INFO → NaN; from dedup CNIO)."
                 + enriched_note
                 + ".",
@@ -501,7 +501,7 @@ def main() -> None:
                 "| `matching_window_coverage.csv` | Days available in daily per window (long) |",
                 "| `matching_ventanas_fechas_auxiliar.csv/.xlsx` | Matching structure + concrete V1/V2 dates + coverage |",
                 "",
-                "Also copied to `data/revision/univariate/matching_ventanas_fechas_auxiliar.xlsx`.",
+                "Also copied to `data/processed/univariate/matching_ventanas_fechas_auxiliar.xlsx`.",
                 "",
                 f"Variables used ({len(sel_cols)}): " + ", ".join(sel_cols),
                 "",

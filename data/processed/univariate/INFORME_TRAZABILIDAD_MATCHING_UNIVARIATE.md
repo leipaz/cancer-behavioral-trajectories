@@ -47,8 +47,8 @@ Script: `scripts/03_analysis/revision/run_univariate_matching_revision.py`
 
 | Input | Ruta | Rol |
 |-------|------|-----|
-| Matching | `data/revision/univariate/Base_Matching_matched_1to5_followup.xlsx` | Define casos/controles, sets y **fechas** de cada ventana |
-| Daily (usado en stats) | `data/revision/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv` | CNIO + dedup + validez origen + **CLIP_INFO VQ-VAE** |
+| Matching | `data/processed/univariate/Base_Matching_matched_1to5_followup.xlsx` | Define casos/controles, sets y **fechas** de cada ventana |
+| Daily (usado en stats) | `data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv` | CNIO + dedup + validez origen + **CLIP_INFO VQ-VAE** |
 | Daily previo (sin clip VQ) | `…_dedup.csv` / `…_dedup_validity.csv` | Intermedios; **no** son la entrada actual de las tablas |
 
 ### 3.0 Preproceso del daily (antes del univariante)
@@ -125,7 +125,7 @@ Ejemplo set 1: caso **91004** + 5 controles; las fechas absolutas de cada partic
 
 En V1, day-rows (1847) > únicos ID+fecha (1539) porque los controles reutilizados cuentan **una vez por set**. **Ese 1847 es el N de las stats basales** (y el `full_stats` reproduce esas filas). Los 1539 no son una cohorte alternativa: son solo el conteo sin clave de set.
 
-Archivos: `data/revision/univariate/cohorts/cohort_ventana1_basal` y `cohort_ventana2_prePD_matching` (csv/xlsx).
+Archivos: `data/processed/univariate/cohorts/cohort_ventana1_basal` y `cohort_ventana2_prePD_matching` (csv/xlsx).
 
 ---
 
