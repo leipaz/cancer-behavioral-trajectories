@@ -1,0 +1,25 @@
+# Ignore QC dumps / intermediates by default; whitelist only canonical deliverables.
+*
+
+# --- docs ---
+!.gitignore
+!README.md
+!PIPELINE_REVISION.md
+!INFORME_*.md
+!INFORME_*.docx
+
+# --- definitive daily (CNIO + dedup + origin validity + VQ CLIP) ---
+!daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv
+!daily_summary_oficial_filtrado_rangos_CNIO_enriched_vqclip.csv
+
+# optional provenance of the date filter (small)
+!filtro_rangos_CNIO_resumen.csv
+!filtro_rangos_CNIO_resumen.xlsx
+!filtro_rangos_cobertura_oficial.csv
+
+# --- embeddings used by LDA stability / topics ---
+!user_embeddings_revision_a0.csv
+
+# --- univariate matching deliverables ---
+!univariate/
+!univariate/**
