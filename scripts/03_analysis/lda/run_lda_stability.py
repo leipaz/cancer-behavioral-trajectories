@@ -330,10 +330,27 @@ def main() -> None:
     parser.add_argument("--profiles-csv", type=Path, default=USER_EMBEDDINGS_CSV)
     parser.add_argument("--dictionary", type=Path, default=DICTIONARY_PATH)
     parser.add_argument("--reference-model", type=Path, default=LDA_MODEL_PATH)
+    parser.add_argument(
+        "--out-dir",
+        type=Path,
+        default=Path("results/lda/stability"),
+        help="Directory for CSV/JSON summaries (use …/stability/revision for new dates)",
+    )
+    parser.add_argument(
+        "--fig-dir",
+        type=Path,
+        default=None,
+        help="Figure directory (default: <out-dir>/figures, or results/lda/figures/stability)",
+    )
     args = parser.parse_args()
 
-    out_dir = Path("results/lda/stability")
-    fig_dir = RESULTS_LDA_FIGURES / "stability"
+    out_dir = args.out_dir
+    if args.fig_dir is not None:
+        fig_dir = args.fig_dir
+    elif out_dir != Path("results/lda/stability"):
+        fig_dir = out_dir / "figures"
+    else:
+        fig_dir = RESULTS_LDA_FIGURES / "stability"
     out_dir.mkdir(parents=True, exist_ok=True)
     fig_dir.mkdir(parents=True, exist_ok=True)
 

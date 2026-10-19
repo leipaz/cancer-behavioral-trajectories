@@ -35,6 +35,19 @@ def main() -> None:
     parser.add_argument("--n-inits", type=int, default=5)
     parser.add_argument("--passes", type=int, default=50)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--profiles-csv", type=Path, default=USER_EMBEDDINGS_CSV)
+    parser.add_argument(
+        "--out-dir",
+        type=Path,
+        default=Path("results/lda/stability"),
+        help="CSV/JSON output directory (use …/stability/revision for new dates)",
+    )
+    parser.add_argument(
+        "--fig-dir",
+        type=Path,
+        default=None,
+        help="Figure directory (default: results/lda/figures, or <out-dir>/figures)",
+    )
     args = parser.parse_args()
 
     if args.k_list:
@@ -42,7 +55,7 @@ def main() -> None:
     else:
         k_values = list(range(args.k_min, args.k_max + 1))
     dictionary, _ref, _df, documents, corpus = load_lda_artifacts(
-        DICTIONARY_PATH, LDA_MODEL_PATH, USER_EMBEDDINGS_CSV
+        DICTIONARY_PATH, LDA_MODEL_PATH, args.profiles_csv
     )
     idx = np.arange(len(documents))
     tr, va = train_test_split(idx, test_size=0.3, random_state=args.seed)
@@ -95,12 +108,21 @@ def main() -> None:
             flush=True,
         )
 
-    out_dir = Path("results/lda/stability")
-    fig_dir = RESULTS_LDA_FIGURES
+    out_dir = args.out_dir
+    if args.fig_dir is not None:
+        fig_dir = args.fig_dir
+    elif out_dir != Path("results/lda/stability"):
+        fig_dir = out_dir / "figures"
+    else:
+        fig_dir = RESULTS_LDA_FIGURES
     out_dir.mkdir(parents=True, exist_ok=True)
     fig_dir.mkdir(parents=True, exist_ok=True)
     df = pd.DataFrame(rows)
-    df.to_csv(out_dir / "coherence_fine_grid.csv", index=False)
+    grid_name = "coherence_coarse_grid.csv" if args.k_list else "coherence_fine_grid.csv"
+    df.to_csv(out_dir / grid_name, index=False)
+    # always also write fine_grid name for report compatibility when using k-list
+    if args.k_list:
+        df.to_csv(out_dir / "coherence_fine_grid.csv", index=False)
 
     best_k = int(df.loc[df["val_mean"].idxmax(), "K"])
     # Parsimony: among K within 98% of peak val coherence, pick smallest K
