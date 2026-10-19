@@ -334,13 +334,13 @@ def main() -> None:
         "--out-dir",
         type=Path,
         default=Path("results/lda/stability"),
-        help="Directory for CSV/JSON summaries (use …/stability/revision for new dates)",
+        help="Directory for CSV/JSON summaries (default: results/lda/stability)",
     )
     parser.add_argument(
         "--fig-dir",
         type=Path,
         default=None,
-        help="Figure directory (default: <out-dir>/figures, or results/lda/figures/stability)",
+        help="Figure directory (default: results/lda/figures/stability)",
     )
     args = parser.parse_args()
 

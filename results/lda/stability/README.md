@@ -1,45 +1,39 @@
-# LDA stability (K=6)
+# LDA K-selection and stability (K=6)
 
-Multi-seed re-fits aligned to the published reference model
-(`LDA_model_vdec25.gensim`).
+Single analysis on the **reconciled CNIO/DB1** patient day-type sequences.
 
-| File | Content |
-|------|---------|
-| `stability_per_seed.csv` | 6-topic + hypertopic JS; patient fav / pUF correlations |
-| `stability_js_by_topic.csv` | Per reference topic, per seed |
-| `stability_summary.json` | Aggregate means / SDs |
-| `../figures/stability/lda_stability_k6_summary.*` | Topics + hypertopics figure |
+| Item | Path |
+|------|------|
+| Embeddings (documents) | `data/processed/lda/user_embeddings_from_pkl.csv` (= reconciled `a0`) |
+| Daily used upstream | `data/revision/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv` |
+| Reference LDA | `models/lda/LDA_model_vdec25.gensim` (published; not re-trained) |
+| Tables / JSON | this folder |
+| Figures | `../figures/lda_coherence_k_selection.*`, `../figures/stability/` |
 
-## Two levels of comparison
+## Levels
 
-1. **Six topics** — JS similarity of `P(profile | topic)` after alignment.
-2. **Two hypertopics** (what the alarm uses conceptually):
-   - Favourable = topics 0–2; unfavourable = topics 3–5
-   - Profile-level: JS on the equal mixture of those topic distributions
-   - Patient-level: Pearson of `P0+P1+P2` and of **pUF = P3+P4+P5**
+1. **Seed stability** — 50 re-fits, all patients, different seeds.  
+2. **Leave-20%-out** — 50 re-fits dropping 20% of patients.
 
-## Settings used here
+Topics are Hungarian-aligned to the published reference by cosine of `P(day-type | topic)`.  
+Hypertopics: F = T0–2, U = T3–5; **pUF** = P3+P4+P5 (one scalar per patient document).
 
-- Seeds: 50 (values 0…49)
-- Passes per seed: **100**
-- Documents: 175; vocabulary size: 255
+## Settings
 
-## Headline results
+- Seeds / reps: 50  
+- Passes per replicate: **100** (published reference was trained with ~**100 000** passes)  
+- Documents: 175 patients  
 
-| Level | Metric | Mean ± SD |
-|-------|--------|-----------|
-| 6 topics | Mean JS similarity | **0.648 ± 0.048** |
-| Hypertopic fav | JS (mixed profiles) | **0.781 ± 0.037** |
-| Hypertopic unfav | JS (mixed profiles) | **0.760 ± 0.043** |
-| Patient fav | Pearson r | **0.823 ± 0.093** |
-| Patient pUF (alarm) | Pearson r | **0.823 ± 0.093** |
+## Method write-up
 
-Regenerate:
+[`INFORME_METODO_SELECCION_K_Y_ESTABILIDAD_LDA.md`](INFORME_METODO_SELECCION_K_Y_ESTABILIDAD_LDA.md) / `.docx`
+
+## Regenerate
 
 ```bash
-.venv/bin/python scripts/03_analysis/lda/run_lda_stability.py --n-seeds 50 --passes 100
+./env/bin/python scripts/03_analysis/lda/run_lda_coherence_sweep.py \
+  --k-list 2,6,10,14,18 --n-inits 5 --passes 50
+
+./env/bin/python scripts/03_analysis/lda/run_lda_stability.py \
+  --mode both --n-reps 50 --passes 100 --leave-out 0.2
 ```
-
-## Revision (new CNIO dates)
-
-Re-run with revised embeddings is under [`revision/`](revision/) — does not replace this folder.

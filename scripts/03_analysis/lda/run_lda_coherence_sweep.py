@@ -40,13 +40,13 @@ def main() -> None:
         "--out-dir",
         type=Path,
         default=Path("results/lda/stability"),
-        help="CSV/JSON output directory (use …/stability/revision for new dates)",
+        help="CSV/JSON output directory (default: results/lda/stability)",
     )
     parser.add_argument(
         "--fig-dir",
         type=Path,
         default=None,
-        help="Figure directory (default: results/lda/figures, or <out-dir>/figures)",
+        help="Figure directory (default: results/lda/figures)",
     )
     args = parser.parse_args()
 
