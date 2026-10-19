@@ -39,3 +39,7 @@ Regenerate:
 ```bash
 .venv/bin/python scripts/03_analysis/lda/run_lda_stability.py --n-seeds 50 --passes 100
 ```
+
+## Revision (new CNIO dates)
+
+Re-run with revised embeddings is under [`revision/`](revision/) — does not replace this folder.

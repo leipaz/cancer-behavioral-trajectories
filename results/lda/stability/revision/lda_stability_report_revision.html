@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>LDA stability — revision</title>
+<style>
+body{font-family:DejaVu Sans,system-ui,sans-serif;max-width:920px;margin:2rem auto;padding:0 1rem;line-height:1.45;color:#222}
+table{border-collapse:collapse;width:100%;font-size:0.92rem;margin:1rem 0}
+th,td{border:1px solid #ccc;padding:0.35rem 0.55rem}
+th{background:#f5f5f5;text-align:left}
+img{max-width:100%;height:auto;margin:0.8rem 0;border:1px solid #eee}
+code{background:#f4f4f4;padding:0.1em 0.3em;border-radius:3px}
+</style></head><body>
+<h1>LDA stability — revision (new CNIO dates)</h1>
+<p>Same protocol as <code>results/lda/stability/</code>, with day-type sequences from
+<code>data/revision/user_embeddings_revision_a0.csv</code>. Reference model unchanged
+(<code>LDA_model_vdec25.gensim</code>). Settings: K=6, 50 reps, 100 passes, leave-out 20%.</p>
+<p>Of 175 patients, <strong>95</strong> have different day-type sequences vs the prior embeddings;
+mean sequence length +2.5 tokens. Baseline folder was not overwritten.</p>
+<hr/>
+<h2>Headline comparison (revision vs prior lock-date)</h2>
+<table>
+<thead><tr><th>Metric</th><th style="text-align:right">Prior</th>
+<th style="text-align:right">Revision</th><th style="text-align:right">Δ</th></tr></thead>
+<tbody>
+<tr><td>L1 median cosine (all topic–rep)</td><td style='text-align:right'>0.912</td><td style='text-align:right'><strong>0.915</strong></td><td style='text-align:right'>+0.003</td></tr><tr><td>L1 median of mean cosine / rep</td><td style='text-align:right'>0.883</td><td style='text-align:right'><strong>0.884</strong></td><td style='text-align:right'>+0.000</td></tr><tr><td>L1 favourable hypertopic cosine</td><td style='text-align:right'>0.960</td><td style='text-align:right'><strong>0.960</strong></td><td style='text-align:right'>+0.000</td></tr><tr><td>L1 unfavourable hypertopic cosine</td><td style='text-align:right'>0.919</td><td style='text-align:right'><strong>0.916</strong></td><td style='text-align:right'>-0.003</td></tr><tr><td>L1 pUF Pearson r</td><td style='text-align:right'>0.839</td><td style='text-align:right'><strong>0.849</strong></td><td style='text-align:right'>+0.010</td></tr><tr><td>L2 median cosine (all topic–rep)</td><td style='text-align:right'>0.867</td><td style='text-align:right'><strong>0.867</strong></td><td style='text-align:right'>-0.000</td></tr><tr><td>L2 median of mean cosine / rep</td><td style='text-align:right'>0.797</td><td style='text-align:right'><strong>0.794</strong></td><td style='text-align:right'>-0.002</td></tr><tr><td>L2 favourable hypertopic cosine</td><td style='text-align:right'>0.933</td><td style='text-align:right'><strong>0.937</strong></td><td style='text-align:right'>+0.003</td></tr><tr><td>L2 unfavourable hypertopic cosine</td><td style='text-align:right'>0.896</td><td style='text-align:right'><strong>0.885</strong></td><td style='text-align:right'>-0.011</td></tr><tr><td>L2 pUF Pearson r</td><td style='text-align:right'>0.754</td><td style='text-align:right'><strong>0.772</strong></td><td style='text-align:right'>+0.018</td></tr>
+</tbody></table>
+<h3>Level 1 — per-topic cosine median</h3><table><thead><tr><th>Topic</th><th style='text-align:right'>Prior</th><th style='text-align:right'>Revision</th><th style='text-align:right'>Δ</th></tr></thead><tbody><tr><td>T0</td><td style='text-align:right'>0.981</td><td style='text-align:right'>0.981</td><td style='text-align:right'>+0.000</td></tr><tr><td>T1</td><td style='text-align:right'>0.914</td><td style='text-align:right'>0.914</td><td style='text-align:right'>+0.000</td></tr><tr><td>T2</td><td style='text-align:right'>0.958</td><td style='text-align:right'>0.957</td><td style='text-align:right'>-0.001</td></tr><tr><td>T3</td><td style='text-align:right'>0.871</td><td style='text-align:right'>0.875</td><td style='text-align:right'>+0.005</td></tr><tr><td>T4</td><td style='text-align:right'>0.883</td><td style='text-align:right'>0.884</td><td style='text-align:right'>+0.002</td></tr><tr><td>T5</td><td style='text-align:right'>0.695</td><td style='text-align:right'>0.691</td><td style='text-align:right'>-0.003</td></tr></tbody></table><h3>Level 2 — per-topic cosine median</h3><table><thead><tr><th>Topic</th><th style='text-align:right'>Prior</th><th style='text-align:right'>Revision</th><th style='text-align:right'>Δ</th></tr></thead><tbody><tr><td>T0</td><td style='text-align:right'>0.963</td><td style='text-align:right'>0.965</td><td style='text-align:right'>+0.002</td></tr><tr><td>T1</td><td style='text-align:right'>0.885</td><td style='text-align:right'>0.882</td><td style='text-align:right'>-0.003</td></tr><tr><td>T2</td><td style='text-align:right'>0.894</td><td style='text-align:right'>0.909</td><td style='text-align:right'>+0.015</td></tr><tr><td>T3</td><td style='text-align:right'>0.808</td><td style='text-align:right'>0.815</td><td style='text-align:right'>+0.007</td></tr><tr><td>T4</td><td style='text-align:right'>0.798</td><td style='text-align:right'>0.797</td><td style='text-align:right'>-0.001</td></tr><tr><td>T5</td><td style='text-align:right'>0.671</td><td style='text-align:right'>0.668</td><td style='text-align:right'>-0.004</td></tr></tbody></table>
+<hr/>
+<h2>Figures</h2>
+<h3>Level 1 cosine</h3><p><img alt='Level 1 cosine' src='figures/lda_stability_level1_cosine.png'/></p>
+<h3>Level 1 profile heatmap</h3><p><img alt='Level 1 profile heatmap' src='figures/lda_stability_level1_profile_heatmap.png'/></p>
+<h3>Level 2 cosine</h3><p><img alt='Level 2 cosine' src='figures/lda_stability_level2_resample_cosine.png'/></p>
+<h3>Level 2 profile heatmap</h3><p><img alt='Level 2 profile heatmap' src='figures/lda_stability_level2_profile_heatmap.png'/></p>
+</body></html>
