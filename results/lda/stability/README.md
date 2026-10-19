@@ -24,9 +24,7 @@ Hypertopics: F = T0–2, U = T3–5; **pUF** = P3+P4+P5 (one scalar per patient 
 - Passes per replicate: **100** (published reference was trained with ~**100 000** passes)  
 - Documents: 175 patients  
 
-## Method write-up
 
-[`INFORME_METODO_SELECCION_K_Y_ESTABILIDAD_LDA.md`](INFORME_METODO_SELECCION_K_Y_ESTABILIDAD_LDA.md) / `.docx`
 
 ## Regenerate
 
