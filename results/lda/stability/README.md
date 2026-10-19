@@ -5,7 +5,7 @@ Single analysis on the **reconciled CNIO/DB1** patient day-type sequences.
 | Item | Path |
 |------|------|
 | Embeddings (documents) | `data/processed/lda/user_embeddings_from_pkl.csv` (= reconciled `a0`) |
-| Daily used upstream | `data/revision/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv` |
+| Daily used upstream | `data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv` |
 | Reference LDA | `models/lda/LDA_model_vdec25.gensim` (published; not re-trained) |
 | Tables / JSON | this folder |
 | Figures | `../figures/lda_coherence_k_selection.*`, `../figures/stability/` |

@@ -6,6 +6,9 @@ data/output_vq_vae/revision_cohorts/
 data/daily_summaries/daily_summary_eb2prod_may26.csv
 data/daily_summaries/revision_cohort_samples/
 
+# Local revision workspace (QC dumps, backups, intermediates). Canonical daily lives in data/daily_summaries/
+data/revision/
+
 # Local exploratory notebooks (not part of the published pipeline)
 original_train_lda/
 
