@@ -2,7 +2,7 @@
 """Univariate matched analysis — revision (new CNIO date filter + 1:5 matching).
 
 Uses:
-  - data/processed/univariate/Base_Matching_matched_1to5_followup.xlsx
+  - data/processed/univariate/Base_Matching_matched_1to5_followup.csv
   - data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv
   - enriched extras left-joined from dic25_enriched (7 vars)
 
@@ -31,7 +31,7 @@ from stats_utils import (  # noqa: E402
     filter_by_response,
 )
 
-MATCHING = PROJECT_ROOT / "data/processed/univariate/Base_Matching_matched_1to5_followup.xlsx"
+MATCHING = PROJECT_ROOT / "data/processed/univariate/Base_Matching_matched_1to5_followup.csv"
 # Canonical CNIO daily (git); local intermediates may exist under data/revision/ (ignored)
 DAILY_VQCLIP = (
     PROJECT_ROOT
@@ -98,7 +98,7 @@ def apply_origin_validity(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def load_matching() -> pd.DataFrame:
-    m = pd.read_excel(MATCHING)
+    m = pd.read_csv(MATCHING)
     m = m.rename(
         columns={
             "S_RECORD_id": ID_COL,
@@ -472,7 +472,7 @@ def main() -> None:
             [
                 "# Univariate tables — revision (Evento_DB1 / rangos CNIO)",
                 "",
-                "Matching: `data/processed/univariate/Base_Matching_matched_1to5_followup.xlsx` (1:5, same pathology, at-risk ≥ case FU).",
+                "Matching: `data/processed/univariate/Base_Matching_matched_1to5_followup.csv` (1:5, same pathology, at-risk ≥ case FU).",
                 "Daily: `data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv` "
                 "(origin validity + VQ-VAE CLIP_INFO → NaN; from dedup CNIO)."
                 + enriched_note

@@ -64,7 +64,6 @@ results/vq-vae/figures/embeddings/revision_fig3_examples/
 results/vq-vae/figures/revision_cohorts/
 notebooks/revision_experiments/
 
-# Duplicate Excel exports when CSV exists (keep matching source .xlsx only)
-results/univariate/tables/*.xlsx
-data/processed/univariate/cohorts/*.xlsx
-data/processed/univariate/matching_ventanas_fechas_auxiliar.xlsx
+# Univariate: CSV only (no Excel exports / matching xlsx)
+results/univariate/**/*.xlsx
+data/processed/univariate/**/*.xlsx
