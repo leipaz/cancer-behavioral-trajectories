@@ -1,0 +1,14 @@
+{
+  "candidate_K": [
+    2,
+    6,
+    10,
+    14,
+    18
+  ],
+  "best_val_K": 6,
+  "selected_K": 6,
+  "val_at_K6": 0.5894386519154591,
+  "peak_val_coherence": 0.5894386519154591,
+  "selection_rule": "Among unsupervised candidate values K in {2,6,10,14,18}, mean validation c_v was maximized at K=6; this K was selected for the published model."
+}
