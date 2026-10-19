@@ -47,3 +47,8 @@ renv/library/
 # Logs
 *.log
 logs/
+
+# Local write-ups / method memos (keep on disk; do not version)
+**/INFORME_*.md
+**/INFORME_*.docx
+results/revision_docs/

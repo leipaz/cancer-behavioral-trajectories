@@ -1,3 +1,0 @@
-fuente,archivo_salida,filas_antes,filas_despues,filas_eliminadas,users_antes,users_despues,users_rangos_sin_datos,fecha_min,fecha_max,filas_despues_de_11_09_25
-PMP_lock,daily_summary_PMP_lock_filtrado_rangos_CNIO.csv,51396,50882,514,175,172,6,2023-02-16,2025-09-11,0
-eb2prod_revised,daily_summary_eb2prod_revised_filtrado_rangos_CNIO.csv,52000,51927,73,175,175,3,2023-02-16,2025-09-11,0
