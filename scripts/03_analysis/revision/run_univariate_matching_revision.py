@@ -257,10 +257,7 @@ def write_matching_fechas_auxiliar(matching: pd.DataFrame, cov: pd.DataFrame) ->
     aux = aux.sort_values(["match_set_id", "match_role", "ID"], ascending=[True, False, True])
 
     out_csv = OUT_DIR / "matching_ventanas_fechas_auxiliar.csv"
-    # also under univariate data for visibility next to matching Excel
-    out_csv2 = COHORT_DIR.parent / "matching_ventanas_fechas_auxiliar.csv"
-    for p in (out_csv, out_csv2):
-        aux.to_csv(p, index=False)
+    aux.to_csv(out_csv, index=False)
     print(f"Wrote auxiliar fechas → {out_csv}")
     return aux
 
@@ -495,7 +492,7 @@ def main() -> None:
                 "| `matching_window_coverage.csv` | Days available in daily per window (long) |",
                 "| `matching_ventanas_fechas_auxiliar.csv` | Matching structure + concrete V1/V2 dates + coverage |",
                 "",
-                "Also copied to `data/processed/univariate/matching_ventanas_fechas_auxiliar.csv`.",
+                "",
                 "",
                 f"Variables used ({len(sel_cols)}): " + ", ".join(sel_cols),
                 "",
