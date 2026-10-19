@@ -48,7 +48,12 @@ renv/library/
 *.log
 logs/
 
-# Local write-ups / method memos (keep on disk; do not version)
+# Local write-ups / method memos / stability narrative reports (keep on disk; do not version)
 **/INFORME_*.md
 **/INFORME_*.docx
+**/informe_*.html
+**/informe_*.md
 results/revision_docs/
+results/lda/stability/lda_stability_report.md
+results/lda/stability/lda_stability_report.html
+results/lda/stability/lda_stability_report.pdf
