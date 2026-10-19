@@ -7,6 +7,7 @@ data/daily_summaries/daily_summary_eb2prod_may26.csv
 data/daily_summaries/revision_cohort_samples/
 
 # Local exploratory notebooks (not part of the published pipeline)
+original_train_lda/
 
 *.csv.gz
 *.parquet

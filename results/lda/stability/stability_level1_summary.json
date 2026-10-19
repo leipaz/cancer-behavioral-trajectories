@@ -1,0 +1,20 @@
+{
+  "n_seeds": 50,
+  "metric_primary": "cosine similarity of aligned P(profile|topic) vs reference",
+  "cosine_all_topic_seed_pairs_median": 0.9113609381299144,
+  "cosine_all_topic_seed_pairs_q25": 0.8311455619664984,
+  "cosine_all_topic_seed_pairs_q75": 0.9636261202868918,
+  "cosine_mean_across_6topics_per_seed_median": 0.8833995449888015,
+  "cosine_mean_across_6topics_per_seed_IQR": [
+    0.8348070589143887,
+    0.8954357600583933
+  ],
+  "puf_pearson_median": 0.8390028539242542,
+  "puf_pearson_IQR": [
+    0.7977513774501502,
+    0.8870652675747245
+  ],
+  "unfav_js_median": 0.7559394238400617,
+  "fav_js_median": 0.7839630532565323,
+  "note": "Cosine on topic-profile distributions after Hungarian alignment to the published reference model (50 seeds, K=6). Nat Med-style target often cited: median >0.9 with narrow IQR; overall topic-seed cosine median is >0.9 here, while mean-of-6 per seed is slightly below due to one weaker topic (T5). Hypertopic/pUF concordance remains high."
+}
