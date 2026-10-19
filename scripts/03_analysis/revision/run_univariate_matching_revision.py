@@ -8,7 +8,7 @@ Uses:
 
 Writes:
   - cohorts under data/processed/univariate/cohorts/
-  - stats tables under results/univariate/tables/revision/
+  - stats tables under results/univariate/tables/
   - matching_ventanas_fechas_auxiliar (structure + concrete V1/V2 dates)
 """
 
@@ -51,7 +51,7 @@ ENRICHED_SRC = Path(
     "/export/gts_usuarios/lparbaiza/cnio/data/data_dic2025/"
     "daily_summary_eb2prod_dic25_enriched.csv"
 )
-OUT_DIR = PROJECT_ROOT / "results/univariate/tables/revision"
+OUT_DIR = PROJECT_ROOT / "results/univariate/tables"
 COHORT_DIR = PROJECT_ROOT / "data/processed/univariate/cohorts"
 
 ID_COL = "ID"
