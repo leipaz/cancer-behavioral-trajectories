@@ -146,7 +146,13 @@ DEFAULT_TOP_N_TERMS = 10
 CLINICAL_COLS = ["id", "Date_start_HDM", "PD_event", "Obs_time"]
 
 
+# Prefer revision day table when present (frozen re-run with audited windows).
+REVISION_TOPICS_DAY_CSV = PROJECT_ROOT / "data/revision/PD_cutoff_topics_revision_a0.csv"
+
+
 def resolve_topics_day_csv() -> Path:
+    if REVISION_TOPICS_DAY_CSV.is_file():
+        return REVISION_TOPICS_DAY_CSV
     if DEFAULT_TOPICS_DAY_CSV.is_file():
         return DEFAULT_TOPICS_DAY_CSV
     if FALLBACK_TOPICS_DAY_CSV.is_file():
