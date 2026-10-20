@@ -3,8 +3,8 @@
 
 Uses:
   - data/processed/univariate/Base_Matching_matched_1to5_followup.csv
-  - data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv
-  - enriched extras left-joined from dic25_enriched (7 vars)
+  - data/daily_summaries/daily_datesdb1_enriched_preprocess.csv
+    (dates DB1 → enriched → QC: HR −1; times ±24h/≤24h; **no** VQ CLIP)
 
 Writes:
   - cohorts under data/processed/univariate/cohorts/
@@ -32,21 +32,16 @@ from stats_utils import (  # noqa: E402
 )
 
 MATCHING = PROJECT_ROOT / "data/processed/univariate/Base_Matching_matched_1to5_followup.csv"
-# Canonical CNIO daily (git); local intermediates may exist under data/revision/ (ignored)
-DAILY_VQCLIP = (
-    PROJECT_ROOT
-    / "data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv"
+# Canonical chain in data/daily_summaries/
+DAILY_DATESDB1 = PROJECT_ROOT / "data/daily_summaries/daily_datesdb1.csv"
+DAILY_ENRICHED = PROJECT_ROOT / "data/daily_summaries/daily_datesdb1_enriched.csv"
+DAILY_PREPROCESS = (
+    PROJECT_ROOT / "data/daily_summaries/daily_datesdb1_enriched_preprocess.csv"
 )
-DAILY_VALIDITY = (
-    PROJECT_ROOT
-    / "data/revision/daily_summary_oficial_filtrado_rangos_CNIO_dedup_validity.csv"
-)
+# Fallbacks (local revision intermediates; not the canonical trio)
 DAILY_DEDUP = PROJECT_ROOT / "data/revision/daily_summary_oficial_filtrado_rangos_CNIO_dedup.csv"
 DAILY = PROJECT_ROOT / "data/revision/daily_summary_oficial_filtrado_rangos_CNIO.csv"
-DAILY_ENRICHED_OUT = (
-    PROJECT_ROOT
-    / "data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_enriched_vqclip.csv"
-)
+DAILY_ENRICHED_OUT = DAILY_ENRICHED  # merge may refresh enriched if building from base
 ENRICHED_SRC = Path(
     "/export/gts_usuarios/lparbaiza/cnio/data/data_dic2025/"
     "daily_summary_eb2prod_dic25_enriched.csv"
@@ -69,13 +64,37 @@ EXTRA_FROM_ENRICHED = [
     "rem_time",
 ]
 
-# Origin validity (same as scripts/01_preprocess/lda/preprocess_daily_summaries.py)
+# Relaxed validity (no VQ CLIP): HR sentinels + hard 24h cap on temporal features
 COLS_HR_SENTINEL = ["heart_rate_hr_mean", "heart_rate_hr_min", "heart_rate_hr_max"]
-SLEEP_START_MAX_SECONDS = 24 * 60 * 60  # 86_400
+MAX_SECONDS_24H = 24 * 60 * 60  # 86_400
+MAX_MINUTES_24H = 24 * 60  # 1_440 (location_time_* are minutes)
+
+# Signed clock offsets: keep only within ±24h
+COLS_TIME_SIGNED_SECONDS = [
+    "sleep_start",
+    "sleep_end_time",
+]
+# Non-negative durations in seconds: keep only ≤24h
+COLS_TIME_DURATION_SECONDS = [
+    "sleep_duration",
+    "activity_walking",
+    "app_usage_total",
+    "deep_time",
+    "light_time",
+    "rem_time",
+    "total_communication",
+    "total_social_networks",
+    "total_others",
+]
+# Durations stored in minutes: keep only ≤24h
+COLS_TIME_MINUTES = [
+    "location_time_home",
+    "location_time_work",
+]
 
 
 def apply_origin_validity(df: pd.DataFrame) -> pd.DataFrame:
-    """HR −1 → NaN; sleep_start > 24h → NaN (do not invent other corrections)."""
+    """HR −1 → NaN; temporal: ±24h (signed) or ≤24h (durations); no VQ CLIP."""
     out = df.copy()
     present_hr = [c for c in COLS_HR_SENTINEL if c in out.columns]
     n_hr = 0
@@ -83,16 +102,42 @@ def apply_origin_validity(df: pd.DataFrame) -> pd.DataFrame:
         before = out[present_hr].eq(-1).sum().sum()
         out[present_hr] = out[present_hr].replace(-1.0, np.nan)
         n_hr = int(before)
-    n_sleep = 0
-    if "sleep_start" in out.columns:
-        s = pd.to_numeric(out["sleep_start"], errors="coerce")
-        mask = s > SLEEP_START_MAX_SECONDS
-        n_sleep = int(mask.sum())
-        out.loc[mask, "sleep_start"] = np.nan
+
+    time_counts: list[str] = []
+    for c in COLS_TIME_SIGNED_SECONDS:
+        if c not in out.columns:
+            continue
+        s = pd.to_numeric(out[c], errors="coerce")
+        mask = (s < -MAX_SECONDS_24H) | (s > MAX_SECONDS_24H)
+        n = int(mask.sum())
+        if n:
+            out.loc[mask, c] = np.nan
+        time_counts.append(f"{c}(±24h):{n}")
+
+    for c in COLS_TIME_DURATION_SECONDS:
+        if c not in out.columns:
+            continue
+        s = pd.to_numeric(out[c], errors="coerce")
+        mask = (s < 0) | (s > MAX_SECONDS_24H)
+        n = int(mask.sum())
+        if n:
+            out.loc[mask, c] = np.nan
+        time_counts.append(f"{c}(≤24h):{n}")
+
+    for c in COLS_TIME_MINUTES:
+        if c not in out.columns:
+            continue
+        s = pd.to_numeric(out[c], errors="coerce")
+        mask = (s < 0) | (s > MAX_MINUTES_24H)
+        n = int(mask.sum())
+        if n:
+            out.loc[mask, c] = np.nan
+        time_counts.append(f"{c}(≤24h min):{n}")
+
     print(
-        f"Origin validity: HR −1→NaN in {n_hr} cells "
+        f"Relaxed validity: HR −1→NaN in {n_hr} cells "
         f"({', '.join(present_hr) or 'none'}); "
-        f"sleep_start >{SLEEP_START_MAX_SECONDS}s → NaN in {n_sleep} rows"
+        f"time filter → NaN [{', '.join(time_counts) or 'none'}]"
     )
     return out
 
@@ -150,23 +195,29 @@ def merge_enriched_onto_filtered(daily: pd.DataFrame) -> pd.DataFrame:
 
 
 def load_daily() -> pd.DataFrame:
-    # Prefer VQ-clip daily (includes origin validity); else validity; else dedup/filtrado
-    if DAILY_VQCLIP.is_file():
-        src = DAILY_VQCLIP
-        already_clean = True
-        clean_label = "origin validity + VQ CLIP_INFO"
-    elif DAILY_VALIDITY.is_file():
-        src = DAILY_VALIDITY
-        already_clean = True
-        clean_label = "origin validity"
+    """Load canonical preprocess daily; rebuild from datesdb1 chain if missing."""
+    if DAILY_PREPROCESS.is_file():
+        src = DAILY_PREPROCESS
+        df = pd.read_csv(src, low_memory=False)
+        if "user" in df.columns and ID_COL not in df.columns:
+            df = df.rename(columns={"user": ID_COL})
+        df[ID_COL] = pd.to_numeric(df[ID_COL], errors="coerce").astype("Int64")
+        df[FECHA_COL] = pd.to_datetime(df[FECHA_COL], errors="coerce").dt.normalize()
+        before = len(df)
+        df = df.drop_duplicates([ID_COL, FECHA_COL], keep="first")
+        print(
+            f"Daily ({src.name}): {before} rows → {len(df)} unique (ID, date); "
+            f"users={df[ID_COL].nunique()} (already preprocessed; no re-clean)"
+        )
+        return df
+
+    # Rebuild: datesdb1 → enriched → preprocess
+    if DAILY_DATESDB1.is_file():
+        src = DAILY_DATESDB1
     elif DAILY_DEDUP.is_file():
         src = DAILY_DEDUP
-        already_clean = False
-        clean_label = ""
     else:
         src = DAILY
-        already_clean = False
-        clean_label = ""
     df = pd.read_csv(src, low_memory=False)
     if "user" in df.columns and ID_COL not in df.columns:
         df = df.rename(columns={"user": ID_COL})
@@ -178,11 +229,14 @@ def load_daily() -> pd.DataFrame:
         f"Daily ({src.name}): {before} rows → {len(df)} unique (ID, date); "
         f"users={df[ID_COL].nunique()}"
     )
-    if already_clean:
-        print(f"Cleaning: already in daily ({clean_label}; skip re-clean).")
-    else:
-        df = apply_origin_validity(df)
+    df = df.drop(columns=[c for c in EXTRA_FROM_ENRICHED if c in df.columns], errors="ignore")
+    DAILY_DATESDB1.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(DAILY_DATESDB1, index=False)
+    print(f"Wrote {DAILY_DATESDB1}")
     df = merge_enriched_onto_filtered(df)
+    df = apply_origin_validity(df)
+    df.to_csv(DAILY_PREPROCESS, index=False)
+    print(f"Wrote {DAILY_PREPROCESS}")
     return df
 
 
@@ -463,7 +517,7 @@ def main() -> None:
 
     enriched_note = (
         f" + enriched left-join ({', '.join(EXTRA_FROM_ENRICHED)}) → "
-        "`daily_summary_oficial_filtrado_rangos_CNIO_enriched.csv`"
+        "`daily_datesdb1_enriched.csv`"
         if all(c in daily.columns for c in EXTRA_FROM_ENRICHED)
         else " (enriched extras missing)"
     )
@@ -473,8 +527,8 @@ def main() -> None:
                 "# Univariate tables — revision (Evento_DB1 / rangos CNIO)",
                 "",
                 "Matching: `data/processed/univariate/Base_Matching_matched_1to5_followup.csv` (1:5, same pathology, at-risk ≥ case FU).",
-                "Daily: `data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv` "
-                "(origin validity + VQ-VAE CLIP_INFO → NaN; from dedup CNIO)."
+                "Daily: `data/daily_summaries/daily_datesdb1_enriched_preprocess.csv` "
+                "(dates DB1 → enriched → HR −1 / times ±24h; **no** VQ CLIP)."
                 + enriched_note
                 + ".",
                 "",
