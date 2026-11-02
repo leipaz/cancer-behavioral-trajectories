@@ -235,19 +235,8 @@ def plot_granularity_panel(
     ax.set_ylim(0.62, max(0.74, float(focus["roc_auc"].max()) + 0.02))
     ax.set_ylabel("ROC-AUC")
     ax.set_title("Discrimination by granularity")
-    best_i = int(np.argmax(focus["roc_auc"].to_numpy()))
-    for i, (bar, val) in enumerate(zip(bars, focus["roc_auc"])):
+    for bar, val in zip(bars, focus["roc_auc"]):
         ax.text(bar.get_x() + bar.get_width() / 2, val + 0.002, f"{val:.2f}", ha="center", fontsize=8)
-        if i == best_i:
-            ax.scatter(
-                bar.get_x() + bar.get_width() / 2,
-                val + 0.012,
-                marker="*",
-                s=140,
-                color="gold",
-                edgecolors="black",
-                zorder=5,
-            )
     ax.grid(axis="y", alpha=0.2)
 
     ax = axes[1, 0]
@@ -255,31 +244,10 @@ def plot_granularity_panel(
     ax = axes[1, 1]
     ax.remove()
     ax = fig.add_subplot(2, 1, 2)
-    best_label, best_dp, best_auc = None, None, -1.0
     for label, dp, _kind in series:
         fpr, tpr, _ = roc_curve(dp["target"], dp["burden_score"])
         curve_auc = float(auc(fpr, tpr))
         ax.plot(fpr, tpr, lw=2, label=f"{label} (AUC={curve_auc:.2f})")
-        if curve_auc > best_auc:
-            best_auc, best_label, best_dp = curve_auc, label, dp
-    # Youden operating point of the best-AUC curve
-    if best_dp is not None:
-        from sliding_burden_alarm import summarize_decision_points
-
-        best_m = summarize_decision_points(best_dp)
-        ax.scatter(
-            [1 - best_m["specificity"]],
-            [best_m["sensitivity"]],
-            color="gold",
-            edgecolors="black",
-            marker="*",
-            s=180,
-            zorder=5,
-            label=(
-                f"Best Youden: {best_label} "
-                f"(AUC={best_auc:.3f}, θ={best_m['youden_threshold']:.2f})"
-            ),
-        )
     ax.plot([0, 1], [0, 1], "k--", alpha=0.4)
     ax.set_xlabel("FPR (1 – specificity)")
     ax.set_ylabel("TPR (sensitivity)")

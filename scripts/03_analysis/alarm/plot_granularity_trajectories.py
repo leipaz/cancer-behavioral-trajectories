@@ -34,6 +34,13 @@ _SCRIPT_DIR = Path(__file__).resolve().parent
 if str(_SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPT_DIR))
 
+from clock_schema import (  # noqa: E402
+    apply_clock,
+    clock_to_clinical,
+    default_clock_path,
+    load_clock,
+    strip_master_clock_fields,
+)
 from rolling_burden_alarm import (  # noqa: E402
     DAYS_PER_MONTH,
     PAPER_THRESHOLD,
@@ -88,6 +95,14 @@ def monthly_collapsed_from_master(root: Path) -> pd.DataFrame:
     return out
 
 
+def _complete_month_cap(days: np.ndarray | pd.Series, window: int = 30) -> float | None:
+    if len(days) == 0:
+        return None
+    n = float(np.max(np.asarray(days, dtype=float)))
+    cap = float(int(np.floor(n / window)) * window)
+    return cap if cap >= window else None
+
+
 def plot_patient_granularity(
     pid: int,
     daily: pd.DataFrame,
@@ -105,11 +120,22 @@ def plot_patient_granularity(
 
     event = int(g["Evento PD"].iloc[0])
     t_ev = float(g["t_evento_eb2"].iloc[0])
+    # Plots only: omit incomplete trailing month (<30 d of data)
+    cap = _complete_month_cap(g["study_day"])
+    if cap is not None:
+        g = g[g["study_day"] <= cap].copy()
     scored = add_rolling_burden(g, w_load_days=W, min_periods=1, score="mean")
 
     wk = add_collapsed_burden(weekly_c[weekly_c["id"] == pid], 7, W)
     bi = add_collapsed_burden(biweekly_c[biweekly_c["id"] == pid], 14, W)
     mo = add_collapsed_burden(monthly_c[monthly_c["id"] == pid], 30, W)
+    if cap is not None:
+        if not wk.empty and "decision_day" in wk.columns:
+            wk = wk[wk["decision_day"] <= cap].copy()
+        if not bi.empty and "decision_day" in bi.columns:
+            bi = bi[bi["decision_day"] <= cap].copy()
+        if not mo.empty and "decision_day" in mo.columns:
+            mo = mo[mo["decision_day"] <= cap].copy()
 
     days = scored["study_day"].to_numpy(int)
     puf = scored["pUF"].to_numpy(float)
@@ -186,7 +212,7 @@ def plot_patient_granularity(
         )
 
     ax.axhline(threshold, color="red", ls="--", lw=1.2, label=f"Threshold θ/W≈{threshold:.2f}")
-    if event == 1:
+    if event == 1 and (cap is None or t_ev <= cap + 1e-9):
         ax.axvline(t_ev, color="black", ls="--", lw=1.3, label=f"Progression (day {int(t_ev)})")
     ax.set_ylabel("pUF / burden")
     ax.set_title(
@@ -280,12 +306,15 @@ def plot_panel(
         axes = [axes]
 
     for ax, pid in zip(axes, patients):
-        g = daily[daily["id"] == pid].sort_values("study_day")
+        g = daily[daily["id"] == pid].sort_values("study_day").copy()
         if g.empty:
             ax.set_title(f"Patient {pid} — no data")
             continue
         event = int(g["Evento PD"].iloc[0])
         t_ev = float(g["t_evento_eb2"].iloc[0])
+        cap = _complete_month_cap(g["study_day"])
+        if cap is not None:
+            g = g[g["study_day"] <= cap].copy()
         scored = add_rolling_burden(g, w_load_days=W, min_periods=1, score="mean")
         days = scored["study_day"].to_numpy(int)
         puf = scored["pUF"].to_numpy(float)
@@ -303,6 +332,8 @@ def plot_panel(
             zorder=1,
         )
         mo_raw = monthly_c[monthly_c["id"] == pid].sort_values("decision_day")
+        if cap is not None and not mo_raw.empty and "decision_day" in mo_raw.columns:
+            mo_raw = mo_raw[mo_raw["decision_day"] <= cap]
         if len(mo_raw):
             # continuous polyline across months (same continuity feel as daily)
             ax.plot(
@@ -325,6 +356,8 @@ def plot_panel(
             (biweekly_c, 14, "#b15928", "Biweekly collapsed burden"),
         ]:
             df = add_collapsed_burden(df0[df0["id"] == pid], block, W)
+            if cap is not None and not df.empty:
+                df = df[df["decision_day"] <= cap]
             ok = df.dropna(subset=["burden_score"])
             if ok.empty:
                 continue
@@ -333,6 +366,8 @@ def plot_panel(
 
         # Monthly burden: continuous line month→month (paired with monthly pUF)
         mo_b = add_collapsed_burden(monthly_c[monthly_c["id"] == pid], 30, W)
+        if cap is not None and not mo_b.empty:
+            mo_b = mo_b[mo_b["decision_day"] <= cap]
         mo_ok = mo_b.dropna(subset=["burden_score"])
         if len(mo_ok):
             ax.plot(
@@ -355,7 +390,7 @@ def plot_panel(
             ax.scatter(days[mask], burden[mask], marker=marker, s=18, color=color, zorder=4, label=lab)
 
         ax.axhline(threshold, color="red", ls="--", lw=1.0)
-        if event == 1:
+        if event == 1 and (cap is None or t_ev <= cap + 1e-9):
             ax.axvline(t_ev, color="black", ls="--", lw=1.1)
         ax.set_ylim(0, 1)
         ax.set_ylabel("pUF / burden")
@@ -389,8 +424,24 @@ def main() -> None:
     parser.add_argument(
         "--threshold",
         type=float,
-        default=PAPER_THRESHOLD / 3,
-        help="Mean-pUF threshold (default paper θ/W = 1.61/3)",
+        default=None,
+        help="Mean-pUF threshold. Default: manuscript θ/W = 1.61/3.",
+    )
+    parser.add_argument(
+        "--paper-threshold",
+        action="store_true",
+        help="Use manuscript θ/W = 1.61/3 (same as default).",
+    )
+    parser.add_argument(
+        "--youden-threshold",
+        action="store_true",
+        help="Use Youden monthly (mean) from this analysis.",
+    )
+    parser.add_argument(
+        "--clock",
+        type=Path,
+        default=None,
+        help="User clock BBDD (default: data/revision/clock_bbdd.xlsx if present)",
     )
     args = parser.parse_args()
 
@@ -399,20 +450,69 @@ def main() -> None:
     figs = root / "results/alarm/figures"
     patients = [int(x.strip()) for x in args.patients.split(",") if x.strip()]
 
-    daily = pd.read_csv(tables / "daily_sliding_puf.csv")
-    weekly_c = pd.read_csv(tables / "collapsed_puf_weekly.csv")
-    biweekly_c = pd.read_csv(tables / "collapsed_puf_biweekly.csv")
-    monthly_c = monthly_collapsed_from_master(root)
+    clock_path = args.clock or default_clock_path(root)
+    clock = load_clock(clock_path) if clock_path.exists() else None
+    if clock is not None:
+        print(f"Using clock BBDD → {clock_path}")
+
+    def _maybe_clock(df: pd.DataFrame) -> pd.DataFrame:
+        return apply_clock(df, clock) if clock is not None else df
+
+    # Prefer clock-aligned tables from last granularity run if present
+    run_g = root / "results/alarm/runs/Evento_DB1_clock/granularity"
+    daily_path = run_g / "daily_sliding_puf_clock.csv"
+    if not daily_path.exists():
+        daily_path = tables / "daily_sliding_puf.csv"
+    daily = _maybe_clock(pd.read_csv(daily_path))
+
+    wpath = run_g / "collapsed_puf_weekly_clock.csv"
+    bpath = run_g / "collapsed_puf_biweekly_clock.csv"
+    weekly_c = _maybe_clock(pd.read_csv(wpath if wpath.exists() else tables / "collapsed_puf_weekly.csv"))
+    biweekly_c = _maybe_clock(
+        pd.read_csv(bpath if bpath.exists() else tables / "collapsed_puf_biweekly.csv")
+    )
+    if clock is not None:
+        master = strip_master_clock_fields(pd.read_excel(default_master_table_path(root)))
+        monthly_c = extract_monthly_puf_from_master(
+            master, clinical=clock_to_clinical(clock), root=root
+        )
+        monthly_c = apply_clock(monthly_c, clock)
+        if "decision_day" not in monthly_c.columns and "month" in monthly_c.columns:
+            monthly_c = monthly_c.copy()
+            monthly_c["decision_day"] = monthly_c["month"] * DAYS_PER_MONTH
+            monthly_c["period"] = monthly_c["month"]
+    else:
+        monthly_c = monthly_collapsed_from_master(root)
+
+    if args.youden_threshold:
+        metrics_path = root / "results/alarm/analysis_figures/metrics_table_W90_H120.csv"
+        run_metrics = root / "results/alarm/runs/Evento_DB1_clock/paper_W3_H4/alarm_metrics_W3_H4.csv"
+        if metrics_path.exists():
+            mt = pd.read_csv(metrics_path)
+            raw = float(mt.loc[mt.granularity == "monthly_collapsed", "youden_threshold"].iloc[0])
+        elif run_metrics.exists():
+            raw = float(pd.read_csv(run_metrics).iloc[0]["youden_theta"])
+        else:
+            raw = float(PAPER_THRESHOLD)
+        threshold = raw / 3.0 if raw > 1.0 else raw
+        print(f"Threshold: Youden monthly θ={threshold:.4f} (mean; raw={raw:.4f})")
+    elif args.threshold is not None:
+        threshold = float(args.threshold)
+        print(f"Threshold: user θ={threshold:.4f} (mean)")
+    else:
+        # 1.60/3 ≈ paper 1.61/3; see plot_patient_trajectories for rationale
+        threshold = 1.60 / 3.0
+        print(f"Threshold: manuscript-aligned θ/W={threshold:.4f} (paper {PAPER_THRESHOLD}/3)")
 
     for pid in patients:
         stem = figs / f"trajectory_patient_{pid}_W{args.W}"
         plot_patient_granularity(
-            pid, daily, weekly_c, biweekly_c, monthly_c, args.W, args.threshold, stem
+            pid, daily, weekly_c, biweekly_c, monthly_c, args.W, threshold, stem
         )
         print(f"Wrote {stem}.png/.svg")
 
     panel = figs / f"trajectories_panel_W{args.W}"
-    plot_panel(patients, daily, weekly_c, biweekly_c, monthly_c, args.W, args.threshold, panel)
+    plot_panel(patients, daily, weekly_c, biweekly_c, monthly_c, args.W, threshold, panel)
     print(f"Wrote {panel}.png/.svg")
 
 

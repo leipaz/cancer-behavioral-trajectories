@@ -29,11 +29,19 @@ _SCRIPT_DIR = Path(__file__).resolve().parent
 if str(_SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPT_DIR))
 
+from clock_schema import (  # noqa: E402
+    apply_clock,
+    clock_to_clinical,
+    default_clock_path,
+    load_clock,
+    strip_master_clock_fields,
+)
 from rolling_burden_alarm import (  # noqa: E402
     DAYS_PER_MONTH,
-    default_clinical_path,
+    PAPER_THRESHOLD,
     default_master_table_path,
     extract_monthly_puf_from_master,
+    metrics_at_threshold,
     project_root_from,
 )
 from sliding_burden_alarm import (  # noqa: E402
@@ -45,7 +53,6 @@ from sliding_burden_alarm import (  # noqa: E402
 )
 from plot_granularity_trajectories import (  # noqa: E402
     add_collapsed_burden,
-    monthly_collapsed_from_master,
 )
 
 GRAN_ORDER = [
@@ -115,48 +122,36 @@ def _clustered_auc_ci(
     return point, float(lo), float(hi)
 
 
-def load_obs_time_clock(root: Path) -> pd.DataFrame:
-    """Clinical follow-up clock used by the MAIN monthly baseline (n=1015)."""
-    clin = pd.read_excel(default_clinical_path(root))
-    clin.columns = [str(c).strip() for c in clin.columns]
-    id_col = "S_RECORD_id" if "S_RECORD_id" in clin.columns else "id"
-    out = clin[[id_col, "PD_event", "Obs_time"]].rename(
-        columns={id_col: "id", "PD_event": "Evento PD", "Obs_time": "Obs_time"}
-    )
-    out["id"] = out["id"].astype(int)
-    out["Evento PD"] = out["Evento PD"].astype(int)
-    out["Obs_time"] = out["Obs_time"].astype(float)
-    return out.drop_duplicates("id")
-
-
-def align_puf_to_obs_time(puf: pd.DataFrame, clock: pd.DataFrame) -> pd.DataFrame:
-    """Force event/censor times to ``Obs_time`` (same field as monthly 1015 baseline)."""
-    out = puf.copy()
-    m = out[["id"]].drop_duplicates().merge(clock, on="id", how="left")
-    if m["Obs_time"].isna().any():
-        missing = m.loc[m["Obs_time"].isna(), "id"].tolist()
-        raise ValueError(f"Missing Obs_time for ids: {missing[:10]}")
-    map_obs = m.set_index("id")["Obs_time"].to_dict()
-    map_ev = m.set_index("id")["Evento PD"].to_dict()
-    out["follow_up_days"] = out["id"].map(map_obs).astype(float)
-    out["t_evento_eb2"] = out["id"].map(map_obs).astype(float)  # Obs_time clock
-    out["Evento PD"] = out["id"].map(map_ev).astype(int)
-    out["event_time_field"] = "Obs_time"
-    return out
-
-
-def build_series(root: Path, w: int = 90, h: int = 120):
+def build_series(root: Path, w: int = 90, h: int = 120, clock_path: Path | None = None):
+    """Build decision-point series aligned to the user clock BBDD."""
     tables = root / "results/alarm/tables"
-    clock = load_obs_time_clock(root)
-    print("Aligning all granularities to clinical Obs_time (same clock as MAIN n=1015)…")
+    clock_path = clock_path or default_clock_path(root)
+    if not clock_path.exists():
+        raise FileNotFoundError(
+            f"Clock BBDD required: {clock_path}. "
+            "Build with: python scripts/03_analysis/alarm/clock_schema.py --from-audit-db1"
+        )
+    clock = load_clock(clock_path)
+    print(f"Aligning all granularities to user clock BBDD → {clock_path}")
 
-    daily_puf = align_puf_to_obs_time(pd.read_csv(tables / "daily_sliding_puf.csv"), clock)
-    master = pd.read_excel(default_master_table_path(root))
-    monthly_puf = align_puf_to_obs_time(extract_monthly_puf_from_master(master, root=root), clock)
-    collapsed = {
-        "weekly": align_puf_to_obs_time(pd.read_csv(tables / "collapsed_puf_weekly.csv"), clock),
-        "biweekly": align_puf_to_obs_time(pd.read_csv(tables / "collapsed_puf_biweekly.csv"), clock),
-    }
+    run_g = root / "results/alarm/runs/Evento_DB1_clock/granularity"
+    daily_src = run_g / "daily_sliding_puf_clock.csv"
+    if not daily_src.exists():
+        daily_src = tables / "daily_sliding_puf.csv"
+    daily_puf = apply_clock(pd.read_csv(daily_src), clock)
+
+    master = strip_master_clock_fields(pd.read_excel(default_master_table_path(root)))
+    monthly_puf = extract_monthly_puf_from_master(
+        master, clinical=clock_to_clinical(clock), root=root
+    )
+    monthly_puf = apply_clock(monthly_puf, clock)
+
+    collapsed = {}
+    for name in ("weekly", "biweekly"):
+        cpath = run_g / f"collapsed_puf_{name}_clock.csv"
+        if not cpath.exists():
+            cpath = tables / f"collapsed_puf_{name}.csv"
+        collapsed[name] = apply_clock(pd.read_csv(cpath), clock)
 
     series: list[tuple[str, str, pd.DataFrame]] = []
     for gran in ("daily", "weekly", "biweekly", "monthly_sample"):
@@ -171,29 +166,48 @@ def build_series(root: Path, w: int = 90, h: int = 120):
         )
         series.append((gran, "collapsed", dp))
 
-    # Prefer audited MAIN monthly landmarks (Obs_time clock, n=1015)
+    # Prefer paper monthly landmarks already built with the same clock
     main_monthly = tables / "decision_points_W3_H4.csv"
     if w == 90 and h == 120 and main_monthly.exists():
         dp_m = pd.read_csv(main_monthly)
         if "burden_score" not in dp_m.columns and "AUC_W" in dp_m.columns:
             dp_m = dp_m.rename(columns={"AUC_W": "burden_score"})
         dp_m["granularity"] = "monthly_collapsed"
-        print(f"  monthly_collapsed from {main_monthly.name} (n={len(dp_m)}, Obs_time)")
+        print(f"  monthly_collapsed from {main_monthly.name} (n={len(dp_m)}, clock BBDD)")
     else:
         dp_m = build_monthly_collapsed_decision_points(
             monthly_puf,
             w_months=int(round(w / DAYS_PER_MONTH)),
             h_months=int(round(h / DAYS_PER_MONTH)),
         )
-        print(f"  monthly_collapsed rebuilt with Obs_time (n={len(dp_m)})")
+        print(f"  monthly_collapsed rebuilt with clock BBDD (n={len(dp_m)})")
     series.append(("monthly_collapsed", "collapsed", dp_m))
-    return series, daily_puf, monthly_puf, collapsed
+    return series, daily_puf, monthly_puf, collapsed, clock
 
 
 def metrics_from_series(
     series: list[tuple[str, str, pd.DataFrame]], w: int, h: int
 ) -> pd.DataFrame:
     rows = [metrics_row_from_dp(gran, w, h, dp) for gran, _kind, dp in series]
+    # Monthly collapsed: report operating θ (PAPER_THRESHOLD), not Youden (~1.06).
+    for i, (gran, _kind, dp) in enumerate(series):
+        if gran != "monthly_collapsed":
+            continue
+        score = "AUC_W" if "AUC_W" in dp.columns else "burden_score"
+        m = metrics_at_threshold(dp, PAPER_THRESHOLD, score_col=score)
+        rows[i].update(
+            {
+                "youden_threshold": float(PAPER_THRESHOLD),
+                "sensitivity": m.sensitivity,
+                "specificity": m.specificity,
+                "PPV": m.ppv,
+                "NPV": m.npv,
+                "TP": m.tp,
+                "FN": m.fn,
+                "FP": m.fp,
+                "TN": m.tn,
+            }
+        )
     focus = pd.DataFrame(rows)
     focus["granularity"] = pd.Categorical(focus["granularity"], categories=GRAN_ORDER, ordered=True)
     focus = focus.sort_values("granularity").dropna(subset=["granularity"])
@@ -259,8 +273,8 @@ def plot_summary(
             cell.PAD = 0.02
         cell.set_edgecolor("#cccccc")
     ax_tab.set_title(
-        f"Metrics at Youden threshold (W={w} d, H={h} d)",
-        fontsize=11,
+        f"Metrics at operating θ (monthly θ={PAPER_THRESHOLD:.2f}; else Youden; W={w} d, H={h} d)",
+        fontsize=10,
         pad=8,
     )
 
@@ -340,6 +354,17 @@ def plot_summary(
     plt.close(fig)
 
 
+def _plot_cap_day(daily_pid: pd.DataFrame, window: float = DAYS_PER_MONTH) -> float | None:
+    """Last day to plot: end of last complete month of available data."""
+    if daily_pid.empty:
+        return None
+    n = float(daily_pid["study_day"].max())
+    if "n_days" in daily_pid.columns and daily_pid["n_days"].notna().any():
+        n = float(daily_pid["n_days"].iloc[0])
+    cap = float(int(np.floor(n / window)) * window)
+    return cap if cap >= window else None
+
+
 def plot_simplified_trajectory(
     pid: int,
     daily: pd.DataFrame,
@@ -356,8 +381,14 @@ def plot_simplified_trajectory(
 
     event = int(g["Evento PD"].iloc[0])
     t_ev = float(g["t_evento_eb2"].iloc[0])
+    # Plots only: do not draw the incomplete trailing month (<30 d)
+    cap = _plot_cap_day(g)
+    if cap is not None:
+        g = g[g["study_day"] <= cap].copy()
     scored = add_rolling_burden(g, w_load_days=W, min_periods=1, score="mean")
     mo = add_collapsed_burden(monthly_c[monthly_c["id"] == pid], 30, W, score="mean")
+    if cap is not None and not mo.empty and "decision_day" in mo.columns:
+        mo = mo[mo["decision_day"] <= cap].copy()
 
     days = scored["study_day"].to_numpy(int)
     puf = scored["pUF"].to_numpy(float)
@@ -427,10 +458,10 @@ def plot_simplified_trajectory(
             ls=":",
             lw=1.3,
             alpha=0.85,
-            label=f"Youden θ (monthly collapsed, mean-equiv) = {theta_monthly_mean:.3f}",
+            label=f"Youden θ (monthly collapsed, mean) = {theta_monthly_mean:.3f}",
         )
 
-    if event == 1 and np.isfinite(t_ev):
+    if event == 1 and np.isfinite(t_ev) and (cap is None or t_ev <= cap + 1e-9):
         ax.axvline(
             t_ev,
             color="black",
@@ -464,18 +495,25 @@ def main() -> None:
     parser.add_argument(
         "--patients",
         type=str,
-        default="62004,41006",
+        default="62004,23003,31002,41006",
         help="Simplified trajectory patient ids",
+    )
+    parser.add_argument(
+        "--clock",
+        type=Path,
+        default=None,
+        help="User clock BBDD (default: data/revision/clock_bbdd.xlsx)",
     )
     args = parser.parse_args()
 
     root = project_root_from(args.root)
     out = root / "results/alarm/analysis_figures"
     out.mkdir(parents=True, exist_ok=True)
-    tables = root / "results/alarm/tables"
 
     print("Building decision-point series…")
-    series, daily_puf, _monthly_puf, _collapsed = build_series(root, args.W, args.H)
+    series, daily_puf, monthly_puf, _collapsed, clock = build_series(
+        root, args.W, args.H, clock_path=args.clock
+    )
 
     focus = metrics_from_series(series, args.W, args.H)
     focus.to_csv(out / f"metrics_table_W{args.W}_H{args.H}.csv", index=False)
@@ -501,7 +539,7 @@ def main() -> None:
                 "n_patients": int(dp["id"].nunique()),
                 "n_boot": args.n_boot,
                 "ci_method": "patient-clustered bootstrap percentile 95%",
-                "event_time_field": "Obs_time",
+                "event_time_field": "clock_bbdd",
             }
         )
         print(f"  {gran}: {point:.3f} [{lo:.3f}, {hi:.3f}]")
@@ -512,15 +550,21 @@ def main() -> None:
     plot_summary(series, focus, auc_ci, stem, args.W, args.H)
     print(f"Wrote {stem}.png/.svg/.pdf")
 
-    # Construction-specific Youden thresholds (mean scale)
-    thr = pd.read_csv(
-        root / "results/alarm/analysis_outputs/thresholds_and_scales_W90_H120.csv"
+    # Trajectories / mean-scale line: same operating θ as baseline (PAPER_THRESHOLD).
+    theta_monthly_raw = float(PAPER_THRESHOLD)
+    theta_monthly = theta_monthly_raw / 3.0
+    theta_daily = theta_monthly
+    print(
+        f"Simplified thresholds (θ={theta_monthly_raw}): "
+        f"daily={theta_daily:.4f} (mean); "
+        f"monthly={theta_monthly:.4f} (mean)"
     )
-    thr = thr.set_index("granularity")
-    theta_daily = float(thr.loc["daily", "youden_threshold_mean_equiv"])
-    theta_monthly = float(thr.loc["monthly_collapsed", "youden_threshold_mean_equiv"])
 
-    monthly_c = monthly_collapsed_from_master(root)
+    monthly_c = monthly_puf.copy()
+    if "decision_day" not in monthly_c.columns and "month" in monthly_c.columns:
+        monthly_c["decision_day"] = monthly_c["month"] * DAYS_PER_MONTH
+        monthly_c["period"] = monthly_c["month"]
+
     patients = [int(x.strip()) for x in args.patients.split(",") if x.strip()]
     for pid in patients:
         tstem = out / f"trajectory_patient_{pid}_W{args.W}_simplified"
@@ -540,23 +584,23 @@ def main() -> None:
         f"""# Analysis figures (high resolution)
 
 Delivery figures for the granularity summary and simplified patient trajectories.
+These are the figures to show in the report (clean tables, **no** winner star).
 
 | File | Content |
 |------|---------|
-| `summary_granularities_W{args.W}_H{args.H}.{{png,svg,pdf}}` | Metrics table (exact Youden operating points) + AUROC points with **patient-clustered bootstrap 95% CI** + ROC overlay (**no** winner star) |
-| `metrics_table_W{args.W}_H{args.H}.csv` | Exact Sens/Spec/PPV/NPV/AUROC values shown in the table panel |
+| `summary_granularities_W{args.W}_H{args.H}.{{png,svg,pdf}}` | Metrics table + AUROC with patient-bootstrap 95% CI + ROC (**no** winner star) |
+| `metrics_table_W{args.W}_H{args.H}.csv` | Exact Sens/Spec/PPV/NPV/AUROC |
 | `auc_ci_W{args.W}_H{args.H}.csv` | AUROC point estimates and 95% CIs |
-| `trajectory_patient_62004_W{args.W}_simplified.*` | PD example: daily sliding pUF + daily/sampled burden vs monthly collapsed pUF/burden (mean scale) |
-| `trajectory_patient_41006_W{args.W}_simplified.*` | No-PD example, same construction |
+| `trajectory_patient_*_W{args.W}_simplified.*` | Simplified sampled vs monthly collapsed trajectories |
+
+`results/alarm/figures/` holds working plots (ROC alone, W×H heatmaps, full trajectory panels). Prefer **analysis_figures** for the report summary panel.
 
 ### Notes
 
-- **AUROC CI:** patient-clustered bootstrap (resample patients with replacement; {args.n_boot} reps, seed={args.seed}).
-- **Clinical clock:** **all** granularities in this figure use **`Obs_time`** (same field as the audited monthly baseline, n=1015). Sampled/collapsed pUF tables are aligned to `Subjects_data.Obs_time` before building decision points.
-- **Monthly collapsed** landmarks come from `tables/decision_points_W3_H4.csv` (Obs_time clock, n=1015).
-- **Trajectories:** thresholds are **construction-specific** Youden values on the **mean** scale (daily sampled vs monthly collapsed mean-equivalent), each labelled — not a shared validated cut-off. Progression day uses Obs_time.
+- **AUROC CI:** patient-clustered bootstrap ({args.n_boot} reps, seed={args.seed}).
+- **Clinical clock:** user clock BBDD (`data/revision/clock_bbdd.xlsx`) for all granularities.
 - Raster exports at **{DPI} dpi**.
-- Regenerated by: `scripts/03_analysis/alarm/plot_analysis_figures.py`
+- Regenerated by: `scripts/03_analysis/alarm/plot_analysis_figures.py --clock …`
 """,
         encoding="utf-8",
     )

@@ -19,7 +19,7 @@ from sklearn.metrics import roc_auc_score, roc_curve
 
 UNFAVOURABLE_TOPICS = (3, 4, 5)
 DAYS_PER_MONTH = 30.0
-PAPER_THRESHOLD = 1.61
+PAPER_THRESHOLD = 1.60
 
 
 def project_root_from(path: Path | None = None) -> Path:
