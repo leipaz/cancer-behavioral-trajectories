@@ -1,0 +1,7 @@
+a,b,both,only_a,only_b,raw_tp,raw_tp_lo,raw_tp_hi,issued_tp,issued_tp_lo,issued_tp_hi
+Daily,Weekly,42,53001,22001,0.0,0.0,3.0,0.0,0.0,2.5
+Daily,Every 14 days,42,53001,—,0.5,0.0,5.5,0.0,0.0,2.5
+Daily,Every 30 days,43,—,—,3.0,1.0,11.0,0.0,0.0,0.0
+Weekly,Every 14 days,42,22001,—,0.0,0.0,0.0,0.0,0.0,0.0
+Weekly,Every 30 days,42,22001,53001,1.0,0.0,7.5,0.0,0.0,0.0
+Every 14 days,Every 30 days,42,—,53001,0.0,0.0,5.0,0.0,0.0,0.0

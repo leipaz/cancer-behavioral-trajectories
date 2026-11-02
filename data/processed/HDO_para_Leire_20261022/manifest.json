@@ -1,0 +1,27 @@
+{
+  "input": "1 178_audit_oct_2_2026_topics_revision(1).xlsx",
+  "sha256": "ce8a3fab1f51d4043cc10aa021323b4e09fa07924ce74c7da97ab3e239fba3c8",
+  "primary": [
+    3,
+    4
+  ],
+  "threshold": 1.0596384140662845,
+  "selection": "Exhaustive Youden; lowest cut if tied; score >= cut",
+  "bootstrap": 2000,
+  "seed": 20261020,
+  "CI_scope": "Fixed selected cut; no optimism correction",
+  "scope": "Apparent development performance; DB1 only; no representation refit",
+  "source_N": 178,
+  "source_events": 60,
+  "code_version": "HDO-DB1-exhaustive-2cells-v1.0-20261022",
+  "versions": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scipy": "1.17.0"
+  },
+  "cell1_sha256": "bf90c8e9842be1ad26d15e3696e47d5440787162c205f1a8dc0093fc3fbad4f5",
+  "cell2_sha256": "cd6eca24bc011b441b7ccad88f92a4b9714f940a934fcf12c4896f795c0564a6",
+  "input_reader_internal": "artifact_tool; the portable notebook uses pandas.read_excel",
+  "amendment_status": "Draft; post hoc development decision, not signed or prospectively specified"
+}

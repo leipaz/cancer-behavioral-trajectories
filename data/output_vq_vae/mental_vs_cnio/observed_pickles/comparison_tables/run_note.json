@@ -1,0 +1,11 @@
+{
+  "mental_source": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/data/daily_summaries/daily_mental/daily_summary_eb2prod_may26.csv",
+  "cnio_source": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/data/daily_summaries/DB1/daily_summary_checked.csv",
+  "model": "models/vq-vae/vqvae_a0.pt",
+  "n_per_mental_cohort": 90,
+  "tmc_n": 51,
+  "cnio_n": 175,
+  "seed": 123,
+  "days_counted": "observed feature-days only; densified calendar gaps excluded",
+  "elapsed_s": 90.8
+}

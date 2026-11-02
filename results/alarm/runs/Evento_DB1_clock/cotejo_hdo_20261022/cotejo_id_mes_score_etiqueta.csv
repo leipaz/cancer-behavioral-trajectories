@@ -1,0 +1,2 @@
+n_hdo,n_local,n_both,n_only_hdo,n_only_local,max_abs_score,max_abs_pUF,max_abs_day,n_label_mismatch,n_event_mismatch,theta,TP,FN,FP,TN
+1016,1016,1016,0,0,1.3322676295501878e-15,4.440892098500626e-16,0.0,0,0,1.0596384140662845,137,19,473,387

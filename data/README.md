@@ -24,6 +24,17 @@ data/
 
 ---
 
+
+## DB windows (DB1 / DB2 / DB3)
+
+Keep **dailys** and **clinic dates** in separate trees, one folder per DB:
+
+| Kind | Path |
+|------|------|
+| Daily (filtered) | `daily_summaries/DB1|DB2|DB3/daily_summary_checked.csv` |
+| Clinic dates (original) | `processed/clinical/DB1|DB2|DB3/fechas_cnio_oct_2_2026.xlsx` |
+| Analysis outputs | `results/by_db/DB1|DB2|DB3/` or `results/alarm/runs/<run_id>/` |
+
 ## Pipeline data (detail)
 
 ### `daily_summaries/`
