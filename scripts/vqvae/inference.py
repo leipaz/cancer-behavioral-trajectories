@@ -19,7 +19,11 @@ def set_reproducible(seed):
         torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
-    torch.use_deterministic_algorithms(True, warn_only=True)
+    try:
+        torch.use_deterministic_algorithms(True, warn_only=True)
+    except TypeError:
+        # Older torch (<2.0) has no warn_only
+        torch.use_deterministic_algorithms(True)
 
 def save_profiles(profiles, output_path):
     output_path = Path(output_path)

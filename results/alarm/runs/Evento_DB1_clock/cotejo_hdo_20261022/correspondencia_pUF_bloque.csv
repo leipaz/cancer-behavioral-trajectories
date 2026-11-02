@@ -1,0 +1,2 @@
+n_monthly_blocks,n_with_daily_at_same_day,n_daily_missing,n_abs_diff_lt_1e-3,n_abs_diff_lt_1e-2,n_abs_diff_ge_1e-2,median_abs_diff,max_abs_diff
+1823,1655,168,1636,1651,4,4.590023308992386e-06,0.1005016490817071

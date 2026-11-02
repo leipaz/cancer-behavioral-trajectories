@@ -1,15 +1,19 @@
-# Daily summaries (DB1 date window)
+# Daily summaries
 
-Only these three for analysis (plus legacy `oncology_*` / zip archives):
+## By clinical DB window (current)
 
-| File | Role |
-|------|------|
-| `daily_datesdb1.csv` | Oficial filtrado por fechas DB1/CNIO + dedup. **Sin** limpieza de valores ni VQ CLIP |
-| `daily_datesdb1_enriched.csv` | Igual + 7 features enriched (`total_unlocks`, `total_communication`, `total_social_networks`, `total_others`, `deep_time`, `light_time`, `rem_time`) |
-| `daily_datesdb1_enriched_preprocess.csv` | Enriched + control de calidad: HR −1→NaN; tiempos ±24 h / ≤24 h → NaN. **Sin** VQ CLIP |
+Dailys **filtered to CNIO dates** for each database. One folder per DB:
 
-**Preprocess time rules**
+| Path | Source dates | Role |
+|------|----------------|------|
+| [`DB1/daily_summary_checked.csv`](DB1/daily_summary_checked.csv) | DB1 Oct 2 2026 | Daily filtered to DB1 window |
+| [`DB2/daily_summary_checked.csv`](DB2/daily_summary_checked.csv) | DB2 Oct 2 2026 | Daily filtered to DB2 window |
+| [`DB2/daily_summary_from_study_start_to_fin_DB2.csv`](DB2/daily_summary_from_study_start_to_fin_DB2.csv) | study start → Fin_datos_DB2 | **Extended** (DB1∪DB2) for topics anchored on inicio — see `results/by_db/DB2/PASOS_topics_anclados_inicio.md` |
+| [`DB3/daily_summary_checked.csv`](DB3/daily_summary_checked.csv) | DB3 Oct 2 2026 | Daily filtered to DB3 window |
 
-- `sleep_start`, `sleep_end_time`: fuera de **[−86400, +86400]** → NaN
-- Duraciones en segundos: fuera de **[0, 86400]** → NaN
-- `location_time_home`, `location_time_work` (min): fuera de **[0, 1440]** → NaN
+Clinical date tables (original CNIO Excel) live separately in
+[`../processed/clinical/DB1|DB2|DB3/`](../processed/clinical/).
+
+## Legacy (root of this folder)
+
+Older single-window files (`daily_datesdb1*.csv`, `oncology_*`, zips). Prefer `DB1/` / `DB2/` / `DB3/` for new work.

@@ -1,0 +1,27 @@
+{
+  "cohorts": [
+    "CI",
+    "ED1",
+    "GM",
+    "SR",
+    "TMC",
+    "CNIO"
+  ],
+  "n_day_types": 256,
+  "mode": "a0",
+  "top_n_window": 30,
+  "artifacts": {
+    "occupancy_csv": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/data/output_vq_vae/mental_vs_cnio/observed_pickles/comparison_tables/daytype_occupancy_by_cohort.csv",
+    "top_profiles_csv": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/data/output_vq_vae/mental_vs_cnio/observed_pickles/comparison_tables/top_daytypes_decoded_by_cohort.csv",
+    "weighted_decoded_csv": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/data/output_vq_vae/mental_vs_cnio/observed_pickles/comparison_tables/usage_weighted_decoded_by_cohort.csv",
+    "codebook_z_csv": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/data/output_vq_vae/mental_vs_cnio/observed_pickles/comparison_tables/codebook_decoded_zscore.csv",
+    "js_csv": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/data/output_vq_vae/mental_vs_cnio/observed_pickles/comparison_tables/occupancy_js_divergence.csv",
+    "fig_occupancy": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/vq-vae/figures/mental_vs_cnio/occupancy_top_daytypes_heatmap.png",
+    "fig_enrichment": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/vq-vae/figures/mental_vs_cnio/enrichment_top_daytypes_heatmap.png",
+    "fig_decoded": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/vq-vae/figures/mental_vs_cnio/decoded_signature_by_cohort.png",
+    "fig_top_decoded": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/vq-vae/figures/mental_vs_cnio/top_daytypes_decoded_grid.png",
+    "fig_behavioral_bars": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/vq-vae/figures/mental_vs_cnio/behavioral_patterns_top_daytypes_by_cohort.png",
+    "fig_cohort_mean_bars": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/vq-vae/figures/mental_vs_cnio/behavioral_patterns_cohort_means.png",
+    "fig_js": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/vq-vae/figures/mental_vs_cnio/occupancy_js_divergence.png"
+  }
+}

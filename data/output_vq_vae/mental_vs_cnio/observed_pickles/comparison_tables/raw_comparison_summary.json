@@ -1,0 +1,22 @@
+{
+  "n_patients": 586,
+  "n_oncology": 175,
+  "n_mental": 411,
+  "n_features_significant_fdr_05": 6,
+  "features_significant": [
+    "practiced_sport",
+    "sleep_duration",
+    "location_time_home",
+    "steps_steps_total",
+    "app_usage_total",
+    "sleep_start"
+  ],
+  "artifacts": {
+    "patient_means_csv": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/data/output_vq_vae/mental_vs_cnio/observed_pickles/comparison_tables/raw_patient_feature_means.csv",
+    "cohort_summary_csv": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/data/output_vq_vae/mental_vs_cnio/observed_pickles/comparison_tables/raw_cohort_feature_means.csv",
+    "tests_csv": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/data/output_vq_vae/mental_vs_cnio/observed_pickles/comparison_tables/raw_oncology_vs_mental_tests.csv",
+    "fig_raw_cohort_z": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/vq-vae/figures/mental_vs_cnio/raw_behavioral_patterns_cohort_means.png",
+    "fig_raw_box": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/vq-vae/figures/mental_vs_cnio/raw_oncology_vs_mental_boxplots.png",
+    "fig_raw_vs_vqvae": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/vq-vae/figures/mental_vs_cnio/raw_vs_vqvae_oncology_mental_deltas.png"
+  }
+}

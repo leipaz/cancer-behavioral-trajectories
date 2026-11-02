@@ -12,6 +12,7 @@ import pickle
 import shutil
 import subprocess
 import sys
+from datetime import datetime
 from pathlib import Path
 
 import numpy as np
@@ -102,40 +103,35 @@ def step_embeddings(pkl_path: Path, model_type: str = "a0", n: int = 30) -> Path
     emb_csv = REV / "user_embeddings_revision_a0.csv"
     emb_df[["user_id", "embedding_ids"]].to_csv(emb_csv, index=False)
 
-    # Day table for monthly + alarm builders (clinical merge)
-    clinical_path = PROJECT_ROOT / "data/processed/clinical/Subjects_data.xlsx"
-    clin = pd.read_excel(clinical_path)
-    # flexible id / event columns
-    id_col = next(c for c in clin.columns if str(c).lower() in {"s_record_id", "id"})
-    clin = clin.rename(columns={id_col: "id"})
-    clin["id"] = clin["id"].astype(int)
-
-    event_col = next(
-        (c for c in clin.columns if str(c).lower() in {"pd_event", "evento_pd", "event"}),
-        None,
-    )
-    obs_col = next(
-        (c for c in clin.columns if str(c).lower() in {"obs_time", "tiempo_obs", "obs_time_final"}),
-        None,
-    )
-    start_col = next(
-        (c for c in clin.columns if "start" in str(c).lower() and "hdm" in str(c).lower()),
-        None,
-    )
+    # Day table for LDA / pUF builders. Event/FU clock comes from user BBDD
+    # (data/revision/clock_bbdd.xlsx), never from Subjects Obs_time.
+    sys.path.insert(0, str(PROJECT_ROOT / "scripts/03_analysis/alarm"))
+    from clock_schema import default_clock_path, load_clock  # noqa: E402
 
     day = emb_df[["id", "embedding_ids", "n_days", "n_observed"]].copy()
-    keep = ["id"]
-    if event_col:
-        clin["pd_event"] = clin[event_col]
-        keep.append("pd_event")
-    if obs_col:
-        clin["obs_time_final"] = clin[obs_col]
-        keep.append("obs_time_final")
-    if start_col:
-        clin["date_start_hdm"] = pd.to_datetime(clin[start_col], errors="coerce")
-        keep.append("date_start_hdm")
 
-    # Official rangos windows
+    clock_path = default_clock_path(PROJECT_ROOT)
+    if clock_path.exists():
+        clock = load_clock(clock_path)
+        day = day.merge(
+            clock[["id", "evento", "t_evento", "fecha_inicio", "fecha_fin"]],
+            on="id",
+            how="left",
+        )
+        day["pd_event"] = day["evento"].fillna(0).astype(int)
+        day["obs_time_final"] = day["t_evento"].fillna(day["n_days"]).astype(float)
+        day["date_start_clock"] = day["fecha_inicio"]
+        print(f"Merged user clock BBDD → {clock_path} (n={len(clock)})")
+    else:
+        print(
+            f"WARNING: no clock BBDD at {clock_path}; "
+            "pd_event/obs_time_final fall back to n_days placeholders. "
+            "Build with: python scripts/03_analysis/alarm/clock_schema.py --from-audit-db1"
+        )
+        day["pd_event"] = 0
+        day["obs_time_final"] = day["n_days"]
+
+    # Official rangos windows (data coverage extremes; not alarm landmarks)
     rangos = pd.read_excel(REV / "rangos_fechas.xlsx").rename(
         columns={
             "S_RECORD_id": "id",
@@ -144,15 +140,8 @@ def step_embeddings(pkl_path: Path, model_type: str = "a0", n: int = 30) -> Path
         }
     )
     rangos["id"] = rangos["id"].astype(int)
-
-    day = day.merge(clin[keep].drop_duplicates("id"), on="id", how="left")
     day = day.merge(rangos[["id", "inicio_oficial", "fin_oficial"]], on="id", how="left")
 
-    # pd_event_diff ≈ obs_time for alarm builders when missing
-    if "pd_event" not in day.columns:
-        day["pd_event"] = 0
-    if "obs_time_final" not in day.columns:
-        day["obs_time_final"] = day["n_days"]
     day["pd_event_diff"] = day["obs_time_final"]
 
     day_csv = REV / "PD_cutoff_topics_revision_a0.csv"
@@ -313,47 +302,71 @@ def step_alarms(args) -> None:
     tables = PROJECT_ROOT / "results/alarm/tables"
     tables.mkdir(parents=True, exist_ok=True)
 
+    clock_path = Path(args.clock) if args.clock else (REV / "clock_bbdd.xlsx")
+    if not clock_path.exists():
+        raise FileNotFoundError(
+            f"Clock BBDD required for alarms: {clock_path}\n"
+            "Build with: python scripts/03_analysis/alarm/clock_schema.py --from-audit-db1"
+        )
+
+    run_id = args.run_id or datetime.now().strftime("%Y%m%d_%H%M%S")
+
     # Explicit rebuild with revision day table (avoid stale CNIO path).
+    if not args.monthly_only:
+        _run(
+            [
+                PY,
+                str(PROJECT_ROOT / "scripts/03_analysis/alarm/build_daily_sliding_puf.py"),
+                "--topics-day-csv",
+                str(day_csv),
+                "--out-csv",
+                str(tables / "daily_sliding_puf.csv"),
+            ],
+            "5a/5 Rebuild daily sliding pUF",
+        )
+        _run(
+            [
+                PY,
+                str(PROJECT_ROOT / "scripts/03_analysis/alarm/build_collapsed_puf.py"),
+                "--topics-day-csv",
+                str(day_csv),
+                "--block-size",
+                "7",
+                "14",
+                "--out-dir",
+                str(tables),
+            ],
+            "5b/5 Rebuild collapsed weekly/biweekly pUF",
+        )
+
+    # Paper baseline — clock BBDD is the only event/censor source
     _run(
         [
             PY,
-            str(PROJECT_ROOT / "scripts/03_analysis/alarm/build_daily_sliding_puf.py"),
-            "--topics-day-csv",
-            str(day_csv),
-            "--out-csv",
-            str(tables / "daily_sliding_puf.csv"),
+            str(PROJECT_ROOT / "scripts/03_analysis/alarm/run_paper_alarm.py"),
+            "--clock",
+            str(clock_path),
+            "--run-id",
+            run_id,
         ],
-        "5a/5 Rebuild daily sliding pUF",
-    )
-    _run(
-        [
-            PY,
-            str(PROJECT_ROOT / "scripts/03_analysis/alarm/build_collapsed_puf.py"),
-            "--topics-day-csv",
-            str(day_csv),
-            "--block-size",
-            "7",
-            "14",
-            "--out-dir",
-            str(tables),
-        ],
-        "5b/5 Rebuild collapsed weekly/biweekly pUF",
+        "5c/5 Paper alarm W=3 H=4 (user clock BBDD)",
     )
 
-    cmd = [
-        PY,
-        str(PROJECT_ROOT / "scripts/03_analysis/alarm/run_alarm_pipeline.py"),
-        "--skip-lda",  # pUF just rebuilt above from revision embeddings
-    ]
-    if args.monthly_only:
-        cmd = [
+    if args.with_granularity and not args.monthly_only:
+        gran_cmd = [
             PY,
-            str(PROJECT_ROOT / "scripts/03_analysis/alarm/run_alarm_pipeline.py"),
-            "--monthly-only",
+            str(PROJECT_ROOT / "scripts/03_analysis/alarm/run_granularity_experiment.py"),
+            "--clock",
+            str(clock_path),
+            "--run-id",
+            run_id,
         ]
-    if args.with_trajectories and not args.monthly_only:
-        cmd.append("--with-trajectories")
-    _run(cmd, "5c/5 Alarm granularity sweep + report")
+        _run(gran_cmd, "5d/5 Granularity experiment (user clock BBDD)")
+    else:
+        print(
+            "\nSkipping granularity experiment "
+            "(pass --with-granularity to enable; or run run_granularity_experiment.py)"
+        )
 
 
 def main() -> None:
@@ -370,7 +383,28 @@ def main() -> None:
     parser.add_argument("--skip-vqvae", action="store_true")
     parser.add_argument("--from-step", type=int, default=1, help="1=vqvae … 5=alarms")
     parser.add_argument("--monthly-only", action="store_true")
-    parser.add_argument("--with-trajectories", action="store_true")
+    parser.add_argument(
+        "--with-trajectories",
+        action="store_true",
+        help="(legacy no-op in step 5; trajectories stay in separate plot scripts)",
+    )
+    parser.add_argument(
+        "--clock",
+        type=Path,
+        default=None,
+        help="Universal clock BBDD (default: data/revision/clock_bbdd.xlsx)",
+    )
+    parser.add_argument(
+        "--with-granularity",
+        action="store_true",
+        help="Also run granularity experiment after paper alarm",
+    )
+    parser.add_argument(
+        "--run-id",
+        type=str,
+        default=None,
+        help="Output folder name under results/alarm/runs/",
+    )
     args = parser.parse_args()
 
     day_csv = REV / "PD_cutoff_topics_revision_a0.csv"
@@ -389,7 +423,7 @@ def main() -> None:
 
     print("\n✓ Revision pipeline finished.")
     print(f"Artifacts under {REV}")
-    print(f"Alarm outputs under {PROJECT_ROOT / 'results/alarm'}")
+    print(f"Alarm outputs under {PROJECT_ROOT / 'results/alarm/runs'}")
 
 
 if __name__ == "__main__":

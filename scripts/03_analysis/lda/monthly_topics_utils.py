@@ -23,10 +23,14 @@ def get_topic_distributions_and_predominant_topics_relaxedwindow(
     window_size: int = 30,
     min_embeddings: int = 15,
     verbose: bool = False,
+    drop_incomplete_tail: bool = False,
 ) -> Tuple[List[List[float]], List[int]]:
-    """
-    Sliding 30-day windows; incomplete final block uses last ``window_size`` days.
-    Patients with fewer than ``min_embeddings`` days are skipped.
+    """Non-overlapping ``window_size``-day blocks for monthly topics.
+
+    Default (``drop_incomplete_tail=False``): **paper / relaxed** behaviour — an
+    incomplete final block uses the last ``window_size`` days (may overlap the
+    previous month). Set ``drop_incomplete_tail=True`` to keep only complete
+    blocks and discard the trailing ``n % window_size`` days.
     """
     row = df[df["id"] == patient_id]
     if row.empty:
@@ -48,6 +52,26 @@ def get_topic_distributions_and_predominant_topics_relaxedwindow(
     topic_distributions: List[List[float]] = []
     predominant_topics: List[int] = []
 
+    if drop_incomplete_tail:
+        # Keep only full months: days [0,30), [30,60), … — drop n % 30 remainder
+        n_full = (n_embeddings // window_size) * window_size
+        if n_full < window_size:
+            if verbose:
+                print(
+                    f"[-] ID {patient_id}: no complete {window_size}-day month "
+                    f"({n_embeddings} days)."
+                )
+            return [], []
+        for start in range(0, n_full, window_size):
+            window = embedding_ids[start : start + window_size]
+            bow = dictionary.doc2bow([str(tok) for tok in window])
+            topics = lda_model.get_document_topics(bow, minimum_probability=0.0)
+            probs = [prob for _, prob in sorted(topics, key=lambda x: x[0])]
+            topic_distributions.append(probs)
+            predominant_topics.append(max(topics, key=lambda x: x[1])[0])
+        return topic_distributions, predominant_topics
+
+    # Legacy relaxed behaviour: incomplete final block uses last window_size days
     if min_embeddings <= n_embeddings < window_size:
         window = embedding_ids
         bow = dictionary.doc2bow([str(tok) for tok in window])
