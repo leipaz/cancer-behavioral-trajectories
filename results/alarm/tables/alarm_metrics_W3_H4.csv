@@ -1,2 +1,0 @@
-setting,event_time,n_decision_points,n_patients,n_positives,roc_auc,paper_threshold,sens_paper,spec_paper,ppv_paper,npv_paper,tp,fn,fp,tn,youden_threshold,sens_youden,spec_youden,ppv_youden,npv_youden
-"W=3, H=4",Subjects_data.Obs_time,1015,115,159,0.7042114853347439,1.61,0.7044025157232704,0.6261682242990654,0.25925925925925924,0.9193825042881647,112,47,320,536,1.6107623935677098,0.7044025157232704,0.6261682242990654,0.25925925925925924,0.9193825042881647
