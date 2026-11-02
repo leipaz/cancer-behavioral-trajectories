@@ -1,0 +1,2 @@
+source_Subjects,source_DB1,n_Subjects,n_DB1,n_conserved,n_salen,n_entran,positives_Subjects,positives_DB1,patients_Subjects,patients_DB1
+results/alarm/tables/decision_points_W3_H4_Obs_time.csv,results/alarm/tables/decision_points_W3_H4_Evento_DB1_Fin.csv,1015,1016,1011,4,5,159,156,115,116
