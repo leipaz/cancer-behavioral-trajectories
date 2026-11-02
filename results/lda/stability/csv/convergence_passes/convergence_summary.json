@@ -1,0 +1,28 @@
+{
+  "budgets": [
+    100,
+    1000,
+    5000
+  ],
+  "by_comparison": {
+    "100_vs_1000": {
+      "n": 10,
+      "mean_cosine_hungarian_median": 0.9929152690960613,
+      "mean_cosine_hungarian_min": 0.9414491638375733,
+      "puf_pearson_between_budgets_median": 0.991079768922514,
+      "puf_pearson_between_budgets_min": 0.9570906178824288,
+      "delta_bound_median": 140.4833576977253
+    },
+    "100_vs_5000": {
+      "n": 10,
+      "mean_cosine_hungarian_median": 0.9924025635545872,
+      "mean_cosine_hungarian_min": 0.9391646424776964,
+      "puf_pearson_between_budgets_median": 0.9909803757762685,
+      "puf_pearson_between_budgets_min": 0.9546471252205776,
+      "delta_bound_median": 153.47195914387703
+    }
+  },
+  "conclusion": "100 passes already close to 1000 on this fixed design (topic cosine and pUF); keep replicate budget at 100 unless a higher budget shows a material gap.",
+  "sufficient_heuristic": true,
+  "compared_to": 1000
+}

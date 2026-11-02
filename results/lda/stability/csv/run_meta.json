@@ -1,0 +1,20 @@
+{
+  "label": "reconciled_CNIO_DB1",
+  "profiles_csv": "data/processed/lda/user_embeddings_from_pkl.csv",
+  "profiles_csv_alias": "data/revision/user_embeddings_revision_a0.csv",
+  "daily_summary_db1": "data/daily_summaries/DB1/daily_summary_checked.csv",
+  "daily_summary_reference_train": "data/daily_summaries/oncology_daily_summary_model_input.csv",
+  "reference_train_lock": "PMP_lock_2025-09-11",
+  "date_comparison_csv": "results/lda/stability/comparacion_fechas_PMP_lock_vs_DB1_por_paciente.csv",
+  "reference_model": "models/lda/LDA_model_vdec25.gensim",
+  "dictionary": "models/lda/dictionary_LDA_vdec25.dict",
+  "n_reps": 50,
+  "passes": 100,
+  "leave_out": 0.2,
+  "num_topics": 6,
+  "coherence_k_list": [2, 6, 10, 14, 18],
+  "coherence_n_inits": 5,
+  "coherence_passes": 50,
+  "coherence_seed": 42,
+  "note": "Stability/K-sweep documents are DB1-reconciled embeddings. Published LDA_model_vdec25 was trained on PMP lock 2025-09-11 and is not re-trained. Reconciliation changes replicate/inference documents, not reference weights."
+}

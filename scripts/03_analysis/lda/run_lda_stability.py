@@ -29,6 +29,8 @@ from gensim.models import LdaModel
 from scipy.optimize import linear_sum_assignment
 from scipy.stats import pearsonr
 
+DEFAULT_REPLICA_MODELS_DIR = Path("results/lda/stability/replica_models")
+
 _SCRIPT_DIR = Path(__file__).resolve().parent
 if str(_SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPT_DIR))
@@ -113,12 +115,12 @@ def plot_level(
 
     ax = axes[0, 0]
     data = [by_topic.loc[by_topic.ref_topic == t, "cosine_similarity"].to_numpy() for t in range(6)]
-    ax.boxplot(data, tick_labels=[f"T{t}" for t in range(6)], showfliers=False)
+    ax.boxplot(data, labels=[f"T{t}" for t in range(6)], showfliers=False)
     for t, ys in enumerate(data):
         color = "#c44e52" if t >= 3 else "#4c72b0"
         ax.scatter(np.full(len(ys), t + 1), ys, alpha=0.35, s=12, color=color)
-    ax.axhline(0.9, color="green", ls="--", lw=1.2, label="0.9")
-    ax.set_ylim(0.3, 1.05)
+    ax.axhline(0.9, color="green", ls="--", lw=1.2, label="0.9 (visual guide)")
+    ax.set_ylim(0.0, 1.0)
     ax.set_ylabel("Cosine similarity to reference")
     ax.set_title("A. Six topics (aligned profile distributions)")
     ax.legend(fontsize=8)
@@ -129,13 +131,14 @@ def plot_level(
         per_rep["fav_cosine"].to_numpy(),
         per_rep["unfav_cosine"].to_numpy(),
     ]
-    ax.boxplot(hyp, tick_labels=["Favourable\n(T0–2)", "Unfavourable\n(T3–5)"], showfliers=False)
+    ax.boxplot(hyp, labels=["Favourable\n(T0–2)", "Unfavourable\n(T3–5)"], showfliers=False)
     ax.scatter(np.full(len(hyp[0]), 1), hyp[0], alpha=0.4, s=14, color="#4c72b0")
     ax.scatter(np.full(len(hyp[1]), 2), hyp[1], alpha=0.4, s=14, color="#c44e52")
-    ax.axhline(0.9, color="green", ls="--", lw=1.2)
-    ax.set_ylim(0.3, 1.05)
+    ax.axhline(0.9, color="green", ls="--", lw=1.2, label="0.9 (visual guide)")
+    ax.set_ylim(0.0, 1.0)
     ax.set_ylabel("Cosine similarity to reference")
     ax.set_title("B. Two hypertopics (mixed profiles)")
+    ax.legend(fontsize=8)
     ax.grid(axis="y", alpha=0.25)
 
     ax = axes[1, 0]
@@ -144,7 +147,8 @@ def plot_level(
     q1, q3 = float(per_rep["mean_cosine"].quantile(0.25)), float(per_rep["mean_cosine"].quantile(0.75))
     ax.axvline(med, color="crimson", lw=1.8, label=f"median={med:.2f}")
     ax.axvspan(q1, q3, color="crimson", alpha=0.15, label=f"IQR=[{q1:.2f},{q3:.2f}]")
-    ax.axvline(0.9, color="green", ls="--", lw=1.2, label="0.9")
+    ax.axvline(0.9, color="green", ls="--", lw=1.2, label="0.9 (visual guide)")
+    ax.set_xlim(0.0, 1.0)
     ax.set_xlabel("Mean cosine over 6 topics")
     ax.set_ylabel("Count")
     ax.set_title("C. Distribution across replicates")
@@ -155,9 +159,10 @@ def plot_level(
     ax.hist(per_rep["puf_pearson"], bins=12, color="#c44e52", edgecolor="white")
     mp = float(per_rep["puf_pearson"].median())
     ax.axvline(mp, color="black", ls="--", lw=1.5, label=f"median r={mp:.2f}")
-    ax.set_xlabel("Pearson r (pUF vs reference)")
+    ax.set_xlim(0.0, 1.0)
+    ax.set_xlabel("Pearson r (global document pUF vs reference)")
     ax.set_ylabel("Count")
-    ax.set_title("D. Alarm hypertopic (pUF = T3+T4+T5)")
+    ax.set_title("D. Global document pUF (full-follow-up; T3+T4+T5)")
     ax.legend(fontsize=8)
     ax.grid(axis="y", alpha=0.25)
 
@@ -249,6 +254,7 @@ def run_replicates(
     leave_out: float,
     seed0: int,
     num_topics: int,
+    models_dir: Path | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame, np.ndarray]:
     n = len(corpus_bow)
     ref_fav_mix = mix_topics(ref_topics, FAVOURABLE_REF)
@@ -258,6 +264,8 @@ def run_replicates(
     per_rows, topic_rows = [], []
     stacks = []
     rng = np.random.default_rng(seed0)
+    if models_dir is not None:
+        (models_dir / mode).mkdir(parents=True, exist_ok=True)
 
     for r in range(n_reps):
         seed = seed0 + r
@@ -279,6 +287,24 @@ def run_replicates(
         perm, cos = align_topics_cosine(ref_topics, other)
         aligned = other[perm]
         stacks.append(aligned)
+        if models_dir is not None:
+            stem = models_dir / mode / f"rep_{r:03d}"
+            model.save(str(stem.with_suffix(".gensim")))
+            stem.with_suffix(".json").write_text(
+                json.dumps(
+                    {
+                        "mode": mode,
+                        "key": r,
+                        "seed": int(seed),
+                        "passes": int(passes),
+                        "n_train": int(len(train_idx)),
+                        "train_idx": train_idx.astype(int).tolist(),
+                        "out_idx": [] if mode == "seed" else np.setdiff1d(np.arange(n), train_idx).astype(int).tolist(),
+                        "alignment_perm": [int(x) for x in perm.tolist()],
+                    },
+                    indent=2,
+                )
+            )
 
         bow_eval = [corpus_bow[i] for i in eval_idx]
         doc = doc_topic_matrix(model, bow_eval)[:, perm]
@@ -342,6 +368,13 @@ def main() -> None:
         default=None,
         help="Figure directory (default: results/lda/figures/stability)",
     )
+    parser.add_argument(
+        "--models-dir",
+        type=Path,
+        default=DEFAULT_REPLICA_MODELS_DIR,
+        help="Save each replica LDA here (gensim + alignment JSON). Empty string to disable.",
+    )
+    parser.add_argument("--no-save-models", action="store_true", help="Do not write replica models.")
     args = parser.parse_args()
 
     out_dir = args.out_dir
@@ -353,6 +386,9 @@ def main() -> None:
         fig_dir = RESULTS_LDA_FIGURES / "stability"
     out_dir.mkdir(parents=True, exist_ok=True)
     fig_dir.mkdir(parents=True, exist_ok=True)
+    models_dir = None if args.no_save_models else args.models_dir
+    if models_dir is not None:
+        models_dir.mkdir(parents=True, exist_ok=True)
 
     print("Loading reference…")
     dictionary, ref_model, df_profiles, documents, corpus_bow = load_lda_artifacts(
@@ -379,6 +415,7 @@ def main() -> None:
             leave_out=args.leave_out,
             seed0=args.seed_start,
             num_topics=args.num_topics,
+            models_dir=models_dir,
         )
         tag = "level1_seed" if mode == "seed" else "level2_resample"
         per.to_csv(out_dir / f"{tag}_per_rep.csv", index=False)
