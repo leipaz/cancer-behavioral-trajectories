@@ -1,0 +1,10 @@
+change,id,month,decision_day,target,burden,why
+sale,31005,13,390.0,1,1.2845793417654907,inicio DB1 desplazado 14d (mismo t_evento=447); landmark deja de ser adjudicable
+sale,53001,8,240.0,1,0.6786715690977866,t=240 >= t_evento_DB1=233 (Subjects Obs_time=246)
+sale,73003,6,180.0,1,2.9514895007014244,t=180 >= t_evento_DB1=180 (Subjects Obs_time=181)
+sale,73006,4,120.0,1,2.300834907218809,t=120 >= t_evento_DB1=107 (Subjects Obs_time=139)
+entra,41026,5,150.0,0,0.3484074813313782,"aparece con clock/pipeline DB1 (Subjects Obs_time=335, DB1 t_evento=335)"
+entra,41026,6,180.0,0,0.157163820695132,"aparece con clock/pipeline DB1 (Subjects Obs_time=335, DB1 t_evento=335)"
+entra,41026,7,210.0,0,0.0483871679753065,"aparece con clock/pipeline DB1 (Subjects Obs_time=335, DB1 t_evento=335)"
+entra,73011,3,90.0,0,2.541263755876571,Subjects Obs_time=8 casi sin FU; DB1 t_evento=255 permite landmark
+entra,73011,4,120.0,0,2.577907843515277,Subjects Obs_time=8 casi sin FU; DB1 t_evento=255 permite landmark

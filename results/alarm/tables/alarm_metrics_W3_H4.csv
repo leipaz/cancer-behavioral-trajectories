@@ -1,2 +1,2 @@
-setting,event_time,n_decision_points,n_patients,n_positives,roc_auc,paper_threshold,sens_paper,spec_paper,ppv_paper,npv_paper,tp,fn,fp,tn,youden_threshold,sens_youden,spec_youden,ppv_youden,npv_youden
-"W=3, H=4",Subjects_data.Obs_time,1015,115,159,0.7042114853347439,1.61,0.7044025157232704,0.6261682242990654,0.25925925925925924,0.9193825042881647,112,47,320,536,1.6107623935677098,0.7044025157232704,0.6261682242990654,0.25925925925925924,0.9193825042881647
+W_months,H_months,n_landmarks,n_positive_targets,n_patients,AUROC,paper_theta,paper_sens,paper_spec,paper_ppv,paper_npv,paper_TP,paper_FN,paper_FP,paper_TN,youden_theta,youden_sens,youden_spec
+3,4,1016,156,116,0.7001267143709005,1.6,0.6730769230769231,0.6162790697674418,0.2413793103448276,0.9122203098106713,105,51,330,530,1.059638414066285,0.8782051282051282,0.45

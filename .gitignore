@@ -67,3 +67,6 @@ notebooks/revision_experiments/
 # Univariate: CSV only (no Excel exports / matching xlsx)
 results/univariate/**/*.xlsx
 data/processed/univariate/**/*.xlsx
+
+# Alarm local / exploratory (clock audits, threshold studies, old baselines)
+results/alarm/_local/
