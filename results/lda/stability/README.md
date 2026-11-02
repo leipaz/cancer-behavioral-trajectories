@@ -1,37 +1,21 @@
-# LDA K-selection and stability (K=6)
+# LDA stability — delivery pack (1019 collapsed landmarks)
 
-Single analysis on the **reconciled CNIO/DB1** patient day-type sequences.
+Clean folder for the **current** stability analysis only.
 
-| Item | Path |
-|------|------|
-| Embeddings (documents) | `data/processed/lda/user_embeddings_from_pkl.csv` (= reconciled `a0`) |
-| Daily used upstream | `data/daily_summaries/daily_summary_oficial_filtrado_rangos_CNIO_dedup_vqclip.csv` |
-| Reference LDA | `models/lda/LDA_model_vdec25.gensim` (published; not re-trained) |
-| Tables / JSON | this folder |
-| Figures | `../figures/lda_coherence_k_selection.*`, `../figures/stability/` |
+## Contents
+- `lda_stability_report.docx` — main report (also `.md` / `.html` / `.pdf`)
+- `figures/` — K-selection, Level 1/2 cosine + heatmaps, monthly-alarm panel
+- `csv/`
+  - `coherence/` — K sweep (`coherence_coarse_grid.csv`, …)
+  - `level1_seed/` / `level2_resample/` — topic cosine stability
+  - `monthly_alarm/` — **1019** collapsed landmarks, θ = 1.0596384140662845, digital observation time
+  - `convergence_passes/` — 100 vs 1000/5000 pass check
+  - date comparison + cosine summaries
 
-## Levels
+## Alarm lock (base_analysis)
+- Report: `results/alarm/base_analysis/granularity_report.docx`
+- Landmarks: `results/alarm/base_analysis/decision_points_collapsed.csv` (**1019**)
+- θ (sum scale) = **1.0596384140662845**
 
-1. **Seed stability** — 50 re-fits, all patients, different seeds.  
-2. **Leave-20%-out** — 50 re-fits dropping 20% of patients.
-
-Topics are Hungarian-aligned to the published reference by cosine of `P(day-type | topic)`.  
-Hypertopics: F = T0–2, U = T3–5; **pUF** = P3+P4+P5 (one scalar per patient document).
-
-## Settings
-
-- Seeds / reps: 50  
-- Passes per replicate: **100** (published reference was trained with ~**100 000** passes)  
-- Documents: 175 patients  
-
-
-
-## Regenerate
-
-```bash
-./env/bin/python scripts/03_analysis/lda/run_lda_coherence_sweep.py \
-  --k-list 2,6,10,14,18 --n-inits 5 --passes 50
-
-./env/bin/python scripts/03_analysis/lda/run_lda_stability.py \
-  --mode both --n-reps 50 --passes 100 --leave-out 0.2
-```
+## Not in this pack
+- Saved LDA replicas (`replica_models/`) and bulky `per_point_scores.csv` live under `_archive_pre_clean_1019/` (and/or original paths) for reuse, not for delivery.
