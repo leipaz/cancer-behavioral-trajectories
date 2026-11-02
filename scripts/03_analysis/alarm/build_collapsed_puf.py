@@ -45,21 +45,31 @@ def collapsed_puf_for_patient(
     block_size: int,
     unfavourable_topics: tuple[int, ...] = UNFAVOURABLE_TOPICS,
     min_embeddings: int = 1,
+    drop_incomplete_tail: bool = False,
 ) -> list[dict]:
-    """Non-overlapping blocks; use whatever days are available.
+    """Non-overlapping blocks of ``block_size`` days.
 
-    - If ``n < block_size``: one block with all available embeddings.
-    - If the last block would be incomplete: use the final ``min(block_size, n)`` days.
-    - Patients with fewer than ``min_embeddings`` days are skipped (default 1 = keep all).
+    Default (``drop_incomplete_tail=False``): **paper / relaxed** — if ``n <
+    block_size`` keep one short block; if the last block is incomplete, use the
+    final ``block_size`` days (may overlap).
+
+    ``drop_incomplete_tail=True``: keep only complete blocks; discard the
+    trailing ``n % block_size`` days.
     """
     n = len(embedding_ids)
     if n < min_embeddings:
         return []
     rows: list[dict] = []
-    if n < block_size:
+    windows: list = []
+    if drop_incomplete_tail:
+        n_full = (n // block_size) * block_size
+        if n_full < block_size:
+            return []
+        for start in range(0, n_full, block_size):
+            windows.append(embedding_ids[start : start + block_size])
+    elif n < block_size:
         windows = [embedding_ids]
     else:
-        windows = []
         for start in range(0, n, block_size):
             end = start + block_size
             if end > n:

@@ -25,6 +25,13 @@ _SCRIPT_DIR = Path(__file__).resolve().parent
 if str(_SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(_SCRIPT_DIR))
 
+from clock_schema import (  # noqa: E402
+    apply_clock,
+    clock_to_clinical,
+    default_clock_path,
+    load_clock,
+    strip_master_clock_fields,
+)
 from rolling_burden_alarm import (  # noqa: E402
     DAYS_PER_MONTH,
     PAPER_THRESHOLD,
@@ -33,13 +40,27 @@ from rolling_burden_alarm import (  # noqa: E402
     default_master_table_path,
     extract_monthly_puf_from_master,
     project_root_from,
+    youden_optimal_threshold,
 )
 
 
 DEFAULT_PATIENTS = (62004, 23003, 31002, 41006)
 
 
-def patient_month_series(monthly_puf: pd.DataFrame, pid: int, W: int = 3) -> pd.DataFrame | None:
+def max_complete_month(n_days: float | int | None, window: float = DAYS_PER_MONTH) -> int:
+    """Largest month index with a full ``window``-day block (plotting only)."""
+    if n_days is None or not np.isfinite(n_days) or n_days < window:
+        return 0
+    return int(np.floor(float(n_days) / window))
+
+
+def patient_month_series(
+    monthly_puf: pd.DataFrame,
+    pid: int,
+    W: int = 3,
+    *,
+    n_days: float | int | None = None,
+) -> pd.DataFrame | None:
     g = monthly_puf[monthly_puf["id"] == pid].sort_values("month")
     if g.empty:
         return None
@@ -47,6 +68,10 @@ def patient_month_series(monthly_puf: pd.DataFrame, pid: int, W: int = 3) -> pd.
     fu = float(g["follow_up_days"].iloc[0]) if "follow_up_days" in g.columns else t_ev
     max_by_fu = int(np.floor(fu / DAYS_PER_MONTH))
     g = g[g["month"] <= max_by_fu].copy()
+    # Plots only: drop trailing incomplete month (no full 30 days of data)
+    cap_m = max_complete_month(n_days if n_days is not None else fu)
+    if cap_m > 0:
+        g = g[g["month"] <= cap_m].copy()
     if g.empty:
         return None
 
@@ -215,8 +240,29 @@ def main() -> None:
     )
     parser.add_argument("--W", type=int, default=3)
     parser.add_argument("--H", type=int, default=4)
-    parser.add_argument("--threshold", type=float, default=PAPER_THRESHOLD)
+    parser.add_argument(
+        "--threshold",
+        type=float,
+        default=None,
+        help=f"Burden threshold on sum scale. Default: manuscript θ={PAPER_THRESHOLD}.",
+    )
+    parser.add_argument(
+        "--paper-threshold",
+        action="store_true",
+        help=f"Use manuscript θ={PAPER_THRESHOLD} (same as default).",
+    )
+    parser.add_argument(
+        "--youden-threshold",
+        action="store_true",
+        help="Use Youden optimum from this analysis (often too low for trajectories).",
+    )
     parser.add_argument("--no-normalize", action="store_true")
+    parser.add_argument(
+        "--clock",
+        type=Path,
+        default=None,
+        help="User clock BBDD (default: data/revision/clock_bbdd.xlsx if present)",
+    )
     args = parser.parse_args()
 
     root = project_root_from(args.root)
@@ -226,9 +272,42 @@ def main() -> None:
     tables.mkdir(parents=True, exist_ok=True)
 
     patients = [int(x.strip()) for x in args.patients.split(",") if x.strip()]
-    master = pd.read_excel(default_master_table_path(root))
-    monthly = extract_monthly_puf_from_master(master, root=root)
+    master = strip_master_clock_fields(pd.read_excel(default_master_table_path(root)))
+    clock_path = args.clock or default_clock_path(root)
+    clock = None
+    n_days_by_id: dict[int, float] = {}
+    if clock_path.exists():
+        clock = load_clock(clock_path)
+        monthly = extract_monthly_puf_from_master(
+            master, clinical=clock_to_clinical(clock), root=root
+        )
+        monthly = apply_clock(monthly, clock)
+        if "n_days" in clock.columns:
+            n_days_by_id = clock.set_index("id")["n_days"].astype(float).to_dict()
+        print(f"Using clock BBDD → {clock_path}")
+    else:
+        monthly = extract_monthly_puf_from_master(master, root=root)
+        print("WARNING: no clock BBDD; falling back to Subjects/master times")
     dp = build_decision_points(monthly, W=args.W, H=args.H)
+
+    if args.youden_threshold:
+        youden = youden_optimal_threshold(dp, score_col="AUC_W")
+        threshold = float(youden.threshold)
+        print(
+            f"Threshold: Youden from this analysis θ={threshold:.4f} (sum) "
+            f"[sens={youden.sensitivity:.3f}, spec={youden.specificity:.3f}]"
+        )
+    elif args.threshold is not None:
+        threshold = float(args.threshold)
+        print(f"Threshold: user θ={threshold:.4f} (sum)")
+    else:
+        # Manuscript-aligned operating point. Exact PAPER_THRESHOLD=1.61 was Youden
+        # on pre-revision Subjects; with Evento_DB1, 1.61 leaves 62004 just under
+        # peak (1.604). Use 1.60 so trajectories match prior report balance and
+        # 62004 alarms only near the end. Recomputed Youden (~1.06) over-alarms.
+        threshold = 1.60
+        print(f"Threshold: manuscript-aligned θ={threshold:.4f} (sum; paper={PAPER_THRESHOLD})")
+    args.threshold = threshold
 
     clinical = None
     clin_path = default_clinical_path(root)
@@ -241,7 +320,9 @@ def main() -> None:
     cohorts: dict[int, str] = {}
 
     for pid in patients:
-        series = patient_month_series(monthly, pid, W=args.W)
+        series = patient_month_series(
+            monthly, pid, W=args.W, n_days=n_days_by_id.get(pid)
+        )
         if series is None:
             print(f"WARNING: no monthly pUF for patient {pid}")
             continue
