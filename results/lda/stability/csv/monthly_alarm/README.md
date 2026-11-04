@@ -12,11 +12,11 @@
 - Freeze VQ-VAE day-types + dictionary; re-fit LDA replicates (K=6, 100 passes)
 - Hungarian align topics by cosine of P(day-type|topic); **no outcomes**
 - After alignment: F=T0–2, U=T3–5, pUF = P(U)
-- 30-day block pUF at month ends → 3-block load (`AUC_W` / `S_m`) at each of the 1019 points
+- Monthly pUF on 30-day blocks → 3-block load (`AUC_W` / `S_m`) at each of the 1019 points
 - Leave-20%-out: inference on held-out patients allowed; metrics split **in_fit** vs **held_out**
 
 ## Outputs
 - `design_meta.json`, `base_landmarks_1019_collapsed.csv`
 - `per_replica_summary.csv`, `per_point_scores.csv`, `headline_summary.json`
-- Replica LDA models (reusable): `results/lda/stability/replica_models/seed/rep_XXX.gensim` (+ `.json` with alignment perm / train_idx)
-  and `results/lda/stability/replica_models/resample/rep_XXX.gensim`. Re-run with `--reuse-models` to skip training.
+- Replica LDA models (reusable): `results/lda/_archive_pre_clean_1019/replica_models/seed/rep_XXX.gensim` (+ `.json` with alignment perm / train_idx)
+  and `results/lda/_archive_pre_clean_1019/replica_models/resample/rep_XXX.gensim`. Re-run with `--reuse-models` to skip training.
