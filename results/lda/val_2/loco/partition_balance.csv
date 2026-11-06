@@ -1,0 +1,46 @@
+left_out_centre,hospital_left_out,inner_fold,n,events,tumor_1,tumor_2,tumor_3,inner_seed,lda_seed
+1,Hospital Universitario de Fuenlabrada,external,24,5,10,7,7,20261105,20261103
+1,Hospital Universitario de Fuenlabrada,0,38,14,26,3,9,20261105,20261103
+1,Hospital Universitario de Fuenlabrada,1,38,14,25,4,9,20261105,20261103
+1,Hospital Universitario de Fuenlabrada,2,38,14,24,5,9,20261105,20261103
+1,Hospital Universitario de Fuenlabrada,3,37,13,24,5,8,20261105,20261103
+2,Hospital Unversitario de La Princesa,external,19,8,2,3,14,20261106,20261103
+2,Hospital Unversitario de La Princesa,0,39,13,28,5,6,20261106,20261103
+2,Hospital Unversitario de La Princesa,1,39,13,27,5,7,20261106,20261103
+2,Hospital Unversitario de La Princesa,2,39,13,26,6,7,20261106,20261103
+2,Hospital Unversitario de La Princesa,3,39,13,26,5,8,20261106,20261103
+3,Hospital Clínico Unversitario de Valencia,external,14,2,14,0,0,20261107,20261103
+3,Hospital Clínico Unversitario de Valencia,0,41,15,24,6,11,20261107,20261103
+3,Hospital Clínico Unversitario de Valencia,1,40,14,24,6,10,20261107,20261103
+3,Hospital Clínico Unversitario de Valencia,2,40,14,23,6,11,20261107,20261103
+3,Hospital Clínico Unversitario de Valencia,3,40,15,24,6,10,20261107,20261103
+4,ICO Bellvitge,external,28,8,26,2,0,20261108,20261103
+4,ICO Bellvitge,0,37,13,21,6,10,20261108,20261103
+4,ICO Bellvitge,1,37,13,21,6,10,20261108,20261103
+4,ICO Bellvitge,2,37,13,21,4,12,20261108,20261103
+4,ICO Bellvitge,3,36,13,20,6,10,20261108,20261103
+5,Hospital Universitario Son Espases,external,22,5,15,4,3,20261109,20261103
+5,Hospital Universitario Son Espases,0,39,14,24,5,10,20261109,20261103
+5,Hospital Universitario Son Espases,1,38,13,23,5,10,20261109,20261103
+5,Hospital Universitario Son Espases,2,38,14,24,5,9,20261109,20261103
+5,Hospital Universitario Son Espases,3,38,14,23,5,10,20261109,20261103
+6,Hospital de Navarra,external,15,7,5,5,5,20261110,20261103
+6,Hospital de Navarra,0,40,13,27,4,9,20261110,20261103
+6,Hospital de Navarra,1,40,13,26,5,9,20261110,20261103
+6,Hospital de Navarra,2,40,13,25,5,10,20261110,20261103
+6,Hospital de Navarra,3,40,14,26,5,9,20261110,20261103
+7,Hospital Unversitario Virgen de la Macarena,external,22,11,10,1,11,20261111,20261103
+7,Hospital Unversitario Virgen de la Macarena,0,39,13,26,5,8,20261111,20261103
+7,Hospital Unversitario Virgen de la Macarena,1,38,12,25,6,7,20261111,20261103
+7,Hospital Unversitario Virgen de la Macarena,2,38,12,24,6,8,20261111,20261103
+7,Hospital Unversitario Virgen de la Macarena,3,38,12,24,6,8,20261111,20261103
+8,Hospital San Pedro de Alcántara,external,8,5,8,0,0,20261112,20261103
+8,Hospital San Pedro de Alcántara,0,42,14,26,6,10,20261112,20261103
+8,Hospital San Pedro de Alcántara,1,42,14,26,6,10,20261112,20261103
+8,Hospital San Pedro de Alcántara,2,42,14,25,6,11,20261112,20261103
+8,Hospital San Pedro de Alcántara,3,41,13,24,6,11,20261112,20261103
+9,CHUAC,external,23,9,19,2,2,20261113,20261103
+9,CHUAC,0,38,12,23,5,10,20261113,20261103
+9,CHUAC,1,38,13,23,5,10,20261113,20261103
+9,CHUAC,2,38,13,22,6,10,20261113,20261103
+9,CHUAC,3,38,13,22,6,10,20261113,20261103

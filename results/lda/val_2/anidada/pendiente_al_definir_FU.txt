@@ -1,0 +1,51 @@
+Pendiente cuando esté definida la etiqueta F/U
+================================================
+
+Sirve para las dos validaciones. Los LDA ya guardados no se vuelven a entrenar.
+Los topics no están alineados entre modelos: la etiqueta de uno no se copia a otro.
+No se usa la etiqueta publicada de DB1 ni sus cortes.
+
+Entradas ya hechas
+------------------
+Validación anidada: results/lda/val_2/anidada/
+  25 modelos en models/
+  block_probabilities.csv, solo held_out y external
+
+Centros: results/lda/val_2/loco/
+  45 modelos en models/
+  block_probabilities.csv, solo held_out y external_test
+
+Qué hacer
+---------
+1. Etiquetar cada topic de cada LDA ya guardado.
+   Anidada: la etiqueta del interno sale de las 105 train y se aplica, sin cambiarla, a las held_out de ese mismo modelo. La del reajuste se calcula otra vez solo con las 140 y se aplica a las 35 external.
+   Centros: igual. La etiqueta del interno sale de sus train. La del reajuste sale de los ocho centros que entrenan y se aplica al centro dejado fuera. Ese centro no entra en la etiqueta ni en el corte.
+
+2. Calcular el pUF de cada bloque: la suma de las probabilidades de los topics desfavorables de ese mismo modelo.
+
+3. Calcular la carga de tres bloques: la suma de tres pUF consecutivos. Solo entran los bloques disponibles hasta la fecha de decisión.
+
+4. Elegir el corte de Youden.
+   Anidada: un corte por cada grupo de 140. Solo con los scores held_out. Cada paciente entra una vez en ese corte.
+   Centros: un corte por cada centro dejado fuera. Solo con las held_out de los ocho centros que entrenan.
+   El corte elegido se conserva para las external. No se usan los cortes de DB1.
+
+5. Clasificar cada decisión external comparándola con ese corte.
+
+6. Marcar si la decisión se puede evaluar a 120 días, y el desenlace cuando se pueda.
+
+7. Calcular la anticipación con la fecha de evento o de censura que ya está en los CSV.
+
+8. Sacar un CSV por validación con: seis probabilidades, mapeo F/U del modelo, pUF, carga de tres bloques, corte aplicado, clasificación, desenlace y evaluabilidad a 120 días, fecha de evento o censura, y anticipación.
+
+9. Guardar los mapeos F/U y los cortes aprendidos.
+
+10. Dejar identificados los ajustes y las métricas que no se puedan estimar, con su denominador.
+
+11. Hacer las tablas de rendimiento por separado: por decisión, por paciente y por evento. Incluir los intervalos y la anticipación por evento.
+
+Reglas que siguen sin estar escritas para estas validaciones
+-------------------------------------------------------------
+Si dos cortes dan el mismo Youden, no está elegido cuál se guarda. En la alarma anterior de DB1 se guardaba el más bajo.
+
+Las tres cuentas (decisión, paciente y evento) están pedidas por separado. No está elegido cuál es el número oficial.

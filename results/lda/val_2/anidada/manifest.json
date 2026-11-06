@@ -1,0 +1,32 @@
+{
+  "cohort": "DB1",
+  "audit": "data/processed/DCABPs/DB1/2 178_audit_oct_2_2026_con grupos de tratamiento  copia.xlsx",
+  "embeddings": "data/processed/lda/user_embeddings_from_pkl.csv",
+  "n_audit": 178,
+  "n_with_profile": 175,
+  "excluded_no_profile": [
+    31015,
+    61004,
+    63006
+  ],
+  "n_outer": 5,
+  "n_inner": 4,
+  "outer_seed": 20261103,
+  "inner_seed": 20261104,
+  "lda_seed": 20261103,
+  "num_topics": 6,
+  "passes": 500,
+  "iterations": 50,
+  "vqvae": "frozen; one document per patient from embedding_ids",
+  "topic_alignment": "none",
+  "window_months": 3,
+  "horizon_days": 120,
+  "window_and_horizon": "fixed for the later alarm score; not used in this topic assignment",
+  "outer_fold_sizes": [
+    35,
+    35,
+    35,
+    35,
+    35
+  ]
+}
