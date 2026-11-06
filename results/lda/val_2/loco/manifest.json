@@ -1,0 +1,22 @@
+{
+  "design": "leave one centre out; centre is the first digit of id",
+  "n_audit": 178,
+  "n_with_profile": 175,
+  "excluded_no_profile": [
+    31015,
+    61004,
+    63006
+  ],
+  "excluded_no_month": [
+    41025,
+    61006
+  ],
+  "inner_splits": 4,
+  "inner_stratification": "Evento_DB1 x Group tumor",
+  "inner_seed": "20261104 + left-out centre",
+  "lda_seed": 20261103,
+  "num_topics": 6,
+  "held_out_used_for": "internal Youden cut, after F/U is defined from train rows of the same model",
+  "external_used_for": "evaluation of the left-out centre with the refit; not used to choose the cut",
+  "fu_and_cut": "computed; see fu/ and alarma/"
+}

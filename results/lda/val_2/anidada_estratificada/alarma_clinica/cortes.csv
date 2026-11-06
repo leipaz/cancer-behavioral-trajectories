@@ -1,0 +1,6 @@
+threshold,n_tied,n_decisions,n_positive,n_negative,sensitivity,specificity,youden,outer_fold,tie_rule,time,horizon_days,comparison,map
+1.3358345860615366,1,794,120,674,0.7,0.4881305637982196,0.18813056379821957,0,menor corte,Tiempo_obs_digital,120,1013 every 30 days,adjudicacion clinica
+1.9913499034009867,1,806,128,678,0.609375,0.6415929203539823,0.2509679203539823,1,menor corte,Tiempo_obs_digital,120,1013 every 30 days,adjudicacion clinica
+1.3068478801287708,1,801,129,672,0.689922480620155,0.5431547619047619,0.2330772425249168,2,menor corte,Tiempo_obs_digital,120,1013 every 30 days,adjudicacion clinica
+1.9243635730817914,1,857,131,726,0.4961832061068702,0.7410468319559229,0.2372300380627932,3,menor corte,Tiempo_obs_digital,120,1013 every 30 days,adjudicacion clinica
+1.9571991935372348,1,794,120,674,0.325,0.7166172106824926,0.04161721068249258,4,menor corte,Tiempo_obs_digital,120,1013 every 30 days,adjudicacion clinica

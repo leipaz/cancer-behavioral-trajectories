@@ -1,0 +1,16 @@
+{
+  "time": "Tiempo_obs_digital, desde el primer registro digital",
+  "not_used": "Tiempo_obs_DB1",
+  "pfs_rule": "Kaplan-Meier at 365 days; top 3 favourable, bottom 3 unfavourable",
+  "tie_break": "restricted mean survival time at 365 days; otherwise the model is reserved",
+  "interval": "95 percent log-log Greenwood",
+  "training_only_curves": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/lda/val_2/anidada/fu/curvas/curvas_entrenamiento.pdf",
+  "n_models_labelled": 25,
+  "n_models_reserved": 0,
+  "reserved": [],
+  "score": "sum of three consecutive block pUF values",
+  "cut": "one Youden cut per outer fold, held-out evaluable decisions, lowest cut if tied",
+  "horizon_days": 120,
+  "landmark": "decision day is month x 30, the collapsed month end of the 1019 landmarks; event study day is Tiempo_obs_digital + 1",
+  "blocked_models_not_in_curves_package": []
+}

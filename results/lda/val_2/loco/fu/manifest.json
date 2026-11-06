@@ -1,0 +1,20 @@
+{
+  "time": "Tiempo_obs_DB1, desde el inicio del tratamiento; pacientes con menos de 28 dias no entran en la curva",
+  "alarm_time": "Tiempo_obs_digital",
+  "pfs_rule": "Kaplan-Meier at 365 days. A positive last step before day 365 is a ceiling: if the third estimable topic is above it, that topic is unfavourable and the three above it are favourable. Otherwise the model is reserved",
+  "tie_break": "restricted mean survival time at 365 days; otherwise the model is reserved",
+  "n_models_labelled": 45,
+  "n_models_reserved": 0,
+  "reserved": [],
+  "criterio_counts": {
+    "pfs_365": 44,
+    "techo_365": 1
+  },
+  "models_with_F_012": 3,
+  "score": "sum of three consecutive block pUF values",
+  "cut": "one Youden cut per left-out centre, held-out decisions among the 1013 every-30-day pairs, lowest cut if tied",
+  "comparison_blocks": "1013 (id, month) pairs, decision_points.csv cadence Every 30 days, included_in_metrics 1",
+  "landmark": "decision day is month x 30; event study day is Tiempo_obs_digital + 1",
+  "curves": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/lda/val_2/loco/fu/curvas/curvas_entrenamiento.pdf",
+  "grouped_curves": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/lda/val_2/loco/fu/curvas/supervivencia_por_fu.pdf"
+}

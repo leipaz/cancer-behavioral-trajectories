@@ -1,0 +1,6 @@
+id,centre,hospital,stage,reason
+31015,3,Hospital Clínico Unversitario de Valencia,lda,sin documento digital
+41025,4,ICO Bellvitge,bloques,"8 dias de perfil, por debajo de 15; entra en el LDA y no tiene mes"
+61004,6,Hospital de Navarra,lda,sin documento digital
+61006,6,Hospital de Navarra,bloques,"8 dias de perfil, por debajo de 15; entra en el LDA y no tiene mes"
+63006,6,Hospital de Navarra,lda,sin documento digital

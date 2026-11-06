@@ -1,0 +1,1576 @@
+id,hospital,centre,left_out_centre,side,inner_fold,event,tumor_group,inner_seed
+11001,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,1,20261105
+11003,Hospital Universitario de Fuenlabrada,1,1,left_out,external,1,1,20261105
+11004,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,1,20261105
+11005,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,1,20261105
+11006,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,1,20261105
+11007,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,1,20261105
+11008,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,1,20261105
+11009,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,1,20261105
+11010,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,1,20261105
+11011,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,1,20261105
+12001,Hospital Universitario de Fuenlabrada,1,1,left_out,external,1,2,20261105
+12002,Hospital Universitario de Fuenlabrada,1,1,left_out,external,1,2,20261105
+12003,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,2,20261105
+12004,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,2,20261105
+12005,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,2,20261105
+12006,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,2,20261105
+12007,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,2,20261105
+13003,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,3,20261105
+13004,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,3,20261105
+13006,Hospital Universitario de Fuenlabrada,1,1,left_out,external,1,3,20261105
+13007,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,3,20261105
+13008,Hospital Universitario de Fuenlabrada,1,1,left_out,external,1,3,20261105
+13009,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,3,20261105
+13010,Hospital Universitario de Fuenlabrada,1,1,left_out,external,0,3,20261105
+23005,Hospital Unversitario de La Princesa,2,1,train_centres,0,1,3,20261105
+23006,Hospital Unversitario de La Princesa,2,1,train_centres,0,1,3,20261105
+23009,Hospital Unversitario de La Princesa,2,1,train_centres,0,0,3,20261105
+23012,Hospital Unversitario de La Princesa,2,1,train_centres,0,0,3,20261105
+23015,Hospital Unversitario de La Princesa,2,1,train_centres,0,0,3,20261105
+31008,Hospital Clínico Unversitario de Valencia,3,1,train_centres,0,0,1,20261105
+31010,Hospital Clínico Unversitario de Valencia,3,1,train_centres,0,1,1,20261105
+31011,Hospital Clínico Unversitario de Valencia,3,1,train_centres,0,0,1,20261105
+31013,Hospital Clínico Unversitario de Valencia,3,1,train_centres,0,0,1,20261105
+31016,Hospital Clínico Unversitario de Valencia,3,1,train_centres,0,0,1,20261105
+41008,ICO Bellvitge,4,1,train_centres,0,1,1,20261105
+41009,ICO Bellvitge,4,1,train_centres,0,0,1,20261105
+41016,ICO Bellvitge,4,1,train_centres,0,1,1,20261105
+41017,ICO Bellvitge,4,1,train_centres,0,0,1,20261105
+41018,ICO Bellvitge,4,1,train_centres,0,0,1,20261105
+41025,ICO Bellvitge,4,1,train_centres,0,0,1,20261105
+41026,ICO Bellvitge,4,1,train_centres,0,0,1,20261105
+42003,ICO Bellvitge,4,1,train_centres,0,0,2,20261105
+51006,Hospital Universitario Son Espases,5,1,train_centres,0,0,1,20261105
+51007,Hospital Universitario Son Espases,5,1,train_centres,0,0,1,20261105
+51008,Hospital Universitario Son Espases,5,1,train_centres,0,0,1,20261105
+51011,Hospital Universitario Son Espases,5,1,train_centres,0,0,1,20261105
+62002,Hospital de Navarra,6,1,train_centres,0,1,2,20261105
+71004,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,0,1,1,20261105
+73001,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,0,1,3,20261105
+73002,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,0,1,3,20261105
+73005,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,0,1,3,20261105
+73008,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,0,0,3,20261105
+81001,Hospital San Pedro de Alcántara,8,1,train_centres,0,1,1,20261105
+81005,Hospital San Pedro de Alcántara,8,1,train_centres,0,0,1,20261105
+81007,Hospital San Pedro de Alcántara,8,1,train_centres,0,0,1,20261105
+91003,CHUAC,9,1,train_centres,0,0,1,20261105
+91006,CHUAC,9,1,train_centres,0,0,1,20261105
+91007,CHUAC,9,1,train_centres,0,0,1,20261105
+91009,CHUAC,9,1,train_centres,0,1,1,20261105
+91011,CHUAC,9,1,train_centres,0,1,1,20261105
+91018,CHUAC,9,1,train_centres,0,0,1,20261105
+92002,CHUAC,9,1,train_centres,0,1,2,20261105
+22001,Hospital Unversitario de La Princesa,2,1,train_centres,1,1,2,20261105
+23001,Hospital Unversitario de La Princesa,2,1,train_centres,1,1,3,20261105
+23008,Hospital Unversitario de La Princesa,2,1,train_centres,1,0,3,20261105
+23011,Hospital Unversitario de La Princesa,2,1,train_centres,1,0,3,20261105
+31001,Hospital Clínico Unversitario de Valencia,3,1,train_centres,1,0,1,20261105
+31002,Hospital Clínico Unversitario de Valencia,3,1,train_centres,1,0,1,20261105
+31009,Hospital Clínico Unversitario de Valencia,3,1,train_centres,1,0,1,20261105
+41001,ICO Bellvitge,4,1,train_centres,1,0,1,20261105
+41002,ICO Bellvitge,4,1,train_centres,1,1,1,20261105
+41003,ICO Bellvitge,4,1,train_centres,1,1,1,20261105
+41005,ICO Bellvitge,4,1,train_centres,1,1,1,20261105
+41007,ICO Bellvitge,4,1,train_centres,1,1,1,20261105
+41010,ICO Bellvitge,4,1,train_centres,1,0,1,20261105
+41013,ICO Bellvitge,4,1,train_centres,1,0,1,20261105
+41019,ICO Bellvitge,4,1,train_centres,1,0,1,20261105
+41020,ICO Bellvitge,4,1,train_centres,1,1,1,20261105
+41022,ICO Bellvitge,4,1,train_centres,1,0,1,20261105
+41023,ICO Bellvitge,4,1,train_centres,1,0,1,20261105
+51015,Hospital Universitario Son Espases,5,1,train_centres,1,0,1,20261105
+52001,Hospital Universitario Son Espases,5,1,train_centres,1,1,2,20261105
+52005,Hospital Universitario Son Espases,5,1,train_centres,1,0,2,20261105
+53001,Hospital Universitario Son Espases,5,1,train_centres,1,1,3,20261105
+53002,Hospital Universitario Son Espases,5,1,train_centres,1,0,3,20261105
+61001,Hospital de Navarra,6,1,train_centres,1,0,1,20261105
+62005,Hospital de Navarra,6,1,train_centres,1,0,2,20261105
+71005,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,1,0,1,20261105
+71008,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,1,1,1,20261105
+71009,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,1,0,1,20261105
+71011,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,1,0,1,20261105
+73004,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,1,1,3,20261105
+73006,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,1,1,3,20261105
+73011,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,1,0,3,20261105
+91004,CHUAC,9,1,train_centres,1,1,1,20261105
+91005,CHUAC,9,1,train_centres,1,0,1,20261105
+91013,CHUAC,9,1,train_centres,1,0,1,20261105
+91016,CHUAC,9,1,train_centres,1,0,1,20261105
+91017,CHUAC,9,1,train_centres,1,0,1,20261105
+93001,CHUAC,9,1,train_centres,1,1,3,20261105
+22002,Hospital Unversitario de La Princesa,2,1,train_centres,2,0,2,20261105
+23004,Hospital Unversitario de La Princesa,2,1,train_centres,2,1,3,20261105
+23007,Hospital Unversitario de La Princesa,2,1,train_centres,2,0,3,20261105
+31005,Hospital Clínico Unversitario de Valencia,3,1,train_centres,2,1,1,20261105
+31007,Hospital Clínico Unversitario de Valencia,3,1,train_centres,2,0,1,20261105
+41006,ICO Bellvitge,4,1,train_centres,2,0,1,20261105
+41011,ICO Bellvitge,4,1,train_centres,2,0,1,20261105
+41021,ICO Bellvitge,4,1,train_centres,2,0,1,20261105
+41027,ICO Bellvitge,4,1,train_centres,2,0,1,20261105
+51001,Hospital Universitario Son Espases,5,1,train_centres,2,0,1,20261105
+51005,Hospital Universitario Son Espases,5,1,train_centres,2,1,1,20261105
+51009,Hospital Universitario Son Espases,5,1,train_centres,2,0,1,20261105
+51014,Hospital Universitario Son Espases,5,1,train_centres,2,0,1,20261105
+51016,Hospital Universitario Son Espases,5,1,train_centres,2,0,1,20261105
+52004,Hospital Universitario Son Espases,5,1,train_centres,2,1,2,20261105
+53003,Hospital Universitario Son Espases,5,1,train_centres,2,0,3,20261105
+61002,Hospital de Navarra,6,1,train_centres,2,1,1,20261105
+61006,Hospital de Navarra,6,1,train_centres,2,0,1,20261105
+62003,Hospital de Navarra,6,1,train_centres,2,0,2,20261105
+62004,Hospital de Navarra,6,1,train_centres,2,1,2,20261105
+63005,Hospital de Navarra,6,1,train_centres,2,1,3,20261105
+63007,Hospital de Navarra,6,1,train_centres,2,0,3,20261105
+71007,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,2,0,1,20261105
+71010,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,2,0,1,20261105
+71012,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,2,0,1,20261105
+73003,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,2,1,3,20261105
+73007,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,2,1,3,20261105
+73009,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,2,1,3,20261105
+81003,Hospital San Pedro de Alcántara,8,1,train_centres,2,1,1,20261105
+81006,Hospital San Pedro de Alcántara,8,1,train_centres,2,0,1,20261105
+81008,Hospital San Pedro de Alcántara,8,1,train_centres,2,1,1,20261105
+91001,CHUAC,9,1,train_centres,2,1,1,20261105
+91012,CHUAC,9,1,train_centres,2,0,1,20261105
+91014,CHUAC,9,1,train_centres,2,0,1,20261105
+91015,CHUAC,9,1,train_centres,2,0,1,20261105
+91019,CHUAC,9,1,train_centres,2,0,1,20261105
+92001,CHUAC,9,1,train_centres,2,1,2,20261105
+93002,CHUAC,9,1,train_centres,2,0,3,20261105
+21001,Hospital Unversitario de La Princesa,2,1,train_centres,3,0,1,20261105
+21002,Hospital Unversitario de La Princesa,2,1,train_centres,3,1,1,20261105
+22004,Hospital Unversitario de La Princesa,2,1,train_centres,3,0,2,20261105
+23002,Hospital Unversitario de La Princesa,2,1,train_centres,3,1,3,20261105
+23003,Hospital Unversitario de La Princesa,2,1,train_centres,3,1,3,20261105
+23010,Hospital Unversitario de La Princesa,2,1,train_centres,3,0,3,20261105
+23013,Hospital Unversitario de La Princesa,2,1,train_centres,3,0,3,20261105
+31003,Hospital Clínico Unversitario de Valencia,3,1,train_centres,3,0,1,20261105
+31004,Hospital Clínico Unversitario de Valencia,3,1,train_centres,3,0,1,20261105
+31012,Hospital Clínico Unversitario de Valencia,3,1,train_centres,3,0,1,20261105
+31014,Hospital Clínico Unversitario de Valencia,3,1,train_centres,3,0,1,20261105
+41012,ICO Bellvitge,4,1,train_centres,3,0,1,20261105
+41014,ICO Bellvitge,4,1,train_centres,3,0,1,20261105
+41024,ICO Bellvitge,4,1,train_centres,3,0,1,20261105
+41028,ICO Bellvitge,4,1,train_centres,3,0,1,20261105
+42001,ICO Bellvitge,4,1,train_centres,3,1,2,20261105
+51003,Hospital Universitario Son Espases,5,1,train_centres,3,0,1,20261105
+51004,Hospital Universitario Son Espases,5,1,train_centres,3,0,1,20261105
+51010,Hospital Universitario Son Espases,5,1,train_centres,3,0,1,20261105
+51012,Hospital Universitario Son Espases,5,1,train_centres,3,1,1,20261105
+51013,Hospital Universitario Son Espases,5,1,train_centres,3,0,1,20261105
+52003,Hospital Universitario Son Espases,5,1,train_centres,3,0,2,20261105
+61003,Hospital de Navarra,6,1,train_centres,3,0,1,20261105
+61005,Hospital de Navarra,6,1,train_centres,3,0,1,20261105
+62001,Hospital de Navarra,6,1,train_centres,3,1,2,20261105
+63001,Hospital de Navarra,6,1,train_centres,3,1,3,20261105
+63003,Hospital de Navarra,6,1,train_centres,3,1,3,20261105
+63004,Hospital de Navarra,6,1,train_centres,3,0,3,20261105
+71002,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,3,0,1,20261105
+71003,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,3,0,1,20261105
+72001,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,3,1,2,20261105
+73010,Hospital Unversitario Virgen de la Macarena,7,1,train_centres,3,0,3,20261105
+81004,Hospital San Pedro de Alcántara,8,1,train_centres,3,1,1,20261105
+81009,Hospital San Pedro de Alcántara,8,1,train_centres,3,1,1,20261105
+91002,CHUAC,9,1,train_centres,3,1,1,20261105
+91008,CHUAC,9,1,train_centres,3,0,1,20261105
+91010,CHUAC,9,1,train_centres,3,1,1,20261105
+21001,Hospital Unversitario de La Princesa,2,2,left_out,external,0,1,20261106
+21002,Hospital Unversitario de La Princesa,2,2,left_out,external,1,1,20261106
+22001,Hospital Unversitario de La Princesa,2,2,left_out,external,1,2,20261106
+22002,Hospital Unversitario de La Princesa,2,2,left_out,external,0,2,20261106
+22004,Hospital Unversitario de La Princesa,2,2,left_out,external,0,2,20261106
+23001,Hospital Unversitario de La Princesa,2,2,left_out,external,1,3,20261106
+23002,Hospital Unversitario de La Princesa,2,2,left_out,external,1,3,20261106
+23003,Hospital Unversitario de La Princesa,2,2,left_out,external,1,3,20261106
+23004,Hospital Unversitario de La Princesa,2,2,left_out,external,1,3,20261106
+23005,Hospital Unversitario de La Princesa,2,2,left_out,external,1,3,20261106
+23006,Hospital Unversitario de La Princesa,2,2,left_out,external,1,3,20261106
+23007,Hospital Unversitario de La Princesa,2,2,left_out,external,0,3,20261106
+23008,Hospital Unversitario de La Princesa,2,2,left_out,external,0,3,20261106
+23009,Hospital Unversitario de La Princesa,2,2,left_out,external,0,3,20261106
+23010,Hospital Unversitario de La Princesa,2,2,left_out,external,0,3,20261106
+23011,Hospital Unversitario de La Princesa,2,2,left_out,external,0,3,20261106
+23012,Hospital Unversitario de La Princesa,2,2,left_out,external,0,3,20261106
+23013,Hospital Unversitario de La Princesa,2,2,left_out,external,0,3,20261106
+23015,Hospital Unversitario de La Princesa,2,2,left_out,external,0,3,20261106
+11004,Hospital Universitario de Fuenlabrada,1,2,train_centres,0,0,1,20261106
+11011,Hospital Universitario de Fuenlabrada,1,2,train_centres,0,0,1,20261106
+12001,Hospital Universitario de Fuenlabrada,1,2,train_centres,0,1,2,20261106
+12006,Hospital Universitario de Fuenlabrada,1,2,train_centres,0,0,2,20261106
+31010,Hospital Clínico Unversitario de Valencia,3,2,train_centres,0,1,1,20261106
+41005,ICO Bellvitge,4,2,train_centres,0,1,1,20261106
+41011,ICO Bellvitge,4,2,train_centres,0,0,1,20261106
+41014,ICO Bellvitge,4,2,train_centres,0,0,1,20261106
+41019,ICO Bellvitge,4,2,train_centres,0,0,1,20261106
+41020,ICO Bellvitge,4,2,train_centres,0,1,1,20261106
+41024,ICO Bellvitge,4,2,train_centres,0,0,1,20261106
+51004,Hospital Universitario Son Espases,5,2,train_centres,0,0,1,20261106
+51008,Hospital Universitario Son Espases,5,2,train_centres,0,0,1,20261106
+51012,Hospital Universitario Son Espases,5,2,train_centres,0,1,1,20261106
+51015,Hospital Universitario Son Espases,5,2,train_centres,0,0,1,20261106
+53001,Hospital Universitario Son Espases,5,2,train_centres,0,1,3,20261106
+53002,Hospital Universitario Son Espases,5,2,train_centres,0,0,3,20261106
+61001,Hospital de Navarra,6,2,train_centres,0,0,1,20261106
+61006,Hospital de Navarra,6,2,train_centres,0,0,1,20261106
+62005,Hospital de Navarra,6,2,train_centres,0,0,2,20261106
+63007,Hospital de Navarra,6,2,train_centres,0,0,3,20261106
+71002,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,0,0,1,20261106
+71004,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,0,1,1,20261106
+71007,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,0,0,1,20261106
+71010,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,0,0,1,20261106
+73005,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,0,1,3,20261106
+73009,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,0,1,3,20261106
+81001,Hospital San Pedro de Alcántara,8,2,train_centres,0,1,1,20261106
+81006,Hospital San Pedro de Alcántara,8,2,train_centres,0,0,1,20261106
+81008,Hospital San Pedro de Alcántara,8,2,train_centres,0,1,1,20261106
+91003,CHUAC,9,2,train_centres,0,0,1,20261106
+91005,CHUAC,9,2,train_centres,0,0,1,20261106
+91006,CHUAC,9,2,train_centres,0,0,1,20261106
+91014,CHUAC,9,2,train_centres,0,0,1,20261106
+91017,CHUAC,9,2,train_centres,0,0,1,20261106
+91019,CHUAC,9,2,train_centres,0,0,1,20261106
+92001,CHUAC,9,2,train_centres,0,1,2,20261106
+92002,CHUAC,9,2,train_centres,0,1,2,20261106
+93002,CHUAC,9,2,train_centres,0,0,3,20261106
+11003,Hospital Universitario de Fuenlabrada,1,2,train_centres,1,1,1,20261106
+11008,Hospital Universitario de Fuenlabrada,1,2,train_centres,1,0,1,20261106
+12002,Hospital Universitario de Fuenlabrada,1,2,train_centres,1,1,2,20261106
+12007,Hospital Universitario de Fuenlabrada,1,2,train_centres,1,0,2,20261106
+13004,Hospital Universitario de Fuenlabrada,1,2,train_centres,1,0,3,20261106
+13006,Hospital Universitario de Fuenlabrada,1,2,train_centres,1,1,3,20261106
+13007,Hospital Universitario de Fuenlabrada,1,2,train_centres,1,0,3,20261106
+31004,Hospital Clínico Unversitario de Valencia,3,2,train_centres,1,0,1,20261106
+31007,Hospital Clínico Unversitario de Valencia,3,2,train_centres,1,0,1,20261106
+31008,Hospital Clínico Unversitario de Valencia,3,2,train_centres,1,0,1,20261106
+31012,Hospital Clínico Unversitario de Valencia,3,2,train_centres,1,0,1,20261106
+31013,Hospital Clínico Unversitario de Valencia,3,2,train_centres,1,0,1,20261106
+31014,Hospital Clínico Unversitario de Valencia,3,2,train_centres,1,0,1,20261106
+31016,Hospital Clínico Unversitario de Valencia,3,2,train_centres,1,0,1,20261106
+41008,ICO Bellvitge,4,2,train_centres,1,1,1,20261106
+41009,ICO Bellvitge,4,2,train_centres,1,0,1,20261106
+41012,ICO Bellvitge,4,2,train_centres,1,0,1,20261106
+41013,ICO Bellvitge,4,2,train_centres,1,0,1,20261106
+41016,ICO Bellvitge,4,2,train_centres,1,1,1,20261106
+41017,ICO Bellvitge,4,2,train_centres,1,0,1,20261106
+41026,ICO Bellvitge,4,2,train_centres,1,0,1,20261106
+51007,Hospital Universitario Son Espases,5,2,train_centres,1,0,1,20261106
+51016,Hospital Universitario Son Espases,5,2,train_centres,1,0,1,20261106
+52003,Hospital Universitario Son Espases,5,2,train_centres,1,0,2,20261106
+61002,Hospital de Navarra,6,2,train_centres,1,1,1,20261106
+62003,Hospital de Navarra,6,2,train_centres,1,0,2,20261106
+63004,Hospital de Navarra,6,2,train_centres,1,0,3,20261106
+71009,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,1,0,1,20261106
+72001,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,1,1,2,20261106
+73001,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,1,1,3,20261106
+73003,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,1,1,3,20261106
+73004,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,1,1,3,20261106
+81005,Hospital San Pedro de Alcántara,8,2,train_centres,1,0,1,20261106
+81007,Hospital San Pedro de Alcántara,8,2,train_centres,1,0,1,20261106
+91001,CHUAC,9,2,train_centres,1,1,1,20261106
+91002,CHUAC,9,2,train_centres,1,1,1,20261106
+91004,CHUAC,9,2,train_centres,1,1,1,20261106
+91012,CHUAC,9,2,train_centres,1,0,1,20261106
+91015,CHUAC,9,2,train_centres,1,0,1,20261106
+11001,Hospital Universitario de Fuenlabrada,1,2,train_centres,2,0,1,20261106
+11006,Hospital Universitario de Fuenlabrada,1,2,train_centres,2,0,1,20261106
+12005,Hospital Universitario de Fuenlabrada,1,2,train_centres,2,0,2,20261106
+13009,Hospital Universitario de Fuenlabrada,1,2,train_centres,2,0,3,20261106
+31003,Hospital Clínico Unversitario de Valencia,3,2,train_centres,2,0,1,20261106
+31005,Hospital Clínico Unversitario de Valencia,3,2,train_centres,2,1,1,20261106
+31011,Hospital Clínico Unversitario de Valencia,3,2,train_centres,2,0,1,20261106
+41001,ICO Bellvitge,4,2,train_centres,2,0,1,20261106
+41002,ICO Bellvitge,4,2,train_centres,2,1,1,20261106
+41007,ICO Bellvitge,4,2,train_centres,2,1,1,20261106
+41018,ICO Bellvitge,4,2,train_centres,2,0,1,20261106
+41022,ICO Bellvitge,4,2,train_centres,2,0,1,20261106
+41023,ICO Bellvitge,4,2,train_centres,2,0,1,20261106
+41025,ICO Bellvitge,4,2,train_centres,2,0,1,20261106
+41027,ICO Bellvitge,4,2,train_centres,2,0,1,20261106
+41028,ICO Bellvitge,4,2,train_centres,2,0,1,20261106
+42001,ICO Bellvitge,4,2,train_centres,2,1,2,20261106
+42003,ICO Bellvitge,4,2,train_centres,2,0,2,20261106
+51003,Hospital Universitario Son Espases,5,2,train_centres,2,0,1,20261106
+51005,Hospital Universitario Son Espases,5,2,train_centres,2,1,1,20261106
+51006,Hospital Universitario Son Espases,5,2,train_centres,2,0,1,20261106
+51010,Hospital Universitario Son Espases,5,2,train_centres,2,0,1,20261106
+51011,Hospital Universitario Son Espases,5,2,train_centres,2,0,1,20261106
+51013,Hospital Universitario Son Espases,5,2,train_centres,2,0,1,20261106
+52001,Hospital Universitario Son Espases,5,2,train_centres,2,1,2,20261106
+52005,Hospital Universitario Son Espases,5,2,train_centres,2,0,2,20261106
+53003,Hospital Universitario Son Espases,5,2,train_centres,2,0,3,20261106
+61003,Hospital de Navarra,6,2,train_centres,2,0,1,20261106
+62004,Hospital de Navarra,6,2,train_centres,2,1,2,20261106
+63001,Hospital de Navarra,6,2,train_centres,2,1,3,20261106
+73002,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,2,1,3,20261106
+73007,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,2,1,3,20261106
+73010,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,2,0,3,20261106
+81003,Hospital San Pedro de Alcántara,8,2,train_centres,2,1,1,20261106
+91007,CHUAC,9,2,train_centres,2,0,1,20261106
+91009,CHUAC,9,2,train_centres,2,1,1,20261106
+91013,CHUAC,9,2,train_centres,2,0,1,20261106
+91018,CHUAC,9,2,train_centres,2,0,1,20261106
+93001,CHUAC,9,2,train_centres,2,1,3,20261106
+11005,Hospital Universitario de Fuenlabrada,1,2,train_centres,3,0,1,20261106
+11007,Hospital Universitario de Fuenlabrada,1,2,train_centres,3,0,1,20261106
+11009,Hospital Universitario de Fuenlabrada,1,2,train_centres,3,0,1,20261106
+11010,Hospital Universitario de Fuenlabrada,1,2,train_centres,3,0,1,20261106
+12003,Hospital Universitario de Fuenlabrada,1,2,train_centres,3,0,2,20261106
+12004,Hospital Universitario de Fuenlabrada,1,2,train_centres,3,0,2,20261106
+13003,Hospital Universitario de Fuenlabrada,1,2,train_centres,3,0,3,20261106
+13008,Hospital Universitario de Fuenlabrada,1,2,train_centres,3,1,3,20261106
+13010,Hospital Universitario de Fuenlabrada,1,2,train_centres,3,0,3,20261106
+31001,Hospital Clínico Unversitario de Valencia,3,2,train_centres,3,0,1,20261106
+31002,Hospital Clínico Unversitario de Valencia,3,2,train_centres,3,0,1,20261106
+31009,Hospital Clínico Unversitario de Valencia,3,2,train_centres,3,0,1,20261106
+41003,ICO Bellvitge,4,2,train_centres,3,1,1,20261106
+41006,ICO Bellvitge,4,2,train_centres,3,0,1,20261106
+41010,ICO Bellvitge,4,2,train_centres,3,0,1,20261106
+41021,ICO Bellvitge,4,2,train_centres,3,0,1,20261106
+51001,Hospital Universitario Son Espases,5,2,train_centres,3,0,1,20261106
+51009,Hospital Universitario Son Espases,5,2,train_centres,3,0,1,20261106
+51014,Hospital Universitario Son Espases,5,2,train_centres,3,0,1,20261106
+52004,Hospital Universitario Son Espases,5,2,train_centres,3,1,2,20261106
+61005,Hospital de Navarra,6,2,train_centres,3,0,1,20261106
+62001,Hospital de Navarra,6,2,train_centres,3,1,2,20261106
+62002,Hospital de Navarra,6,2,train_centres,3,1,2,20261106
+63003,Hospital de Navarra,6,2,train_centres,3,1,3,20261106
+63005,Hospital de Navarra,6,2,train_centres,3,1,3,20261106
+71003,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,3,0,1,20261106
+71005,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,3,0,1,20261106
+71008,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,3,1,1,20261106
+71011,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,3,0,1,20261106
+71012,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,3,0,1,20261106
+73006,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,3,1,3,20261106
+73008,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,3,0,3,20261106
+73011,Hospital Unversitario Virgen de la Macarena,7,2,train_centres,3,0,3,20261106
+81004,Hospital San Pedro de Alcántara,8,2,train_centres,3,1,1,20261106
+81009,Hospital San Pedro de Alcántara,8,2,train_centres,3,1,1,20261106
+91008,CHUAC,9,2,train_centres,3,0,1,20261106
+91010,CHUAC,9,2,train_centres,3,1,1,20261106
+91011,CHUAC,9,2,train_centres,3,1,1,20261106
+91016,CHUAC,9,2,train_centres,3,0,1,20261106
+31001,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,0,1,20261107
+31002,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,0,1,20261107
+31003,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,0,1,20261107
+31004,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,0,1,20261107
+31005,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,1,1,20261107
+31007,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,0,1,20261107
+31008,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,0,1,20261107
+31009,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,0,1,20261107
+31010,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,1,1,20261107
+31011,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,0,1,20261107
+31012,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,0,1,20261107
+31013,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,0,1,20261107
+31014,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,0,1,20261107
+31016,Hospital Clínico Unversitario de Valencia,3,3,left_out,external,0,1,20261107
+11010,Hospital Universitario de Fuenlabrada,1,3,train_centres,0,0,1,20261107
+12004,Hospital Universitario de Fuenlabrada,1,3,train_centres,0,0,2,20261107
+13006,Hospital Universitario de Fuenlabrada,1,3,train_centres,0,1,3,20261107
+13010,Hospital Universitario de Fuenlabrada,1,3,train_centres,0,0,3,20261107
+22004,Hospital Unversitario de La Princesa,2,3,train_centres,0,0,2,20261107
+23001,Hospital Unversitario de La Princesa,2,3,train_centres,0,1,3,20261107
+23002,Hospital Unversitario de La Princesa,2,3,train_centres,0,1,3,20261107
+23004,Hospital Unversitario de La Princesa,2,3,train_centres,0,1,3,20261107
+23010,Hospital Unversitario de La Princesa,2,3,train_centres,0,0,3,20261107
+23011,Hospital Unversitario de La Princesa,2,3,train_centres,0,0,3,20261107
+41002,ICO Bellvitge,4,3,train_centres,0,1,1,20261107
+41003,ICO Bellvitge,4,3,train_centres,0,1,1,20261107
+41009,ICO Bellvitge,4,3,train_centres,0,0,1,20261107
+41010,ICO Bellvitge,4,3,train_centres,0,0,1,20261107
+41013,ICO Bellvitge,4,3,train_centres,0,0,1,20261107
+41014,ICO Bellvitge,4,3,train_centres,0,0,1,20261107
+41022,ICO Bellvitge,4,3,train_centres,0,0,1,20261107
+41027,ICO Bellvitge,4,3,train_centres,0,0,1,20261107
+41028,ICO Bellvitge,4,3,train_centres,0,0,1,20261107
+42001,ICO Bellvitge,4,3,train_centres,0,1,2,20261107
+42003,ICO Bellvitge,4,3,train_centres,0,0,2,20261107
+51004,Hospital Universitario Son Espases,5,3,train_centres,0,0,1,20261107
+51006,Hospital Universitario Son Espases,5,3,train_centres,0,0,1,20261107
+53002,Hospital Universitario Son Espases,5,3,train_centres,0,0,3,20261107
+61001,Hospital de Navarra,6,3,train_centres,0,0,1,20261107
+61002,Hospital de Navarra,6,3,train_centres,0,1,1,20261107
+61005,Hospital de Navarra,6,3,train_centres,0,0,1,20261107
+71002,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,0,0,1,20261107
+71003,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,0,0,1,20261107
+71007,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,0,0,1,20261107
+71010,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,0,0,1,20261107
+71012,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,0,0,1,20261107
+73006,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,0,1,3,20261107
+73007,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,0,1,3,20261107
+73011,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,0,0,3,20261107
+81004,Hospital San Pedro de Alcántara,8,3,train_centres,0,1,1,20261107
+81008,Hospital San Pedro de Alcántara,8,3,train_centres,0,1,1,20261107
+91004,CHUAC,9,3,train_centres,0,1,1,20261107
+91014,CHUAC,9,3,train_centres,0,0,1,20261107
+92001,CHUAC,9,3,train_centres,0,1,2,20261107
+92002,CHUAC,9,3,train_centres,0,1,2,20261107
+11001,Hospital Universitario de Fuenlabrada,1,3,train_centres,1,0,1,20261107
+11003,Hospital Universitario de Fuenlabrada,1,3,train_centres,1,1,1,20261107
+11005,Hospital Universitario de Fuenlabrada,1,3,train_centres,1,0,1,20261107
+11006,Hospital Universitario de Fuenlabrada,1,3,train_centres,1,0,1,20261107
+11008,Hospital Universitario de Fuenlabrada,1,3,train_centres,1,0,1,20261107
+12002,Hospital Universitario de Fuenlabrada,1,3,train_centres,1,1,2,20261107
+12006,Hospital Universitario de Fuenlabrada,1,3,train_centres,1,0,2,20261107
+13003,Hospital Universitario de Fuenlabrada,1,3,train_centres,1,0,3,20261107
+13004,Hospital Universitario de Fuenlabrada,1,3,train_centres,1,0,3,20261107
+23012,Hospital Unversitario de La Princesa,2,3,train_centres,1,0,3,20261107
+23013,Hospital Unversitario de La Princesa,2,3,train_centres,1,0,3,20261107
+23015,Hospital Unversitario de La Princesa,2,3,train_centres,1,0,3,20261107
+41001,ICO Bellvitge,4,3,train_centres,1,0,1,20261107
+41006,ICO Bellvitge,4,3,train_centres,1,0,1,20261107
+41008,ICO Bellvitge,4,3,train_centres,1,1,1,20261107
+41012,ICO Bellvitge,4,3,train_centres,1,0,1,20261107
+41018,ICO Bellvitge,4,3,train_centres,1,0,1,20261107
+41019,ICO Bellvitge,4,3,train_centres,1,0,1,20261107
+41023,ICO Bellvitge,4,3,train_centres,1,0,1,20261107
+41024,ICO Bellvitge,4,3,train_centres,1,0,1,20261107
+41026,ICO Bellvitge,4,3,train_centres,1,0,1,20261107
+51005,Hospital Universitario Son Espases,5,3,train_centres,1,1,1,20261107
+51008,Hospital Universitario Son Espases,5,3,train_centres,1,0,1,20261107
+52005,Hospital Universitario Son Espases,5,3,train_centres,1,0,2,20261107
+53001,Hospital Universitario Son Espases,5,3,train_centres,1,1,3,20261107
+61003,Hospital de Navarra,6,3,train_centres,1,0,1,20261107
+62001,Hospital de Navarra,6,3,train_centres,1,1,2,20261107
+62004,Hospital de Navarra,6,3,train_centres,1,1,2,20261107
+62005,Hospital de Navarra,6,3,train_centres,1,0,2,20261107
+63001,Hospital de Navarra,6,3,train_centres,1,1,3,20261107
+71008,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,1,1,1,20261107
+71011,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,1,0,1,20261107
+73001,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,1,1,3,20261107
+73002,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,1,1,3,20261107
+73004,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,1,1,3,20261107
+81007,Hospital San Pedro de Alcántara,8,3,train_centres,1,0,1,20261107
+91005,CHUAC,9,3,train_centres,1,0,1,20261107
+91008,CHUAC,9,3,train_centres,1,0,1,20261107
+91010,CHUAC,9,3,train_centres,1,1,1,20261107
+91011,CHUAC,9,3,train_centres,1,1,1,20261107
+11004,Hospital Universitario de Fuenlabrada,1,3,train_centres,2,0,1,20261107
+11007,Hospital Universitario de Fuenlabrada,1,3,train_centres,2,0,1,20261107
+11009,Hospital Universitario de Fuenlabrada,1,3,train_centres,2,0,1,20261107
+12005,Hospital Universitario de Fuenlabrada,1,3,train_centres,2,0,2,20261107
+13007,Hospital Universitario de Fuenlabrada,1,3,train_centres,2,0,3,20261107
+22002,Hospital Unversitario de La Princesa,2,3,train_centres,2,0,2,20261107
+23005,Hospital Unversitario de La Princesa,2,3,train_centres,2,1,3,20261107
+23008,Hospital Unversitario de La Princesa,2,3,train_centres,2,0,3,20261107
+23009,Hospital Unversitario de La Princesa,2,3,train_centres,2,0,3,20261107
+41011,ICO Bellvitge,4,3,train_centres,2,0,1,20261107
+41020,ICO Bellvitge,4,3,train_centres,2,1,1,20261107
+41021,ICO Bellvitge,4,3,train_centres,2,0,1,20261107
+51007,Hospital Universitario Son Espases,5,3,train_centres,2,0,1,20261107
+51011,Hospital Universitario Son Espases,5,3,train_centres,2,0,1,20261107
+51013,Hospital Universitario Son Espases,5,3,train_centres,2,0,1,20261107
+51015,Hospital Universitario Son Espases,5,3,train_centres,2,0,1,20261107
+51016,Hospital Universitario Son Espases,5,3,train_centres,2,0,1,20261107
+52001,Hospital Universitario Son Espases,5,3,train_centres,2,1,2,20261107
+52003,Hospital Universitario Son Espases,5,3,train_centres,2,0,2,20261107
+52004,Hospital Universitario Son Espases,5,3,train_centres,2,1,2,20261107
+53003,Hospital Universitario Son Espases,5,3,train_centres,2,0,3,20261107
+61006,Hospital de Navarra,6,3,train_centres,2,0,1,20261107
+63003,Hospital de Navarra,6,3,train_centres,2,1,3,20261107
+63004,Hospital de Navarra,6,3,train_centres,2,0,3,20261107
+63005,Hospital de Navarra,6,3,train_centres,2,1,3,20261107
+63007,Hospital de Navarra,6,3,train_centres,2,0,3,20261107
+71004,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,2,1,1,20261107
+71005,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,2,0,1,20261107
+72001,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,2,1,2,20261107
+73003,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,2,1,3,20261107
+73005,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,2,1,3,20261107
+81001,Hospital San Pedro de Alcántara,8,3,train_centres,2,1,1,20261107
+81009,Hospital San Pedro de Alcántara,8,3,train_centres,2,1,1,20261107
+91001,CHUAC,9,3,train_centres,2,1,1,20261107
+91002,CHUAC,9,3,train_centres,2,1,1,20261107
+91012,CHUAC,9,3,train_centres,2,0,1,20261107
+91015,CHUAC,9,3,train_centres,2,0,1,20261107
+91016,CHUAC,9,3,train_centres,2,0,1,20261107
+91017,CHUAC,9,3,train_centres,2,0,1,20261107
+91018,CHUAC,9,3,train_centres,2,0,1,20261107
+11011,Hospital Universitario de Fuenlabrada,1,3,train_centres,3,0,1,20261107
+12001,Hospital Universitario de Fuenlabrada,1,3,train_centres,3,1,2,20261107
+12003,Hospital Universitario de Fuenlabrada,1,3,train_centres,3,0,2,20261107
+12007,Hospital Universitario de Fuenlabrada,1,3,train_centres,3,0,2,20261107
+13008,Hospital Universitario de Fuenlabrada,1,3,train_centres,3,1,3,20261107
+13009,Hospital Universitario de Fuenlabrada,1,3,train_centres,3,0,3,20261107
+21001,Hospital Unversitario de La Princesa,2,3,train_centres,3,0,1,20261107
+21002,Hospital Unversitario de La Princesa,2,3,train_centres,3,1,1,20261107
+22001,Hospital Unversitario de La Princesa,2,3,train_centres,3,1,2,20261107
+23003,Hospital Unversitario de La Princesa,2,3,train_centres,3,1,3,20261107
+23006,Hospital Unversitario de La Princesa,2,3,train_centres,3,1,3,20261107
+23007,Hospital Unversitario de La Princesa,2,3,train_centres,3,0,3,20261107
+41005,ICO Bellvitge,4,3,train_centres,3,1,1,20261107
+41007,ICO Bellvitge,4,3,train_centres,3,1,1,20261107
+41016,ICO Bellvitge,4,3,train_centres,3,1,1,20261107
+41017,ICO Bellvitge,4,3,train_centres,3,0,1,20261107
+41025,ICO Bellvitge,4,3,train_centres,3,0,1,20261107
+51001,Hospital Universitario Son Espases,5,3,train_centres,3,0,1,20261107
+51003,Hospital Universitario Son Espases,5,3,train_centres,3,0,1,20261107
+51009,Hospital Universitario Son Espases,5,3,train_centres,3,0,1,20261107
+51010,Hospital Universitario Son Espases,5,3,train_centres,3,0,1,20261107
+51012,Hospital Universitario Son Espases,5,3,train_centres,3,1,1,20261107
+51014,Hospital Universitario Son Espases,5,3,train_centres,3,0,1,20261107
+62002,Hospital de Navarra,6,3,train_centres,3,1,2,20261107
+62003,Hospital de Navarra,6,3,train_centres,3,0,2,20261107
+71009,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,3,0,1,20261107
+73008,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,3,0,3,20261107
+73009,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,3,1,3,20261107
+73010,Hospital Unversitario Virgen de la Macarena,7,3,train_centres,3,0,3,20261107
+81003,Hospital San Pedro de Alcántara,8,3,train_centres,3,1,1,20261107
+81005,Hospital San Pedro de Alcántara,8,3,train_centres,3,0,1,20261107
+81006,Hospital San Pedro de Alcántara,8,3,train_centres,3,0,1,20261107
+91003,CHUAC,9,3,train_centres,3,0,1,20261107
+91006,CHUAC,9,3,train_centres,3,0,1,20261107
+91007,CHUAC,9,3,train_centres,3,0,1,20261107
+91009,CHUAC,9,3,train_centres,3,1,1,20261107
+91013,CHUAC,9,3,train_centres,3,0,1,20261107
+91019,CHUAC,9,3,train_centres,3,0,1,20261107
+93001,CHUAC,9,3,train_centres,3,1,3,20261107
+93002,CHUAC,9,3,train_centres,3,0,3,20261107
+41001,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41002,ICO Bellvitge,4,4,left_out,external,1,1,20261108
+41003,ICO Bellvitge,4,4,left_out,external,1,1,20261108
+41005,ICO Bellvitge,4,4,left_out,external,1,1,20261108
+41006,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41007,ICO Bellvitge,4,4,left_out,external,1,1,20261108
+41008,ICO Bellvitge,4,4,left_out,external,1,1,20261108
+41009,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41010,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41011,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41012,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41013,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41014,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41016,ICO Bellvitge,4,4,left_out,external,1,1,20261108
+41017,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41018,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41019,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41020,ICO Bellvitge,4,4,left_out,external,1,1,20261108
+41021,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41022,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41023,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41024,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41025,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41026,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41027,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+41028,ICO Bellvitge,4,4,left_out,external,0,1,20261108
+42001,ICO Bellvitge,4,4,left_out,external,1,2,20261108
+42003,ICO Bellvitge,4,4,left_out,external,0,2,20261108
+11004,Hospital Universitario de Fuenlabrada,1,4,train_centres,0,0,1,20261108
+11008,Hospital Universitario de Fuenlabrada,1,4,train_centres,0,0,1,20261108
+11011,Hospital Universitario de Fuenlabrada,1,4,train_centres,0,0,1,20261108
+12001,Hospital Universitario de Fuenlabrada,1,4,train_centres,0,1,2,20261108
+12002,Hospital Universitario de Fuenlabrada,1,4,train_centres,0,1,2,20261108
+12004,Hospital Universitario de Fuenlabrada,1,4,train_centres,0,0,2,20261108
+12007,Hospital Universitario de Fuenlabrada,1,4,train_centres,0,0,2,20261108
+13004,Hospital Universitario de Fuenlabrada,1,4,train_centres,0,0,3,20261108
+22002,Hospital Unversitario de La Princesa,2,4,train_centres,0,0,2,20261108
+23003,Hospital Unversitario de La Princesa,2,4,train_centres,0,1,3,20261108
+23012,Hospital Unversitario de La Princesa,2,4,train_centres,0,0,3,20261108
+23013,Hospital Unversitario de La Princesa,2,4,train_centres,0,0,3,20261108
+31002,Hospital Clínico Unversitario de Valencia,3,4,train_centres,0,0,1,20261108
+31005,Hospital Clínico Unversitario de Valencia,3,4,train_centres,0,1,1,20261108
+31010,Hospital Clínico Unversitario de Valencia,3,4,train_centres,0,1,1,20261108
+31011,Hospital Clínico Unversitario de Valencia,3,4,train_centres,0,0,1,20261108
+31014,Hospital Clínico Unversitario de Valencia,3,4,train_centres,0,0,1,20261108
+31016,Hospital Clínico Unversitario de Valencia,3,4,train_centres,0,0,1,20261108
+51013,Hospital Universitario Son Espases,5,4,train_centres,0,0,1,20261108
+52004,Hospital Universitario Son Espases,5,4,train_centres,0,1,2,20261108
+53001,Hospital Universitario Son Espases,5,4,train_centres,0,1,3,20261108
+53003,Hospital Universitario Son Espases,5,4,train_centres,0,0,3,20261108
+61003,Hospital de Navarra,6,4,train_centres,0,0,1,20261108
+71011,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,0,0,1,20261108
+73001,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,0,1,3,20261108
+73004,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,0,1,3,20261108
+73005,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,0,1,3,20261108
+81006,Hospital San Pedro de Alcántara,8,4,train_centres,0,0,1,20261108
+81008,Hospital San Pedro de Alcántara,8,4,train_centres,0,1,1,20261108
+91005,CHUAC,9,4,train_centres,0,0,1,20261108
+91007,CHUAC,9,4,train_centres,0,0,1,20261108
+91008,CHUAC,9,4,train_centres,0,0,1,20261108
+91010,CHUAC,9,4,train_centres,0,1,1,20261108
+91011,CHUAC,9,4,train_centres,0,1,1,20261108
+91012,CHUAC,9,4,train_centres,0,0,1,20261108
+91015,CHUAC,9,4,train_centres,0,0,1,20261108
+93002,CHUAC,9,4,train_centres,0,0,3,20261108
+12003,Hospital Universitario de Fuenlabrada,1,4,train_centres,1,0,2,20261108
+12005,Hospital Universitario de Fuenlabrada,1,4,train_centres,1,0,2,20261108
+13003,Hospital Universitario de Fuenlabrada,1,4,train_centres,1,0,3,20261108
+13009,Hospital Universitario de Fuenlabrada,1,4,train_centres,1,0,3,20261108
+21001,Hospital Unversitario de La Princesa,2,4,train_centres,1,0,1,20261108
+21002,Hospital Unversitario de La Princesa,2,4,train_centres,1,1,1,20261108
+22001,Hospital Unversitario de La Princesa,2,4,train_centres,1,1,2,20261108
+23002,Hospital Unversitario de La Princesa,2,4,train_centres,1,1,3,20261108
+23006,Hospital Unversitario de La Princesa,2,4,train_centres,1,1,3,20261108
+23007,Hospital Unversitario de La Princesa,2,4,train_centres,1,0,3,20261108
+23008,Hospital Unversitario de La Princesa,2,4,train_centres,1,0,3,20261108
+31004,Hospital Clínico Unversitario de Valencia,3,4,train_centres,1,0,1,20261108
+51001,Hospital Universitario Son Espases,5,4,train_centres,1,0,1,20261108
+51003,Hospital Universitario Son Espases,5,4,train_centres,1,0,1,20261108
+51008,Hospital Universitario Son Espases,5,4,train_centres,1,0,1,20261108
+51009,Hospital Universitario Son Espases,5,4,train_centres,1,0,1,20261108
+51011,Hospital Universitario Son Espases,5,4,train_centres,1,0,1,20261108
+51015,Hospital Universitario Son Espases,5,4,train_centres,1,0,1,20261108
+51016,Hospital Universitario Son Espases,5,4,train_centres,1,0,1,20261108
+52003,Hospital Universitario Son Espases,5,4,train_centres,1,0,2,20261108
+61001,Hospital de Navarra,6,4,train_centres,1,0,1,20261108
+61002,Hospital de Navarra,6,4,train_centres,1,1,1,20261108
+62004,Hospital de Navarra,6,4,train_centres,1,1,2,20261108
+63001,Hospital de Navarra,6,4,train_centres,1,1,3,20261108
+71002,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,1,0,1,20261108
+71007,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,1,0,1,20261108
+71008,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,1,1,1,20261108
+73002,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,1,1,3,20261108
+73006,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,1,1,3,20261108
+73008,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,1,0,3,20261108
+91002,CHUAC,9,4,train_centres,1,1,1,20261108
+91004,CHUAC,9,4,train_centres,1,1,1,20261108
+91014,CHUAC,9,4,train_centres,1,0,1,20261108
+91016,CHUAC,9,4,train_centres,1,0,1,20261108
+91018,CHUAC,9,4,train_centres,1,0,1,20261108
+91019,CHUAC,9,4,train_centres,1,0,1,20261108
+92002,CHUAC,9,4,train_centres,1,1,2,20261108
+11003,Hospital Universitario de Fuenlabrada,1,4,train_centres,2,1,1,20261108
+11005,Hospital Universitario de Fuenlabrada,1,4,train_centres,2,0,1,20261108
+11007,Hospital Universitario de Fuenlabrada,1,4,train_centres,2,0,1,20261108
+11010,Hospital Universitario de Fuenlabrada,1,4,train_centres,2,0,1,20261108
+12006,Hospital Universitario de Fuenlabrada,1,4,train_centres,2,0,2,20261108
+13008,Hospital Universitario de Fuenlabrada,1,4,train_centres,2,1,3,20261108
+23001,Hospital Unversitario de La Princesa,2,4,train_centres,2,1,3,20261108
+23005,Hospital Unversitario de La Princesa,2,4,train_centres,2,1,3,20261108
+23010,Hospital Unversitario de La Princesa,2,4,train_centres,2,0,3,20261108
+23011,Hospital Unversitario de La Princesa,2,4,train_centres,2,0,3,20261108
+23015,Hospital Unversitario de La Princesa,2,4,train_centres,2,0,3,20261108
+31003,Hospital Clínico Unversitario de Valencia,3,4,train_centres,2,0,1,20261108
+31007,Hospital Clínico Unversitario de Valencia,3,4,train_centres,2,0,1,20261108
+31012,Hospital Clínico Unversitario de Valencia,3,4,train_centres,2,0,1,20261108
+31013,Hospital Clínico Unversitario de Valencia,3,4,train_centres,2,0,1,20261108
+51006,Hospital Universitario Son Espases,5,4,train_centres,2,0,1,20261108
+51012,Hospital Universitario Son Espases,5,4,train_centres,2,1,1,20261108
+51014,Hospital Universitario Son Espases,5,4,train_centres,2,0,1,20261108
+53002,Hospital Universitario Son Espases,5,4,train_centres,2,0,3,20261108
+61005,Hospital de Navarra,6,4,train_centres,2,0,1,20261108
+61006,Hospital de Navarra,6,4,train_centres,2,0,1,20261108
+62005,Hospital de Navarra,6,4,train_centres,2,0,2,20261108
+63003,Hospital de Navarra,6,4,train_centres,2,1,3,20261108
+63004,Hospital de Navarra,6,4,train_centres,2,0,3,20261108
+71003,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,2,0,1,20261108
+71005,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,2,0,1,20261108
+71012,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,2,0,1,20261108
+72001,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,2,1,2,20261108
+73007,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,2,1,3,20261108
+73009,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,2,1,3,20261108
+73010,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,2,0,3,20261108
+81007,Hospital San Pedro de Alcántara,8,4,train_centres,2,0,1,20261108
+81009,Hospital San Pedro de Alcántara,8,4,train_centres,2,1,1,20261108
+91001,CHUAC,9,4,train_centres,2,1,1,20261108
+91009,CHUAC,9,4,train_centres,2,1,1,20261108
+91017,CHUAC,9,4,train_centres,2,0,1,20261108
+92001,CHUAC,9,4,train_centres,2,1,2,20261108
+11001,Hospital Universitario de Fuenlabrada,1,4,train_centres,3,0,1,20261108
+11006,Hospital Universitario de Fuenlabrada,1,4,train_centres,3,0,1,20261108
+11009,Hospital Universitario de Fuenlabrada,1,4,train_centres,3,0,1,20261108
+13006,Hospital Universitario de Fuenlabrada,1,4,train_centres,3,1,3,20261108
+13007,Hospital Universitario de Fuenlabrada,1,4,train_centres,3,0,3,20261108
+13010,Hospital Universitario de Fuenlabrada,1,4,train_centres,3,0,3,20261108
+22004,Hospital Unversitario de La Princesa,2,4,train_centres,3,0,2,20261108
+23004,Hospital Unversitario de La Princesa,2,4,train_centres,3,1,3,20261108
+23009,Hospital Unversitario de La Princesa,2,4,train_centres,3,0,3,20261108
+31001,Hospital Clínico Unversitario de Valencia,3,4,train_centres,3,0,1,20261108
+31008,Hospital Clínico Unversitario de Valencia,3,4,train_centres,3,0,1,20261108
+31009,Hospital Clínico Unversitario de Valencia,3,4,train_centres,3,0,1,20261108
+51004,Hospital Universitario Son Espases,5,4,train_centres,3,0,1,20261108
+51005,Hospital Universitario Son Espases,5,4,train_centres,3,1,1,20261108
+51007,Hospital Universitario Son Espases,5,4,train_centres,3,0,1,20261108
+51010,Hospital Universitario Son Espases,5,4,train_centres,3,0,1,20261108
+52001,Hospital Universitario Son Espases,5,4,train_centres,3,1,2,20261108
+52005,Hospital Universitario Son Espases,5,4,train_centres,3,0,2,20261108
+62001,Hospital de Navarra,6,4,train_centres,3,1,2,20261108
+62002,Hospital de Navarra,6,4,train_centres,3,1,2,20261108
+62003,Hospital de Navarra,6,4,train_centres,3,0,2,20261108
+63005,Hospital de Navarra,6,4,train_centres,3,1,3,20261108
+63007,Hospital de Navarra,6,4,train_centres,3,0,3,20261108
+71004,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,3,1,1,20261108
+71009,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,3,0,1,20261108
+71010,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,3,0,1,20261108
+73003,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,3,1,3,20261108
+73011,Hospital Unversitario Virgen de la Macarena,7,4,train_centres,3,0,3,20261108
+81001,Hospital San Pedro de Alcántara,8,4,train_centres,3,1,1,20261108
+81003,Hospital San Pedro de Alcántara,8,4,train_centres,3,1,1,20261108
+81004,Hospital San Pedro de Alcántara,8,4,train_centres,3,1,1,20261108
+81005,Hospital San Pedro de Alcántara,8,4,train_centres,3,0,1,20261108
+91003,CHUAC,9,4,train_centres,3,0,1,20261108
+91006,CHUAC,9,4,train_centres,3,0,1,20261108
+91013,CHUAC,9,4,train_centres,3,0,1,20261108
+93001,CHUAC,9,4,train_centres,3,1,3,20261108
+51001,Hospital Universitario Son Espases,5,5,left_out,external,0,1,20261109
+51003,Hospital Universitario Son Espases,5,5,left_out,external,0,1,20261109
+51004,Hospital Universitario Son Espases,5,5,left_out,external,0,1,20261109
+51005,Hospital Universitario Son Espases,5,5,left_out,external,1,1,20261109
+51006,Hospital Universitario Son Espases,5,5,left_out,external,0,1,20261109
+51007,Hospital Universitario Son Espases,5,5,left_out,external,0,1,20261109
+51008,Hospital Universitario Son Espases,5,5,left_out,external,0,1,20261109
+51009,Hospital Universitario Son Espases,5,5,left_out,external,0,1,20261109
+51010,Hospital Universitario Son Espases,5,5,left_out,external,0,1,20261109
+51011,Hospital Universitario Son Espases,5,5,left_out,external,0,1,20261109
+51012,Hospital Universitario Son Espases,5,5,left_out,external,1,1,20261109
+51013,Hospital Universitario Son Espases,5,5,left_out,external,0,1,20261109
+51014,Hospital Universitario Son Espases,5,5,left_out,external,0,1,20261109
+51015,Hospital Universitario Son Espases,5,5,left_out,external,0,1,20261109
+51016,Hospital Universitario Son Espases,5,5,left_out,external,0,1,20261109
+52001,Hospital Universitario Son Espases,5,5,left_out,external,1,2,20261109
+52003,Hospital Universitario Son Espases,5,5,left_out,external,0,2,20261109
+52004,Hospital Universitario Son Espases,5,5,left_out,external,1,2,20261109
+52005,Hospital Universitario Son Espases,5,5,left_out,external,0,2,20261109
+53001,Hospital Universitario Son Espases,5,5,left_out,external,1,3,20261109
+53002,Hospital Universitario Son Espases,5,5,left_out,external,0,3,20261109
+53003,Hospital Universitario Son Espases,5,5,left_out,external,0,3,20261109
+11009,Hospital Universitario de Fuenlabrada,1,5,train_centres,0,0,1,20261109
+12006,Hospital Universitario de Fuenlabrada,1,5,train_centres,0,0,2,20261109
+13008,Hospital Universitario de Fuenlabrada,1,5,train_centres,0,1,3,20261109
+21001,Hospital Unversitario de La Princesa,2,5,train_centres,0,0,1,20261109
+21002,Hospital Unversitario de La Princesa,2,5,train_centres,0,1,1,20261109
+22002,Hospital Unversitario de La Princesa,2,5,train_centres,0,0,2,20261109
+23003,Hospital Unversitario de La Princesa,2,5,train_centres,0,1,3,20261109
+23015,Hospital Unversitario de La Princesa,2,5,train_centres,0,0,3,20261109
+31007,Hospital Clínico Unversitario de Valencia,3,5,train_centres,0,0,1,20261109
+31013,Hospital Clínico Unversitario de Valencia,3,5,train_centres,0,0,1,20261109
+41001,ICO Bellvitge,4,5,train_centres,0,0,1,20261109
+41011,ICO Bellvitge,4,5,train_centres,0,0,1,20261109
+41012,ICO Bellvitge,4,5,train_centres,0,0,1,20261109
+41022,ICO Bellvitge,4,5,train_centres,0,0,1,20261109
+41026,ICO Bellvitge,4,5,train_centres,0,0,1,20261109
+42001,ICO Bellvitge,4,5,train_centres,0,1,2,20261109
+61005,Hospital de Navarra,6,5,train_centres,0,0,1,20261109
+62002,Hospital de Navarra,6,5,train_centres,0,1,2,20261109
+63001,Hospital de Navarra,6,5,train_centres,0,1,3,20261109
+63007,Hospital de Navarra,6,5,train_centres,0,0,3,20261109
+71002,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,0,0,1,20261109
+71003,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,0,0,1,20261109
+71010,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,0,0,1,20261109
+71011,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,0,0,1,20261109
+71012,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,0,0,1,20261109
+72001,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,0,1,2,20261109
+73001,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,0,1,3,20261109
+73003,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,0,1,3,20261109
+73008,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,0,0,3,20261109
+73011,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,0,0,3,20261109
+81009,Hospital San Pedro de Alcántara,8,5,train_centres,0,1,1,20261109
+91002,CHUAC,9,5,train_centres,0,1,1,20261109
+91004,CHUAC,9,5,train_centres,0,1,1,20261109
+91008,CHUAC,9,5,train_centres,0,0,1,20261109
+91009,CHUAC,9,5,train_centres,0,1,1,20261109
+91011,CHUAC,9,5,train_centres,0,1,1,20261109
+91012,CHUAC,9,5,train_centres,0,0,1,20261109
+91019,CHUAC,9,5,train_centres,0,0,1,20261109
+93002,CHUAC,9,5,train_centres,0,0,3,20261109
+11004,Hospital Universitario de Fuenlabrada,1,5,train_centres,1,0,1,20261109
+11010,Hospital Universitario de Fuenlabrada,1,5,train_centres,1,0,1,20261109
+11011,Hospital Universitario de Fuenlabrada,1,5,train_centres,1,0,1,20261109
+12002,Hospital Universitario de Fuenlabrada,1,5,train_centres,1,1,2,20261109
+12004,Hospital Universitario de Fuenlabrada,1,5,train_centres,1,0,2,20261109
+12005,Hospital Universitario de Fuenlabrada,1,5,train_centres,1,0,2,20261109
+13003,Hospital Universitario de Fuenlabrada,1,5,train_centres,1,0,3,20261109
+13009,Hospital Universitario de Fuenlabrada,1,5,train_centres,1,0,3,20261109
+22004,Hospital Unversitario de La Princesa,2,5,train_centres,1,0,2,20261109
+23002,Hospital Unversitario de La Princesa,2,5,train_centres,1,1,3,20261109
+23004,Hospital Unversitario de La Princesa,2,5,train_centres,1,1,3,20261109
+23005,Hospital Unversitario de La Princesa,2,5,train_centres,1,1,3,20261109
+23011,Hospital Unversitario de La Princesa,2,5,train_centres,1,0,3,20261109
+23012,Hospital Unversitario de La Princesa,2,5,train_centres,1,0,3,20261109
+23013,Hospital Unversitario de La Princesa,2,5,train_centres,1,0,3,20261109
+31003,Hospital Clínico Unversitario de Valencia,3,5,train_centres,1,0,1,20261109
+31008,Hospital Clínico Unversitario de Valencia,3,5,train_centres,1,0,1,20261109
+31009,Hospital Clínico Unversitario de Valencia,3,5,train_centres,1,0,1,20261109
+31010,Hospital Clínico Unversitario de Valencia,3,5,train_centres,1,1,1,20261109
+31011,Hospital Clínico Unversitario de Valencia,3,5,train_centres,1,0,1,20261109
+31012,Hospital Clínico Unversitario de Valencia,3,5,train_centres,1,0,1,20261109
+31016,Hospital Clínico Unversitario de Valencia,3,5,train_centres,1,0,1,20261109
+41007,ICO Bellvitge,4,5,train_centres,1,1,1,20261109
+41008,ICO Bellvitge,4,5,train_centres,1,1,1,20261109
+41009,ICO Bellvitge,4,5,train_centres,1,0,1,20261109
+41013,ICO Bellvitge,4,5,train_centres,1,0,1,20261109
+41017,ICO Bellvitge,4,5,train_centres,1,0,1,20261109
+41021,ICO Bellvitge,4,5,train_centres,1,0,1,20261109
+41023,ICO Bellvitge,4,5,train_centres,1,0,1,20261109
+41024,ICO Bellvitge,4,5,train_centres,1,0,1,20261109
+61003,Hospital de Navarra,6,5,train_centres,1,0,1,20261109
+62004,Hospital de Navarra,6,5,train_centres,1,1,2,20261109
+71004,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,1,1,1,20261109
+73002,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,1,1,3,20261109
+73006,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,1,1,3,20261109
+81005,Hospital San Pedro de Alcántara,8,5,train_centres,1,0,1,20261109
+91001,CHUAC,9,5,train_centres,1,1,1,20261109
+91010,CHUAC,9,5,train_centres,1,1,1,20261109
+11001,Hospital Universitario de Fuenlabrada,1,5,train_centres,2,0,1,20261109
+11006,Hospital Universitario de Fuenlabrada,1,5,train_centres,2,0,1,20261109
+12001,Hospital Universitario de Fuenlabrada,1,5,train_centres,2,1,2,20261109
+12003,Hospital Universitario de Fuenlabrada,1,5,train_centres,2,0,2,20261109
+12007,Hospital Universitario de Fuenlabrada,1,5,train_centres,2,0,2,20261109
+13010,Hospital Universitario de Fuenlabrada,1,5,train_centres,2,0,3,20261109
+22001,Hospital Unversitario de La Princesa,2,5,train_centres,2,1,2,20261109
+23001,Hospital Unversitario de La Princesa,2,5,train_centres,2,1,3,20261109
+23008,Hospital Unversitario de La Princesa,2,5,train_centres,2,0,3,20261109
+23009,Hospital Unversitario de La Princesa,2,5,train_centres,2,0,3,20261109
+23010,Hospital Unversitario de La Princesa,2,5,train_centres,2,0,3,20261109
+31002,Hospital Clínico Unversitario de Valencia,3,5,train_centres,2,0,1,20261109
+41002,ICO Bellvitge,4,5,train_centres,2,1,1,20261109
+41003,ICO Bellvitge,4,5,train_centres,2,1,1,20261109
+41010,ICO Bellvitge,4,5,train_centres,2,0,1,20261109
+41016,ICO Bellvitge,4,5,train_centres,2,1,1,20261109
+41027,ICO Bellvitge,4,5,train_centres,2,0,1,20261109
+61001,Hospital de Navarra,6,5,train_centres,2,0,1,20261109
+62003,Hospital de Navarra,6,5,train_centres,2,0,2,20261109
+71007,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,2,0,1,20261109
+71009,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,2,0,1,20261109
+73004,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,2,1,3,20261109
+73005,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,2,1,3,20261109
+73009,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,2,1,3,20261109
+81001,Hospital San Pedro de Alcántara,8,5,train_centres,2,1,1,20261109
+81003,Hospital San Pedro de Alcántara,8,5,train_centres,2,1,1,20261109
+81004,Hospital San Pedro de Alcántara,8,5,train_centres,2,1,1,20261109
+81006,Hospital San Pedro de Alcántara,8,5,train_centres,2,0,1,20261109
+81007,Hospital San Pedro de Alcántara,8,5,train_centres,2,0,1,20261109
+81008,Hospital San Pedro de Alcántara,8,5,train_centres,2,1,1,20261109
+91005,CHUAC,9,5,train_centres,2,0,1,20261109
+91006,CHUAC,9,5,train_centres,2,0,1,20261109
+91007,CHUAC,9,5,train_centres,2,0,1,20261109
+91013,CHUAC,9,5,train_centres,2,0,1,20261109
+91014,CHUAC,9,5,train_centres,2,0,1,20261109
+91017,CHUAC,9,5,train_centres,2,0,1,20261109
+91018,CHUAC,9,5,train_centres,2,0,1,20261109
+93001,CHUAC,9,5,train_centres,2,1,3,20261109
+11003,Hospital Universitario de Fuenlabrada,1,5,train_centres,3,1,1,20261109
+11005,Hospital Universitario de Fuenlabrada,1,5,train_centres,3,0,1,20261109
+11007,Hospital Universitario de Fuenlabrada,1,5,train_centres,3,0,1,20261109
+11008,Hospital Universitario de Fuenlabrada,1,5,train_centres,3,0,1,20261109
+13004,Hospital Universitario de Fuenlabrada,1,5,train_centres,3,0,3,20261109
+13006,Hospital Universitario de Fuenlabrada,1,5,train_centres,3,1,3,20261109
+13007,Hospital Universitario de Fuenlabrada,1,5,train_centres,3,0,3,20261109
+23006,Hospital Unversitario de La Princesa,2,5,train_centres,3,1,3,20261109
+23007,Hospital Unversitario de La Princesa,2,5,train_centres,3,0,3,20261109
+31001,Hospital Clínico Unversitario de Valencia,3,5,train_centres,3,0,1,20261109
+31004,Hospital Clínico Unversitario de Valencia,3,5,train_centres,3,0,1,20261109
+31005,Hospital Clínico Unversitario de Valencia,3,5,train_centres,3,1,1,20261109
+31014,Hospital Clínico Unversitario de Valencia,3,5,train_centres,3,0,1,20261109
+41005,ICO Bellvitge,4,5,train_centres,3,1,1,20261109
+41006,ICO Bellvitge,4,5,train_centres,3,0,1,20261109
+41014,ICO Bellvitge,4,5,train_centres,3,0,1,20261109
+41018,ICO Bellvitge,4,5,train_centres,3,0,1,20261109
+41019,ICO Bellvitge,4,5,train_centres,3,0,1,20261109
+41020,ICO Bellvitge,4,5,train_centres,3,1,1,20261109
+41025,ICO Bellvitge,4,5,train_centres,3,0,1,20261109
+41028,ICO Bellvitge,4,5,train_centres,3,0,1,20261109
+42003,ICO Bellvitge,4,5,train_centres,3,0,2,20261109
+61002,Hospital de Navarra,6,5,train_centres,3,1,1,20261109
+61006,Hospital de Navarra,6,5,train_centres,3,0,1,20261109
+62001,Hospital de Navarra,6,5,train_centres,3,1,2,20261109
+62005,Hospital de Navarra,6,5,train_centres,3,0,2,20261109
+63003,Hospital de Navarra,6,5,train_centres,3,1,3,20261109
+63004,Hospital de Navarra,6,5,train_centres,3,0,3,20261109
+63005,Hospital de Navarra,6,5,train_centres,3,1,3,20261109
+71005,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,3,0,1,20261109
+71008,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,3,1,1,20261109
+73007,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,3,1,3,20261109
+73010,Hospital Unversitario Virgen de la Macarena,7,5,train_centres,3,0,3,20261109
+91003,CHUAC,9,5,train_centres,3,0,1,20261109
+91015,CHUAC,9,5,train_centres,3,0,1,20261109
+91016,CHUAC,9,5,train_centres,3,0,1,20261109
+92001,CHUAC,9,5,train_centres,3,1,2,20261109
+92002,CHUAC,9,5,train_centres,3,1,2,20261109
+61001,Hospital de Navarra,6,6,left_out,external,0,1,20261110
+61002,Hospital de Navarra,6,6,left_out,external,1,1,20261110
+61003,Hospital de Navarra,6,6,left_out,external,0,1,20261110
+61005,Hospital de Navarra,6,6,left_out,external,0,1,20261110
+61006,Hospital de Navarra,6,6,left_out,external,0,1,20261110
+62001,Hospital de Navarra,6,6,left_out,external,1,2,20261110
+62002,Hospital de Navarra,6,6,left_out,external,1,2,20261110
+62003,Hospital de Navarra,6,6,left_out,external,0,2,20261110
+62004,Hospital de Navarra,6,6,left_out,external,1,2,20261110
+62005,Hospital de Navarra,6,6,left_out,external,0,2,20261110
+63001,Hospital de Navarra,6,6,left_out,external,1,3,20261110
+63003,Hospital de Navarra,6,6,left_out,external,1,3,20261110
+63004,Hospital de Navarra,6,6,left_out,external,0,3,20261110
+63005,Hospital de Navarra,6,6,left_out,external,1,3,20261110
+63007,Hospital de Navarra,6,6,left_out,external,0,3,20261110
+11006,Hospital Universitario de Fuenlabrada,1,6,train_centres,0,0,1,20261110
+11009,Hospital Universitario de Fuenlabrada,1,6,train_centres,0,0,1,20261110
+11011,Hospital Universitario de Fuenlabrada,1,6,train_centres,0,0,1,20261110
+13007,Hospital Universitario de Fuenlabrada,1,6,train_centres,0,0,3,20261110
+13010,Hospital Universitario de Fuenlabrada,1,6,train_centres,0,0,3,20261110
+21001,Hospital Unversitario de La Princesa,2,6,train_centres,0,0,1,20261110
+22002,Hospital Unversitario de La Princesa,2,6,train_centres,0,0,2,20261110
+22004,Hospital Unversitario de La Princesa,2,6,train_centres,0,0,2,20261110
+23004,Hospital Unversitario de La Princesa,2,6,train_centres,0,1,3,20261110
+23007,Hospital Unversitario de La Princesa,2,6,train_centres,0,0,3,20261110
+23008,Hospital Unversitario de La Princesa,2,6,train_centres,0,0,3,20261110
+23013,Hospital Unversitario de La Princesa,2,6,train_centres,0,0,3,20261110
+31008,Hospital Clínico Unversitario de Valencia,3,6,train_centres,0,0,1,20261110
+31009,Hospital Clínico Unversitario de Valencia,3,6,train_centres,0,0,1,20261110
+31011,Hospital Clínico Unversitario de Valencia,3,6,train_centres,0,0,1,20261110
+31012,Hospital Clínico Unversitario de Valencia,3,6,train_centres,0,0,1,20261110
+31013,Hospital Clínico Unversitario de Valencia,3,6,train_centres,0,0,1,20261110
+31016,Hospital Clínico Unversitario de Valencia,3,6,train_centres,0,0,1,20261110
+41002,ICO Bellvitge,4,6,train_centres,0,1,1,20261110
+41003,ICO Bellvitge,4,6,train_centres,0,1,1,20261110
+41013,ICO Bellvitge,4,6,train_centres,0,0,1,20261110
+41018,ICO Bellvitge,4,6,train_centres,0,0,1,20261110
+41027,ICO Bellvitge,4,6,train_centres,0,0,1,20261110
+51005,Hospital Universitario Son Espases,5,6,train_centres,0,1,1,20261110
+51008,Hospital Universitario Son Espases,5,6,train_centres,0,0,1,20261110
+51014,Hospital Universitario Son Espases,5,6,train_centres,0,0,1,20261110
+52001,Hospital Universitario Son Espases,5,6,train_centres,0,1,2,20261110
+71002,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,0,0,1,20261110
+71008,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,0,1,1,20261110
+73002,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,0,1,3,20261110
+73005,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,0,1,3,20261110
+73006,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,0,1,3,20261110
+81007,Hospital San Pedro de Alcántara,8,6,train_centres,0,0,1,20261110
+81008,Hospital San Pedro de Alcántara,8,6,train_centres,0,1,1,20261110
+81009,Hospital San Pedro de Alcántara,8,6,train_centres,0,1,1,20261110
+91002,CHUAC,9,6,train_centres,0,1,1,20261110
+91003,CHUAC,9,6,train_centres,0,0,1,20261110
+91005,CHUAC,9,6,train_centres,0,0,1,20261110
+91008,CHUAC,9,6,train_centres,0,0,1,20261110
+92001,CHUAC,9,6,train_centres,0,1,2,20261110
+11003,Hospital Universitario de Fuenlabrada,1,6,train_centres,1,1,1,20261110
+11004,Hospital Universitario de Fuenlabrada,1,6,train_centres,1,0,1,20261110
+11010,Hospital Universitario de Fuenlabrada,1,6,train_centres,1,0,1,20261110
+12001,Hospital Universitario de Fuenlabrada,1,6,train_centres,1,1,2,20261110
+12003,Hospital Universitario de Fuenlabrada,1,6,train_centres,1,0,2,20261110
+12007,Hospital Universitario de Fuenlabrada,1,6,train_centres,1,0,2,20261110
+13004,Hospital Universitario de Fuenlabrada,1,6,train_centres,1,0,3,20261110
+23001,Hospital Unversitario de La Princesa,2,6,train_centres,1,1,3,20261110
+23005,Hospital Unversitario de La Princesa,2,6,train_centres,1,1,3,20261110
+23009,Hospital Unversitario de La Princesa,2,6,train_centres,1,0,3,20261110
+23012,Hospital Unversitario de La Princesa,2,6,train_centres,1,0,3,20261110
+31001,Hospital Clínico Unversitario de Valencia,3,6,train_centres,1,0,1,20261110
+31002,Hospital Clínico Unversitario de Valencia,3,6,train_centres,1,0,1,20261110
+31004,Hospital Clínico Unversitario de Valencia,3,6,train_centres,1,0,1,20261110
+31005,Hospital Clínico Unversitario de Valencia,3,6,train_centres,1,1,1,20261110
+31010,Hospital Clínico Unversitario de Valencia,3,6,train_centres,1,1,1,20261110
+41001,ICO Bellvitge,4,6,train_centres,1,0,1,20261110
+41016,ICO Bellvitge,4,6,train_centres,1,1,1,20261110
+41019,ICO Bellvitge,4,6,train_centres,1,0,1,20261110
+41025,ICO Bellvitge,4,6,train_centres,1,0,1,20261110
+42001,ICO Bellvitge,4,6,train_centres,1,1,2,20261110
+51004,Hospital Universitario Son Espases,5,6,train_centres,1,0,1,20261110
+51007,Hospital Universitario Son Espases,5,6,train_centres,1,0,1,20261110
+51013,Hospital Universitario Son Espases,5,6,train_centres,1,0,1,20261110
+51015,Hospital Universitario Son Espases,5,6,train_centres,1,0,1,20261110
+52004,Hospital Universitario Son Espases,5,6,train_centres,1,1,2,20261110
+53002,Hospital Universitario Son Espases,5,6,train_centres,1,0,3,20261110
+71003,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,1,0,1,20261110
+71004,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,1,1,1,20261110
+71007,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,1,0,1,20261110
+73007,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,1,1,3,20261110
+73009,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,1,1,3,20261110
+81005,Hospital San Pedro de Alcántara,8,6,train_centres,1,0,1,20261110
+91006,CHUAC,9,6,train_centres,1,0,1,20261110
+91007,CHUAC,9,6,train_centres,1,0,1,20261110
+91009,CHUAC,9,6,train_centres,1,1,1,20261110
+91016,CHUAC,9,6,train_centres,1,0,1,20261110
+91017,CHUAC,9,6,train_centres,1,0,1,20261110
+91019,CHUAC,9,6,train_centres,1,0,1,20261110
+93002,CHUAC,9,6,train_centres,1,0,3,20261110
+11001,Hospital Universitario de Fuenlabrada,1,6,train_centres,2,0,1,20261110
+12002,Hospital Universitario de Fuenlabrada,1,6,train_centres,2,1,2,20261110
+12006,Hospital Universitario de Fuenlabrada,1,6,train_centres,2,0,2,20261110
+13009,Hospital Universitario de Fuenlabrada,1,6,train_centres,2,0,3,20261110
+21002,Hospital Unversitario de La Princesa,2,6,train_centres,2,1,1,20261110
+23003,Hospital Unversitario de La Princesa,2,6,train_centres,2,1,3,20261110
+23006,Hospital Unversitario de La Princesa,2,6,train_centres,2,1,3,20261110
+23010,Hospital Unversitario de La Princesa,2,6,train_centres,2,0,3,20261110
+23011,Hospital Unversitario de La Princesa,2,6,train_centres,2,0,3,20261110
+23015,Hospital Unversitario de La Princesa,2,6,train_centres,2,0,3,20261110
+31003,Hospital Clínico Unversitario de Valencia,3,6,train_centres,2,0,1,20261110
+31014,Hospital Clínico Unversitario de Valencia,3,6,train_centres,2,0,1,20261110
+41005,ICO Bellvitge,4,6,train_centres,2,1,1,20261110
+41006,ICO Bellvitge,4,6,train_centres,2,0,1,20261110
+41010,ICO Bellvitge,4,6,train_centres,2,0,1,20261110
+41011,ICO Bellvitge,4,6,train_centres,2,0,1,20261110
+41023,ICO Bellvitge,4,6,train_centres,2,0,1,20261110
+41028,ICO Bellvitge,4,6,train_centres,2,0,1,20261110
+42003,ICO Bellvitge,4,6,train_centres,2,0,2,20261110
+51006,Hospital Universitario Son Espases,5,6,train_centres,2,0,1,20261110
+51009,Hospital Universitario Son Espases,5,6,train_centres,2,0,1,20261110
+51010,Hospital Universitario Son Espases,5,6,train_centres,2,0,1,20261110
+51011,Hospital Universitario Son Espases,5,6,train_centres,2,0,1,20261110
+51016,Hospital Universitario Son Espases,5,6,train_centres,2,0,1,20261110
+52005,Hospital Universitario Son Espases,5,6,train_centres,2,0,2,20261110
+71005,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,2,0,1,20261110
+71010,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,2,0,1,20261110
+71011,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,2,0,1,20261110
+71012,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,2,0,1,20261110
+73003,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,2,1,3,20261110
+73004,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,2,1,3,20261110
+73008,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,2,0,3,20261110
+81001,Hospital San Pedro de Alcántara,8,6,train_centres,2,1,1,20261110
+81003,Hospital San Pedro de Alcántara,8,6,train_centres,2,1,1,20261110
+91001,CHUAC,9,6,train_centres,2,1,1,20261110
+91011,CHUAC,9,6,train_centres,2,1,1,20261110
+91015,CHUAC,9,6,train_centres,2,0,1,20261110
+91018,CHUAC,9,6,train_centres,2,0,1,20261110
+92002,CHUAC,9,6,train_centres,2,1,2,20261110
+93001,CHUAC,9,6,train_centres,2,1,3,20261110
+11005,Hospital Universitario de Fuenlabrada,1,6,train_centres,3,0,1,20261110
+11007,Hospital Universitario de Fuenlabrada,1,6,train_centres,3,0,1,20261110
+11008,Hospital Universitario de Fuenlabrada,1,6,train_centres,3,0,1,20261110
+12004,Hospital Universitario de Fuenlabrada,1,6,train_centres,3,0,2,20261110
+12005,Hospital Universitario de Fuenlabrada,1,6,train_centres,3,0,2,20261110
+13003,Hospital Universitario de Fuenlabrada,1,6,train_centres,3,0,3,20261110
+13006,Hospital Universitario de Fuenlabrada,1,6,train_centres,3,1,3,20261110
+13008,Hospital Universitario de Fuenlabrada,1,6,train_centres,3,1,3,20261110
+22001,Hospital Unversitario de La Princesa,2,6,train_centres,3,1,2,20261110
+23002,Hospital Unversitario de La Princesa,2,6,train_centres,3,1,3,20261110
+31007,Hospital Clínico Unversitario de Valencia,3,6,train_centres,3,0,1,20261110
+41007,ICO Bellvitge,4,6,train_centres,3,1,1,20261110
+41008,ICO Bellvitge,4,6,train_centres,3,1,1,20261110
+41009,ICO Bellvitge,4,6,train_centres,3,0,1,20261110
+41012,ICO Bellvitge,4,6,train_centres,3,0,1,20261110
+41014,ICO Bellvitge,4,6,train_centres,3,0,1,20261110
+41017,ICO Bellvitge,4,6,train_centres,3,0,1,20261110
+41020,ICO Bellvitge,4,6,train_centres,3,1,1,20261110
+41021,ICO Bellvitge,4,6,train_centres,3,0,1,20261110
+41022,ICO Bellvitge,4,6,train_centres,3,0,1,20261110
+41024,ICO Bellvitge,4,6,train_centres,3,0,1,20261110
+41026,ICO Bellvitge,4,6,train_centres,3,0,1,20261110
+51001,Hospital Universitario Son Espases,5,6,train_centres,3,0,1,20261110
+51003,Hospital Universitario Son Espases,5,6,train_centres,3,0,1,20261110
+51012,Hospital Universitario Son Espases,5,6,train_centres,3,1,1,20261110
+52003,Hospital Universitario Son Espases,5,6,train_centres,3,0,2,20261110
+53001,Hospital Universitario Son Espases,5,6,train_centres,3,1,3,20261110
+53003,Hospital Universitario Son Espases,5,6,train_centres,3,0,3,20261110
+71009,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,3,0,1,20261110
+72001,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,3,1,2,20261110
+73001,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,3,1,3,20261110
+73010,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,3,0,3,20261110
+73011,Hospital Unversitario Virgen de la Macarena,7,6,train_centres,3,0,3,20261110
+81004,Hospital San Pedro de Alcántara,8,6,train_centres,3,1,1,20261110
+81006,Hospital San Pedro de Alcántara,8,6,train_centres,3,0,1,20261110
+91004,CHUAC,9,6,train_centres,3,1,1,20261110
+91010,CHUAC,9,6,train_centres,3,1,1,20261110
+91012,CHUAC,9,6,train_centres,3,0,1,20261110
+91013,CHUAC,9,6,train_centres,3,0,1,20261110
+91014,CHUAC,9,6,train_centres,3,0,1,20261110
+71002,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,0,1,20261111
+71003,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,0,1,20261111
+71004,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,1,1,20261111
+71005,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,0,1,20261111
+71007,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,0,1,20261111
+71008,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,1,1,20261111
+71009,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,0,1,20261111
+71010,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,0,1,20261111
+71011,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,0,1,20261111
+71012,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,0,1,20261111
+72001,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,1,2,20261111
+73001,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,1,3,20261111
+73002,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,1,3,20261111
+73003,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,1,3,20261111
+73004,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,1,3,20261111
+73005,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,1,3,20261111
+73006,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,1,3,20261111
+73007,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,1,3,20261111
+73008,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,0,3,20261111
+73009,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,1,3,20261111
+73010,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,0,3,20261111
+73011,Hospital Unversitario Virgen de la Macarena,7,7,left_out,external,0,3,20261111
+11001,Hospital Universitario de Fuenlabrada,1,7,train_centres,0,0,1,20261111
+11009,Hospital Universitario de Fuenlabrada,1,7,train_centres,0,0,1,20261111
+12007,Hospital Universitario de Fuenlabrada,1,7,train_centres,0,0,2,20261111
+13003,Hospital Universitario de Fuenlabrada,1,7,train_centres,0,0,3,20261111
+13006,Hospital Universitario de Fuenlabrada,1,7,train_centres,0,1,3,20261111
+21001,Hospital Unversitario de La Princesa,2,7,train_centres,0,0,1,20261111
+21002,Hospital Unversitario de La Princesa,2,7,train_centres,0,1,1,20261111
+22002,Hospital Unversitario de La Princesa,2,7,train_centres,0,0,2,20261111
+23001,Hospital Unversitario de La Princesa,2,7,train_centres,0,1,3,20261111
+23006,Hospital Unversitario de La Princesa,2,7,train_centres,0,1,3,20261111
+23008,Hospital Unversitario de La Princesa,2,7,train_centres,0,0,3,20261111
+23010,Hospital Unversitario de La Princesa,2,7,train_centres,0,0,3,20261111
+23013,Hospital Unversitario de La Princesa,2,7,train_centres,0,0,3,20261111
+31002,Hospital Clínico Unversitario de Valencia,3,7,train_centres,0,0,1,20261111
+31004,Hospital Clínico Unversitario de Valencia,3,7,train_centres,0,0,1,20261111
+31008,Hospital Clínico Unversitario de Valencia,3,7,train_centres,0,0,1,20261111
+31012,Hospital Clínico Unversitario de Valencia,3,7,train_centres,0,0,1,20261111
+31013,Hospital Clínico Unversitario de Valencia,3,7,train_centres,0,0,1,20261111
+31016,Hospital Clínico Unversitario de Valencia,3,7,train_centres,0,0,1,20261111
+41002,ICO Bellvitge,4,7,train_centres,0,1,1,20261111
+41017,ICO Bellvitge,4,7,train_centres,0,0,1,20261111
+41018,ICO Bellvitge,4,7,train_centres,0,0,1,20261111
+41020,ICO Bellvitge,4,7,train_centres,0,1,1,20261111
+41027,ICO Bellvitge,4,7,train_centres,0,0,1,20261111
+42001,ICO Bellvitge,4,7,train_centres,0,1,2,20261111
+51004,Hospital Universitario Son Espases,5,7,train_centres,0,0,1,20261111
+51011,Hospital Universitario Son Espases,5,7,train_centres,0,0,1,20261111
+51015,Hospital Universitario Son Espases,5,7,train_centres,0,0,1,20261111
+52003,Hospital Universitario Son Espases,5,7,train_centres,0,0,2,20261111
+61001,Hospital de Navarra,6,7,train_centres,0,0,1,20261111
+62001,Hospital de Navarra,6,7,train_centres,0,1,2,20261111
+63003,Hospital de Navarra,6,7,train_centres,0,1,3,20261111
+81003,Hospital San Pedro de Alcántara,8,7,train_centres,0,1,1,20261111
+81006,Hospital San Pedro de Alcántara,8,7,train_centres,0,0,1,20261111
+81008,Hospital San Pedro de Alcántara,8,7,train_centres,0,1,1,20261111
+91001,CHUAC,9,7,train_centres,0,1,1,20261111
+91007,CHUAC,9,7,train_centres,0,0,1,20261111
+91010,CHUAC,9,7,train_centres,0,1,1,20261111
+91019,CHUAC,9,7,train_centres,0,0,1,20261111
+11003,Hospital Universitario de Fuenlabrada,1,7,train_centres,1,1,1,20261111
+11004,Hospital Universitario de Fuenlabrada,1,7,train_centres,1,0,1,20261111
+11007,Hospital Universitario de Fuenlabrada,1,7,train_centres,1,0,1,20261111
+11008,Hospital Universitario de Fuenlabrada,1,7,train_centres,1,0,1,20261111
+12001,Hospital Universitario de Fuenlabrada,1,7,train_centres,1,1,2,20261111
+12003,Hospital Universitario de Fuenlabrada,1,7,train_centres,1,0,2,20261111
+12004,Hospital Universitario de Fuenlabrada,1,7,train_centres,1,0,2,20261111
+12005,Hospital Universitario de Fuenlabrada,1,7,train_centres,1,0,2,20261111
+13008,Hospital Universitario de Fuenlabrada,1,7,train_centres,1,1,3,20261111
+13009,Hospital Universitario de Fuenlabrada,1,7,train_centres,1,0,3,20261111
+22001,Hospital Unversitario de La Princesa,2,7,train_centres,1,1,2,20261111
+23009,Hospital Unversitario de La Princesa,2,7,train_centres,1,0,3,20261111
+31005,Hospital Clínico Unversitario de Valencia,3,7,train_centres,1,1,1,20261111
+31009,Hospital Clínico Unversitario de Valencia,3,7,train_centres,1,0,1,20261111
+31010,Hospital Clínico Unversitario de Valencia,3,7,train_centres,1,1,1,20261111
+31011,Hospital Clínico Unversitario de Valencia,3,7,train_centres,1,0,1,20261111
+31014,Hospital Clínico Unversitario de Valencia,3,7,train_centres,1,0,1,20261111
+41001,ICO Bellvitge,4,7,train_centres,1,0,1,20261111
+41008,ICO Bellvitge,4,7,train_centres,1,1,1,20261111
+41009,ICO Bellvitge,4,7,train_centres,1,0,1,20261111
+41012,ICO Bellvitge,4,7,train_centres,1,0,1,20261111
+41014,ICO Bellvitge,4,7,train_centres,1,0,1,20261111
+41025,ICO Bellvitge,4,7,train_centres,1,0,1,20261111
+51003,Hospital Universitario Son Espases,5,7,train_centres,1,0,1,20261111
+51005,Hospital Universitario Son Espases,5,7,train_centres,1,1,1,20261111
+51010,Hospital Universitario Son Espases,5,7,train_centres,1,0,1,20261111
+51012,Hospital Universitario Son Espases,5,7,train_centres,1,1,1,20261111
+51016,Hospital Universitario Son Espases,5,7,train_centres,1,0,1,20261111
+53001,Hospital Universitario Son Espases,5,7,train_centres,1,1,3,20261111
+63001,Hospital de Navarra,6,7,train_centres,1,1,3,20261111
+63007,Hospital de Navarra,6,7,train_centres,1,0,3,20261111
+91006,CHUAC,9,7,train_centres,1,0,1,20261111
+91012,CHUAC,9,7,train_centres,1,0,1,20261111
+91015,CHUAC,9,7,train_centres,1,0,1,20261111
+91016,CHUAC,9,7,train_centres,1,0,1,20261111
+91018,CHUAC,9,7,train_centres,1,0,1,20261111
+92001,CHUAC,9,7,train_centres,1,1,2,20261111
+93002,CHUAC,9,7,train_centres,1,0,3,20261111
+11005,Hospital Universitario de Fuenlabrada,1,7,train_centres,2,0,1,20261111
+11006,Hospital Universitario de Fuenlabrada,1,7,train_centres,2,0,1,20261111
+13007,Hospital Universitario de Fuenlabrada,1,7,train_centres,2,0,3,20261111
+23002,Hospital Unversitario de La Princesa,2,7,train_centres,2,1,3,20261111
+23005,Hospital Unversitario de La Princesa,2,7,train_centres,2,1,3,20261111
+23007,Hospital Unversitario de La Princesa,2,7,train_centres,2,0,3,20261111
+23012,Hospital Unversitario de La Princesa,2,7,train_centres,2,0,3,20261111
+31001,Hospital Clínico Unversitario de Valencia,3,7,train_centres,2,0,1,20261111
+41003,ICO Bellvitge,4,7,train_centres,2,1,1,20261111
+41005,ICO Bellvitge,4,7,train_centres,2,1,1,20261111
+41006,ICO Bellvitge,4,7,train_centres,2,0,1,20261111
+41011,ICO Bellvitge,4,7,train_centres,2,0,1,20261111
+41013,ICO Bellvitge,4,7,train_centres,2,0,1,20261111
+41016,ICO Bellvitge,4,7,train_centres,2,1,1,20261111
+41019,ICO Bellvitge,4,7,train_centres,2,0,1,20261111
+41028,ICO Bellvitge,4,7,train_centres,2,0,1,20261111
+42003,ICO Bellvitge,4,7,train_centres,2,0,2,20261111
+51007,Hospital Universitario Son Espases,5,7,train_centres,2,0,1,20261111
+51008,Hospital Universitario Son Espases,5,7,train_centres,2,0,1,20261111
+51013,Hospital Universitario Son Espases,5,7,train_centres,2,0,1,20261111
+51014,Hospital Universitario Son Espases,5,7,train_centres,2,0,1,20261111
+52001,Hospital Universitario Son Espases,5,7,train_centres,2,1,2,20261111
+52005,Hospital Universitario Son Espases,5,7,train_centres,2,0,2,20261111
+53002,Hospital Universitario Son Espases,5,7,train_centres,2,0,3,20261111
+61003,Hospital de Navarra,6,7,train_centres,2,0,1,20261111
+61005,Hospital de Navarra,6,7,train_centres,2,0,1,20261111
+62002,Hospital de Navarra,6,7,train_centres,2,1,2,20261111
+62003,Hospital de Navarra,6,7,train_centres,2,0,2,20261111
+62004,Hospital de Navarra,6,7,train_centres,2,1,2,20261111
+63004,Hospital de Navarra,6,7,train_centres,2,0,3,20261111
+81004,Hospital San Pedro de Alcántara,8,7,train_centres,2,1,1,20261111
+81007,Hospital San Pedro de Alcántara,8,7,train_centres,2,0,1,20261111
+91002,CHUAC,9,7,train_centres,2,1,1,20261111
+91003,CHUAC,9,7,train_centres,2,0,1,20261111
+91004,CHUAC,9,7,train_centres,2,1,1,20261111
+91008,CHUAC,9,7,train_centres,2,0,1,20261111
+91013,CHUAC,9,7,train_centres,2,0,1,20261111
+93001,CHUAC,9,7,train_centres,2,1,3,20261111
+11010,Hospital Universitario de Fuenlabrada,1,7,train_centres,3,0,1,20261111
+11011,Hospital Universitario de Fuenlabrada,1,7,train_centres,3,0,1,20261111
+12002,Hospital Universitario de Fuenlabrada,1,7,train_centres,3,1,2,20261111
+12006,Hospital Universitario de Fuenlabrada,1,7,train_centres,3,0,2,20261111
+13004,Hospital Universitario de Fuenlabrada,1,7,train_centres,3,0,3,20261111
+13010,Hospital Universitario de Fuenlabrada,1,7,train_centres,3,0,3,20261111
+22004,Hospital Unversitario de La Princesa,2,7,train_centres,3,0,2,20261111
+23003,Hospital Unversitario de La Princesa,2,7,train_centres,3,1,3,20261111
+23004,Hospital Unversitario de La Princesa,2,7,train_centres,3,1,3,20261111
+23011,Hospital Unversitario de La Princesa,2,7,train_centres,3,0,3,20261111
+23015,Hospital Unversitario de La Princesa,2,7,train_centres,3,0,3,20261111
+31003,Hospital Clínico Unversitario de Valencia,3,7,train_centres,3,0,1,20261111
+31007,Hospital Clínico Unversitario de Valencia,3,7,train_centres,3,0,1,20261111
+41007,ICO Bellvitge,4,7,train_centres,3,1,1,20261111
+41010,ICO Bellvitge,4,7,train_centres,3,0,1,20261111
+41021,ICO Bellvitge,4,7,train_centres,3,0,1,20261111
+41022,ICO Bellvitge,4,7,train_centres,3,0,1,20261111
+41023,ICO Bellvitge,4,7,train_centres,3,0,1,20261111
+41024,ICO Bellvitge,4,7,train_centres,3,0,1,20261111
+41026,ICO Bellvitge,4,7,train_centres,3,0,1,20261111
+51001,Hospital Universitario Son Espases,5,7,train_centres,3,0,1,20261111
+51006,Hospital Universitario Son Espases,5,7,train_centres,3,0,1,20261111
+51009,Hospital Universitario Son Espases,5,7,train_centres,3,0,1,20261111
+52004,Hospital Universitario Son Espases,5,7,train_centres,3,1,2,20261111
+53003,Hospital Universitario Son Espases,5,7,train_centres,3,0,3,20261111
+61002,Hospital de Navarra,6,7,train_centres,3,1,1,20261111
+61006,Hospital de Navarra,6,7,train_centres,3,0,1,20261111
+62005,Hospital de Navarra,6,7,train_centres,3,0,2,20261111
+63005,Hospital de Navarra,6,7,train_centres,3,1,3,20261111
+81001,Hospital San Pedro de Alcántara,8,7,train_centres,3,1,1,20261111
+81005,Hospital San Pedro de Alcántara,8,7,train_centres,3,0,1,20261111
+81009,Hospital San Pedro de Alcántara,8,7,train_centres,3,1,1,20261111
+91005,CHUAC,9,7,train_centres,3,0,1,20261111
+91009,CHUAC,9,7,train_centres,3,1,1,20261111
+91011,CHUAC,9,7,train_centres,3,1,1,20261111
+91014,CHUAC,9,7,train_centres,3,0,1,20261111
+91017,CHUAC,9,7,train_centres,3,0,1,20261111
+92002,CHUAC,9,7,train_centres,3,1,2,20261111
+81001,Hospital San Pedro de Alcántara,8,8,left_out,external,1,1,20261112
+81003,Hospital San Pedro de Alcántara,8,8,left_out,external,1,1,20261112
+81004,Hospital San Pedro de Alcántara,8,8,left_out,external,1,1,20261112
+81005,Hospital San Pedro de Alcántara,8,8,left_out,external,0,1,20261112
+81006,Hospital San Pedro de Alcántara,8,8,left_out,external,0,1,20261112
+81007,Hospital San Pedro de Alcántara,8,8,left_out,external,0,1,20261112
+81008,Hospital San Pedro de Alcántara,8,8,left_out,external,1,1,20261112
+81009,Hospital San Pedro de Alcántara,8,8,left_out,external,1,1,20261112
+11003,Hospital Universitario de Fuenlabrada,1,8,train_centres,0,1,1,20261112
+11004,Hospital Universitario de Fuenlabrada,1,8,train_centres,0,0,1,20261112
+12001,Hospital Universitario de Fuenlabrada,1,8,train_centres,0,1,2,20261112
+13006,Hospital Universitario de Fuenlabrada,1,8,train_centres,0,1,3,20261112
+13007,Hospital Universitario de Fuenlabrada,1,8,train_centres,0,0,3,20261112
+13008,Hospital Universitario de Fuenlabrada,1,8,train_centres,0,1,3,20261112
+23002,Hospital Unversitario de La Princesa,2,8,train_centres,0,1,3,20261112
+23006,Hospital Unversitario de La Princesa,2,8,train_centres,0,1,3,20261112
+23008,Hospital Unversitario de La Princesa,2,8,train_centres,0,0,3,20261112
+23009,Hospital Unversitario de La Princesa,2,8,train_centres,0,0,3,20261112
+23012,Hospital Unversitario de La Princesa,2,8,train_centres,0,0,3,20261112
+31012,Hospital Clínico Unversitario de Valencia,3,8,train_centres,0,0,1,20261112
+31014,Hospital Clínico Unversitario de Valencia,3,8,train_centres,0,0,1,20261112
+31016,Hospital Clínico Unversitario de Valencia,3,8,train_centres,0,0,1,20261112
+41007,ICO Bellvitge,4,8,train_centres,0,1,1,20261112
+41010,ICO Bellvitge,4,8,train_centres,0,0,1,20261112
+41014,ICO Bellvitge,4,8,train_centres,0,0,1,20261112
+51003,Hospital Universitario Son Espases,5,8,train_centres,0,0,1,20261112
+51005,Hospital Universitario Son Espases,5,8,train_centres,0,1,1,20261112
+51007,Hospital Universitario Son Espases,5,8,train_centres,0,0,1,20261112
+51008,Hospital Universitario Son Espases,5,8,train_centres,0,0,1,20261112
+51010,Hospital Universitario Son Espases,5,8,train_centres,0,0,1,20261112
+51014,Hospital Universitario Son Espases,5,8,train_centres,0,0,1,20261112
+52003,Hospital Universitario Son Espases,5,8,train_centres,0,0,2,20261112
+53001,Hospital Universitario Son Espases,5,8,train_centres,0,1,3,20261112
+61002,Hospital de Navarra,6,8,train_centres,0,1,1,20261112
+61005,Hospital de Navarra,6,8,train_centres,0,0,1,20261112
+62001,Hospital de Navarra,6,8,train_centres,0,1,2,20261112
+62003,Hospital de Navarra,6,8,train_centres,0,0,2,20261112
+62005,Hospital de Navarra,6,8,train_centres,0,0,2,20261112
+71009,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,0,0,1,20261112
+71012,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,0,0,1,20261112
+73011,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,0,0,3,20261112
+91001,CHUAC,9,8,train_centres,0,1,1,20261112
+91003,CHUAC,9,8,train_centres,0,0,1,20261112
+91005,CHUAC,9,8,train_centres,0,0,1,20261112
+91007,CHUAC,9,8,train_centres,0,0,1,20261112
+91009,CHUAC,9,8,train_centres,0,1,1,20261112
+91014,CHUAC,9,8,train_centres,0,0,1,20261112
+91016,CHUAC,9,8,train_centres,0,0,1,20261112
+91017,CHUAC,9,8,train_centres,0,0,1,20261112
+92002,CHUAC,9,8,train_centres,0,1,2,20261112
+11005,Hospital Universitario de Fuenlabrada,1,8,train_centres,1,0,1,20261112
+11007,Hospital Universitario de Fuenlabrada,1,8,train_centres,1,0,1,20261112
+12002,Hospital Universitario de Fuenlabrada,1,8,train_centres,1,1,2,20261112
+12003,Hospital Universitario de Fuenlabrada,1,8,train_centres,1,0,2,20261112
+13010,Hospital Universitario de Fuenlabrada,1,8,train_centres,1,0,3,20261112
+21002,Hospital Unversitario de La Princesa,2,8,train_centres,1,1,1,20261112
+22001,Hospital Unversitario de La Princesa,2,8,train_centres,1,1,2,20261112
+23001,Hospital Unversitario de La Princesa,2,8,train_centres,1,1,3,20261112
+23010,Hospital Unversitario de La Princesa,2,8,train_centres,1,0,3,20261112
+23013,Hospital Unversitario de La Princesa,2,8,train_centres,1,0,3,20261112
+31001,Hospital Clínico Unversitario de Valencia,3,8,train_centres,1,0,1,20261112
+31008,Hospital Clínico Unversitario de Valencia,3,8,train_centres,1,0,1,20261112
+31011,Hospital Clínico Unversitario de Valencia,3,8,train_centres,1,0,1,20261112
+41001,ICO Bellvitge,4,8,train_centres,1,0,1,20261112
+41003,ICO Bellvitge,4,8,train_centres,1,1,1,20261112
+41006,ICO Bellvitge,4,8,train_centres,1,0,1,20261112
+41012,ICO Bellvitge,4,8,train_centres,1,0,1,20261112
+41013,ICO Bellvitge,4,8,train_centres,1,0,1,20261112
+41019,ICO Bellvitge,4,8,train_centres,1,0,1,20261112
+41028,ICO Bellvitge,4,8,train_centres,1,0,1,20261112
+42003,ICO Bellvitge,4,8,train_centres,1,0,2,20261112
+51004,Hospital Universitario Son Espases,5,8,train_centres,1,0,1,20261112
+51006,Hospital Universitario Son Espases,5,8,train_centres,1,0,1,20261112
+51011,Hospital Universitario Son Espases,5,8,train_centres,1,0,1,20261112
+51012,Hospital Universitario Son Espases,5,8,train_centres,1,1,1,20261112
+52005,Hospital Universitario Son Espases,5,8,train_centres,1,0,2,20261112
+53002,Hospital Universitario Son Espases,5,8,train_centres,1,0,3,20261112
+61003,Hospital de Navarra,6,8,train_centres,1,0,1,20261112
+63003,Hospital de Navarra,6,8,train_centres,1,1,3,20261112
+63005,Hospital de Navarra,6,8,train_centres,1,1,3,20261112
+71004,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,1,1,1,20261112
+71011,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,1,0,1,20261112
+72001,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,1,1,2,20261112
+73006,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,1,1,3,20261112
+73007,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,1,1,3,20261112
+91010,CHUAC,9,8,train_centres,1,1,1,20261112
+91011,CHUAC,9,8,train_centres,1,1,1,20261112
+91012,CHUAC,9,8,train_centres,1,0,1,20261112
+91013,CHUAC,9,8,train_centres,1,0,1,20261112
+91015,CHUAC,9,8,train_centres,1,0,1,20261112
+91019,CHUAC,9,8,train_centres,1,0,1,20261112
+93002,CHUAC,9,8,train_centres,1,0,3,20261112
+11001,Hospital Universitario de Fuenlabrada,1,8,train_centres,2,0,1,20261112
+11008,Hospital Universitario de Fuenlabrada,1,8,train_centres,2,0,1,20261112
+11009,Hospital Universitario de Fuenlabrada,1,8,train_centres,2,0,1,20261112
+11010,Hospital Universitario de Fuenlabrada,1,8,train_centres,2,0,1,20261112
+11011,Hospital Universitario de Fuenlabrada,1,8,train_centres,2,0,1,20261112
+12005,Hospital Universitario de Fuenlabrada,1,8,train_centres,2,0,2,20261112
+12006,Hospital Universitario de Fuenlabrada,1,8,train_centres,2,0,2,20261112
+12007,Hospital Universitario de Fuenlabrada,1,8,train_centres,2,0,2,20261112
+13009,Hospital Universitario de Fuenlabrada,1,8,train_centres,2,0,3,20261112
+23005,Hospital Unversitario de La Princesa,2,8,train_centres,2,1,3,20261112
+23011,Hospital Unversitario de La Princesa,2,8,train_centres,2,0,3,20261112
+23015,Hospital Unversitario de La Princesa,2,8,train_centres,2,0,3,20261112
+31005,Hospital Clínico Unversitario de Valencia,3,8,train_centres,2,1,1,20261112
+31007,Hospital Clínico Unversitario de Valencia,3,8,train_centres,2,0,1,20261112
+31013,Hospital Clínico Unversitario de Valencia,3,8,train_centres,2,0,1,20261112
+41002,ICO Bellvitge,4,8,train_centres,2,1,1,20261112
+41005,ICO Bellvitge,4,8,train_centres,2,1,1,20261112
+41008,ICO Bellvitge,4,8,train_centres,2,1,1,20261112
+41009,ICO Bellvitge,4,8,train_centres,2,0,1,20261112
+41011,ICO Bellvitge,4,8,train_centres,2,0,1,20261112
+41018,ICO Bellvitge,4,8,train_centres,2,0,1,20261112
+41024,ICO Bellvitge,4,8,train_centres,2,0,1,20261112
+41025,ICO Bellvitge,4,8,train_centres,2,0,1,20261112
+41026,ICO Bellvitge,4,8,train_centres,2,0,1,20261112
+41027,ICO Bellvitge,4,8,train_centres,2,0,1,20261112
+51001,Hospital Universitario Son Espases,5,8,train_centres,2,0,1,20261112
+51015,Hospital Universitario Son Espases,5,8,train_centres,2,0,1,20261112
+51016,Hospital Universitario Son Espases,5,8,train_centres,2,0,1,20261112
+52001,Hospital Universitario Son Espases,5,8,train_centres,2,1,2,20261112
+52004,Hospital Universitario Son Espases,5,8,train_centres,2,1,2,20261112
+53003,Hospital Universitario Son Espases,5,8,train_centres,2,0,3,20261112
+62004,Hospital de Navarra,6,8,train_centres,2,1,2,20261112
+71007,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,2,0,1,20261112
+73002,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,2,1,3,20261112
+73003,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,2,1,3,20261112
+73004,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,2,1,3,20261112
+73005,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,2,1,3,20261112
+73009,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,2,1,3,20261112
+73010,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,2,0,3,20261112
+91004,CHUAC,9,8,train_centres,2,1,1,20261112
+91008,CHUAC,9,8,train_centres,2,0,1,20261112
+91018,CHUAC,9,8,train_centres,2,0,1,20261112
+11006,Hospital Universitario de Fuenlabrada,1,8,train_centres,3,0,1,20261112
+12004,Hospital Universitario de Fuenlabrada,1,8,train_centres,3,0,2,20261112
+13003,Hospital Universitario de Fuenlabrada,1,8,train_centres,3,0,3,20261112
+13004,Hospital Universitario de Fuenlabrada,1,8,train_centres,3,0,3,20261112
+21001,Hospital Unversitario de La Princesa,2,8,train_centres,3,0,1,20261112
+22002,Hospital Unversitario de La Princesa,2,8,train_centres,3,0,2,20261112
+22004,Hospital Unversitario de La Princesa,2,8,train_centres,3,0,2,20261112
+23003,Hospital Unversitario de La Princesa,2,8,train_centres,3,1,3,20261112
+23004,Hospital Unversitario de La Princesa,2,8,train_centres,3,1,3,20261112
+23007,Hospital Unversitario de La Princesa,2,8,train_centres,3,0,3,20261112
+31002,Hospital Clínico Unversitario de Valencia,3,8,train_centres,3,0,1,20261112
+31003,Hospital Clínico Unversitario de Valencia,3,8,train_centres,3,0,1,20261112
+31004,Hospital Clínico Unversitario de Valencia,3,8,train_centres,3,0,1,20261112
+31009,Hospital Clínico Unversitario de Valencia,3,8,train_centres,3,0,1,20261112
+31010,Hospital Clínico Unversitario de Valencia,3,8,train_centres,3,1,1,20261112
+41016,ICO Bellvitge,4,8,train_centres,3,1,1,20261112
+41017,ICO Bellvitge,4,8,train_centres,3,0,1,20261112
+41020,ICO Bellvitge,4,8,train_centres,3,1,1,20261112
+41021,ICO Bellvitge,4,8,train_centres,3,0,1,20261112
+41022,ICO Bellvitge,4,8,train_centres,3,0,1,20261112
+41023,ICO Bellvitge,4,8,train_centres,3,0,1,20261112
+42001,ICO Bellvitge,4,8,train_centres,3,1,2,20261112
+51009,Hospital Universitario Son Espases,5,8,train_centres,3,0,1,20261112
+51013,Hospital Universitario Son Espases,5,8,train_centres,3,0,1,20261112
+61001,Hospital de Navarra,6,8,train_centres,3,0,1,20261112
+61006,Hospital de Navarra,6,8,train_centres,3,0,1,20261112
+62002,Hospital de Navarra,6,8,train_centres,3,1,2,20261112
+63001,Hospital de Navarra,6,8,train_centres,3,1,3,20261112
+63004,Hospital de Navarra,6,8,train_centres,3,0,3,20261112
+63007,Hospital de Navarra,6,8,train_centres,3,0,3,20261112
+71002,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,3,0,1,20261112
+71003,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,3,0,1,20261112
+71005,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,3,0,1,20261112
+71008,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,3,1,1,20261112
+71010,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,3,0,1,20261112
+73001,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,3,1,3,20261112
+73008,Hospital Unversitario Virgen de la Macarena,7,8,train_centres,3,0,3,20261112
+91002,CHUAC,9,8,train_centres,3,1,1,20261112
+91006,CHUAC,9,8,train_centres,3,0,1,20261112
+92001,CHUAC,9,8,train_centres,3,1,2,20261112
+93001,CHUAC,9,8,train_centres,3,1,3,20261112
+91001,CHUAC,9,9,left_out,external,1,1,20261113
+91002,CHUAC,9,9,left_out,external,1,1,20261113
+91003,CHUAC,9,9,left_out,external,0,1,20261113
+91004,CHUAC,9,9,left_out,external,1,1,20261113
+91005,CHUAC,9,9,left_out,external,0,1,20261113
+91006,CHUAC,9,9,left_out,external,0,1,20261113
+91007,CHUAC,9,9,left_out,external,0,1,20261113
+91008,CHUAC,9,9,left_out,external,0,1,20261113
+91009,CHUAC,9,9,left_out,external,1,1,20261113
+91010,CHUAC,9,9,left_out,external,1,1,20261113
+91011,CHUAC,9,9,left_out,external,1,1,20261113
+91012,CHUAC,9,9,left_out,external,0,1,20261113
+91013,CHUAC,9,9,left_out,external,0,1,20261113
+91014,CHUAC,9,9,left_out,external,0,1,20261113
+91015,CHUAC,9,9,left_out,external,0,1,20261113
+91016,CHUAC,9,9,left_out,external,0,1,20261113
+91017,CHUAC,9,9,left_out,external,0,1,20261113
+91018,CHUAC,9,9,left_out,external,0,1,20261113
+91019,CHUAC,9,9,left_out,external,0,1,20261113
+92001,CHUAC,9,9,left_out,external,1,2,20261113
+92002,CHUAC,9,9,left_out,external,1,2,20261113
+93001,CHUAC,9,9,left_out,external,1,3,20261113
+93002,CHUAC,9,9,left_out,external,0,3,20261113
+11001,Hospital Universitario de Fuenlabrada,1,9,train_centres,0,0,1,20261113
+11003,Hospital Universitario de Fuenlabrada,1,9,train_centres,0,1,1,20261113
+11005,Hospital Universitario de Fuenlabrada,1,9,train_centres,0,0,1,20261113
+11008,Hospital Universitario de Fuenlabrada,1,9,train_centres,0,0,1,20261113
+12005,Hospital Universitario de Fuenlabrada,1,9,train_centres,0,0,2,20261113
+13004,Hospital Universitario de Fuenlabrada,1,9,train_centres,0,0,3,20261113
+13008,Hospital Universitario de Fuenlabrada,1,9,train_centres,0,1,3,20261113
+22002,Hospital Unversitario de La Princesa,2,9,train_centres,0,0,2,20261113
+23002,Hospital Unversitario de La Princesa,2,9,train_centres,0,1,3,20261113
+23007,Hospital Unversitario de La Princesa,2,9,train_centres,0,0,3,20261113
+23010,Hospital Unversitario de La Princesa,2,9,train_centres,0,0,3,20261113
+23015,Hospital Unversitario de La Princesa,2,9,train_centres,0,0,3,20261113
+31001,Hospital Clínico Unversitario de Valencia,3,9,train_centres,0,0,1,20261113
+31002,Hospital Clínico Unversitario de Valencia,3,9,train_centres,0,0,1,20261113
+31009,Hospital Clínico Unversitario de Valencia,3,9,train_centres,0,0,1,20261113
+31016,Hospital Clínico Unversitario de Valencia,3,9,train_centres,0,0,1,20261113
+41007,ICO Bellvitge,4,9,train_centres,0,1,1,20261113
+41016,ICO Bellvitge,4,9,train_centres,0,1,1,20261113
+41017,ICO Bellvitge,4,9,train_centres,0,0,1,20261113
+51007,Hospital Universitario Son Espases,5,9,train_centres,0,0,1,20261113
+51010,Hospital Universitario Son Espases,5,9,train_centres,0,0,1,20261113
+51011,Hospital Universitario Son Espases,5,9,train_centres,0,0,1,20261113
+52004,Hospital Universitario Son Espases,5,9,train_centres,0,1,2,20261113
+61005,Hospital de Navarra,6,9,train_centres,0,0,1,20261113
+62003,Hospital de Navarra,6,9,train_centres,0,0,2,20261113
+62004,Hospital de Navarra,6,9,train_centres,0,1,2,20261113
+63003,Hospital de Navarra,6,9,train_centres,0,1,3,20261113
+63005,Hospital de Navarra,6,9,train_centres,0,1,3,20261113
+63007,Hospital de Navarra,6,9,train_centres,0,0,3,20261113
+71002,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,0,0,1,20261113
+71005,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,0,0,1,20261113
+71007,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,0,0,1,20261113
+71010,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,0,0,1,20261113
+71012,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,0,0,1,20261113
+73007,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,0,1,3,20261113
+81004,Hospital San Pedro de Alcántara,8,9,train_centres,0,1,1,20261113
+81006,Hospital San Pedro de Alcántara,8,9,train_centres,0,0,1,20261113
+81008,Hospital San Pedro de Alcántara,8,9,train_centres,0,1,1,20261113
+11004,Hospital Universitario de Fuenlabrada,1,9,train_centres,1,0,1,20261113
+11006,Hospital Universitario de Fuenlabrada,1,9,train_centres,1,0,1,20261113
+11007,Hospital Universitario de Fuenlabrada,1,9,train_centres,1,0,1,20261113
+12002,Hospital Universitario de Fuenlabrada,1,9,train_centres,1,1,2,20261113
+12007,Hospital Universitario de Fuenlabrada,1,9,train_centres,1,0,2,20261113
+13003,Hospital Universitario de Fuenlabrada,1,9,train_centres,1,0,3,20261113
+13009,Hospital Universitario de Fuenlabrada,1,9,train_centres,1,0,3,20261113
+23003,Hospital Unversitario de La Princesa,2,9,train_centres,1,1,3,20261113
+23008,Hospital Unversitario de La Princesa,2,9,train_centres,1,0,3,20261113
+31004,Hospital Clínico Unversitario de Valencia,3,9,train_centres,1,0,1,20261113
+31005,Hospital Clínico Unversitario de Valencia,3,9,train_centres,1,1,1,20261113
+31008,Hospital Clínico Unversitario de Valencia,3,9,train_centres,1,0,1,20261113
+31010,Hospital Clínico Unversitario de Valencia,3,9,train_centres,1,1,1,20261113
+41001,ICO Bellvitge,4,9,train_centres,1,0,1,20261113
+41006,ICO Bellvitge,4,9,train_centres,1,0,1,20261113
+41013,ICO Bellvitge,4,9,train_centres,1,0,1,20261113
+41014,ICO Bellvitge,4,9,train_centres,1,0,1,20261113
+41026,ICO Bellvitge,4,9,train_centres,1,0,1,20261113
+41027,ICO Bellvitge,4,9,train_centres,1,0,1,20261113
+41028,ICO Bellvitge,4,9,train_centres,1,0,1,20261113
+42003,ICO Bellvitge,4,9,train_centres,1,0,2,20261113
+51009,Hospital Universitario Son Espases,5,9,train_centres,1,0,1,20261113
+51013,Hospital Universitario Son Espases,5,9,train_centres,1,0,1,20261113
+51016,Hospital Universitario Son Espases,5,9,train_centres,1,0,1,20261113
+52005,Hospital Universitario Son Espases,5,9,train_centres,1,0,2,20261113
+53002,Hospital Universitario Son Espases,5,9,train_centres,1,0,3,20261113
+61002,Hospital de Navarra,6,9,train_centres,1,1,1,20261113
+62001,Hospital de Navarra,6,9,train_centres,1,1,2,20261113
+71003,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,1,0,1,20261113
+71004,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,1,1,1,20261113
+71009,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,1,0,1,20261113
+73001,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,1,1,3,20261113
+73002,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,1,1,3,20261113
+73003,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,1,1,3,20261113
+73006,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,1,1,3,20261113
+73008,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,1,0,3,20261113
+81003,Hospital San Pedro de Alcántara,8,9,train_centres,1,1,1,20261113
+81009,Hospital San Pedro de Alcántara,8,9,train_centres,1,1,1,20261113
+11009,Hospital Universitario de Fuenlabrada,1,9,train_centres,2,0,1,20261113
+11010,Hospital Universitario de Fuenlabrada,1,9,train_centres,2,0,1,20261113
+12001,Hospital Universitario de Fuenlabrada,1,9,train_centres,2,1,2,20261113
+12004,Hospital Universitario de Fuenlabrada,1,9,train_centres,2,0,2,20261113
+13006,Hospital Universitario de Fuenlabrada,1,9,train_centres,2,1,3,20261113
+13007,Hospital Universitario de Fuenlabrada,1,9,train_centres,2,0,3,20261113
+21002,Hospital Unversitario de La Princesa,2,9,train_centres,2,1,1,20261113
+22001,Hospital Unversitario de La Princesa,2,9,train_centres,2,1,2,20261113
+22004,Hospital Unversitario de La Princesa,2,9,train_centres,2,0,2,20261113
+23001,Hospital Unversitario de La Princesa,2,9,train_centres,2,1,3,20261113
+23004,Hospital Unversitario de La Princesa,2,9,train_centres,2,1,3,20261113
+23005,Hospital Unversitario de La Princesa,2,9,train_centres,2,1,3,20261113
+23011,Hospital Unversitario de La Princesa,2,9,train_centres,2,0,3,20261113
+23012,Hospital Unversitario de La Princesa,2,9,train_centres,2,0,3,20261113
+31007,Hospital Clínico Unversitario de Valencia,3,9,train_centres,2,0,1,20261113
+31011,Hospital Clínico Unversitario de Valencia,3,9,train_centres,2,0,1,20261113
+31013,Hospital Clínico Unversitario de Valencia,3,9,train_centres,2,0,1,20261113
+41003,ICO Bellvitge,4,9,train_centres,2,1,1,20261113
+41005,ICO Bellvitge,4,9,train_centres,2,1,1,20261113
+41009,ICO Bellvitge,4,9,train_centres,2,0,1,20261113
+41011,ICO Bellvitge,4,9,train_centres,2,0,1,20261113
+41019,ICO Bellvitge,4,9,train_centres,2,0,1,20261113
+41020,ICO Bellvitge,4,9,train_centres,2,1,1,20261113
+41021,ICO Bellvitge,4,9,train_centres,2,0,1,20261113
+41023,ICO Bellvitge,4,9,train_centres,2,0,1,20261113
+51001,Hospital Universitario Son Espases,5,9,train_centres,2,0,1,20261113
+51006,Hospital Universitario Son Espases,5,9,train_centres,2,0,1,20261113
+51008,Hospital Universitario Son Espases,5,9,train_centres,2,0,1,20261113
+51014,Hospital Universitario Son Espases,5,9,train_centres,2,0,1,20261113
+52001,Hospital Universitario Son Espases,5,9,train_centres,2,1,2,20261113
+52003,Hospital Universitario Son Espases,5,9,train_centres,2,0,2,20261113
+53001,Hospital Universitario Son Espases,5,9,train_centres,2,1,3,20261113
+53003,Hospital Universitario Son Espases,5,9,train_centres,2,0,3,20261113
+61001,Hospital de Navarra,6,9,train_centres,2,0,1,20261113
+61006,Hospital de Navarra,6,9,train_centres,2,0,1,20261113
+71008,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,2,1,1,20261113
+71011,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,2,0,1,20261113
+73010,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,2,0,3,20261113
+11011,Hospital Universitario de Fuenlabrada,1,9,train_centres,3,0,1,20261113
+12003,Hospital Universitario de Fuenlabrada,1,9,train_centres,3,0,2,20261113
+12006,Hospital Universitario de Fuenlabrada,1,9,train_centres,3,0,2,20261113
+13010,Hospital Universitario de Fuenlabrada,1,9,train_centres,3,0,3,20261113
+21001,Hospital Unversitario de La Princesa,2,9,train_centres,3,0,1,20261113
+23006,Hospital Unversitario de La Princesa,2,9,train_centres,3,1,3,20261113
+23009,Hospital Unversitario de La Princesa,2,9,train_centres,3,0,3,20261113
+23013,Hospital Unversitario de La Princesa,2,9,train_centres,3,0,3,20261113
+31003,Hospital Clínico Unversitario de Valencia,3,9,train_centres,3,0,1,20261113
+31012,Hospital Clínico Unversitario de Valencia,3,9,train_centres,3,0,1,20261113
+31014,Hospital Clínico Unversitario de Valencia,3,9,train_centres,3,0,1,20261113
+41002,ICO Bellvitge,4,9,train_centres,3,1,1,20261113
+41008,ICO Bellvitge,4,9,train_centres,3,1,1,20261113
+41010,ICO Bellvitge,4,9,train_centres,3,0,1,20261113
+41012,ICO Bellvitge,4,9,train_centres,3,0,1,20261113
+41018,ICO Bellvitge,4,9,train_centres,3,0,1,20261113
+41022,ICO Bellvitge,4,9,train_centres,3,0,1,20261113
+41024,ICO Bellvitge,4,9,train_centres,3,0,1,20261113
+41025,ICO Bellvitge,4,9,train_centres,3,0,1,20261113
+42001,ICO Bellvitge,4,9,train_centres,3,1,2,20261113
+51003,Hospital Universitario Son Espases,5,9,train_centres,3,0,1,20261113
+51004,Hospital Universitario Son Espases,5,9,train_centres,3,0,1,20261113
+51005,Hospital Universitario Son Espases,5,9,train_centres,3,1,1,20261113
+51012,Hospital Universitario Son Espases,5,9,train_centres,3,1,1,20261113
+51015,Hospital Universitario Son Espases,5,9,train_centres,3,0,1,20261113
+61003,Hospital de Navarra,6,9,train_centres,3,0,1,20261113
+62002,Hospital de Navarra,6,9,train_centres,3,1,2,20261113
+62005,Hospital de Navarra,6,9,train_centres,3,0,2,20261113
+63001,Hospital de Navarra,6,9,train_centres,3,1,3,20261113
+63004,Hospital de Navarra,6,9,train_centres,3,0,3,20261113
+72001,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,3,1,2,20261113
+73004,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,3,1,3,20261113
+73005,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,3,1,3,20261113
+73009,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,3,1,3,20261113
+73011,Hospital Unversitario Virgen de la Macarena,7,9,train_centres,3,0,3,20261113
+81001,Hospital San Pedro de Alcántara,8,9,train_centres,3,1,1,20261113
+81005,Hospital San Pedro de Alcántara,8,9,train_centres,3,0,1,20261113
+81007,Hospital San Pedro de Alcántara,8,9,train_centres,3,0,1,20261113
