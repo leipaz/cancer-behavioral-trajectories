@@ -448,8 +448,10 @@ def main() -> None:
     args = parser.parse_args()
     if args.out is not None:
         OUT_DIR = args.out
-        FU_DIR = OUT_DIR / "fu"
         ALARM_DIR = OUT_DIR / "alarma"
+        # The stratified folder keeps the shared LDA at the root and the
+        # three-and-three labels with that variant's alarm.
+        FU_DIR = ALARM_DIR / "fu" if OUT_DIR.name == "anidada_estratificada" else OUT_DIR / "fu"
         CURVE_DIR = FU_DIR / "curvas"
     _check_rmst()
     FU_DIR.mkdir(parents=True, exist_ok=True)

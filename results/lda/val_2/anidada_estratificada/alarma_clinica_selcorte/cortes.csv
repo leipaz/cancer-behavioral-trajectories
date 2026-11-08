@@ -1,0 +1,6 @@
+threshold,n_tied,n_decisions,n_positive,n_negative,sensitivity,specificity,youden,outer_fold,n_U_refit,modelos,tie_rule,seleccion,comparison,map
+1.9110066159628327,1,195,44,151,0.5909090909090909,0.8013245033112583,0.3922335942203492,0,2,outer_0_inner_3,menor corte,held_out con el mismo n_U que el reajuste,1013 every 30 days,adjudicacion clinica
+0.6887403982691465,1,218,28,190,0.75,0.6368421052631579,0.3868421052631579,1,2,outer_1_inner_3,menor corte,held_out con el mismo n_U que el reajuste,1013 every 30 days,adjudicacion clinica
+1.3617008607834575,1,157,22,135,0.5454545454545454,0.6666666666666667,0.21212121212121215,2,2,outer_2_inner_1,menor corte,held_out con el mismo n_U que el reajuste,1013 every 30 days,adjudicacion clinica
+2.138419365976006,1,623,86,537,0.38372093023255816,0.8286778398510242,0.21239877008358232,3,2,"outer_3_inner_0,outer_3_inner_1,outer_3_inner_2",menor corte,held_out con el mismo n_U que el reajuste,1013 every 30 days,adjudicacion clinica
+1.9571991935372348,1,619,90,529,0.43333333333333335,0.7069943289224953,0.1403276622558285,4,3,"outer_4_inner_0,outer_4_inner_1,outer_4_inner_3",menor corte,held_out con el mismo n_U que el reajuste,1013 every 30 days,adjudicacion clinica
