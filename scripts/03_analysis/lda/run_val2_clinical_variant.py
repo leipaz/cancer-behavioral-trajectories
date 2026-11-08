@@ -2,7 +2,7 @@
 """Clinical F/U adjudication for the stratified nested models.
 
 Keeps the 3/3 alarm untouched. Writes a second alarm under alarma_clinica
-from the 25 maps in fu/mapeos_clinicos_25_modelos.txt. pUF is the sum of the
+from the 25 maps in alarma_clinica/mapeos_clinicos_25_modelos.txt. pUF is the sum of the
 unfavourable topic probabilities, with no extra scaling. The Youden cut is
 chosen again on the held-out series and is not copied from the 3/3 variant.
 External patients use the refit map and that frozen cut. Decisions are the
@@ -38,7 +38,7 @@ from run_val2_nested import AUDIT  # noqa: E402
 
 ROOT = _SCRIPT_DIR.parents[2]
 OUT = ROOT / "results/lda/val_2/anidada_estratificada"
-MAPS_PATH = OUT / "fu/mapeos_clinicos_25_modelos.txt"
+MAPS_PATH = OUT / "alarma_clinica/mapeos_clinicos_25_modelos.txt"
 ALARM = OUT / "alarma_clinica"
 SHORT = {
     ("1", "1", 4),
@@ -175,7 +175,7 @@ def main() -> None:
         })
     pd.DataFrame(rows).to_csv(ALARM / "distribucion_scores.csv", index=False)
 
-    km = pd.read_csv(OUT / "fu/km_por_topic.csv")
+    km = pd.read_csv(OUT / "alarma/fu/km_por_topic.csv")
     clinical_rows = []
     for _, item in km.iterrows():
         fold = "refit" if item["inner_fold"] == "refit" else str(item["inner_fold"])
@@ -197,7 +197,7 @@ def main() -> None:
                 else "adjudicacion clinica"
             ),
         })
-    pd.DataFrame(clinical_rows).to_csv(OUT / "fu/mapeo_clinico_por_topic.csv", index=False)
+    pd.DataFrame(clinical_rows).to_csv(ALARM / "mapeo_clinico_por_topic.csv", index=False)
 
     print(cut_df[["outer_fold", "threshold", "n_decisions", "sensitivity", "specificity", "youden"]].to_string(index=False))
     external = metrics[metrics.role == "external_test"]

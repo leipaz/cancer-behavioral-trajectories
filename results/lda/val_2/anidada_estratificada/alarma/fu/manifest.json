@@ -5,7 +5,7 @@
   "pfs_rule": "Kaplan-Meier at 365 days. A positive last step before day 365 is a ceiling: if the third estimable topic is above it, that topic is unfavourable and the three above it are favourable. Otherwise the model is reserved. Top 3 favourable, bottom 3 unfavourable",
   "tie_break": "restricted mean survival time at 365 days; otherwise the model is reserved",
   "interval": "95 percent log-log Greenwood",
-  "training_only_curves": "results/lda/val_2/anidada_estratificada/fu/curvas/curvas_entrenamiento.pdf",
+  "training_only_curves": "results/lda/val_2/anidada_estratificada/alarma/fu/curvas/curvas_entrenamiento.pdf",
   "n_models_labelled": 25,
   "n_models_reserved": 0,
   "reserved": [],
