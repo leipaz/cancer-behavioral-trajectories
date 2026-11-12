@@ -1,0 +1,2 @@
+id,date_time,date_unchanged,service_unchanged,raw_sleep_start,masked_sleep_start,raw_location_distance,masked_location_distance,raw_location_time_home,masked_location_time_home,raw_sleep_duration,masked_sleep_duration,raw_activity_walking,masked_activity_walking,raw_app_usage_total,masked_app_usage_total,raw_location_clusters_count,masked_location_clusters_count,raw_steps_steps_total,masked_steps_steps_total,raw_weekend,masked_weekend,raw_practiced_sport,masked_practiced_sport
+11001,2023-04-19,True,True,,,29833.07445847243,,,,,,4775.0,,7372.0,,,,9237.0,,0,0,1,

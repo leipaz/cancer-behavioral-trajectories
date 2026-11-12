@@ -1,0 +1,13 @@
+{
+  "pipeline_cohort": "all DB1 daily patients",
+  "n_db1_patients": 175,
+  "landmarks": "results/lda/val_2/anidada_estratificada/objetivo.csv",
+  "n_landmarks": 1013,
+  "n_patients": 114,
+  "n_positive": 155,
+  "n_negative": 858,
+  "collapsed_overlap": "1013 of decision_points_collapsed; six extra collapsed rows from the t+1 clock are excluded",
+  "loads": 1013,
+  "baseline_mae_vs_collapsed": 0.0019,
+  "script": "scripts/03_analysis/alarm/run_sensitivity_db1_objetivo.py"
+}
