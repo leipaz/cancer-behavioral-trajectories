@@ -1,0 +1,176 @@
+id,outer_fold,hospital,event,tumor_group,side
+11009,0,Hospital Universitario de Fuenlabrada,0,1,external
+11008,0,Hospital Universitario de Fuenlabrada,0,1,external
+12006,0,Hospital Universitario de Fuenlabrada,0,2,external
+13003,0,Hospital Universitario de Fuenlabrada,0,3,external
+12001,0,Hospital Universitario de Fuenlabrada,1,2,external
+23008,0,Hospital Unversitario de La Princesa,0,3,external
+23015,0,Hospital Unversitario de La Princesa,0,3,external
+21002,0,Hospital Unversitario de La Princesa,1,1,external
+23002,0,Hospital Unversitario de La Princesa,1,3,external
+31001,0,Hospital Clínico Unversitario de Valencia,0,1,external
+31008,0,Hospital Clínico Unversitario de Valencia,0,1,external
+41024,0,ICO Bellvitge,0,1,external
+41006,0,ICO Bellvitge,0,1,external
+41009,0,ICO Bellvitge,0,1,external
+41021,0,ICO Bellvitge,0,1,external
+41003,0,ICO Bellvitge,1,1,external
+42001,0,ICO Bellvitge,1,2,external
+51011,0,Hospital Universitario Son Espases,0,1,external
+51001,0,Hospital Universitario Son Espases,0,1,external
+51007,0,Hospital Universitario Son Espases,0,1,external
+53002,0,Hospital Universitario Son Espases,0,3,external
+61005,0,Hospital de Navarra,0,1,external
+63004,0,Hospital de Navarra,0,3,external
+62004,0,Hospital de Navarra,1,2,external
+71002,0,Hospital Unversitario Virgen de la Macarena,0,1,external
+71007,0,Hospital Unversitario Virgen de la Macarena,0,1,external
+71008,0,Hospital Unversitario Virgen de la Macarena,1,1,external
+73006,0,Hospital Unversitario Virgen de la Macarena,1,3,external
+73002,0,Hospital Unversitario Virgen de la Macarena,1,3,external
+81001,0,Hospital San Pedro de Alcántara,1,1,external
+81009,0,Hospital San Pedro de Alcántara,1,1,external
+91019,0,CHUAC,0,1,external
+91017,0,CHUAC,0,1,external
+93002,0,CHUAC,0,3,external
+91009,0,CHUAC,1,1,external
+11011,1,Hospital Universitario de Fuenlabrada,0,1,external
+11010,1,Hospital Universitario de Fuenlabrada,0,1,external
+12004,1,Hospital Universitario de Fuenlabrada,0,2,external
+13007,1,Hospital Universitario de Fuenlabrada,0,3,external
+12002,1,Hospital Universitario de Fuenlabrada,1,2,external
+23013,1,Hospital Unversitario de La Princesa,0,3,external
+23009,1,Hospital Unversitario de La Princesa,0,3,external
+22001,1,Hospital Unversitario de La Princesa,1,2,external
+23003,1,Hospital Unversitario de La Princesa,1,3,external
+31002,1,Hospital Clínico Unversitario de Valencia,0,1,external
+31011,1,Hospital Clínico Unversitario de Valencia,0,1,external
+31005,1,Hospital Clínico Unversitario de Valencia,1,1,external
+41025,1,ICO Bellvitge,0,1,external
+41026,1,ICO Bellvitge,0,1,external
+41014,1,ICO Bellvitge,0,1,external
+41013,1,ICO Bellvitge,0,1,external
+41016,1,ICO Bellvitge,1,1,external
+51010,1,Hospital Universitario Son Espases,0,1,external
+51015,1,Hospital Universitario Son Espases,0,1,external
+51004,1,Hospital Universitario Son Espases,0,1,external
+53003,1,Hospital Universitario Son Espases,0,3,external
+61001,1,Hospital de Navarra,0,1,external
+63007,1,Hospital de Navarra,0,3,external
+62001,1,Hospital de Navarra,1,2,external
+71003,1,Hospital Unversitario Virgen de la Macarena,0,1,external
+71011,1,Hospital Unversitario Virgen de la Macarena,0,1,external
+71004,1,Hospital Unversitario Virgen de la Macarena,1,1,external
+73005,1,Hospital Unversitario Virgen de la Macarena,1,3,external
+73009,1,Hospital Unversitario Virgen de la Macarena,1,3,external
+81003,1,Hospital San Pedro de Alcántara,1,1,external
+91018,1,CHUAC,0,1,external
+91015,1,CHUAC,0,1,external
+91003,1,CHUAC,0,1,external
+91002,1,CHUAC,1,1,external
+92001,1,CHUAC,1,2,external
+11004,2,Hospital Universitario de Fuenlabrada,0,1,external
+11005,2,Hospital Universitario de Fuenlabrada,0,1,external
+12007,2,Hospital Universitario de Fuenlabrada,0,2,external
+13004,2,Hospital Universitario de Fuenlabrada,0,3,external
+13008,2,Hospital Universitario de Fuenlabrada,1,3,external
+22002,2,Hospital Unversitario de La Princesa,0,2,external
+23012,2,Hospital Unversitario de La Princesa,0,3,external
+23004,2,Hospital Unversitario de La Princesa,1,3,external
+23001,2,Hospital Unversitario de La Princesa,1,3,external
+31004,2,Hospital Clínico Unversitario de Valencia,0,1,external
+31013,2,Hospital Clínico Unversitario de Valencia,0,1,external
+31010,2,Hospital Clínico Unversitario de Valencia,1,1,external
+41001,2,ICO Bellvitge,0,1,external
+41010,2,ICO Bellvitge,0,1,external
+41027,2,ICO Bellvitge,0,1,external
+42003,2,ICO Bellvitge,0,2,external
+41005,2,ICO Bellvitge,1,1,external
+51008,2,Hospital Universitario Son Espases,0,1,external
+51014,2,Hospital Universitario Son Espases,0,1,external
+51006,2,Hospital Universitario Son Espases,0,1,external
+52001,2,Hospital Universitario Son Espases,1,2,external
+61003,2,Hospital de Navarra,0,1,external
+62003,2,Hospital de Navarra,0,2,external
+63003,2,Hospital de Navarra,1,3,external
+71009,2,Hospital Unversitario Virgen de la Macarena,0,1,external
+71005,2,Hospital Unversitario Virgen de la Macarena,0,1,external
+73008,2,Hospital Unversitario Virgen de la Macarena,0,3,external
+73001,2,Hospital Unversitario Virgen de la Macarena,1,3,external
+81007,2,Hospital San Pedro de Alcántara,0,1,external
+81008,2,Hospital San Pedro de Alcántara,1,1,external
+91005,2,CHUAC,0,1,external
+91016,2,CHUAC,0,1,external
+91012,2,CHUAC,0,1,external
+91011,2,CHUAC,1,1,external
+92002,2,CHUAC,1,2,external
+11006,3,Hospital Universitario de Fuenlabrada,0,1,external
+11001,3,Hospital Universitario de Fuenlabrada,0,1,external
+12003,3,Hospital Universitario de Fuenlabrada,0,2,external
+13010,3,Hospital Universitario de Fuenlabrada,0,3,external
+13006,3,Hospital Universitario de Fuenlabrada,1,3,external
+22004,3,Hospital Unversitario de La Princesa,0,2,external
+23007,3,Hospital Unversitario de La Princesa,0,3,external
+23006,3,Hospital Unversitario de La Princesa,1,3,external
+31012,3,Hospital Clínico Unversitario de Valencia,0,1,external
+31016,3,Hospital Clínico Unversitario de Valencia,0,1,external
+31009,3,Hospital Clínico Unversitario de Valencia,0,1,external
+41018,3,ICO Bellvitge,0,1,external
+41011,3,ICO Bellvitge,0,1,external
+41017,3,ICO Bellvitge,0,1,external
+41023,3,ICO Bellvitge,0,1,external
+41007,3,ICO Bellvitge,1,1,external
+41020,3,ICO Bellvitge,1,1,external
+51009,3,Hospital Universitario Son Espases,0,1,external
+51013,3,Hospital Universitario Son Espases,0,1,external
+52003,3,Hospital Universitario Son Espases,0,2,external
+51005,3,Hospital Universitario Son Espases,1,1,external
+53001,3,Hospital Universitario Son Espases,1,3,external
+61006,3,Hospital de Navarra,0,1,external
+61002,3,Hospital de Navarra,1,1,external
+63001,3,Hospital de Navarra,1,3,external
+71012,3,Hospital Unversitario Virgen de la Macarena,0,1,external
+73011,3,Hospital Unversitario Virgen de la Macarena,0,3,external
+72001,3,Hospital Unversitario Virgen de la Macarena,1,2,external
+73003,3,Hospital Unversitario Virgen de la Macarena,1,3,external
+81005,3,Hospital San Pedro de Alcántara,0,1,external
+91014,3,CHUAC,0,1,external
+91006,3,CHUAC,0,1,external
+91007,3,CHUAC,0,1,external
+91010,3,CHUAC,1,1,external
+93001,3,CHUAC,1,3,external
+11007,4,Hospital Universitario de Fuenlabrada,0,1,external
+12005,4,Hospital Universitario de Fuenlabrada,0,2,external
+13009,4,Hospital Universitario de Fuenlabrada,0,3,external
+11003,4,Hospital Universitario de Fuenlabrada,1,1,external
+21001,4,Hospital Unversitario de La Princesa,0,1,external
+23011,4,Hospital Unversitario de La Princesa,0,3,external
+23010,4,Hospital Unversitario de La Princesa,0,3,external
+23005,4,Hospital Unversitario de La Princesa,1,3,external
+31014,4,Hospital Clínico Unversitario de Valencia,0,1,external
+31007,4,Hospital Clínico Unversitario de Valencia,0,1,external
+31003,4,Hospital Clínico Unversitario de Valencia,0,1,external
+41022,4,ICO Bellvitge,0,1,external
+41028,4,ICO Bellvitge,0,1,external
+41012,4,ICO Bellvitge,0,1,external
+41019,4,ICO Bellvitge,0,1,external
+41002,4,ICO Bellvitge,1,1,external
+41008,4,ICO Bellvitge,1,1,external
+51016,4,Hospital Universitario Son Espases,0,1,external
+51003,4,Hospital Universitario Son Espases,0,1,external
+52005,4,Hospital Universitario Son Espases,0,2,external
+51012,4,Hospital Universitario Son Espases,1,1,external
+52004,4,Hospital Universitario Son Espases,1,2,external
+62005,4,Hospital de Navarra,0,2,external
+62002,4,Hospital de Navarra,1,2,external
+63005,4,Hospital de Navarra,1,3,external
+71010,4,Hospital Unversitario Virgen de la Macarena,0,1,external
+73010,4,Hospital Unversitario Virgen de la Macarena,0,3,external
+73007,4,Hospital Unversitario Virgen de la Macarena,1,3,external
+73004,4,Hospital Unversitario Virgen de la Macarena,1,3,external
+81006,4,Hospital San Pedro de Alcántara,0,1,external
+81004,4,Hospital San Pedro de Alcántara,1,1,external
+91013,4,CHUAC,0,1,external
+91008,4,CHUAC,0,1,external
+91001,4,CHUAC,1,1,external
+91004,4,CHUAC,1,1,external

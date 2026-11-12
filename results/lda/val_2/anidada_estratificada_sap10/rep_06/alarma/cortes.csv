@@ -1,0 +1,6 @@
+threshold,n_tied,n_decisions,n_positive,n_negative,sensitivity,specificity,youden,outer_fold,tie_rule,time,horizon_days,comparison
+1.8411918845959003,1,811,116,695,0.5603448275862069,0.6733812949640288,0.23372612255023562,0,menor corte,Tiempo_obs_digital,120,"1013 historical pairs, objetivo.csv: 114 patients, 155 positive, 858 negative"
+0.641942170448601,1,712,117,595,0.9401709401709402,0.2621848739495798,0.20235581412051995,1,menor corte,Tiempo_obs_digital,120,"1013 historical pairs, objetivo.csv: 114 patients, 155 positive, 858 negative"
+0.7480000318028027,1,833,134,699,0.7985074626865671,0.37195994277539346,0.1704674054619606,2,menor corte,Tiempo_obs_digital,120,"1013 historical pairs, objetivo.csv: 114 patients, 155 positive, 858 negative"
+1.500498426146805,1,844,121,723,0.7272727272727273,0.5421853388658369,0.26945806613856416,3,menor corte,Tiempo_obs_digital,120,"1013 historical pairs, objetivo.csv: 114 patients, 155 positive, 858 negative"
+1.619873879943043,1,613,97,516,0.6804123711340206,0.5135658914728682,0.19397826260688888,4,menor corte,Tiempo_obs_digital,120,"1013 historical pairs, objetivo.csv: 114 patients, 155 positive, 858 negative"

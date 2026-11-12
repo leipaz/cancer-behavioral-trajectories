@@ -1,0 +1,27 @@
+{
+  "time": "Tiempo_obs_DB1, desde el inicio del tratamiento",
+  "min_clinical_days": 28.0,
+  "alarm_time": "Tiempo_obs_digital",
+  "pfs_rule": "Kaplan-Meier at 365 days. A positive last step before day 365 is a ceiling: if the third estimable topic is above it, that topic is unfavourable and the three above it are favourable. Otherwise the model is reserved. Top 3 favourable, bottom 3 unfavourable",
+  "tie_break": "restricted mean survival time at 365 days; otherwise the model is reserved",
+  "interval": "95 percent log-log Greenwood",
+  "training_only_curves": "/export/gts_usuarios/lparbaiza/cancer-behavioral-trajectories/results/lda/val_2/anidada_estratificada_sap10/rep_09/alarma/fu/curvas/curvas_entrenamiento.pdf",
+  "n_models_labelled": 24,
+  "n_models_reserved": 1,
+  "reserved": [
+    {
+      "model": "outer_3_inner_1",
+      "outer_fold": 3,
+      "inner_fold": "1",
+      "reason": "sin soporte a 365"
+    }
+  ],
+  "score": "sum of three consecutive block pUF values",
+  "cut": "one Youden cut per outer fold, held-out decisions among the 1013 historical pairs, lowest cut if tied",
+  "horizon_days": 120,
+  "comparison_blocks": "1013 historical pairs, objetivo.csv: 114 patients, 155 positive, 858 negative",
+  "landmark": "decision day is month x 30; event study day is Tiempo_obs_digital + 1",
+  "blocked_models_not_in_curves_package": [
+    "3:1"
+  ]
+}

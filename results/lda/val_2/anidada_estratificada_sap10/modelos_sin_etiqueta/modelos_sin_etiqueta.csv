@@ -1,0 +1,4 @@
+repeat,model,outer_fold,inner_fold,papel,motivo,topics_sin_soporte_a_365,decisiones_1013_sin_puntuacion,pacientes_held_out_sin_puntuacion,reajuste_externo_de_la_misma_vuelta,reajuste_etiquetado_3_3,curva
+6,outer_4_inner_3,4,3,interno; solo entra en el corte de Youden de su vuelta,sin soporte a 365,T1 n=5 techo=0.80 ultimo_dia=289,239,24,outer_4_refit,True,rep_06_outer_4_inner_3.png
+7,outer_2_inner_0,2,0,interno; solo entra en el corte de Youden de su vuelta,sin soporte a 365,T1 n=2 techo=1.00 ultimo_dia=363,232,23,outer_2_refit,True,rep_07_outer_2_inner_0.png
+9,outer_3_inner_1,3,1,interno; solo entra en el corte de Youden de su vuelta,sin soporte a 365,T3 n=4 techo=0.75 ultimo_dia=342,260,20,outer_3_refit,True,rep_09_outer_3_inner_1.png

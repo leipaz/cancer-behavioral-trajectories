@@ -1,0 +1,16 @@
+Tres modelos internos sin mapa 3/3
+=================================
+
+De los 250 LDA (10 repeticiones x 25 modelos), tres modelos internos quedaron sin etiqueta.
+La regla es la misma que en la entrega unica: si un topic no llega al dia 365 y su curva sigue por encima de cero, ese valor es un techo. Solo se marca desfavorable cuando los tres topics favorables estimables quedan estrictamente por encima del techo. Si no, el modelo no se parte en 3/3.
+
+Estos tres no puntuan en el corte de Youden de su vuelta. El reajuste externo de esa misma vuelta si tiene mapa 3/3, y es el que evalua a los pacientes que no entrenaron el modelo. Las 1013 decisiones externas siguen completas en las diez repeticiones.
+
+Archivos
+- modelos_sin_etiqueta.csv: que modelo es, cuantas decisiones internas se quedan sin puntuacion, y el reajuste externo correspondiente.
+- topics_sin_etiqueta.csv: los seis topics de cada modelo, con n, eventos, PFS a 365 y el techo.
+- rep_XX_outer_Y_inner_Z.png: curva de Kaplan-Meier de entrenamiento de ese modelo.
+
+Repeticion 6, outer_4_inner_3: topic 1, 5 pacientes, ultimo dia 289, techo 0,80.
+Repeticion 7, outer_2_inner_0: topic 1, 2 pacientes, ultimo dia 363, techo 1,00.
+Repeticion 9, outer_3_inner_1: topic 3, 4 pacientes, ultimo dia 342, techo 0,75.
