@@ -1,0 +1,42 @@
+{
+  "n_repeats": 10,
+  "n_outer": 5,
+  "n_inner": 4,
+  "sap_base_seed": 20261031,
+  "seed_derivation": "numpy.random.Generator(20261031).integers(0, 2**32, size=(10, 3)): outer_seed, inner_seed, lda_seed. Inner fold f uses inner_seed + f.",
+  "comparison": "results/lda/val_2/anidada_estratificada/objetivo.csv",
+  "n_decisions": 1013,
+  "fu_rule": "3/3 Kaplan-Meier at 365 days on training patients only",
+  "clinical_maps": "not applied: alarma_clinica/mapeos_clinicos_25_modelos.txt labels the single stratified delivery and does not transfer to refitted topics",
+  "window_blocks": 3,
+  "horizon_days": 120,
+  "bootstrap_seed": 20261020,
+  "external_mean_of_repeat_means": {
+    "AUROC": 0.6173353020792404,
+    "sensitivity": 0.6384605071200893,
+    "specificity": 0.5243065384355968,
+    "PPV": 0.20605785887059427,
+    "NPV": 0.8882808421231531
+  },
+  "external_sd_of_repeat_means": {
+    "AUROC": 0.0479425762543835,
+    "sensitivity": 0.10723444982150553,
+    "specificity": 0.0840624365732621,
+    "PPV": 0.02955101409453648,
+    "NPV": 0.02377442490123701
+  },
+  "external_mean_of_50_folds": {
+    "AUROC": 0.6173353020792404,
+    "sensitivity": 0.6384605071200893,
+    "specificity": 0.5243065384355968,
+    "PPV": 0.20605785887059425,
+    "NPV": 0.8882808421231533
+  },
+  "external_sd_of_50_folds": {
+    "AUROC": 0.12024030966675944,
+    "sensitivity": 0.2114980678647908,
+    "specificity": 0.19589007021284513,
+    "PPV": 0.07161983137808113,
+    "NPV": 0.06263409220709097
+  }
+}

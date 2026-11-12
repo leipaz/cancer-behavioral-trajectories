@@ -32,3 +32,17 @@ Each masked value below is the mean of seeds 101–105. The bracket is the 95% c
 For scattered days and for variables, AUROC stays near 0.70 through +30%, and at +50% it is 0.680 and 0.674. Consecutive days lower the load: at +20% the AUROC is 0.670, against 0.709 when those days are scattered, and 147 alarms turn off with none turning on. At +50% a consecutive block turns 386 alarms off.
 
 The 15-day rule is separate from the load. At +50% scattered days, 833 of the 1006 points that met it are lost and 43 of the 113 patients lose every such point. With variables, 39 points and 1 patient. A consecutive block loses 730 points and 33 patients.
+
+## Contiguous gaps of 3, 7 and 14 days
+
+One extra block, separate from the 10–50% ramp. On each of the 175 DB1 patients a single run of 3, 7 or 14 calendar days is hidden, placed at random with seeds 101–105. The same VQ-VAE, LDA and threshold are kept. Two patients have a calendar shorter than 14 days, so that gap covers their whole span. Every one of the 1013 decisions still has a load.
+
+The posterior is the mean topic distribution of those 1013 months. Its Jensen–Shannon divergence from the unmasked run is below 0.001 at 3 and 7 days and 0.001 at 14 days. The mean absolute difference of the six probabilities is 0.001, 0.004 and 0.010. Dominant-state agreement is the fraction of months whose winning topic stays the same. Threshold-crossing agreement is the fraction whose alarm stays on the same side of 1.0596. Availability is the 15-day rule: at baseline 1006 points meet it.
+
+| Gap | Posterior JS | Posterior MAE | Dominant | Threshold | Turns off | Points lost | AUROC | Sensitivity | Specificity |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 3 days | <0.001 | 0.001 [0.001, 0.002] | 0.995 [0.991, 0.998] | 0.995 [0.991, 0.999] | 3 [0, 6] | 0 [0, 1] | 0.703 [0.702, 0.704] | 0.876 [0.862, 0.890] | 0.452 [0.451, 0.454] |
+| 7 days | <0.001 | 0.004 [0.003, 0.005] | 0.992 [0.987, 0.996] | 0.992 [0.987, 0.996] | 8 [5, 11] | 1 [0, 1] | 0.696 [0.692, 0.699] | 0.862 [0.847, 0.876] | 0.456 [0.455, 0.458] |
+| 14 days | 0.001 | 0.010 [0.009, 0.011] | 0.960 [0.955, 0.965] | 0.983 [0.979, 0.987] | 17 [13, 21] | 3 [1, 4] | 0.688 [0.680, 0.696] | 0.852 [0.835, 0.869] | 0.466 [0.462, 0.470] |
+
+Per-seed file: `results/missingness/huecos_3_7_14/metricas_por_semilla.csv`.

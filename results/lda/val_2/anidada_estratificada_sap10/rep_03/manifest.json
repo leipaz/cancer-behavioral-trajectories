@@ -1,0 +1,35 @@
+{
+  "cohort": "DB1",
+  "design": "nested CV; equal groups balancing hospital, then event, then tumor group",
+  "compared_with": "results/lda/val_2/anidada, which shuffles without stratification",
+  "n_audit": 178,
+  "n_with_profile": 175,
+  "excluded_no_profile": [
+    31015,
+    61004,
+    63006
+  ],
+  "n_outer": 5,
+  "n_inner": 4,
+  "outer_seed": 3802423168,
+  "inner_seed": "2399217271 + outer fold",
+  "lda_seed": 2949764998,
+  "num_topics": 6,
+  "outer_fold_sizes": [
+    35,
+    35,
+    35,
+    35,
+    35
+  ],
+  "outer_events": [
+    12,
+    12,
+    11,
+    12,
+    13
+  ],
+  "repeat": 3,
+  "sap_base_seed": 20261031,
+  "seed_derivation": "three uint32 draws per repeat from numpy.random.Generator(sap_base_seed), in repeat order: outer split, inner-split base, LDA init"
+}
