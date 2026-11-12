@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
-"""Monthly LDA topics for DB2/DB3 — fixed 30-day blocks (alarm-compatible).
+"""Monthly LDA topics for any database — fixed 30-day blocks (alarm-compatible).
 
-Same definition as DB1 / paper alarms / 178 audit:
+One definition for every database folder under ``data/processed/clinical/<DB>/``:
   - densified daily calendar (real days)
   - non-overlapping windows of 30 embedding days from first densified day
   - trailing ``n % 30`` **kept** as last (possibly incomplete) month with LDA
     probs if there is at least one observed day (like 178 audit)
   - landmark month m ↔ observation day ~m×30
 
-DB2 labels: ``mes_1`` = block that contains 2025-09-11 (full or short).
-``mes_-3,-2,-1`` = three previous complete blocks. Never fall back to
-sequential labeling from day 0 when cutoff is missing.
-Clinical Excel = fechas_cnio base + summary preds + monthly topics.
+Month labels:
+  - DB2 (extension): ``mes_1`` = block that contains 2025-09-11 (full or short).
+    ``mes_-3,-2,-1`` = three previous complete blocks. Summary topic is the
+    LDA predominant from that cutoff to the end.
+  - Every other database: ``mes_1…N`` sequential from the first densified day.
+    Summary = predominant of ``mes_1`` plus predominant over the full span.
 
-DB2 summary: ``topic_predominante_DB2`` = LDA predominant over densified days
-from 2025-09-11 → fin (extension window only, not full DB1∪DB2 span).
-DB3 summary: ``topic_predominante_mes_1`` + ``topic_predominante_global``.
-
-DB3: ``mes_1…N`` sequential; incomplete last month kept.
+Inputs, by convention, for a database named ``<DB>``:
+  - ``data/processed/vq-vae/<DB>/profiles_per_sample_<DB>_span_real_a0.pkl``
+  - ``data/processed/clinical/<DB>/fechas_cnio_oct_2_2026.xlsx``
 """
 
 from __future__ import annotations
@@ -44,31 +44,35 @@ WINDOW = 30
 MIN_EMB = 15
 MIN_OBS_IN_WINDOW = 15
 TOPIC_K = list(range(6))
+# Only the extension cohort is anchored to the 2025-09-11 cutoff.
+RELATIVE_CUTOFF = {"DB2": CUTOFF_DB2}
 
-DB_CFG = {
-    "DB2": {
+
+def discover_dbs() -> list[str]:
+    """Database folders that already have a clinical fechas workbook."""
+    clin = PROJECT_ROOT / "data/processed/clinical"
+    names = [
+        p.parent.name
+        for p in sorted(clin.glob("*/fechas_cnio_oct_2_2026.xlsx"))
+    ]
+    return names
+
+
+def db_config(db: str) -> dict:
+    """Paths and month rule for one database. Any ``<DB>`` folder works."""
+    mode = "relative_cutoff" if db in RELATIVE_CUTOFF else "sequential"
+    return {
         "pkl": PROJECT_ROOT
-        / "data/processed/vq-vae/DB2/profiles_per_sample_DB2_span_real_a0.pkl",
+        / f"data/processed/vq-vae/{db}/profiles_per_sample_{db}_span_real_a0.pkl",
         "clinical_base": PROJECT_ROOT
-        / "data/processed/clinical/DB2/fechas_cnio_oct_2_2026.xlsx",
+        / f"data/processed/clinical/{db}/fechas_cnio_oct_2_2026.xlsx",
         "clinical_out": PROJECT_ROOT
-        / "data/processed/clinical/DB2/fechas_cnio_oct_2_2026_con_topics.xlsx",
-        "out_dir": PROJECT_ROOT / "results/by_db/DB2",
-        "mode": "relative_cutoff",
-        "paste_from_mes": -3,
-    },
-    "DB3": {
-        "pkl": PROJECT_ROOT
-        / "data/processed/vq-vae/DB3/profiles_per_sample_DB3_span_real_a0.pkl",
-        "clinical_base": PROJECT_ROOT
-        / "data/processed/clinical/DB3/fechas_cnio_oct_2_2026.xlsx",
-        "clinical_out": PROJECT_ROOT
-        / "data/processed/clinical/DB3/fechas_cnio_oct_2_2026_con_topics.xlsx",
-        "out_dir": PROJECT_ROOT / "results/by_db/DB3",
-        "mode": "sequential",
-        "paste_from_mes": 1,
-    },
-}
+        / f"data/processed/clinical/{db}/fechas_cnio_oct_2_2026_con_topics.xlsx",
+        "out_dir": PROJECT_ROOT / "results/by_db" / db,
+        "mode": mode,
+        "paste_from_mes": -3 if mode == "relative_cutoff" else 1,
+        "cutoff": RELATIVE_CUTOFF.get(db),
+    }
 
 
 def load_day_table_from_pkl(pkl_path: Path, model_type: str = "a0", n: int = 30) -> pd.DataFrame:
@@ -253,12 +257,12 @@ def compute_summary_topics(
     dictionary,
     mode: str,
     cutoff: pd.Timestamp | None,
+    db: str,
 ) -> pd.DataFrame:
-    """Extra summary columns for clinical Excel.
+    """Extra summary columns for the clinical Excel.
 
-    DB2: predominant topic over densified days from extension cutoff → fin
-         (not the whole DB1∪DB2 span).
-    DB3: predominant of mes_1 + predominant over the full observed span.
+    Relative-cutoff databases: predominant topic from the cutoff to the end.
+    Sequential databases: predominant of mes_1 plus predominant over the full span.
     """
     mes_col = "mes_rel" if mode == "relative_cutoff" else "mes"
     rows = []
@@ -276,10 +280,9 @@ def compute_summary_topics(
         if mode == "relative_cutoff" and cutoff is not None:
             idxs = [i for i in range(n) if dates[i] >= cutoff]
             pred, n_obs = predominant_over_indices(emb, some, idxs, lda, dictionary)
-            rec["topic_predominante_DB2"] = pred if pred is not None else np.nan
-            rec["n_observed_days_DB2"] = int(n_obs)
+            rec[f"topic_predominante_{db}"] = pred if pred is not None else np.nan
+            rec[f"n_observed_days_{db}"] = int(n_obs)
         else:
-            # DB3: mes_1 predominant (from monthly long) + global over full span
             m1 = g[g[mes_col] == 1]
             if len(m1) and bool(m1.iloc[0]["topic_ok"]):
                 rec["topic_predominante_mes_1"] = int(m1.iloc[0]["topic_predominante"])
@@ -300,6 +303,7 @@ def attach_clinical(
     out_path: Path,
     mode: str,
     from_mes: int,
+    db: str,
     summary: pd.DataFrame | None = None,
 ) -> None:
     base = pd.read_excel(base_path)
@@ -329,7 +333,7 @@ def attach_clinical(
     # Summary columns right after CNIO base, before monthly topics
     if summary is not None and len(summary):
         if mode == "relative_cutoff":
-            sum_cols = ["topic_predominante_DB2"]
+            sum_cols = [f"topic_predominante_{db}"]
         else:
             sum_cols = ["topic_predominante_mes_1", "topic_predominante_global"]
         keep = ["S_RECORD_id"] + [c for c in sum_cols if c in summary.columns]
@@ -343,6 +347,14 @@ def attach_clinical(
     out.to_excel(out_path, index=False)
 
 
+def _clinical_fin_column(clin: pd.DataFrame, db: str) -> str:
+    """End-date column of this database, whatever the capitalisation in the Excel."""
+    for name in (f"Fecha_Fin_{db}", f"Fecha_fin_{db}", "Fecha_fin"):
+        if name in clin.columns:
+            return name
+    raise KeyError(f"{db}: clinical file has no Fecha_Fin_{db} / Fecha_fin column")
+
+
 def _span_prefix_cols(long: pd.DataFrame, clinical_base: Path, db: str) -> pd.DataFrame:
     """Four leading span columns: clinical inicio/fin + daily inicio/fin used for topics."""
     span = (
@@ -351,19 +363,16 @@ def _span_prefix_cols(long: pd.DataFrame, clinical_base: Path, db: str) -> pd.Da
     )
     clin = pd.read_excel(clinical_base)
     clin["S_RECORD_id"] = pd.to_numeric(clin["S_RECORD_id"], errors="coerce")
+    fin_src = _clinical_fin_column(clin, db)
     if db == "DB2":
-        # fecha_inicio_DB1, fecha_fin_DB2, daily start (from DB1), daily end (eB2 span)
+        # Published DB2 names: clinical inicio is the DB1 date, daily end is the eB2 span.
         keep = clin[
-            [
-                "S_RECORD_id",
-                "Fecha_inicio_reconciliada",
-                "Fecha_Fin_DB2",
-            ]
+            ["S_RECORD_id", "Fecha_inicio_reconciliada", fin_src]
         ].rename(
             columns={
                 "S_RECORD_id": "id",
                 "Fecha_inicio_reconciliada": "fecha_inicio_DB1",
-                "Fecha_Fin_DB2": "fecha_fin_DB2",
+                fin_src: "fecha_fin_DB2",
             }
         )
         span = span.rename(
@@ -379,21 +388,15 @@ def _span_prefix_cols(long: pd.DataFrame, clinical_base: Path, db: str) -> pd.Da
             "fecha_fin_daily_eB2",
         ]
     else:
-        fin_col = "Fecha_fin_DB3" if "Fecha_fin_DB3" in clin.columns else "Fecha_fin"
-        keep = clin[["S_RECORD_id", "Fecha_inicio_reconciliada", fin_col]].rename(
+        fin_name = f"fecha_fin_{db}"
+        keep = clin[["S_RECORD_id", "Fecha_inicio_reconciliada", fin_src]].rename(
             columns={
                 "S_RECORD_id": "id",
                 "Fecha_inicio_reconciliada": "fecha_inicio",
-                fin_col: "fecha_fin_DB3",
+                fin_src: fin_name,
             }
         )
-        span = span.rename(
-            columns={
-                "fecha_inicio_daily": "fecha_inicio_daily",
-                "fecha_fin_daily": "fecha_fin_daily",
-            }
-        )
-        prefix = ["fecha_inicio", "fecha_fin_DB3", "fecha_inicio_daily", "fecha_fin_daily"]
+        prefix = ["fecha_inicio", fin_name, "fecha_inicio_daily", "fecha_fin_daily"]
 
     out = keep.merge(span, on="id", how="right")
     for c in prefix:
@@ -535,11 +538,19 @@ def build_bloques_rangos_long(
 
 
 def run_db(db: str) -> None:
-    cfg = DB_CFG[db]
+    cfg = db_config(db)
+    if not cfg["pkl"].exists():
+        raise FileNotFoundError(
+            f"{db}: missing VQ-VAE profiles {cfg['pkl']}. "
+            "Infer them first with scripts/03_analysis/vq-vae/generate_profiles.py "
+            f"--output {cfg['pkl']}"
+        )
+    if not cfg["clinical_base"].exists():
+        raise FileNotFoundError(f"{db}: missing clinical file {cfg['clinical_base']}")
     out_dir: Path = cfg["out_dir"]
     out_dir.mkdir(parents=True, exist_ok=True)
     mode = cfg["mode"]
-    cutoff = CUTOFF_DB2 if mode == "relative_cutoff" else None
+    cutoff = cfg["cutoff"] if mode == "relative_cutoff" else None
     mes_col = "mes_rel" if mode == "relative_cutoff" else "mes"
 
     print(f"\n{'=' * 70}\n{db}: fixed 30-day blocks (alarm-compatible)\n{'=' * 70}")
@@ -580,12 +591,13 @@ def run_db(db: str) -> None:
 
     long.to_csv(long_path, index=False)
     summary = compute_summary_topics(
-        day, long, lda, dictionary, mode=mode, cutoff=cutoff
+        day, long, lda, dictionary, mode=mode, cutoff=cutoff, db=db
     )
     summary.to_csv(out_dir / "topics_summary_predominante.csv", index=False)
     if mode == "relative_cutoff":
-        n_pred = int(summary["topic_predominante_DB2"].notna().sum())
-        print(f"  topic_predominante_DB2 filled: {n_pred}/{len(summary)}")
+        col = f"topic_predominante_{db}"
+        n_pred = int(summary[col].notna().sum())
+        print(f"  {col} filled: {n_pred}/{len(summary)}")
     else:
         n1 = int(summary["topic_predominante_mes_1"].notna().sum())
         ng = int(summary["topic_predominante_global"].notna().sum())
@@ -598,6 +610,7 @@ def run_db(db: str) -> None:
         clin_out,
         mode=mode,
         from_mes=cfg["paste_from_mes"],
+        db=db,
         summary=summary,
     )
     write_rangos_aux(
@@ -667,12 +680,40 @@ def run_db(db: str) -> None:
     print(f"  → {out_dir / 'topics_meses_rangos_fechas.xlsx'}")
 
 
+def resolve_dbs(which: str) -> list[str]:
+    known = discover_dbs()
+    if which == "all":
+        return known
+    if which == "both":
+        return [db for db in ("DB2", "DB3") if db in known]
+    if which not in known:
+        raise SystemExit(
+            f"Unknown database {which!r}. Found clinical folders: {known or 'none'}"
+        )
+    return [which]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--db", choices=["DB2", "DB3", "both"], default="both")
+    parser.add_argument(
+        "--db",
+        default="all",
+        help="Database folder name (DB1, DB2, DB3, …), 'both' (DB2 and DB3), or 'all'",
+    )
     args = parser.parse_args()
-    for db in (["DB2", "DB3"] if args.db == "both" else [args.db]):
+    selected = resolve_dbs(args.db)
+    if not selected:
+        raise SystemExit("No clinical database folders found under data/processed/clinical/")
+    ran = 0
+    for db in selected:
+        profiles = db_config(db)["pkl"]
+        if args.db == "all" and not profiles.exists():
+            print(f"[skip] {db}: no VQ-VAE profiles at {profiles}")
+            continue
         run_db(db)
+        ran += 1
+    if ran == 0:
+        raise SystemExit("No database had a VQ-VAE profile pickle to infer.")
 
 
 if __name__ == "__main__":
