@@ -27,7 +27,7 @@ from vqvae.inference import load_models  # noqa: E402
 
 ROOT = ramp.ROOT
 PRIOR = ROOT / "results/missingness/ramp_db1_175"
-OUT = ROOT / "results/missingness/huecos_3_7_14"
+OUT = ROOT / "results/missingness/gaps_3_7_14"
 LENGTHS = (3, 7, 14)
 SEEDS = ramp.SEEDS
 
@@ -116,7 +116,7 @@ def main() -> None:
                 f"alarm={summary['alarm_agreement']:.3f} AUROC={summary['emitted_AUROC']:.3f}",
                 flush=True,
             )
-    pd.DataFrame(rows).to_csv(OUT / "metricas_por_semilla.csv", index=False)
+    pd.DataFrame(rows).to_csv(OUT / "metrics_by_seed.csv", index=False)
     print("done", OUT, flush=True)
 
 

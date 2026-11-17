@@ -25,9 +25,9 @@ from vqvae.data import aggregate_duplicate_user_days, load_daily_summary  # noqa
 
 DAILY = ROOT / "data/daily_summaries/DB1/daily_summary_checked.csv"
 OBJETIVO = ROOT / "results/lda/val_2/anidada_estratificada/objetivo.csv"
-BASELINE = ROOT / "results/missingness/Sensibilidad a pérdidas artificiales/alarm_scored_objetivo_baseline.csv"
+BASELINE = ROOT / "results/missingness/Sensitivity_to_artificial_missingness/alarm_scored_objetivo_baseline.csv"
 SUBJECTS = ROOT / "data/processed/clinical/Subjects_data.xlsx"
-OUT = ROOT / "results/missingness/cobertura_real"
+OUT = ROOT / "results/missingness/Real_coverage"
 
 MEASURE_COLS = list(c.CONTINUOUS_REAL_VALUED_COLS) + list(c.CONTINUOUS_POSITIVE_COLS) + ["practiced_sport"]
 assert len(MEASURE_COLS) == 9
@@ -552,7 +552,7 @@ def main() -> None:
         "Pendiente (2B): comparador disponibilidad sola vs DCABP vs DCABP+disponibilidad, "
         "coordinado con el bloque de comparadores.",
     ]
-    (OUT / "informe.md").write_text("\n".join(lines))
+    (OUT / "report.md").write_text("\n".join(lines))
     print("wrote", OUT)
     print(band_counts.to_string(index=False))
     print(show[cols].to_string(index=False))

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Figures + Word report for missingness point 2 (coverage + availability comparator).
 
-Reads existing CSVs under results/missingness/{cobertura_real,comparador_disponibilidad}
-and writes figures + informe.docx into results/missingness/Punto2_cobertura_y_comparador/.
+Reads existing CSVs under results/missingness/{Real_coverage,Availability_comparator}
+and writes figures + report.docx into results/missingness/Real_coverage_and_informative_missingness/.
 
     .venv/bin/python scripts/03_analysis/alarm/build_punto2_informe.py
 """
@@ -21,11 +21,11 @@ from docx.oxml.ns import nsmap, qn
 from docx.shared import Cm, Inches, Pt, RGBColor
 
 ROOT = Path(__file__).resolve().parents[3]
-COV = ROOT / "results/missingness/cobertura_real"
-CMP = ROOT / "results/missingness/comparador_disponibilidad"
-OUT = ROOT / "results/missingness/Punto2_cobertura_y_comparador"
+COV = ROOT / "results/missingness/Real_coverage"
+CMP = ROOT / "results/missingness/Availability_comparator"
+OUT = ROOT / "results/missingness/Real_coverage_and_informative_missingness"
 
-# Same palette / layout as results/missingness/Sensibilidad…/informe.docx
+# Same palette / layout as results/missingness/Sensitivity_to_artificial_missingness/report.docx
 HEADER_FILL = "2F5D50"
 ZEBRA = "F4F1EA"
 INK = "1C1B19"
@@ -849,18 +849,18 @@ def build_docx(figs: dict[str, Path], var_band: pd.DataFrame | None = None) -> P
     add_heading(doc, "Files", level=2)
     add_text(
         doc,
-        "Coverage pack: results/missingness/cobertura_real/. Comparator pack: "
-        "results/missingness/comparador_disponibilidad/. Scripts: run_coverage_real_objetivo.py, "
+        "Coverage pack: results/missingness/Real_coverage/. Comparator pack: "
+        "results/missingness/Availability_comparator/. Scripts: run_coverage_real_objetivo.py, "
         "run_missingness_comparator_objetivo.py, build_punto2_informe.py. Figures in this folder: "
         "fig_band_counts_90d, fig_auroc_by_band_90d, fig_coverage_by_variable, "
         "fig_auroc_by_variable_band_90d, fig_comparator_auroc (.png / .svg).",
     )
 
-    dest = OUT / "informe.docx"
+    dest = OUT / "report.docx"
     try:
         doc.save(dest)
     except PermissionError:
-        dest = OUT / "informe_with_figures.docx"
+        dest = OUT / "report_with_figures.docx"
         doc.save(dest)
     return dest
 
@@ -875,13 +875,13 @@ def main() -> None:
         var_band = compute_variable_band_perf(90)
     figs = make_figures()
     dest = build_docx(figs, var_band=var_band)
-    (OUT / "informe.md").write_text(
+    (OUT / "report.md").write_text(
         "# Real coverage and informative missingness\n\n"
         "Word report with tables and figures:\n\n"
         f"`{dest.relative_to(ROOT)}`\n\n"
-        "- Block A outputs: `../cobertura_real/`\n"
-        "- Block B outputs: `../comparador_disponibilidad/`\n"
-        "- Extra A: `../cobertura_real/performance_by_variable_band.csv`\n"
+        "- Block A outputs: `../Real_coverage/`\n"
+        "- Block B outputs: `../Availability_comparator/`\n"
+        "- Extra A: `../Real_coverage/performance_by_variable_band.csv`\n"
         "- Figures: `fig_*.png` / `fig_*.svg` in this folder\n"
     )
     print(f"→ figures: {len(figs)}")

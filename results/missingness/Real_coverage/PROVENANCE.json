@@ -3,7 +3,7 @@
   "n_decisions": 1013,
   "n_patients": 114,
   "daily": "/Users/lparbaiza/cancer-behavioral-trajectories/data/daily_summaries/DB1/daily_summary_checked.csv",
-  "baseline_scores": "/Users/lparbaiza/cancer-behavioral-trajectories/results/missingness/Sensibilidad a p\u00e9rdidas artificiales/alarm_scored_objetivo_baseline.csv",
+  "baseline_scores": "/Users/lparbaiza/cancer-behavioral-trajectories/results/missingness/Sensitivity_to_artificial_missingness/alarm_scored_objetivo_baseline.csv",
   "threshold": 1.0596384140662845,
   "measure_cols": [
     "sleep_start",

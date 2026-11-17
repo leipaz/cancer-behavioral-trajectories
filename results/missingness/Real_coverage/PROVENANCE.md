@@ -1,7 +1,7 @@
 # Cobertura real (punto 2A) — provenance
 
 - Landmarks: `results/lda/val_2/anidada_estratificada/objetivo.csv` (1013 / 114).
-- Scores: baseline pack `Sensibilidad a pérdidas artificiales/alarm_scored_objetivo_baseline.csv` (load after VQ-VAE; metrics use all 1013).
+- Scores: baseline pack `Sensitivity_to_artificial_missingness/alarm_scored_objetivo_baseline.csv` (load after VQ-VAE; metrics use all 1013).
 - Raw daily (pre-impute): `data/daily_summaries/DB1/daily_summary_checked.csv`.
 - 9 input variables = VQ-VAE measure set (excl. `weekend`).
 - Windows: 90 d and 30 d ending at `decision_date`; expected cells 810 / 270.

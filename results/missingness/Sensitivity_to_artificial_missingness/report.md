@@ -12,7 +12,7 @@ At baseline, AUROC 0.703, sensitivity 0.884, specificity 0.452, PPV 0.226, NPV 0
 
 On the 175 patients the starting missingness uses the **same patient-mean definition in every row**: each patient’s rate on their expected calendar (first to last day), then the unweighted mean across patients. Fully empty days 1.4% (152 with none, 23 with at least one). Variables inside a day that still has a measurement 35.7% (median 34.7%, tertiles 23.5% and 43.2%). Over the whole calendar, with a fully empty day as nine empty variables, the mean is 36.1% (this is the “Empty variables” column).
 
-Each masked value below is the mean of seeds 101–105. The bracket is the 95% confidence interval of that seed-mean (variability of the deletion experiment). It is **not** a patient-resampling / bootstrap CI of predictive performance. The full tables and figures are in `informe.docx`. Per-seed file: `metricas_por_semilla.csv`.
+Each masked value below is the mean of seeds 101–105. The bracket is the 95% confidence interval of that seed-mean (variability of the deletion experiment). It is **not** a patient-resampling / bootstrap CI of predictive performance. The full tables and figures are in `report.docx`. Per-seed file: `metrics_by_seed.csv`.
 
 | Added | AUROC | Sensitivity | Specificity | PPV | NPV |
 |---|---:|---:|---:|---:|---:|
@@ -48,4 +48,4 @@ The posterior is the mean topic distribution of those 1013 months. Its Jensen–
 | 7 days | <0.001 | 0.004 [0.003, 0.005] | 0.992 [0.987, 0.996] | 0.992 [0.987, 0.996] | 8 [5, 11] | 0.696 [0.692, 0.699] | 0.862 [0.847, 0.876] | 0.456 [0.455, 0.458] |
 | 14 days | 0.001 | 0.010 [0.009, 0.011] | 0.960 [0.955, 0.965] | 0.983 [0.979, 0.987] | 17 [13, 21] | 0.688 [0.680, 0.696] | 0.852 [0.835, 0.869] | 0.466 [0.462, 0.470] |
 
-Per-seed file: `results/missingness/huecos_3_7_14/metricas_por_semilla.csv`.
+Per-seed file: `results/missingness/gaps_3_7_14/metrics_by_seed.csv`.

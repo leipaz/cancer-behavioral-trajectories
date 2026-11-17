@@ -2,7 +2,7 @@
   "n_decisions": 1013,
   "n_patients": 114,
   "horizon_days": 120,
-  "source_coverage": "/Users/lparbaiza/cancer-behavioral-trajectories/results/missingness/cobertura_real/coverage_by_decision.csv",
+  "source_coverage": "/Users/lparbaiza/cancer-behavioral-trajectories/results/missingness/Real_coverage/coverage_by_decision.csv",
   "availability_features": [
     "prop_absent_days_90",
     "n_gaps_ge_48h_90",

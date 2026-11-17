@@ -31,8 +31,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 ROOT = Path(__file__).resolve().parents[3]
-COVERAGE = ROOT / "results/missingness/cobertura_real/coverage_by_decision.csv"
-OUT = ROOT / "results/missingness/comparador_disponibilidad"
+COVERAGE = ROOT / "results/missingness/Real_coverage/coverage_by_decision.csv"
+OUT = ROOT / "results/missingness/Availability_comparator"
 
 THR_LOAD = 1.0596384140662845
 N_SPLITS = 5
@@ -417,7 +417,7 @@ def main() -> None:
         "Archivos: `availability_indicators.csv`, `scores_by_decision.csv`, "
         "`performance_models.csv`, `emission_overlap.csv`, `coefficients_full_fit_descriptive.csv`, `PROVENANCE.json`.",
     ]
-    (OUT / "informe.md").write_text("\n".join(lines))
+    (OUT / "report.md").write_text("\n".join(lines))
     (OUT / "PROVENANCE.md").write_text(
         "Missingness comparator (2B) on objetivo 1013.\n\n"
         f"Features: {AVAIL_FEATURES}.\n"

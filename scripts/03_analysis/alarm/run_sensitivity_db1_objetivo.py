@@ -173,7 +173,7 @@ def main() -> None:
         rows.append(summary)
         print(f"  {name} AUROC={summary['emitted_AUROC']:.3f} scored={summary['emitted_n_scored']}", flush=True)
 
-    pd.DataFrame(rows).to_csv(OUT / "metricas_por_semilla.csv", index=False)
+    pd.DataFrame(rows).to_csv(OUT / "metrics_by_seed.csv", index=False)
     print("done", OUT, flush=True)
 
 
