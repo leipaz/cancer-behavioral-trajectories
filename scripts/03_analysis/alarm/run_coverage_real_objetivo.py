@@ -414,7 +414,7 @@ def main() -> None:
         patients = sub["id"].drop_duplicates().to_numpy()
         rng = np.random.default_rng(BOOT_SEED + w)
         by = {pid: g for pid, g in sub.groupby("id", sort=False)}
-        boot_load_cov, boot_cov_y, boot_auc_cov, boot_auc_inter = [], [], [], []
+        boot_load_cov, boot_cov_y, boot_auc_cov, boot_auc_load, boot_auc_inter = [], [], [], [], []
         for _ in range(N_BOOT):
             draw = rng.choice(patients, size=len(patients), replace=True)
             boot = pd.concat([by[pid] for pid in draw], ignore_index=True)
@@ -422,6 +422,7 @@ def main() -> None:
             boot_cov_y.append(spearman_safe(boot["coverage"], boot["y"]))
             if boot["y"].nunique() > 1:
                 boot_auc_cov.append(float(roc_auc_score(boot["y"], boot["coverage"])))
+                boot_auc_load.append(float(roc_auc_score(boot["y"], boot["load"])))
                 lz = (boot["load"] - boot["load"].mean()) / (boot["load"].std(ddof=0) or 1.0)
                 cz = (boot["coverage"] - boot["coverage"].mean()) / (boot["coverage"].std(ddof=0) or 1.0)
                 boot_auc_inter.append(float(roc_auc_score(boot["y"], lz + lz * cz)))
@@ -435,6 +436,7 @@ def main() -> None:
         c1 = ci(boot_load_cov, base_corr_load_cov)
         c2 = ci(boot_cov_y, base_corr_cov_y)
         c3 = ci(boot_auc_cov, auc_cov)
+        c_load = ci(boot_auc_load, auc_load)
         c4 = ci(boot_auc_inter, auc_inter)
         cont_rows.append(
             {
@@ -451,7 +453,9 @@ def main() -> None:
                 "AUROC_coverage_alone": c3[0],
                 "AUROC_coverage_alone_lo": c3[1],
                 "AUROC_coverage_alone_hi": c3[2],
-                "AUROC_load": auc_load,
+                "AUROC_load": c_load[0],
+                "AUROC_load_lo": c_load[1],
+                "AUROC_load_hi": c_load[2],
                 "AUROC_load_plus_loadxcov": c4[0],
                 "AUROC_load_plus_loadxcov_lo": c4[1],
                 "AUROC_load_plus_loadxcov_hi": c4[2],
