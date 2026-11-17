@@ -70,3 +70,9 @@ data/processed/univariate/**/*.xlsx
 
 # Alarm local / exploratory (clock audits, threshold studies, old baselines)
 results/alarm/_local/
+
+# Missingness intermediates (keep only principal packs in results/missingness/)
+results/missingness/ramp_db1_175/
+results/missingness/gaps_3_7_14/
+results/missingness/procedure_check/
+results/missingness/**/~$*

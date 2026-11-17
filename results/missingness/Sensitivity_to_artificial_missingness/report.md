@@ -48,4 +48,4 @@ The posterior is the mean topic distribution of those 1013 months. Its Jensen–
 | 7 days | <0.001 | 0.004 [0.003, 0.005] | 0.992 [0.987, 0.996] | 0.992 [0.987, 0.996] | 8 [5, 11] | 0.696 [0.692, 0.699] | 0.862 [0.847, 0.876] | 0.456 [0.455, 0.458] |
 | 14 days | 0.001 | 0.010 [0.009, 0.011] | 0.960 [0.955, 0.965] | 0.983 [0.979, 0.987] | 17 [13, 21] | 0.688 [0.680, 0.696] | 0.852 [0.835, 0.869] | 0.466 [0.462, 0.470] |
 
-Per-seed file: `results/missingness/gaps_3_7_14/metrics_by_seed.csv`.
+Per-seed file: `results/missingness/Sensitivity_to_artificial_missingness/gaps_3_7_14_metrics_by_seed.csv`.

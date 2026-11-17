@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Figures + Word report for missingness point 2 (coverage + availability comparator).
 
-Reads existing CSVs under results/missingness/{Real_coverage,Availability_comparator}
-and writes figures + report.docx into results/missingness/Real_coverage_and_informative_missingness/.
+Reads existing CSVs under results/missingness/Real_coverage (coverage + availability_comparator/)
+and writes figures + report.docx into results/missingness/Real_coverage/.
 
     .venv/bin/python scripts/03_analysis/alarm/build_punto2_informe.py
 """
@@ -22,8 +22,8 @@ from docx.shared import Cm, Inches, Pt, RGBColor
 
 ROOT = Path(__file__).resolve().parents[3]
 COV = ROOT / "results/missingness/Real_coverage"
-CMP = ROOT / "results/missingness/Availability_comparator"
-OUT = ROOT / "results/missingness/Real_coverage_and_informative_missingness"
+CMP = ROOT / "results/missingness/Real_coverage/availability_comparator"
+OUT = ROOT / "results/missingness/Real_coverage"
 
 # Same palette / layout as results/missingness/Sensitivity_to_artificial_missingness/report.docx
 HEADER_FILL = "2F5D50"
@@ -849,8 +849,7 @@ def build_docx(figs: dict[str, Path], var_band: pd.DataFrame | None = None) -> P
     add_heading(doc, "Files", level=2)
     add_text(
         doc,
-        "Coverage pack: results/missingness/Real_coverage/. Comparator pack: "
-        "results/missingness/Availability_comparator/. Scripts: run_coverage_real_objetivo.py, "
+        "Coverage and comparator outputs: results/missingness/Real_coverage/ (comparator CSVs under availability_comparator/). Scripts: run_coverage_real_objetivo.py, "
         "run_missingness_comparator_objetivo.py, build_punto2_informe.py. Figures in this folder: "
         "fig_band_counts_90d, fig_auroc_by_band_90d, fig_coverage_by_variable, "
         "fig_auroc_by_variable_band_90d, fig_comparator_auroc (.png / .svg).",
@@ -879,10 +878,9 @@ def main() -> None:
         "# Real coverage and informative missingness\n\n"
         "Word report with tables and figures:\n\n"
         f"`{dest.relative_to(ROOT)}`\n\n"
-        "- Block A outputs: `../Real_coverage/`\n"
-        "- Block B outputs: `../Availability_comparator/`\n"
-        "- Extra A: `../Real_coverage/performance_by_variable_band.csv`\n"
-        "- Figures: `fig_*.png` / `fig_*.svg` in this folder\n"
+        "- Coverage CSVs and figures in this folder\n"
+        "- Comparator CSVs: `availability_comparator/`\n"
+        "- Extra A: `performance_by_variable_band.csv`\n"
     )
     print(f"→ figures: {len(figs)}")
     for k, p in figs.items():

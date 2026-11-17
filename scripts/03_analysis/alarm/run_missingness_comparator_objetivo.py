@@ -32,7 +32,7 @@ from sklearn.preprocessing import StandardScaler
 
 ROOT = Path(__file__).resolve().parents[3]
 COVERAGE = ROOT / "results/missingness/Real_coverage/coverage_by_decision.csv"
-OUT = ROOT / "results/missingness/Availability_comparator"
+OUT = ROOT / "results/missingness/Real_coverage/availability_comparator"
 
 THR_LOAD = 1.0596384140662845
 N_SPLITS = 5
