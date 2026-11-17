@@ -4,11 +4,15 @@ Masks, VQ-VAE a0 and LDA run on all 175 DB1 patients. Topics, pUF, the three-blo
 
 Every one of those 1013 decisions has a load. Six end after the encoded profile (22001 day 420, 31003 day 360, 31005 day 360, 41022 day 150, 51008 day 180, 71005 day 90) and take the last 30 profile days, the same overlap as the collapsed month. The baseline load matches the stored collapsed load, MAE 0.0019.
 
-The threshold stays at 1.0596. At baseline, AUROC 0.703, sensitivity 0.884, specificity 0.452, PPV 0.226, NPV 0.956. Of the 1013 loads, 1006 meet the 15-day rule, and 113 of the 114 patients have at least one such point. The alarm metrics use all 1013 loads.
+The extra mask is applied before VQ-VAE imputation. The calendar, origin, windows, frozen VQ-VAE a0, LDA, F/U (topics 3–5) and the full threshold **1.0596384140662845** stay fixed (shown as 1.0596 in text). No parameters are re-learned.
 
-On the 175 patients the starting missingness is: fully empty days 1.4% (152 with none, 23 with at least one); variables inside a day that still has a measurement 35.7% (median 34.7%, tertiles 23.5% and 43.2%); the same count over the whole calendar is 36.1%.
+**Alarm denominator:** every scenario and seed scores the same **1013** loads. A missing score is not used; here every decision keeps a load after VQ-VAE, so none is treated as a negative alarm for lack of score. On/off flips are counted only where both the baseline and the masked run have a load (all 1013 pairs).
 
-Each masked value below is the mean of seeds 101–105. The bracket is the 95% confidence interval of that mean. The full tables and figures are in `informe.docx`. Per-seed file: `metricas_por_semilla.csv`.
+At baseline, AUROC 0.703, sensitivity 0.884, specificity 0.452, PPV 0.226, NPV 0.956.
+
+On the 175 patients the starting missingness uses the **same patient-mean definition in every row**: each patient’s rate on their expected calendar (first to last day), then the unweighted mean across patients. Fully empty days 1.4% (152 with none, 23 with at least one). Variables inside a day that still has a measurement 35.7% (median 34.7%, tertiles 23.5% and 43.2%). Over the whole calendar, with a fully empty day as nine empty variables, the mean is 36.1% (this is the “Empty variables” column).
+
+Each masked value below is the mean of seeds 101–105. The bracket is the 95% confidence interval of that seed-mean (variability of the deletion experiment). It is **not** a patient-resampling / bootstrap CI of predictive performance. The full tables and figures are in `informe.docx`. Per-seed file: `metricas_por_semilla.csv`.
 
 | Added | AUROC | Sensitivity | Specificity | PPV | NPV |
 |---|---:|---:|---:|---:|---:|
@@ -31,18 +35,17 @@ Each masked value below is the mean of seeds 101–105. The bracket is the 95% c
 
 For scattered days and for variables, AUROC stays near 0.70 through +30%, and at +50% it is 0.680 and 0.674. Consecutive days lower the load: at +20% the AUROC is 0.670, against 0.709 when those days are scattered, and 147 alarms turn off with none turning on. At +50% a consecutive block turns 386 alarms off.
 
-The 15-day rule is separate from the load. At +50% scattered days, 833 of the 1006 points that met it are lost and 43 of the 113 patients lose every such point. With variables, 39 points and 1 patient. A consecutive block loses 730 points and 33 patients.
 
 ## Contiguous gaps of 3, 7 and 14 days
 
-One extra block, separate from the 10–50% ramp. On each of the 175 DB1 patients a single run of 3, 7 or 14 calendar days is hidden, placed at random with seeds 101–105. The same VQ-VAE, LDA and threshold are kept. Two patients have a calendar shorter than 14 days, so that gap covers their whole span. Every one of the 1013 decisions still has a load.
+One extra block, separate from the 10–50% ramp. Deleting a **percentage** of follow-up (consecutive-days mask above) is **not** the same as these **fixed** gaps of 3, 7 or 14 calendar days from the SAP. On each of the 175 DB1 patients a single run of 3, 7 or 14 days is hidden, placed at random with seeds 101–105. The same VQ-VAE, LDA and threshold are kept. Two patients have a calendar shorter than 14 days, so that gap covers their whole span. Every one of the 1013 decisions still has a load.
 
-The posterior is the mean topic distribution of those 1013 months. Its Jensen–Shannon divergence from the unmasked run is below 0.001 at 3 and 7 days and 0.001 at 14 days. The mean absolute difference of the six probabilities is 0.001, 0.004 and 0.010. Dominant-state agreement is the fraction of months whose winning topic stays the same. Threshold-crossing agreement is the fraction whose alarm stays on the same side of 1.0596. Availability is the 15-day rule: at baseline 1006 points meet it.
+The posterior is the mean topic distribution of those 1013 months. Its Jensen–Shannon divergence from the unmasked run is below 0.001 at 3 and 7 days and 0.001 at 14 days. The mean absolute difference of the six probabilities is 0.001, 0.004 and 0.010. Dominant-state agreement is the fraction of months whose winning topic stays the same. Threshold-crossing agreement is the fraction whose alarm stays on the same side of 1.0596.
 
-| Gap | Posterior JS | Posterior MAE | Dominant | Threshold | Turns off | Points lost | AUROC | Sensitivity | Specificity |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 3 days | <0.001 | 0.001 [0.001, 0.002] | 0.995 [0.991, 0.998] | 0.995 [0.991, 0.999] | 3 [0, 6] | 0 [0, 1] | 0.703 [0.702, 0.704] | 0.876 [0.862, 0.890] | 0.452 [0.451, 0.454] |
-| 7 days | <0.001 | 0.004 [0.003, 0.005] | 0.992 [0.987, 0.996] | 0.992 [0.987, 0.996] | 8 [5, 11] | 1 [0, 1] | 0.696 [0.692, 0.699] | 0.862 [0.847, 0.876] | 0.456 [0.455, 0.458] |
-| 14 days | 0.001 | 0.010 [0.009, 0.011] | 0.960 [0.955, 0.965] | 0.983 [0.979, 0.987] | 17 [13, 21] | 3 [1, 4] | 0.688 [0.680, 0.696] | 0.852 [0.835, 0.869] | 0.466 [0.462, 0.470] |
+| Gap | Posterior JS | Posterior MAE | Dominant | Threshold | Turns off | AUROC | Sensitivity | Specificity |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| 3 days | <0.001 | 0.001 [0.001, 0.002] | 0.995 [0.991, 0.998] | 0.995 [0.991, 0.999] | 3 [0, 6] | 0.703 [0.702, 0.704] | 0.876 [0.862, 0.890] | 0.452 [0.451, 0.454] |
+| 7 days | <0.001 | 0.004 [0.003, 0.005] | 0.992 [0.987, 0.996] | 0.992 [0.987, 0.996] | 8 [5, 11] | 0.696 [0.692, 0.699] | 0.862 [0.847, 0.876] | 0.456 [0.455, 0.458] |
+| 14 days | 0.001 | 0.010 [0.009, 0.011] | 0.960 [0.955, 0.965] | 0.983 [0.979, 0.987] | 17 [13, 21] | 0.688 [0.680, 0.696] | 0.852 [0.835, 0.869] | 0.466 [0.462, 0.470] |
 
 Per-seed file: `results/missingness/huecos_3_7_14/metricas_por_semilla.csv`.

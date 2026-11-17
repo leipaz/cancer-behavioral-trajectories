@@ -1,0 +1,558 @@
+#!/usr/bin/env python3
+"""Point 2A — real coverage on the 1013 objetivo decisions (SAP bands).
+
+Coverage is measured on really observed cells before VQ-VAE imputation /
+densification, on the expected calendar ending at each decision (90 d and
+30 d). Bands are fixed a priori: <50%, 50–80%, ≥80%. The frozen alarm and
+threshold are applied as-is inside each band.
+"""
+
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+from sklearn.metrics import roc_auc_score
+
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+from vqvae import constants as c  # noqa: E402
+from vqvae.data import aggregate_duplicate_user_days, load_daily_summary  # noqa: E402
+
+DAILY = ROOT / "data/daily_summaries/DB1/daily_summary_checked.csv"
+OBJETIVO = ROOT / "results/lda/val_2/anidada_estratificada/objetivo.csv"
+BASELINE = ROOT / "results/missingness/Sensibilidad a pérdidas artificiales/alarm_scored_objetivo_baseline.csv"
+SUBJECTS = ROOT / "data/processed/clinical/Subjects_data.xlsx"
+OUT = ROOT / "results/missingness/cobertura_real"
+
+MEASURE_COLS = list(c.CONTINUOUS_REAL_VALUED_COLS) + list(c.CONTINUOUS_POSITIVE_COLS) + ["practiced_sport"]
+assert len(MEASURE_COLS) == 9
+
+# Provisional provenance map until the SAP dictionary file is wired in.
+# Wearable = device sensors; smartphone = phone / app fields.
+SOURCE_OF = {
+    "sleep_start": "wearable",
+    "sleep_duration": "wearable",
+    "activity_walking": "wearable",
+    "steps_steps_total": "wearable",
+    "location_distance": "smartphone",
+    "location_time_home": "smartphone",
+    "location_clusters_count": "smartphone",
+    "app_usage_total": "smartphone",
+    "practiced_sport": "smartphone",
+}
+WEARABLE_COLS = [v for v, s in SOURCE_OF.items() if s == "wearable"]
+SMARTPHONE_COLS = [v for v, s in SOURCE_OF.items() if s == "smartphone"]
+
+THR = 1.0596384140662845
+BANDS = (
+    ("<50%", -np.inf, 0.50),
+    ("50-80%", 0.50, 0.80),
+    (">=80%", 0.80, np.inf),
+)
+N_BOOT = 1000
+BOOT_SEED = 20261116
+WINDOWS = (90, 30)
+
+
+def band_of(cov: float) -> str:
+    if not np.isfinite(cov):
+        return "NA"
+    if cov < 0.50:
+        return "<50%"
+    if cov < 0.80:
+        return "50-80%"
+    return ">=80%"
+
+
+def clasif(y, score) -> dict:
+    y = np.asarray(y, int)
+    s = np.asarray(score, float)
+    ok = np.isfinite(s)
+    y, s = y[ok], s[ok]
+    if len(y) == 0:
+        return {k: np.nan for k in ("AUROC", "sensitivity", "specificity", "PPV", "NPV", "n_scored", "n_patients", "n_positive")}
+    pred = s >= THR
+    tp = int(((pred) & (y == 1)).sum())
+    fn = int(((~pred) & (y == 1)).sum())
+    fp = int(((pred) & (y == 0)).sum())
+    tn = int(((~pred) & (y == 0)).sum())
+
+    def r(a, b):
+        return a / b if b else np.nan
+
+    auc = float(roc_auc_score(y, s)) if len(np.unique(y)) > 1 else np.nan
+    return {
+        "AUROC": auc,
+        "sensitivity": r(tp, tp + fn),
+        "specificity": r(tn, tn + fp),
+        "PPV": r(tp, tp + fp),
+        "NPV": r(tn, tn + fn),
+        "n_scored": int(len(y)),
+        "n_positive": int((y == 1).sum()),
+        "n_negative": int((y == 0).sum()),
+    }
+
+
+def patient_bootstrap_ci(frame: pd.DataFrame, n_boot: int = N_BOOT, seed: int = BOOT_SEED) -> dict:
+    """Point metrics + percentile CI resampling patients (keeps all decisions of a patient)."""
+    base = clasif(frame["y"], frame["load"])
+    patients = frame["id"].drop_duplicates().to_numpy()
+    rng = np.random.default_rng(seed)
+    keys = ("AUROC", "sensitivity", "specificity", "PPV", "NPV")
+    store = {k: [] for k in keys}
+    by = {pid: g for pid, g in frame.groupby("id", sort=False)}
+    for _ in range(n_boot):
+        draw = rng.choice(patients, size=len(patients), replace=True)
+        parts = [by[pid] for pid in draw if pid in by]
+        if not parts:
+            continue
+        boot = pd.concat(parts, ignore_index=True)
+        m = clasif(boot["y"], boot["load"])
+        for k in keys:
+            if np.isfinite(m[k]):
+                store[k].append(m[k])
+    out = dict(base)
+    out["n_patients"] = int(frame["id"].nunique())
+    for k in keys:
+        arr = np.asarray(store[k], float)
+        if len(arr) >= 20:
+            out[f"{k}_lo"] = float(np.quantile(arr, 0.025))
+            out[f"{k}_hi"] = float(np.quantile(arr, 0.975))
+        else:
+            out[f"{k}_lo"] = np.nan
+            out[f"{k}_hi"] = np.nan
+    return out
+
+
+def longest_empty_run(day_present: np.ndarray) -> int:
+    best = cur = 0
+    for flag in day_present:
+        if not flag:
+            cur += 1
+            best = max(best, cur)
+        else:
+            cur = 0
+    return int(best)
+
+
+def n_gaps_over_48h(day_present: np.ndarray) -> int:
+    """Count gaps of ≥2 consecutive empty calendar days (≈ >48 h without a day with data)."""
+    n = 0
+    cur = 0
+    for flag in day_present:
+        if not flag:
+            cur += 1
+        else:
+            if cur >= 2:
+                n += 1
+            cur = 0
+    if cur >= 2:
+        n += 1
+    return int(n)
+
+
+def days_since_last_valid(day_present: np.ndarray) -> int:
+    """Empty days at the end of the window since the last day with any measurement."""
+    idx = np.flatnonzero(day_present)
+    if len(idx) == 0:
+        return int(len(day_present))
+    return int(len(day_present) - 1 - idx[-1])
+
+
+def build_patient_matrices(daily: pd.DataFrame) -> dict[int, dict]:
+    """Full expected calendar first→last daily date; values before any imputation."""
+    out = {}
+    for uid, g in daily.groupby("user", sort=True):
+        g = g.sort_values("date_time")
+        dates = pd.to_datetime(g["date_time"]).dt.normalize()
+        start, end = dates.min(), dates.max()
+        calendar = pd.date_range(start, end, freq="D")
+        indexed = g.copy()
+        indexed["date_time"] = dates.to_numpy()
+        indexed = indexed.drop_duplicates("date_time", keep="first").set_index("date_time")
+        vals = indexed.reindex(calendar)[MEASURE_COLS]
+        arr = vals.to_numpy(dtype=float)
+        observed = ~np.isnan(arr)  # True = really present (zeros count as present)
+        service = str(g["service"].iloc[0]) if "service" in g.columns else ""
+        out[int(uid)] = {
+            "calendar": calendar.to_numpy(dtype="datetime64[ns]"),
+            "observed": observed,  # (T, 9)
+            "service": service,
+        }
+    return out
+
+
+def window_slice(calendar: np.ndarray, decision: np.datetime64, n_days: int):
+    """Inclusive window of n_days ending at decision_date; keep holes in the calendar."""
+    decision = np.datetime64(decision, "ns")
+    start = decision - np.timedelta64(n_days - 1, "D")
+    # indices on the patient calendar that fall inside [start, decision]
+    idx = np.flatnonzero((calendar >= start) & (calendar <= decision))
+    # Build a dense expected grid of n_days even if patient calendar is shorter
+    expected = pd.date_range(pd.Timestamp(start), pd.Timestamp(decision), freq="D").to_numpy(dtype="datetime64[ns]")
+    return expected, idx, start, decision
+
+
+def coverage_for_window(obs: np.ndarray, calendar: np.ndarray, decision, n_days: int) -> dict:
+    expected, idx_on_cal, start, end = window_slice(calendar, decision, n_days)
+    n_expected_cells = n_days * len(MEASURE_COLS)
+    # Map expected days onto patient calendar (missing days = all-False)
+    day_obs = np.zeros((n_days, len(MEASURE_COLS)), dtype=bool)
+    cal_index = {np.datetime64(d, "ns"): i for i, d in enumerate(calendar)}
+    for t, day in enumerate(expected):
+        j = cal_index.get(np.datetime64(day, "ns"))
+        if j is not None:
+            day_obs[t] = obs[j]
+    n_obs_cells = int(day_obs.sum())
+    cov = n_obs_cells / n_expected_cells if n_expected_cells else np.nan
+    day_present = day_obs.any(axis=1)
+    per_var = day_obs.mean(axis=0)
+    wear = day_obs[:, [MEASURE_COLS.index(v) for v in WEARABLE_COLS]]
+    phone = day_obs[:, [MEASURE_COLS.index(v) for v in SMARTPHONE_COLS]]
+    return {
+        "n_days_window": n_days,
+        "n_expected_cells": n_expected_cells,
+        "n_observed_cells": n_obs_cells,
+        "coverage": float(cov),
+        "band": band_of(cov),
+        "pct_days_with_data": float(day_present.mean()) if n_days else np.nan,
+        "longest_empty_run_days": longest_empty_run(day_present),
+        "n_gaps_ge_48h": n_gaps_over_48h(day_present),
+        "days_since_last_valid": days_since_last_valid(day_present),
+        "coverage_wearable": float(wear.mean()) if wear.size else np.nan,
+        "coverage_smartphone": float(phone.mean()) if phone.size else np.nan,
+        **{f"cov_{col}": float(per_var[i]) for i, col in enumerate(MEASURE_COLS)},
+        "window_start": str(pd.Timestamp(start).date()),
+        "window_end": str(pd.Timestamp(end).date()),
+    }
+
+
+def fmt_ci(row: dict, key: str) -> str:
+    v, lo, hi = row.get(key), row.get(f"{key}_lo"), row.get(f"{key}_hi")
+    if not np.isfinite(v):
+        return "NA"
+    if np.isfinite(lo) and np.isfinite(hi):
+        return f"{v:.3f} [{lo:.3f}, {hi:.3f}]"
+    return f"{v:.3f}"
+
+
+def main() -> None:
+    OUT.mkdir(parents=True, exist_ok=True)
+    points = pd.read_csv(OBJETIVO)
+    points["id"] = points["id"].astype(int)
+    points["decision_date"] = pd.to_datetime(points["decision_date"]).dt.normalize()
+    points["y"] = points["outcome_120d"].astype(int)
+    if len(points) != 1013 or points["id"].nunique() != 114:
+        raise SystemExit(f"objetivo is {len(points)} rows / {points.id.nunique()} patients")
+
+    scored = pd.read_csv(BASELINE)
+    scored["id"] = scored["id"].astype(int)
+    merge_keys = points[["id", "decision_study_day", "decision_date", "y", "event", "block"]].rename(
+        columns={"decision_study_day": "study_day"}
+    )
+    panel = merge_keys.merge(scored, on=["id", "study_day", "y"], how="left", validate="one_to_one")
+    if panel["load"].isna().any():
+        raise SystemExit("baseline load missing for some objetivo decisions")
+
+    subjects = pd.read_excel(SUBJECTS)
+    subjects["id"] = subjects["S_RECORD_id"].astype(int)
+    tumor = subjects.set_index("id")["Cohort"].to_dict()
+
+    daily = aggregate_duplicate_user_days(load_daily_summary(DAILY))
+    daily["date_time"] = pd.to_datetime(daily["date_time"]).dt.normalize()
+    mats = build_patient_matrices(daily)
+
+    rows = []
+    for rec in panel.itertuples(index=False):
+        mat = mats.get(int(rec.id))
+        if mat is None:
+            raise SystemExit(f"patient {rec.id} absent from daily")
+        base = {
+            "id": int(rec.id),
+            "study_day": int(rec.study_day),
+            "decision_date": str(pd.Timestamp(rec.decision_date).date()),
+            "y": int(rec.y),
+            "event": int(rec.event) if pd.notna(rec.event) else np.nan,
+            "block": int(rec.block) if pd.notna(getattr(rec, "block", np.nan)) else np.nan,
+            "load": float(rec.load),
+            "alarm": int(rec.alarm),
+            "emitted": int(rec.emitted),
+            "center": mat["service"],
+            "tumor": tumor.get(int(rec.id), "Unknown"),
+        }
+        for w in WINDOWS:
+            cov = coverage_for_window(mat["observed"], mat["calendar"], rec.decision_date, w)
+            row = dict(base)
+            row["window_days"] = w
+            row.update(cov)
+            rows.append(row)
+
+    cov_df = pd.DataFrame(rows)
+    cov_df.to_csv(OUT / "coverage_by_decision.csv", index=False)
+
+    # Descriptive availability by variable / center / tumor (90 d window)
+    w90 = cov_df.loc[cov_df.window_days == 90].copy()
+    var_rows = []
+    for col in MEASURE_COLS:
+        s = w90[f"cov_{col}"]
+        var_rows.append(
+            {
+                "variable": col,
+                "source": SOURCE_OF[col],
+                "mean_coverage": float(s.mean()),
+                "median_coverage": float(s.median()),
+                "p25": float(s.quantile(0.25)),
+                "p75": float(s.quantile(0.75)),
+            }
+        )
+    pd.DataFrame(var_rows).to_csv(OUT / "availability_by_variable.csv", index=False)
+
+    def describe_group(frame: pd.DataFrame, key: str) -> pd.DataFrame:
+        rows_g = []
+        for name, g in frame.groupby(key, sort=True):
+            rows_g.append(
+                {
+                    key: name,
+                    "n_patients": int(g.id.nunique()),
+                    "n_decisions": int(len(g)),
+                    "mean_coverage_90": float(g.coverage.mean()),
+                    "mean_pct_days_with_data": float(g.pct_days_with_data.mean()),
+                    "mean_coverage_wearable": float(g.coverage_wearable.mean()),
+                    "mean_coverage_smartphone": float(g.coverage_smartphone.mean()),
+                }
+            )
+        return pd.DataFrame(rows_g)
+
+    describe_group(w90, "center").to_csv(OUT / "availability_by_center.csv", index=False)
+    describe_group(w90, "tumor").to_csv(OUT / "availability_by_tumor.csv", index=False)
+
+    # Performance by SAP band (same alarm + cut)
+    perf_rows = []
+    for w in WINDOWS:
+        sub = cov_df.loc[cov_df.window_days == w].copy()
+        for band_name, _, _ in BANDS:
+            g = sub.loc[sub.band == band_name]
+            if g.empty:
+                perf_rows.append(
+                    {
+                        "window_days": w,
+                        "band": band_name,
+                        "n_patients": 0,
+                        "n_decisions": 0,
+                        "n_with_score": 0,
+                        "n_positive": 0,
+                        "performance": "not_estimable",
+                    }
+                )
+                continue
+            with_score = g.loc[g.emitted == 1]
+            meta = {
+                "window_days": w,
+                "band": band_name,
+                "n_patients": int(g.id.nunique()),
+                "n_decisions": int(len(g)),
+                "n_with_score": int(len(with_score)),
+                "n_positive": int((with_score.y == 1).sum()) if len(with_score) else 0,
+                "n_negative": int((with_score.y == 0).sum()) if len(with_score) else 0,
+                "n_distinct_progressions": int(with_score.loc[with_score.y == 1, "id"].nunique()) if len(with_score) else 0,
+                "mean_coverage": float(g.coverage.mean()),
+            }
+            if len(with_score) < 5 or with_score.y.nunique() < 2:
+                meta["performance"] = "not_estimable"
+                perf_rows.append(meta)
+                continue
+            metrics = patient_bootstrap_ci(with_score)
+            meta["performance"] = "ok"
+            meta.update(metrics)
+            perf_rows.append(meta)
+        # overall reference
+        overall = patient_bootstrap_ci(sub)
+        overall.update(
+            {
+                "window_days": w,
+                "band": "all",
+                "n_decisions": int(len(sub)),
+                "n_with_score": int((sub.emitted == 1).sum()),
+                "performance": "ok",
+                "mean_coverage": float(sub.coverage.mean()),
+            }
+        )
+        perf_rows.append(overall)
+
+    perf = pd.DataFrame(perf_rows)
+    perf.to_csv(OUT / "performance_by_band.csv", index=False)
+
+    # Continuous coverage + interaction with score (descriptive + patient-bootstrapped correlations)
+    cont_rows = []
+    for w in WINDOWS:
+        sub = cov_df.loc[(cov_df.window_days == w) & (cov_df.emitted == 1)].copy()
+        # standardize for a simple interaction view: load and coverage
+        load_z = (sub["load"] - sub["load"].mean()) / sub["load"].std(ddof=0)
+        cov_z = (sub["coverage"] - sub["coverage"].mean()) / sub["coverage"].std(ddof=0)
+        sub = sub.assign(load_z=load_z, cov_z=cov_z, load_x_cov=load_z * cov_z)
+
+        def spearman_safe(a, b):
+            a = np.asarray(a, float)
+            b = np.asarray(b, float)
+            if len(a) < 5 or np.nanstd(a) == 0 or np.nanstd(b) == 0:
+                return np.nan
+            return float(pd.Series(a).corr(pd.Series(b), method="spearman"))
+
+        base_corr_load_cov = spearman_safe(sub["load"], sub["coverage"])
+        base_corr_cov_y = spearman_safe(sub["coverage"], sub["y"])
+        # AUROC of coverage alone and of load (reference)
+        auc_cov = float(roc_auc_score(sub["y"], sub["coverage"])) if sub["y"].nunique() > 1 else np.nan
+        auc_load = float(roc_auc_score(sub["y"], sub["load"])) if sub["y"].nunique() > 1 else np.nan
+        # crude interaction score: load_z + load_z*cov_z (coverage modulates load)
+        auc_inter = float(roc_auc_score(sub["y"], sub["load_z"] + sub["load_x_cov"])) if sub["y"].nunique() > 1 else np.nan
+
+        patients = sub["id"].drop_duplicates().to_numpy()
+        rng = np.random.default_rng(BOOT_SEED + w)
+        by = {pid: g for pid, g in sub.groupby("id", sort=False)}
+        boot_load_cov, boot_cov_y, boot_auc_cov, boot_auc_inter = [], [], [], []
+        for _ in range(N_BOOT):
+            draw = rng.choice(patients, size=len(patients), replace=True)
+            boot = pd.concat([by[pid] for pid in draw], ignore_index=True)
+            boot_load_cov.append(spearman_safe(boot["load"], boot["coverage"]))
+            boot_cov_y.append(spearman_safe(boot["coverage"], boot["y"]))
+            if boot["y"].nunique() > 1:
+                boot_auc_cov.append(float(roc_auc_score(boot["y"], boot["coverage"])))
+                lz = (boot["load"] - boot["load"].mean()) / (boot["load"].std(ddof=0) or 1.0)
+                cz = (boot["coverage"] - boot["coverage"].mean()) / (boot["coverage"].std(ddof=0) or 1.0)
+                boot_auc_inter.append(float(roc_auc_score(boot["y"], lz + lz * cz)))
+
+        def ci(arr, point):
+            arr = np.asarray([x for x in arr if np.isfinite(x)], float)
+            if len(arr) < 20 or not np.isfinite(point):
+                return point, np.nan, np.nan
+            return point, float(np.quantile(arr, 0.025)), float(np.quantile(arr, 0.975))
+
+        c1 = ci(boot_load_cov, base_corr_load_cov)
+        c2 = ci(boot_cov_y, base_corr_cov_y)
+        c3 = ci(boot_auc_cov, auc_cov)
+        c4 = ci(boot_auc_inter, auc_inter)
+        cont_rows.append(
+            {
+                "window_days": w,
+                "n_decisions": int(len(sub)),
+                "n_patients": int(sub.id.nunique()),
+                "mean_coverage": float(sub.coverage.mean()),
+                "spearman_load_coverage": c1[0],
+                "spearman_load_coverage_lo": c1[1],
+                "spearman_load_coverage_hi": c1[2],
+                "spearman_coverage_outcome": c2[0],
+                "spearman_coverage_outcome_lo": c2[1],
+                "spearman_coverage_outcome_hi": c2[2],
+                "AUROC_coverage_alone": c3[0],
+                "AUROC_coverage_alone_lo": c3[1],
+                "AUROC_coverage_alone_hi": c3[2],
+                "AUROC_load": auc_load,
+                "AUROC_load_plus_loadxcov": c4[0],
+                "AUROC_load_plus_loadxcov_lo": c4[1],
+                "AUROC_load_plus_loadxcov_hi": c4[2],
+            }
+        )
+    cont = pd.DataFrame(cont_rows)
+    cont.to_csv(OUT / "continuous_coverage_summary.csv", index=False)
+
+    # Band counts for the report
+    band_counts = (
+        cov_df.groupby(["window_days", "band"], sort=False)
+        .agg(n_decisions=("id", "size"), n_patients=("id", "nunique"), mean_coverage=("coverage", "mean"))
+        .reset_index()
+    )
+    band_counts.to_csv(OUT / "band_counts.csv", index=False)
+
+    provenance = {
+        "objetivo": str(OBJETIVO),
+        "n_decisions": 1013,
+        "n_patients": 114,
+        "daily": str(DAILY),
+        "baseline_scores": str(BASELINE),
+        "threshold": THR,
+        "measure_cols": MEASURE_COLS,
+        "source_map": SOURCE_OF,
+        "source_map_note": "Provisional wearable/smartphone map pending explicit SAP dictionary file.",
+        "bands": ["<50%", "50-80%", ">=80%"],
+        "windows_days": list(WINDOWS),
+        "expected_cells": {"90": 810, "30": 270},
+        "calendar_rule": "Dense expected calendar of N days ending at decision_date; holes kept; not trimmed to last received record.",
+        "zeros": "Observed zeros count as data; imputed values are not present in the raw daily table used here.",
+        "uncertainty": f"Patient-clustered bootstrap, n={N_BOOT}, seed={BOOT_SEED}",
+        "comparator_block": "Not run here; coordinate with comparator pack (availability vs DCABP vs DCABP+availability).",
+    }
+    (OUT / "PROVENANCE.json").write_text(json.dumps(provenance, indent=2))
+
+    def as_md(df: pd.DataFrame) -> str:
+        try:
+            return df.to_markdown(index=False)
+        except Exception:
+            return "```\n" + df.to_string(index=False) + "\n```"
+
+    show = perf.copy()
+    for k in ("AUROC", "sensitivity", "specificity", "PPV", "NPV"):
+        show[k] = show.apply(lambda r, key=k: fmt_ci(r, key), axis=1)
+    cols = [
+        "window_days",
+        "band",
+        "n_patients",
+        "n_decisions",
+        "n_with_score",
+        "n_positive",
+        "performance",
+        "AUROC",
+        "sensitivity",
+        "specificity",
+        "PPV",
+        "NPV",
+    ]
+
+    # Short markdown report
+    lines = [
+        "# Cobertura real (punto 2A)",
+        "",
+        "Mismos **1013** puntos de `objetivo.csv` (114 pacientes), horizonte 120 d. "
+        "Cobertura = % de celdas variable-día **realmente observadas** (9 variables de entrada) "
+        "sobre el calendario esperado de 90 d y 30 d que termina en la decisión, **antes** de imputar. "
+        "Bandas SAP fijas: `<50%`, `50–80%`, `≥80%`. Misma alarma y corte `1.0596…`.",
+        "",
+        f"Variables ({len(MEASURE_COLS)}): " + ", ".join(MEASURE_COLS) + ".",
+        "",
+        "Fuentes (mapa provisional): wearable = "
+        + ", ".join(WEARABLE_COLS)
+        + "; smartphone = "
+        + ", ".join(SMARTPHONE_COLS)
+        + ".",
+        "",
+        "## Conteos por banda",
+        "",
+        as_md(band_counts),
+        "",
+        "## Rendimiento por banda (IC bootstrap por paciente)",
+        "",
+        as_md(show[cols]),
+        "",
+        "## Cobertura continua e interacción con el score",
+        "",
+        as_md(cont.round(3)),
+        "",
+        "Archivos: `coverage_by_decision.csv`, `performance_by_band.csv`, "
+        "`availability_by_variable.csv`, `availability_by_center.csv`, "
+        "`availability_by_tumor.csv`, `continuous_coverage_summary.csv`, `PROVENANCE.json`.",
+        "",
+        "Pendiente (2B): comparador disponibilidad sola vs DCABP vs DCABP+disponibilidad, "
+        "coordinado con el bloque de comparadores.",
+    ]
+    (OUT / "informe.md").write_text("\n".join(lines))
+    print("wrote", OUT)
+    print(band_counts.to_string(index=False))
+    print(show[cols].to_string(index=False))
+
+
+if __name__ == "__main__":
+    main()

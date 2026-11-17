@@ -1,10 +1,13 @@
 # Provenance — sensitivity missingness
 
 - Pipeline cohort (mask → VQ-VAE → LDA): all DB1 daily patients (n=175)
-- Alarm / landmark metrics: the 1013 decisions in objetivo.csv
-- Those 1013 are the monthly collapsed landmarks. decision_points_collapsed has six further rows from the t+1 clock; they are not in this alarm.
-- A decision past the profile keeps its day and uses the last 30 profile days.
-- All 1013 decisions have a load. Baseline MAE versus the stored collapsed load: 0.0019.
+- Mask applied before VQ-VAE imputation; learned parameters frozen
+- Alarm / landmark metrics: the 1013 decisions in objetivo.csv (114 / 155+ / 858−)
+- Alarm denominator in every scenario/seed: 1013 loads (no drop for 15-day rule)
+- 15-day rule: availability label only (after mask, before imputation)
+- Seed CIs: deletion-experiment variability (not patient bootstrap)
+- Empty-days/variables table: patient-mean rates on each expected calendar
+- Percentage consecutive mask ≠ fixed SAP gaps of 3 / 7 / 14 days
 - Threshold: 1.0596384140662845
 - Model: VQ-VAE a0 + LDA_model_vdec25 (frozen)
 - Seeds: [101, 102, 103, 104, 105]

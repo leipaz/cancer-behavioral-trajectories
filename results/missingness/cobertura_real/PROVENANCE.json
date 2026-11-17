@@ -1,0 +1,48 @@
+{
+  "objetivo": "/Users/lparbaiza/cancer-behavioral-trajectories/results/lda/val_2/anidada_estratificada/objetivo.csv",
+  "n_decisions": 1013,
+  "n_patients": 114,
+  "daily": "/Users/lparbaiza/cancer-behavioral-trajectories/data/daily_summaries/DB1/daily_summary_checked.csv",
+  "baseline_scores": "/Users/lparbaiza/cancer-behavioral-trajectories/results/missingness/Sensibilidad a p\u00e9rdidas artificiales/alarm_scored_objetivo_baseline.csv",
+  "threshold": 1.0596384140662845,
+  "measure_cols": [
+    "sleep_start",
+    "location_distance",
+    "location_time_home",
+    "sleep_duration",
+    "activity_walking",
+    "app_usage_total",
+    "location_clusters_count",
+    "steps_steps_total",
+    "practiced_sport"
+  ],
+  "source_map": {
+    "sleep_start": "wearable",
+    "sleep_duration": "wearable",
+    "activity_walking": "wearable",
+    "steps_steps_total": "wearable",
+    "location_distance": "smartphone",
+    "location_time_home": "smartphone",
+    "location_clusters_count": "smartphone",
+    "app_usage_total": "smartphone",
+    "practiced_sport": "smartphone"
+  },
+  "source_map_note": "Provisional wearable/smartphone map pending explicit SAP dictionary file.",
+  "bands": [
+    "<50%",
+    "50-80%",
+    ">=80%"
+  ],
+  "windows_days": [
+    90,
+    30
+  ],
+  "expected_cells": {
+    "90": 810,
+    "30": 270
+  },
+  "calendar_rule": "Dense expected calendar of N days ending at decision_date; holes kept; not trimmed to last received record.",
+  "zeros": "Observed zeros count as data; imputed values are not present in the raw daily table used here.",
+  "uncertainty": "Patient-clustered bootstrap, n=1000, seed=20261116",
+  "comparator_block": "Not run here; coordinate with comparator pack (availability vs DCABP vs DCABP+availability)."
+}

@@ -1,0 +1,36 @@
+{
+  "n_decisions": 1013,
+  "n_patients": 114,
+  "horizon_days": 120,
+  "source_coverage": "/Users/lparbaiza/cancer-behavioral-trajectories/results/missingness/cobertura_real/coverage_by_decision.csv",
+  "availability_features": [
+    "prop_absent_days_90",
+    "n_gaps_ge_48h_90",
+    "days_since_last_valid_90",
+    "monitoring_interrupted_now"
+  ],
+  "feature_definitions": {
+    "prop_absent_days_90": "1 - (days with \u22651 observed measure / 90 expected calendar days)",
+    "n_gaps_ge_48h_90": "count of runs of \u22652 consecutive empty calendar days in the 90 d window",
+    "days_since_last_valid_90": "empty days at the end of the 90 d window since last day with any measure",
+    "monitoring_interrupted_now": "1 if days_since_last_valid_90 \u2265 2 (ongoing >48 h gap at the decision); no future withdrawal flag"
+  },
+  "models": {
+    "availability_only_oof": "logistic, patient GroupKFold 5, OOF probability; classif threshold = Youden on train fold",
+    "dcabp_load_frozen": "frozen three-block DCABP load; classif at threshold 1.0596\u2026",
+    "dcabp_logit_oof": "logistic on load alone, same CV + Youden train threshold",
+    "dcabp_plus_availability_oof": "logistic on load + availability features, same CV + Youden train threshold"
+  },
+  "cv": {
+    "type": "GroupKFold",
+    "n_splits": 5,
+    "seed": 20261116
+  },
+  "bootstrap": {
+    "n": 1000,
+    "seed": 20261116,
+    "unit": "patient"
+  },
+  "db2_db3": "not used",
+  "note": "Coordinate with the broader comparator pack; this file is the missingness arm on the same 1013 points."
+}
