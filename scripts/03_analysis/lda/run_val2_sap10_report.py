@@ -270,7 +270,9 @@ def main() -> None:
         doc,
         "La etiqueta es la regla 3/3. En cada modelo, los tres topics con la Kaplan–Meier a 365 días más alta son favorables y los tres con la más baja son desfavorables. "
         "La curva usa solo a las pacientes que entrenaron ese modelo y el tiempo Tiempo_obs_DB1, desde el inicio del tratamiento. Una paciente con menos de 28 días de esa observación no entra en la curva. "
-        "Si el seguimiento acaba antes del día 365 y la curva sigue por encima de cero, ese valor es un techo. El topic se marca desfavorable solo cuando el tercero de los topics que sí llegan queda por encima del techo. Si no, el modelo se deja sin etiqueta.",
+        "Si el seguimiento acaba antes del día 365 y la curva sigue por encima de cero, ese valor es un techo. El topic se marca desfavorable solo cuando el tercero de los topics que sí llegan queda por encima del techo. Si no, el modelo se deja sin etiqueta. "
+        "Si un modelo interno se queda sin etiqueta, sus decisiones no tienen score y no entran en el corte de esa vuelta. El corte se busca con las decisiones internas de las otras particiones, las que sí tienen etiqueta. "
+        "El reajuste de las 140 se etiqueta aparte, con sus propias pacientes de entrenamiento. La prueba externa se puntúa con ese reajuste y se le aplica el corte elegido con las internas.",
     )
     add_text(
         doc,
