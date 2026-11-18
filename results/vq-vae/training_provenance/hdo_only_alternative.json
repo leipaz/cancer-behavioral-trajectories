@@ -1,0 +1,28 @@
+{
+  "status": "specified, not fitted",
+  "sap": "17.4 oncology-only representation, fitted inside each training fold of section 12",
+  "algorithm": "k-means",
+  "k": 6,
+  "variables": [
+    "sleep_start",
+    "location_distance",
+    "location_time_home",
+    "sleep_duration",
+    "activity_walking",
+    "app_usage_total",
+    "location_clusters_count",
+    "steps_steps_total"
+  ],
+  "clip": "scripts/vqvae/constants.py CLIP_INFO",
+  "transform": "log1p on the seven positive variables; center and scale estimated inside the training fold",
+  "partition": "patient-level nested five-fold cross-validation, ten repeats",
+  "seed": "numpy.random.Generator(20261031), three uint32 draws per repeat, as in scripts/03_analysis/lda/run_val2_sap10.py",
+  "outcome_rule": "3/3 Kaplan-Meier at 365 days on training patients only; Youden threshold inside the same fold",
+  "accumulation_blocks": 3,
+  "horizon_days": 120,
+  "held_out_use": "assign clusters only; no refit, no relabelling, no threshold search",
+  "val_set_used_for_selection": false,
+  "comparison": ["sensitivity", "specificity", "AUROC", "lead time"],
+  "balanced_vqvae_retrain": "exploratory; not part of this block",
+  "simple_feature_models": "SAP 15.1 steps and heart rate; a separate question from dependence on the external vocabulary"
+}

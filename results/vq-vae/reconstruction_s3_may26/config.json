@@ -1,0 +1,10 @@
+{
+  "daily": "/Users/lparbaiza/cancer-behavioral-trajectories/data/daily_summaries/daily_summary_eb2prod_may26.csv",
+  "model": "models/vq-vae/vqvae_a0.pt",
+  "scaler": "models/vq-vae/preprocessing_scaler_vqvae.npz",
+  "mode": "eval",
+  "objective_in_repository": "The module returns a reconstruction of the input channels and a quantization term. No training loop and no diagnostic loss are in this repository.",
+  "error": "Mean absolute error on continuous components that were observed, after the frozen clip, log1p and scaler.",
+  "cap": "None. Every patient of these programs in the May 2026 extract is included.",
+  "bipolar": "Table S3 lists Bipolar disorder, 51 participants. This extract has no service under that name."
+}

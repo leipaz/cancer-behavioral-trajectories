@@ -1,0 +1,19 @@
+user,reason,day_role,date,code,eu_dist,margin,winner_prob,mae_scaled_day,n_observed_features
+91017,"Closest to the HDO median in error, coverage, effective number of codes and distance to the code",Lowest-error day,2025-09-05,128,7.342525005340576,0.7861838340759277,0.5462692975997925,0.1197860017418861,5
+91017,"Closest to the HDO median in error, coverage, effective number of codes and distance to the code",Median-error day,2025-07-18,35,4.596858978271484,0.6634726524353027,0.65186607837677,0.3488382697105407,5
+91017,"Closest to the HDO median in error, coverage, effective number of codes and distance to the code",Highest-error day,2025-03-07,66,11.030072212219238,0.8510017395019531,0.6311745047569275,0.7989462614059448,5
+51008,Lowest coverage among follow-ups of at least 30 observed days,Lowest-error day,2024-09-07,184,2.887864589691162,2.714219570159912,0.8070752024650574,0.0042680501937866,1
+51008,Lowest coverage among follow-ups of at least 30 observed days,Median-error day,2024-10-22,96,2.299745321273804,0.7221212387084961,0.4736478924751282,0.2804645299911499,1
+51008,Lowest coverage among follow-ups of at least 30 observed days,Highest-error day,2024-10-04,21,3.1480088233947754,1.3023648262023926,0.4264483451843261,0.663974940776825,1
+31012,Highest reconstruction error among high coverage (75th percentile or above),Lowest-error day,2025-04-29,161,6.838048458099365,1.000943660736084,0.3698875308036804,0.2550581693649292,6
+31012,Highest reconstruction error among high coverage (75th percentile or above),Median-error day,2025-05-08,125,8.18325424194336,4.286538124084473,0.9485175609588624,0.5202910900115967,8
+31012,Highest reconstruction error among high coverage (75th percentile or above),Highest-error day,2025-08-23,20,11.369504928588867,0.1663579940795898,0.2314537763595581,0.9628872275352478,7
+62001,Highest concentration on a single code among follow-ups of at least 90 days,Lowest-error day,2023-09-03,120,8.697595596313477,0.938617706298828,0.4197179973125458,0.0974313542246818,4
+62001,Highest concentration on a single code among follow-ups of at least 90 days,Median-error day,2023-08-13,61,10.029251098632812,1.808924674987793,0.8455555438995361,0.3531525135040283,7
+62001,Highest concentration on a single code among follow-ups of at least 90 days,Highest-error day,2023-08-07,97,17.045984268188477,1.7867069244384766,0.6924071311950684,1.1049994230270386,4
+41023,Highest effective number of codes among follow-ups of at least 90 days,Lowest-error day,2025-04-11,225,8.608963966369629,3.868210792541504,0.9565098881721495,0.1000716164708137,7
+41023,Highest effective number of codes among follow-ups of at least 90 days,Median-error day,2024-09-24,117,5.15531587600708,1.940645694732666,0.7588844895362854,0.4149383008480072,8
+41023,Highest effective number of codes among follow-ups of at least 90 days,Highest-error day,2025-05-13,92,9.09732723236084,0.2930498123168945,0.3448589742183685,0.8866302371025085,6
+21002,Highest quantization distance among coverage at or above the median,Lowest-error day,2023-12-19,208,7.778875827789307,1.5432324409484863,0.5313898324966431,0.1753450632095337,8
+21002,Highest quantization distance among coverage at or above the median,Median-error day,2023-06-05,224,13.26711654663086,5.090536117553711,0.9786010384559632,0.3944466114044189,8
+21002,Highest quantization distance among coverage at or above the median,Highest-error day,2024-03-25,125,11.034395217895508,1.0894498825073242,0.5997327566146851,0.8462928533554077,8

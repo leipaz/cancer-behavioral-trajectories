@@ -1,0 +1,16 @@
+{
+  "vqvae": "models/vq-vae/vqvae_a0.pt",
+  "scaler": "models/vq-vae/preprocessing_scaler_vqvae.npz",
+  "lda": "models/lda/LDA_model_vdec25.gensim",
+  "dictionary": "models/lda/dictionary_LDA_vdec25.dict",
+  "mental_daily": "/Users/lparbaiza/cancer-behavioral-trajectories/data/daily_summaries/daily_summary_eb2prod_may26.csv",
+  "hdo_daily": "/Users/lparbaiza/cancer-behavioral-trajectories/data/daily_summaries/DB1/daily_summary_checked.csv",
+  "splits": "/Users/lparbaiza/cancer-behavioral-trajectories/data/daily_summaries/daily_mental/user_splits.csv",
+  "window_observed_days": 30,
+  "vqvae_training_mental_cohorts": "eB2 mental-health training cohorts; HDO excluded",
+  "reference_rule": "Table S3 names only: Eating disorders 2464, Cognitive impairment 197 (prevention 182 + follow-up 15), Suicide prevention 1091 of 2555, Depression / Anxiety disorders 140 of 149. Counts are at most the published N. A larger extract keeps the earliest first observed day, then the smaller user id.",
+  "hdo_in_vqvae_train": false,
+  "hdo_ids_in_user_splits": 0,
+  "hdo_ids_in_reference": 0,
+  "limit_users": null
+}

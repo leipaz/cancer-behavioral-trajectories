@@ -1,0 +1,7 @@
+program,label,published_n,patients_in_extract,patients_with_an_observed_day,observed_days,mae_scaled
+eating,Eating disorders,2464,3401,2970,698049,0.3085227133859409
+cognitive,Cognitive impairment,197,858,792,227275,0.32423427317576137
+suicide,Suicide prevention,2555,1091,1072,189048,0.3454463688109194
+tmc,Depression / Anxiety disorders,149,140,140,21489,0.3538745959596107
+cancer_gm,Cancer Patients,93,100,93,15035,0.3201738918566895
+dm,HIV Patients,24,13,13,1504,0.3184975238801213
