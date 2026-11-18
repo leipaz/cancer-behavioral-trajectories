@@ -1,9 +1,9 @@
 {
-  "objetivo": "/Users/lparbaiza/cancer-behavioral-trajectories/results/lda/val_2/anidada_estratificada/objetivo.csv",
+  "objetivo": "/lustre/uc3m/gts_c3_cluster_1-12/lpaz/cancer-behavioral-trajectories/results/lda/val_2/anidada_estratificada/objetivo.csv",
   "n_decisions": 1013,
   "n_patients": 114,
-  "daily": "/Users/lparbaiza/cancer-behavioral-trajectories/data/daily_summaries/DB1/daily_summary_checked.csv",
-  "baseline_scores": "/Users/lparbaiza/cancer-behavioral-trajectories/results/missingness/Sensitivity_to_artificial_missingness/alarm_scored_objetivo_baseline.csv",
+  "daily": "/lustre/uc3m/gts_c3_cluster_1-12/lpaz/cancer-behavioral-trajectories/data/daily_summaries/DB1/daily_summary_checked.csv",
+  "baseline_scores": "/lustre/uc3m/gts_c3_cluster_1-12/lpaz/cancer-behavioral-trajectories/results/missingness/Sensitivity_to_artificial_missingness/alarm_scored_objetivo_baseline.csv",
   "threshold": 1.0596384140662845,
   "measure_cols": [
     "sleep_start",
@@ -17,17 +17,18 @@
     "practiced_sport"
   ],
   "source_map": {
-    "sleep_start": "wearable",
-    "sleep_duration": "wearable",
-    "activity_walking": "wearable",
-    "steps_steps_total": "wearable",
-    "location_distance": "smartphone",
-    "location_time_home": "smartphone",
-    "location_clusters_count": "smartphone",
-    "app_usage_total": "smartphone",
-    "practiced_sport": "smartphone"
+    "sleep_start": "wearable (primary)",
+    "sleep_duration": "wearable (primary)",
+    "activity_walking": "wearable (primary)",
+    "steps_steps_total": "wearable (primary)",
+    "location_distance": "mobile",
+    "location_time_home": "mobile",
+    "location_clusters_count": "mobile",
+    "app_usage_total": "mobile",
+    "practiced_sport": "derived from activity"
   },
-  "source_map_note": "Provisional wearable/smartphone map pending explicit SAP dictionary file.",
+  "source_map_note": "sleep_start, sleep_duration, activity_walking and steps_steps_total can come from the wearable or the phone. Assigned to the wearable as the primary source. Mobile is the fallback when the wearable has no record; that split is not applied day by day. The alternative rule (no heart rate and no SpO2, with steps or sleep present, implies the phone) is not used. Location and app use are mobile. practiced_sport is derived from activity, not counted in either source mean.",
+  "source_means": "coverage_wearable averages the four primary-wearable variables. coverage_mobile averages location and app use. practiced_sport is excluded from both.",
   "bands": [
     "<50%",
     "50-80%",
@@ -42,7 +43,9 @@
     "30": 270
   },
   "calendar_rule": "Dense expected calendar of N days ending at decision_date; holes kept; not trimmed to last received record.",
-  "zeros": "Observed zeros count as data; imputed values are not present in the raw daily table used here.",
+  "sport_rule": "practiced_sport_counts_only_when_walking_survives_120_15000",
+  "zeros": "Observed zeros count as data after the range clip; values below the clip floor are blank. practiced_sport has no clip of its own. It is counted only when activity_walking survived [120, 15000] s. A stored sport value on a day whose walking was removed by that filter is missing. A stored 0 with raw walking and running both empty is already missing. This rule is applied before bands, the variable table, centre and tumour means, continuous coverage, and the availability indicators.",
+  "variable_table_denominator": "Same 90-day windows. Variable coverage_on_row divides by days that have a daily row (pct_days_with_row), not by all 90 calendar days. cov_practiced_sport counts only days whose walking survived the activity filter.",
   "uncertainty": "Patient-clustered bootstrap, n=1000, seed=20261116",
   "comparator_block": "Not run here; coordinate with comparator pack (availability vs DCABP vs DCABP+availability)."
 }

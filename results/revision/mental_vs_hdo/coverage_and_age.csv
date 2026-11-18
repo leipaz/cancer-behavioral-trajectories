@@ -1,0 +1,4 @@
+cohort,n_patients,age_n,age_median,age_q25,age_q75,coverage_median,coverage_q25,coverage_q75,sensor_days_median,sensor_days_q25,sensor_days_q75,span_days_median,span_days_q25,span_days_q75
+HDO,175,175,61.0,51.0,68.0,1.0,1.0,1.0,232.0,103.5,448.5,232.0,107.0,448.5
+VAL-SET,42,0,,,,1.0,1.0,1.0,151.5,72.0,225.5,162.0,73.75,230.0
+mental_held_out,1432,0,,,,1.0,0.966832229580574,1.0,185.0,95.0,349.25,200.0,101.0,403.25

@@ -21,13 +21,14 @@ sys.path.insert(0, str(_SCRIPT_DIR))
 import run_missingness_ramp as ramp  # noqa: E402
 import run_sensitivity_db1_objetivo as base  # noqa: E402
 from gensim.models import LdaModel  # noqa: E402
+from sport_missing import load_daily_for_missingness  # noqa: E402
 from vqvae import constants as c  # noqa: E402
-from vqvae.data import aggregate_duplicate_user_days, load_daily_summary, load_scaler_params  # noqa: E402
+from vqvae.data import load_scaler_params  # noqa: E402
 from vqvae.inference import load_models  # noqa: E402
 
 ROOT = ramp.ROOT
-PRIOR = ROOT / "results/missingness/ramp_db1_175"
-OUT = ROOT / "results/missingness/Sensitivity_to_artificial_missingness"
+PRIOR = base.OUT
+OUT = PRIOR / "fixed_gaps"
 LENGTHS = (3, 7, 14)
 SEEDS = ramp.SEEDS
 
@@ -71,8 +72,7 @@ def main() -> None:
     ref_counts = np.load(PRIOR / "reference_code_counts.npy")
     ref_topic = np.load(PRIOR / "reference_topic_mean.npy")
 
-    daily = aggregate_duplicate_user_days(load_daily_summary(ramp.DAILY))
-    daily["date_time"] = pd.to_datetime(daily["date_time"]).dt.normalize()
+    daily = load_daily_for_missingness(ramp.DAILY)
     if int(daily["user"].nunique()) != 175:
         raise SystemExit(f"expected 175 DB1 patients, found {daily['user'].nunique()}")
     base_observed = ramp.observed_dates(daily)

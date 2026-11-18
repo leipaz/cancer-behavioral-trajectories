@@ -1,7 +1,9 @@
 # Real coverage and informative missingness
 
-Main Word report (tables + figures):
+Word report with tables and figures:
 
 `results/missingness/Real_coverage/report.docx`
 
-Coverage tables and figures live in this folder. Availability-comparator CSVs are under `availability_comparator/`.
+- Coverage CSVs and figures in this folder
+- Comparator CSVs: `availability_comparator/`
+- Extra A: `performance_by_variable_band.csv`

@@ -1,0 +1,5 @@
+model,outer_fold,inner_fold,criterio
+outer_0_inner_2,0,2,no estimable
+outer_0_refit,0,refit,no estimable
+outer_2_inner_1,2,1,sin soporte a 365
+outer_3_refit,3,refit,no estimable

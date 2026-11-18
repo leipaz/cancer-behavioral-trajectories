@@ -46,8 +46,9 @@ MODEL_LABEL = {
 THR = 1.0596384140662845
 N_BOOT = 1000
 BOOT_SEED = 20261116
-# practiced_sport is almost always ≥80% here — not useful to stratify
-SKIP_VAR_BAND = {"practiced_sport"}
+# Every input variable is stratified, including practiced_sport after the
+# erroneous-zero rule. Before that rule the flag sat in ≥80% for almost every decision.
+SKIP_VAR_BAND: set[str] = set()
 
 # Register SVG namespace used by Word dual PNG+SVG pictures
 nsmap["asvg"] = "http://schemas.microsoft.com/office/drawing/2016/SVG/main"
@@ -367,7 +368,47 @@ def style_axes(ax) -> None:
     ax.set_axisbelow(True)
 
 
-def make_figures() -> dict[str, Path]:
+def variable_coverage_on_row(by_var: pd.DataFrame) -> pd.DataFrame:
+    """Coverage among days with a daily row, same 90-day decision windows.
+
+    The denominator is days with a daily row. practiced_sport zeros with no
+    walking and no running are already missing in cov_practiced_sport.
+    """
+    cov = pd.read_csv(COV / "coverage_by_decision.csv")
+    sub = cov.loc[cov.window_days == 90].copy()
+    if "pct_days_with_row" not in sub.columns:
+        raise SystemExit("coverage_by_decision.csv has no pct_days_with_row; rerun run_coverage_real_objetivo.py")
+    den = sub["pct_days_with_row"].where(sub["pct_days_with_row"] > 0)
+    extra = []
+    for variable in by_var["variable"]:
+        rate = sub[f"cov_{variable}"] / den
+        extra.append(
+            {
+                "variable": variable,
+                "mean_coverage_on_row": float(rate.mean()),
+                "median_coverage_on_row": float(rate.median()),
+                "p25_on_row": float(rate.quantile(0.25)),
+                "p75_on_row": float(rate.quantile(0.75)),
+                "mean_missing_on_row": float(1.0 - rate.mean()),
+            }
+        )
+    drop_cols = [
+        c
+        for c in (
+            "mean_coverage_on_row",
+            "median_coverage_on_row",
+            "p25_on_row",
+            "p75_on_row",
+            "mean_missing_on_row",
+        )
+        if c in by_var.columns
+    ]
+    out = by_var.drop(columns=drop_cols).merge(pd.DataFrame(extra), on="variable", how="left")
+    out.to_csv(COV / "availability_by_variable.csv", index=False)
+    return out
+
+
+def make_figures(by_var_on_row: pd.DataFrame | None = None) -> dict[str, Path]:
     OUT.mkdir(parents=True, exist_ok=True)
     paths: dict[str, Path] = {}
     plt.rcParams.update(
@@ -434,16 +475,18 @@ def make_figures() -> dict[str, Path]:
     fig.savefig(paths["band_counts"].with_suffix(".svg"))
     plt.close(fig)
 
-    # 3) Availability by variable (no wearable/smartphone split in the report for now)
-    av = pd.read_csv(COV / "availability_by_variable.csv").sort_values("mean_coverage")
+    # 3) Availability by variable on days that have a daily row (same 90 d windows)
+    if by_var_on_row is None:
+        by_var_on_row = variable_coverage_on_row(pd.read_csv(COV / "availability_by_variable.csv"))
+    av = by_var_on_row.sort_values("mean_coverage_on_row")
     fig, ax = plt.subplots(figsize=(6.6, 4.2))
     y = np.arange(len(av))
-    ax.barh(y, av["mean_coverage"], color=f"#{HEADER_FILL}", edgecolor="none", height=0.72)
+    ax.barh(y, av["mean_coverage_on_row"], color=f"#{HEADER_FILL}", edgecolor="none", height=0.72)
     ax.set_yticks(y)
     ax.set_yticklabels(av["variable"])
     ax.set_xlim(0, 1.05)
-    ax.set_xlabel("Mean coverage (90 d)")
-    ax.set_title("Availability by input variable")
+    ax.set_xlabel("Mean coverage on days with a daily row")
+    ax.set_title("Availability by input variable (days with a row)")
     style_axes(ax)
     ax.grid(axis="x", color="#E6E6E6", linewidth=0.8)
     ax.grid(axis="y", visible=False)
@@ -489,7 +532,7 @@ def make_figures() -> dict[str, Path]:
         av = pd.read_csv(COV / "availability_by_variable.csv")
         order = [v for v in av.sort_values("mean_coverage")["variable"] if v in pivot.index]
         pivot, n_piv, pos_piv = pivot.reindex(order), n_piv.reindex(order), pos_piv.reindex(order)
-        fig, ax = plt.subplots(figsize=(7.2, 5.2))
+        fig, ax = plt.subplots(figsize=(7.2, 5.8))
         data = pivot.to_numpy(dtype=float)
         im = ax.imshow(data, aspect="auto", cmap="RdYlGn", vmin=0.45, vmax=0.85)
         ax.set_xticks(np.arange(len(BAND_ORDER)))
@@ -528,10 +571,16 @@ def make_figures() -> dict[str, Path]:
     return paths
 
 
-def build_docx(figs: dict[str, Path], var_band: pd.DataFrame | None = None) -> Path:
+def build_docx(
+    figs: dict[str, Path],
+    var_band: pd.DataFrame | None = None,
+    by_var_on_row: pd.DataFrame | None = None,
+) -> Path:
     band_counts = pd.read_csv(COV / "band_counts.csv")
     perf = pd.read_csv(COV / "performance_by_band.csv")
-    by_var = pd.read_csv(COV / "availability_by_variable.csv")
+    by_var = by_var_on_row if by_var_on_row is not None else variable_coverage_on_row(
+        pd.read_csv(COV / "availability_by_variable.csv")
+    )
     by_ctr = pd.read_csv(COV / "availability_by_center.csv")
     by_tum = pd.read_csv(COV / "availability_by_tumor.csv")
     cont = pd.read_csv(COV / "continuous_coverage_summary.csv")
@@ -597,9 +646,11 @@ def build_docx(figs: dict[str, Path], var_band: pd.DataFrame | None = None) -> P
     add_table(doc, ["Window (d)", "Band", "Decisions", "Patients", "Mean coverage"], rows, [1.2, 1.2, 1.3, 1.3, 1.6])
     add_text(
         doc,
-        "Coverage is the fraction of expected variable–day cells with a real observation (observed zeros count; "
-        "imputed values do not). The expected calendar is the dense 90- or 30-day window ending at the decision "
-        "date; holes are kept and are not trimmed to the last received record.",
+        "Coverage is the fraction of expected variable–day cells with a real observation. Observed zeros count. "
+        "activity_walking outside 120–15000 seconds is missing, and practiced_sport on that day is missing too. "
+        "A stored sport 0 with no recorded walking and no recorded running is also missing. "
+        "Imputed values do not count. The expected calendar is the dense 90- or 30-day window ending at the "
+        "decision date; holes are kept and are not trimmed to the last received record.",
     )
     add_figure(doc, figs["band_counts"])
 
@@ -637,18 +688,48 @@ def build_docx(figs: dict[str, Path], var_band: pd.DataFrame | None = None) -> P
     )
     add_figure(doc, figs["auroc_band"])
 
-    add_heading(doc, "A. Availability by variable (90 d)", level=2)
+    add_heading(doc, "A. Availability by variable (90 d, days with a row)", level=2)
+    cov90 = pd.read_csv(COV / "coverage_by_decision.csv")
+    cov90 = cov90.loc[cov90.window_days == 90]
+    days_without_row = 1.0 - float(cov90["pct_days_with_row"].mean())
+    add_text(
+        doc,
+        "Same 1,013 windows of 90 days. For each variable, coverage is the share of days with a non-empty "
+        "value among days that have a daily row, averaged across decisions. Days in the window with no row "
+        f"are {days_without_row:.1%} of the window and stay out of this denominator. practiced_sport is derived "
+        "from activity duration and is counted only after the activity filter. Walking outside 120–15000 seconds "
+        "is missing, and the sport flag on that day is missing too, whether it was stored as 0 or as 1. "
+        "A stored 0 with neither walking nor running recorded is already missing. The coverage bands use the "
+        "same rule on every calendar day. Those sport cells are not observed, and a day whose only filled cell "
+        "was that flag counts as empty.",
+    )
+    add_text(
+        doc,
+        "Source. Sleep start, sleep duration, walking and steps can be recorded by the wearable or by the phone. "
+        "They are assigned here to the wearable, the primary source. The phone is the fallback when the wearable "
+        "has no record; that day-level split is not applied. Location and app use come from the phone. "
+        "practiced_sport has no source of its own: it is derived from activity, and it is not included in the "
+        "wearable or mobile means.",
+    )
     rows = [
         [
             r.variable,
-            fmt(r.mean_coverage, 3),
-            fmt(r.median_coverage, 3),
-            fmt(r.p25, 3),
-            fmt(r.p75, 3),
+            r.source,
+            fmt(r.mean_coverage_on_row, 3),
+            fmt(r.mean_missing_on_row, 3),
+            fmt(r.median_coverage_on_row, 3),
+            fmt(r.p25_on_row, 3),
+            fmt(r.p75_on_row, 3),
         ]
         for r in by_var.itertuples(index=False)
     ]
-    add_table(doc, ["Variable", "Mean", "Median", "P25", "P75"], rows, [2.6, 1.2, 1.2, 1.2, 1.2])
+    add_table(
+        doc,
+        ["Variable", "Source", "Mean coverage", "Missing", "Median", "P25", "P75"],
+        rows,
+        [2.2, 1.8, 1.3, 1.1, 1.1, 1.0, 1.0],
+        size=8,
+    )
     add_figure(doc, figs["by_var"])
 
     add_heading(doc, "A. Availability by centre and tumour (90 d)", level=2)
@@ -717,8 +798,8 @@ def build_docx(figs: dict[str, Path], var_band: pd.DataFrame | None = None) -> P
         doc,
         "Exploratory addition (not a SAP primary table). Instead of the joint coverage of all nine variables, "
         "each decision is placed in the SAP bands using only that variable’s own 90-day coverage (still measured "
-        "before VQ-VAE). The frozen load and cut are applied inside each cell. practiced_sport is omitted: almost "
-        "all decisions sit in ≥80%. Brackets are patient-clustered bootstrap intervals on AUROC.",
+        "before VQ-VAE, with the same sport-zero rule). The frozen load and cut are applied inside each cell. "
+        "Brackets are patient-clustered bootstrap intervals on AUROC.",
     )
     add_text(
         doc,
@@ -842,8 +923,12 @@ def build_docx(figs: dict[str, Path], var_band: pd.DataFrame | None = None) -> P
     add_figure(doc, figs["comparator"])
     add_text(
         doc,
-        "Availability alone does not match the DCABP load (AUROC 0.402 vs 0.703). Adding the availability "
-        "indicators to the load does not improve discrimination over the frozen load alone.",
+        "Availability alone has AUROC "
+        f"{float(show.set_index('model').loc['availability_only_oof', 'AUROC']):.3f}. "
+        "The frozen DCABP load has AUROC "
+        f"{float(show.set_index('model').loc['dcabp_load_frozen', 'AUROC']):.3f}. "
+        "The load plus the availability indicators has AUROC "
+        f"{float(show.set_index('model').loc['dcabp_plus_availability_oof', 'AUROC']):.3f}.",
     )
 
     add_heading(doc, "Files", level=2)
@@ -872,8 +957,9 @@ def main() -> None:
     else:
         print("computing per-variable coverage bands…")
         var_band = compute_variable_band_perf(90)
-    figs = make_figures()
-    dest = build_docx(figs, var_band=var_band)
+    by_var_on_row = variable_coverage_on_row(pd.read_csv(COV / "availability_by_variable.csv"))
+    figs = make_figures(by_var_on_row)
+    dest = build_docx(figs, var_band=var_band, by_var_on_row=by_var_on_row)
     (OUT / "report.md").write_text(
         "# Real coverage and informative missingness\n\n"
         "Word report with tables and figures:\n\n"

@@ -1,0 +1,2 @@
+role,cohort,id,window,window_index,n_days,n_sensor_days_in_window,sensor_fraction,n_oov_codes,topic_0,topic_1,topic_2,topic_3,topic_4,topic_5,topic_entropy_bits
+error_low,HDO,31008,T0,0,30,30,1.0,0,0.5071486830711365,0.0053827897645533085,0.005410654004663229,0.005376509856432676,0.47123876214027405,0.005442590452730656,1.171062460427126

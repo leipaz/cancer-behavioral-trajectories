@@ -1,0 +1,50 @@
+{
+  "source": "data/daily_summaries/vq_vae_train/vqvae_leire/daily_summary_eb2.csv",
+  "partitions": [
+    "train_0.csv",
+    "validation_0.csv",
+    "test_0.csv"
+  ],
+  "participants": 5530,
+  "user_uid": 5532,
+  "raw_rows": 1122233,
+  "observed_days": 738691,
+  "first_day": "2016-01-01",
+  "last_day": "2024-03-13",
+  "user_min": 14,
+  "user_max": 6982,
+  "user_uid_min": 0,
+  "user_uid_max": 6947,
+  "hdo_participants": 175,
+  "hdo_id_range": [
+    11001,
+    93002
+  ],
+  "user_overlap_hdo": 0,
+  "user_uid_overlap_hdo": 0,
+  "valset_candidates": 48,
+  "user_overlap_valset": 0,
+  "user_uid_overlap_valset": 0,
+  "valset_with_daily": 42,
+  "user_overlap_db3_daily": 0,
+  "user_uid_overlap_db3_daily": 0,
+  "shared_two_cohorts": {
+    "user": 5906,
+    "codes": [
+      17,
+      23
+    ],
+    "cohorts": [
+      "Eating disorders",
+      "Suicide prevention"
+    ]
+  },
+  "length_filter": {
+    "train_min_length": 257,
+    "validation_min_length": 256,
+    "test": "all 320 participants retained",
+    "train_participants": 1085,
+    "validation_participants": 490
+  },
+  "cohort_names": "Table S3 names used in the May 2026 comparison reports"
+}

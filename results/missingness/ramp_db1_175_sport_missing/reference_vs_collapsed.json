@@ -1,0 +1,6 @@
+{
+  "n_with_load": 1013,
+  "mae_vs_collapsed_AUC_W": 0.0018811929274096622,
+  "n_db1_patients": 175,
+  "sport_rule": "practiced_sport_0_without_walking_or_running_is_missing"
+}

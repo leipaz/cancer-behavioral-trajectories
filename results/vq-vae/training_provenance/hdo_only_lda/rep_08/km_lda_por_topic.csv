@@ -1,0 +1,151 @@
+model,outer_fold,inner_fold,topic,n,events,pfs_365,etiqueta,criterio
+outer_0_inner_0,0,0,0,6,3,0.33333333333333337,U,pfs_365
+outer_0_inner_0,0,0,1,9,1,0.8571428571428572,F,pfs_365
+outer_0_inner_0,0,0,2,11,3,0.7142857142857144,U,pfs_365
+outer_0_inner_0,0,0,3,43,12,0.7721645163133535,F,pfs_365
+outer_0_inner_0,0,0,4,17,8,0.7510504201680672,F,pfs_365
+outer_0_inner_0,0,0,5,17,8,0.3619909502262444,U,pfs_365
+outer_0_inner_1,0,1,0,54,18,0.7140168689971236,F,pfs_365
+outer_0_inner_1,0,1,1,13,4,0.6666666666666666,F,pfs_365
+outer_0_inner_1,0,1,2,9,1,0.8333333333333334,F,pfs_365
+outer_0_inner_1,0,1,3,7,5,0.4571428571428573,U,pfs_365
+outer_0_inner_1,0,1,4,12,4,0.5333333333333333,U,pfs_365
+outer_0_inner_1,0,1,5,6,3,0.5333333333333334,U,pfs_365
+outer_0_inner_2,0,2,0,9,3,0.75,F,techo_365
+outer_0_inner_2,0,2,1,14,5,0.43650793650793657,U,techo_365
+outer_0_inner_2,0,2,2,5,2,0.6666666666666667,U,techo_365
+outer_0_inner_2,0,2,3,45,14,0.7701875734861846,F,techo_365
+outer_0_inner_2,0,2,4,10,5,,U,techo_365
+outer_0_inner_2,0,2,5,19,5,0.7700534759358288,F,techo_365
+outer_0_inner_3,0,3,0,40,9,0.7755687444739169,F,pfs_365
+outer_0_inner_3,0,3,1,8,5,0.4375,U,pfs_365
+outer_0_inner_3,0,3,2,10,4,0.75,F,pfs_365
+outer_0_inner_3,0,3,3,8,6,0.36458333333333337,U,pfs_365
+outer_0_inner_3,0,3,4,22,4,0.8739495798319328,F,pfs_365
+outer_0_inner_3,0,3,5,14,6,0.3819444444444445,U,pfs_365
+outer_0_refit,0,refit,0,19,8,0.505263157894737,U,pfs_365
+outer_0_refit,0,refit,1,12,7,0.5892857142857143,U,pfs_365
+outer_0_refit,0,refit,2,54,14,0.7392863546709699,F,pfs_365
+outer_0_refit,0,refit,3,8,3,0.6428571428571429,U,pfs_365
+outer_0_refit,0,refit,4,29,10,0.7657327586206898,F,pfs_365
+outer_0_refit,0,refit,5,14,4,0.6666666666666666,F,pfs_365
+outer_1_inner_0,1,0,0,45,13,0.7040018074500834,F,techo_365
+outer_1_inner_0,1,0,1,7,4,0.41666666666666674,U,techo_365
+outer_1_inner_0,1,0,2,4,2,0.5,U,techo_365
+outer_1_inner_0,1,0,3,24,8,0.7712962962962963,F,techo_365
+outer_1_inner_0,1,0,4,16,5,0.6510416666666667,F,techo_365
+outer_1_inner_0,1,0,5,5,2,,U,techo_365
+outer_1_inner_1,1,1,0,4,3,0.5,U,pfs_365
+outer_1_inner_1,1,1,1,44,11,0.7590898184633575,F,pfs_365
+outer_1_inner_1,1,1,2,9,6,0.3703703703703704,U,pfs_365
+outer_1_inner_1,1,1,3,16,6,0.5,U,pfs_365
+outer_1_inner_1,1,1,4,14,3,0.8307692307692308,F,pfs_365
+outer_1_inner_1,1,1,5,16,7,0.6787878787878788,F,pfs_365
+outer_1_inner_2,1,2,0,7,1,0.75,F,pfs_365
+outer_1_inner_2,1,2,1,5,4,0.4000000000000001,U,pfs_365
+outer_1_inner_2,1,2,2,16,7,0.6328125000000001,U,pfs_365
+outer_1_inner_2,1,2,3,9,5,0.5333333333333333,U,pfs_365
+outer_1_inner_2,1,2,4,46,12,0.7070049641478211,F,pfs_365
+outer_1_inner_2,1,2,5,18,5,0.8296296296296296,F,pfs_365
+outer_1_inner_3,1,3,0,16,5,0.7333333333333333,F,pfs_365
+outer_1_inner_3,1,3,1,11,6,0.5656565656565656,U,pfs_365
+outer_1_inner_3,1,3,2,12,3,0.707070707070707,F,pfs_365
+outer_1_inner_3,1,3,3,43,10,0.7774225361073998,F,pfs_365
+outer_1_inner_3,1,3,4,2,1,0.5,U,pfs_365
+outer_1_inner_3,1,3,5,19,9,0.4863157894736843,U,pfs_365
+outer_1_refit,1,refit,0,1,1,0.0,,no estimable
+outer_1_refit,1,refit,1,0,0,,,no estimable
+outer_1_refit,1,refit,2,64,20,0.6875673564834793,,no estimable
+outer_1_refit,1,refit,3,19,8,0.5023923444976078,,no estimable
+outer_1_refit,1,refit,4,33,8,0.8214255155300763,,no estimable
+outer_1_refit,1,refit,5,19,9,0.6278409090909091,,no estimable
+outer_2_inner_0,2,0,0,11,6,,U,techo_365
+outer_2_inner_0,2,0,1,5,4,0.4000000000000001,U,techo_365
+outer_2_inner_0,2,0,2,10,3,0.63,F,techo_365
+outer_2_inner_0,2,0,3,16,7,0.6663461538461539,F,techo_365
+outer_2_inner_0,2,0,4,45,11,0.8298864188532554,F,techo_365
+outer_2_inner_0,2,0,5,16,6,0.5158730158730159,U,techo_365
+outer_2_inner_1,2,1,0,11,4,0.6857142857142858,F,pfs_365
+outer_2_inner_1,2,1,1,8,3,0.2916666666666667,U,pfs_365
+outer_2_inner_1,2,1,2,9,6,0.38095238095238104,U,pfs_365
+outer_2_inner_1,2,1,3,50,16,0.6743528296207121,U,pfs_365
+outer_2_inner_1,2,1,4,15,6,0.7738095238095237,F,pfs_365
+outer_2_inner_1,2,1,5,9,2,0.7142857142857144,F,pfs_365
+outer_2_inner_2,2,2,0,5,4,0.2666666666666667,U,pfs_365
+outer_2_inner_2,2,2,1,17,7,0.7020430549842314,F,pfs_365
+outer_2_inner_2,2,2,2,14,5,0.6666666666666666,U,pfs_365
+outer_2_inner_2,2,2,3,18,6,0.6669410150891633,U,pfs_365
+outer_2_inner_2,2,2,4,40,12,0.7199388329299585,F,pfs_365
+outer_2_inner_2,2,2,5,10,3,0.7999999999999999,F,pfs_365
+outer_2_inner_3,2,3,0,54,15,0.782109463617766,F,pfs_365
+outer_2_inner_3,2,3,1,12,6,0.5625,U,pfs_365
+outer_2_inner_3,2,3,2,14,6,0.6000000000000001,F,pfs_365
+outer_2_inner_3,2,3,3,2,1,0.0,U,pfs_365
+outer_2_inner_3,2,3,4,11,4,0.707070707070707,F,pfs_365
+outer_2_inner_3,2,3,5,9,4,0.38888888888888895,U,pfs_365
+outer_2_refit,2,refit,0,25,11,0.5893333333333332,U,pfs_365
+outer_2_refit,2,refit,1,56,16,0.7297938332421093,F,pfs_365
+outer_2_refit,2,refit,2,11,3,0.808080808080808,F,pfs_365
+outer_2_refit,2,refit,3,14,6,0.48888888888888893,U,pfs_365
+outer_2_refit,2,refit,4,21,7,0.7773279352226722,F,pfs_365
+outer_2_refit,2,refit,5,10,6,0.31500000000000006,U,pfs_365
+outer_3_inner_0,3,0,0,16,2,0.9333333333333333,F,pfs_365
+outer_3_inner_0,3,0,1,52,15,0.7792251487489582,F,pfs_365
+outer_3_inner_0,3,0,2,11,6,0.4713804713804714,U,pfs_365
+outer_3_inner_0,3,0,3,6,5,0.0,U,pfs_365
+outer_3_inner_0,3,0,4,10,3,0.5333333333333334,U,pfs_365
+outer_3_inner_0,3,0,5,7,3,0.7142857142857144,F,pfs_365
+outer_3_inner_1,3,1,0,24,5,0.7936507936507936,F,pfs_365
+outer_3_inner_1,3,1,1,7,4,0.0,U,pfs_365
+outer_3_inner_1,3,1,2,45,14,0.7362386747495369,F,pfs_365
+outer_3_inner_1,3,1,3,5,3,0.4000000000000001,U,pfs_365
+outer_3_inner_1,3,1,4,14,5,0.6512059369202227,U,pfs_365
+outer_3_inner_1,3,1,5,6,3,0.8333333333333334,F,pfs_365
+outer_3_inner_2,3,2,0,14,7,0.6769230769230768,U,techo_365
+outer_3_inner_2,3,2,1,9,3,0.761904761904762,F,techo_365
+outer_3_inner_2,3,2,2,9,3,0.7142857142857144,F,techo_365
+outer_3_inner_2,3,2,3,5,1,,U,techo_365
+outer_3_inner_2,3,2,4,43,16,0.7413037638275776,F,techo_365
+outer_3_inner_2,3,2,5,24,7,0.6442042805679168,U,techo_365
+outer_3_inner_3,3,3,0,12,7,0.34920634920634924,U,pfs_365
+outer_3_inner_3,3,3,1,19,7,0.7447916666666666,U,pfs_365
+outer_3_inner_3,3,3,2,44,12,0.8022325581395348,F,pfs_365
+outer_3_inner_3,3,3,3,21,4,0.868421052631579,F,pfs_365
+outer_3_inner_3,3,3,4,4,3,0.33333333333333337,U,pfs_365
+outer_3_inner_3,3,3,5,1,0,1.0,F,pfs_365
+outer_3_refit,3,refit,0,71,23,0.7277858691611411,F,pfs_365
+outer_3_refit,3,refit,1,16,4,0.7074829931972789,F,pfs_365
+outer_3_refit,3,refit,2,7,4,0.5,U,pfs_365
+outer_3_refit,3,refit,3,6,2,0.375,U,pfs_365
+outer_3_refit,3,refit,4,16,4,0.8555555555555555,F,pfs_365
+outer_3_refit,3,refit,5,20,9,0.6682436342592591,U,pfs_365
+outer_4_inner_0,4,0,0,22,7,0.7925696594427245,F,pfs_365
+outer_4_inner_0,4,0,1,9,6,0.4761904761904763,U,pfs_365
+outer_4_inner_0,4,0,2,5,2,0.5333333333333334,U,pfs_365
+outer_4_inner_0,4,0,3,42,8,0.8271436864219374,F,pfs_365
+outer_4_inner_0,4,0,4,11,5,0.5333333333333333,U,pfs_365
+outer_4_inner_0,4,0,5,12,5,0.6,F,pfs_365
+outer_4_inner_1,4,1,0,6,2,0.0,,no estimable
+outer_4_inner_1,4,1,1,7,3,0.6000000000000001,,no estimable
+outer_4_inner_1,4,1,2,0,0,,,no estimable
+outer_4_inner_1,4,1,3,9,1,1.0,,no estimable
+outer_4_inner_1,4,1,4,50,13,0.8095728502674419,,no estimable
+outer_4_inner_1,4,1,5,28,14,0.4199020774376125,,no estimable
+outer_4_inner_2,4,2,0,12,4,0.7,F,pfs_365
+outer_4_inner_2,4,2,1,47,13,0.7667756214821765,F,pfs_365
+outer_4_inner_2,4,2,2,5,1,0.6666666666666667,U,pfs_365
+outer_4_inner_2,4,2,3,11,6,0.4545454545454545,U,pfs_365
+outer_4_inner_2,4,2,4,26,12,0.5350771581359817,U,pfs_365
+outer_4_inner_2,4,2,5,1,0,1.0,F,pfs_365
+outer_4_inner_3,4,3,0,5,3,0.4,U,pfs_365
+outer_4_inner_3,4,3,1,34,11,0.6709235294117647,F,pfs_365
+outer_4_inner_3,4,3,2,3,1,0.6666666666666667,U,pfs_365
+outer_4_inner_3,4,3,3,33,8,0.7746371275783042,F,pfs_365
+outer_4_inner_3,4,3,4,16,5,0.8705357142857143,F,pfs_365
+outer_4_inner_3,4,3,5,11,5,0.5485714285714286,U,pfs_365
+outer_4_refit,4,refit,0,5,1,0.5,,no estimable
+outer_4_refit,4,refit,1,31,17,0.49418719211822665,,no estimable
+outer_4_refit,4,refit,2,13,4,0.707070707070707,,no estimable
+outer_4_refit,4,refit,3,0,0,,,no estimable
+outer_4_refit,4,refit,4,54,15,0.7231045610622147,,no estimable
+outer_4_refit,4,refit,5,32,8,0.8541818181818182,,no estimable

@@ -22,12 +22,13 @@ sys.path.insert(0, str(_SCRIPT_DIR))
 
 import run_missingness_ramp as ramp  # noqa: E402
 from gensim.models import LdaModel  # noqa: E402
+from sport_missing import SPORT_RULE, load_daily_for_missingness  # noqa: E402
 from vqvae import constants as c  # noqa: E402
-from vqvae.data import aggregate_duplicate_user_days, load_daily_summary, load_scaler_params  # noqa: E402
+from vqvae.data import load_scaler_params  # noqa: E402
 from vqvae.inference import load_models  # noqa: E402
 
 ROOT = ramp.ROOT
-OUT = ROOT / "results/missingness/ramp_db1_175"
+OUT = ROOT / "results/missingness/ramp_db1_175_sport_filtered"
 OBJETIVO = ROOT / "results/lda/val_2/anidada_estratificada/objetivo.csv"
 RATES = (0.10, 0.20, 0.30, 0.40, 0.50)
 SEEDS = ramp.SEEDS
@@ -88,8 +89,8 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "landmarks").mkdir(parents=True, exist_ok=True)
     points = landmarks_of()
-    daily = aggregate_duplicate_user_days(load_daily_summary(ramp.DAILY))
-    daily["date_time"] = pd.to_datetime(daily["date_time"]).dt.normalize()
+    daily = load_daily_for_missingness(ramp.DAILY)
+    print(f"sport rule: {SPORT_RULE}", flush=True)
     n_patients = int(daily["user"].nunique())
     if n_patients != 175:
         raise SystemExit(f"expected 175 DB1 patients, found {n_patients}")
@@ -146,6 +147,7 @@ def main() -> None:
         "n_with_load": 1013,
         "mae_vs_collapsed_AUC_W": mae,
         "n_db1_patients": n_patients,
+        "sport_rule": SPORT_RULE,
     }, indent=2), encoding="utf-8")
 
     jobs = []

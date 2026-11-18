@@ -363,7 +363,7 @@ def main() -> None:
         "source_coverage": str(COVERAGE),
         "availability_features": AVAIL_FEATURES,
         "feature_definitions": {
-            "prop_absent_days_90": "1 - (days with ≥1 observed measure / 90 expected calendar days)",
+            "prop_absent_days_90": "1 - (days with ≥1 observed measure / 90 expected calendar days). practiced_sport counts only when activity_walking survived the 120–15000 s filter. A stored 0 with no raw walking and no raw running is not an observed measure.",
             "n_gaps_ge_48h_90": "count of runs of ≥2 consecutive empty calendar days in the 90 d window",
             "days_since_last_valid_90": "empty days at the end of the 90 d window since last day with any measure",
             "monitoring_interrupted_now": "1 if days_since_last_valid_90 ≥ 2 (ongoing >48 h gap at the decision); no future withdrawal flag",

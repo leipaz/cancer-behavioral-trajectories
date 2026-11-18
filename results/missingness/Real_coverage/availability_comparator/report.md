@@ -20,10 +20,10 @@ Mismos **1013** puntos / horizonte **120 d** / solo **DB1**. CV por paciente (Gr
 
 ```
                       model  n_patients  n_scored  n_positive                AUROC          sensitivity          specificity                  PPV                  NPV  threshold
-      availability_only_oof         114      1013         155 0.402 [0.320, 0.483] 0.923 [0.857, 0.977] 0.029 [0.011, 0.054] 0.147 [0.108, 0.189] 0.676 [0.389, 0.889]   0.152533
+      availability_only_oof         114      1013         155 0.427 [0.344, 0.504] 0.806 [0.709, 0.886] 0.202 [0.146, 0.257] 0.154 [0.113, 0.202] 0.852 [0.750, 0.922]   0.156717
           dcabp_load_frozen         114      1013         155 0.703 [0.627, 0.780] 0.884 [0.809, 0.957] 0.452 [0.364, 0.540] 0.226 [0.168, 0.281] 0.956 [0.921, 0.983]   1.059638
-            dcabp_logit_oof         114      1013         155 0.684 [0.607, 0.762] 0.845 [0.750, 0.939] 0.476 [0.386, 0.565] 0.225 [0.166, 0.284] 0.944 [0.902, 0.978]   0.109475
-dcabp_plus_availability_oof         114      1013         155 0.677 [0.596, 0.752] 0.806 [0.705, 0.905] 0.505 [0.415, 0.589] 0.227 [0.167, 0.287] 0.935 [0.893, 0.969]   0.119912
+            dcabp_logit_oof         114      1013         155 0.690 [0.615, 0.768] 0.774 [0.664, 0.881] 0.501 [0.408, 0.593] 0.219 [0.160, 0.277] 0.925 [0.877, 0.963]   0.116882
+dcabp_plus_availability_oof         114      1013         155 0.677 [0.600, 0.758] 0.703 [0.578, 0.826] 0.533 [0.440, 0.625] 0.214 [0.155, 0.276] 0.909 [0.858, 0.952]   0.127797
 ```
 
 Archivos: `availability_indicators.csv`, `scores_by_decision.csv`, `performance_models.csv`, `emission_overlap.csv`, `coefficients_full_fit_descriptive.csv`, `PROVENANCE.json`.

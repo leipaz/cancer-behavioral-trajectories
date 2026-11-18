@@ -1,0 +1,151 @@
+model,outer_fold,inner_fold,topic,n,events,pfs_365,etiqueta,criterio
+outer_0_inner_0,0,0,0,20,10,0.35874125874125884,U,pfs_365
+outer_0_inner_0,0,0,1,5,1,0.5,U,pfs_365
+outer_0_inner_0,0,0,2,9,2,0.875,F,pfs_365
+outer_0_inner_0,0,0,3,49,12,0.8105561490978156,F,pfs_365
+outer_0_inner_0,0,0,4,7,5,0.7142857142857144,F,pfs_365
+outer_0_inner_0,0,0,5,13,5,0.5454545454545454,U,pfs_365
+outer_0_inner_1,0,1,0,13,5,0.5907692307692308,U,pfs_365
+outer_0_inner_1,0,1,1,19,5,0.7058823529411764,F,pfs_365
+outer_0_inner_1,0,1,2,40,13,0.7747143440114262,F,pfs_365
+outer_0_inner_1,0,1,3,17,7,0.6029684601113173,F,pfs_365
+outer_0_inner_1,0,1,4,5,2,0.4,U,pfs_365
+outer_0_inner_1,0,1,5,8,4,0.5625,U,pfs_365
+outer_0_inner_2,0,2,0,6,1,0.6666666666666667,U,pfs_365
+outer_0_inner_2,0,2,1,59,18,0.7574498185261068,F,pfs_365
+outer_0_inner_2,0,2,2,9,3,0.875,F,pfs_365
+outer_0_inner_2,0,2,3,13,4,0.6857142857142857,F,pfs_365
+outer_0_inner_2,0,2,4,3,2,0.33333333333333337,U,pfs_365
+outer_0_inner_2,0,2,5,12,6,0.41999999999999993,U,pfs_365
+outer_0_inner_3,0,3,0,14,7,0.515625,U,pfs_365
+outer_0_inner_3,0,3,1,7,3,0.3571428571428572,U,pfs_365
+outer_0_inner_3,0,3,2,9,2,0.8571428571428572,F,pfs_365
+outer_0_inner_3,0,3,3,46,14,0.7347117794486218,F,pfs_365
+outer_0_inner_3,0,3,4,14,3,0.8076923076923077,F,pfs_365
+outer_0_inner_3,0,3,5,11,4,0.6628787878787878,U,pfs_365
+outer_0_refit,0,refit,0,13,4,0.6666666666666666,F,pfs_365
+outer_0_refit,0,refit,1,11,4,0.5387205387205387,U,pfs_365
+outer_0_refit,0,refit,2,59,18,0.7545872824573522,F,pfs_365
+outer_0_refit,0,refit,3,8,4,0.5,U,pfs_365
+outer_0_refit,0,refit,4,27,8,0.827507814720091,F,pfs_365
+outer_0_refit,0,refit,5,18,8,0.471151423532376,U,pfs_365
+outer_1_inner_0,1,0,0,8,5,0.35000000000000003,,sin soporte a 365
+outer_1_inner_0,1,0,1,43,9,0.8165570721228158,,sin soporte a 365
+outer_1_inner_0,1,0,2,2,1,,,sin soporte a 365
+outer_1_inner_0,1,0,3,21,6,0.6333834586466167,,sin soporte a 365
+outer_1_inner_0,1,0,4,20,10,0.3479151660664266,,sin soporte a 365
+outer_1_inner_0,1,0,5,7,3,0.3428571428571429,,sin soporte a 365
+outer_1_inner_1,1,1,0,4,3,0.0,U,pfs_365
+outer_1_inner_1,1,1,1,9,5,0.2160493827160494,U,pfs_365
+outer_1_inner_1,1,1,2,22,8,0.6160427807486633,F,pfs_365
+outer_1_inner_1,1,1,3,13,3,0.8148148148148148,F,pfs_365
+outer_1_inner_1,1,1,4,13,4,0.4821428571428572,U,pfs_365
+outer_1_inner_1,1,1,5,40,13,0.727857225233537,F,pfs_365
+outer_1_inner_2,1,2,0,13,5,0.632967032967033,U,pfs_365
+outer_1_inner_2,1,2,1,11,5,0.23863636363636365,U,pfs_365
+outer_1_inner_2,1,2,2,8,2,0.875,F,pfs_365
+outer_1_inner_2,1,2,3,15,4,0.7295918367346939,F,pfs_365
+outer_1_inner_2,1,2,4,19,5,0.8359133126934986,F,pfs_365
+outer_1_inner_2,1,2,5,35,13,0.6369133511990656,U,pfs_365
+outer_1_inner_3,1,3,0,20,8,0.6608391608391608,F,pfs_365
+outer_1_inner_3,1,3,1,8,2,0.65625,F,pfs_365
+outer_1_inner_3,1,3,2,16,3,0.6461538461538462,U,pfs_365
+outer_1_inner_3,1,3,3,36,8,0.8217283950617285,F,pfs_365
+outer_1_inner_3,1,3,4,7,4,0.41666666666666674,U,pfs_365
+outer_1_inner_3,1,3,5,15,9,0.46153846153846156,U,pfs_365
+outer_1_refit,1,refit,0,13,3,0.7129629629629629,,no estimable
+outer_1_refit,1,refit,1,14,7,0.4714285714285715,,no estimable
+outer_1_refit,1,refit,2,0,0,,,no estimable
+outer_1_refit,1,refit,3,31,8,0.7695578093306288,,no estimable
+outer_1_refit,1,refit,4,65,23,0.6507843085662939,,no estimable
+outer_1_refit,1,refit,5,12,5,0.4444444444444443,,no estimable
+outer_2_inner_0,2,0,0,14,8,0.606060606060606,F,pfs_365
+outer_2_inner_0,2,0,1,42,12,0.7525259897176405,F,pfs_365
+outer_2_inner_0,2,0,2,12,1,0.9090909090909091,F,pfs_365
+outer_2_inner_0,2,0,3,19,6,0.5969387755102041,U,pfs_365
+outer_2_inner_0,2,0,4,6,4,0.3125,U,pfs_365
+outer_2_inner_0,2,0,5,8,5,0.45000000000000007,U,pfs_365
+outer_2_inner_1,2,1,0,19,7,0.7282913165266106,F,pfs_365
+outer_2_inner_1,2,1,1,19,6,0.827952233524989,F,pfs_365
+outer_2_inner_1,2,1,2,9,5,0.5,U,pfs_365
+outer_2_inner_1,2,1,3,14,3,0.7200000000000001,F,pfs_365
+outer_2_inner_1,2,1,4,39,14,0.5580975859062622,U,pfs_365
+outer_2_inner_1,2,1,5,1,1,0.0,U,pfs_365
+outer_2_inner_2,2,2,0,8,5,0.4285714285714286,U,pfs_365
+outer_2_inner_2,2,2,1,23,5,0.8573864328340032,F,pfs_365
+outer_2_inner_2,2,2,2,37,11,0.7530514285714285,F,pfs_365
+outer_2_inner_2,2,2,3,16,8,0.5836734693877551,U,pfs_365
+outer_2_inner_2,2,2,4,7,4,0.38095238095238104,U,pfs_365
+outer_2_inner_2,2,2,5,10,3,0.7142857142857144,F,pfs_365
+outer_2_inner_3,2,3,0,5,2,0.0,U,pfs_365
+outer_2_inner_3,2,3,1,11,5,0.6428571428571429,U,pfs_365
+outer_2_inner_3,2,3,2,24,9,0.6809523809523809,F,pfs_365
+outer_2_inner_3,2,3,3,9,4,0.5833333333333334,U,pfs_365
+outer_2_inner_3,2,3,4,41,11,0.6702165242165243,F,pfs_365
+outer_2_inner_3,2,3,5,15,5,0.7832167832167832,F,pfs_365
+outer_2_refit,2,refit,0,11,6,0.4155844155844156,U,pfs_365
+outer_2_refit,2,refit,1,56,16,0.7469714285714286,F,pfs_365
+outer_2_refit,2,refit,2,17,5,0.6461538461538462,U,pfs_365
+outer_2_refit,2,refit,3,22,7,0.676923076923077,F,pfs_365
+outer_2_refit,2,refit,4,20,7,0.781063988095238,F,pfs_365
+outer_2_refit,2,refit,5,10,7,0.36,U,pfs_365
+outer_3_inner_0,3,0,0,9,6,0.3240740740740741,U,pfs_365
+outer_3_inner_0,3,0,1,5,3,0.30000000000000004,U,pfs_365
+outer_3_inner_0,3,0,2,54,14,0.7802918881852072,F,pfs_365
+outer_3_inner_0,3,0,3,14,6,0.5703703703703703,F,pfs_365
+outer_3_inner_0,3,0,4,6,3,0.5,U,pfs_365
+outer_3_inner_0,3,0,5,13,2,1.0,F,pfs_365
+outer_3_inner_1,3,1,0,5,2,0.5,U,pfs_365
+outer_3_inner_1,3,1,1,10,3,0.75,F,pfs_365
+outer_3_inner_1,3,1,2,10,1,0.8571428571428572,F,pfs_365
+outer_3_inner_1,3,1,3,19,10,0.48444976076555035,U,pfs_365
+outer_3_inner_1,3,1,4,6,4,0.625,U,pfs_365
+outer_3_inner_1,3,1,5,52,14,0.7246558787060726,F,pfs_365
+outer_3_inner_2,3,2,0,2,2,0.5,U,pfs_365
+outer_3_inner_2,3,2,1,9,2,0.875,F,pfs_365
+outer_3_inner_2,3,2,2,22,11,0.6150015561780268,U,pfs_365
+outer_3_inner_2,3,2,3,21,5,0.8282051282051281,F,pfs_365
+outer_3_inner_2,3,2,4,13,4,0.9,F,pfs_365
+outer_3_inner_2,3,2,5,36,12,0.701865005949151,U,pfs_365
+outer_3_inner_3,3,3,0,8,4,0.4571428571428573,U,pfs_365
+outer_3_inner_3,3,3,1,20,7,0.7941176470588235,F,pfs_365
+outer_3_inner_3,3,3,2,17,7,0.5957336780866193,U,pfs_365
+outer_3_inner_3,3,3,3,8,4,0.30000000000000004,U,pfs_365
+outer_3_inner_3,3,3,4,39,11,0.7440209581753701,F,pfs_365
+outer_3_inner_3,3,3,5,10,1,1.0,F,pfs_365
+outer_3_refit,3,refit,0,11,6,0.707070707070707,F,pfs_365
+outer_3_refit,3,refit,1,13,2,0.875,F,pfs_365
+outer_3_refit,3,refit,2,28,8,0.8139130434782609,F,pfs_365
+outer_3_refit,3,refit,3,25,13,0.5631999999999999,U,pfs_365
+outer_3_refit,3,refit,4,54,14,0.6887309220855401,U,pfs_365
+outer_3_refit,3,refit,5,5,3,0.33333333333333337,U,pfs_365
+outer_4_inner_0,4,0,0,23,10,0.6061965064145708,U,pfs_365
+outer_4_inner_0,4,0,1,41,13,0.7442480465301633,F,pfs_365
+outer_4_inner_0,4,0,2,5,2,0.6666666666666667,U,pfs_365
+outer_4_inner_0,4,0,3,16,5,0.8461538461538461,F,pfs_365
+outer_4_inner_0,4,0,4,10,0,1.0,F,pfs_365
+outer_4_inner_0,4,0,5,8,4,0.5,U,pfs_365
+outer_4_inner_1,4,1,0,40,11,0.7586176449812815,F,pfs_365
+outer_4_inner_1,4,1,1,24,6,0.908695652173913,F,pfs_365
+outer_4_inner_1,4,1,2,5,2,0.5,U,pfs_365
+outer_4_inner_1,4,1,3,10,3,0.375,U,pfs_365
+outer_4_inner_1,4,1,4,11,4,0.5,U,pfs_365
+outer_4_inner_1,4,1,5,13,8,0.5594405594405595,F,pfs_365
+outer_4_inner_2,4,2,0,5,3,0.5,,no estimable
+outer_4_inner_2,4,2,1,11,6,0.4444444444444445,,no estimable
+outer_4_inner_2,4,2,2,24,7,0.8502415458937198,,no estimable
+outer_4_inner_2,4,2,3,48,15,0.6961336485915712,,no estimable
+outer_4_inner_2,4,2,4,15,5,0.7129629629629629,,no estimable
+outer_4_inner_2,4,2,5,0,0,,,no estimable
+outer_4_inner_3,4,3,0,6,3,0.5333333333333334,U,pfs_365
+outer_4_inner_3,4,3,1,15,7,0.7048951048951049,U,pfs_365
+outer_4_inner_3,4,3,2,10,7,0.27428571428571435,U,pfs_365
+outer_4_inner_3,4,3,3,2,1,1.0,F,pfs_365
+outer_4_inner_3,4,3,4,46,12,0.7436206189792991,F,pfs_365
+outer_4_inner_3,4,3,5,23,4,0.8941176470588235,F,pfs_365
+outer_4_refit,4,refit,0,7,5,0.5357142857142858,U,pfs_365
+outer_4_refit,4,refit,1,7,3,0.6000000000000001,U,pfs_365
+outer_4_refit,4,refit,2,8,2,0.0,U,pfs_365
+outer_4_refit,4,refit,3,65,19,0.7283729741155479,F,pfs_365
+outer_4_refit,4,refit,4,13,6,0.632967032967033,F,pfs_365
+outer_4_refit,4,refit,5,37,11,0.797851714423143,F,pfs_365

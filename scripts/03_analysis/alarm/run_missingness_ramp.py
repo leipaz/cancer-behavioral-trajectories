@@ -31,11 +31,10 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from vqvae import constants as c  # noqa: E402
 from vqvae.data import (  # noqa: E402
     DailySummaryDataset,
-    aggregate_duplicate_user_days,
     collate_full_sequences,
-    load_daily_summary,
     load_scaler_params,
 )
+from sport_missing import SPORT_RULE, load_daily_for_missingness  # noqa: E402
 from vqvae.inference import load_models  # noqa: E402
 
 DAILY = ROOT / "data/daily_summaries/DB1/daily_summary_checked.csv"
@@ -401,8 +400,7 @@ def decision_topic_mean(encoded, landmarks, lda, dictionary) -> np.ndarray:
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    daily = aggregate_duplicate_user_days(load_daily_summary(DAILY))
-    daily["date_time"] = pd.to_datetime(daily["date_time"]).dt.normalize()
+    daily = load_daily_for_missingness(DAILY)
     landmarks = pd.read_csv(LANDMARKS)
     landmarks["id"] = landmarks["id"].astype(int)
     day_col = "decision_study_day" if "decision_study_day" in landmarks.columns else "decision_day"
@@ -448,6 +446,7 @@ def main() -> None:
             "definition": "one contiguous block covering this fraction of each patient's calendar, at least 7 days",
         },
         "masked_columns": MEASURE_COLS,
+        "sport_rule": SPORT_RULE,
         "models_fixed": {
             "vqvae": "models/vq-vae/vqvae_a0.pt",
             "lda": str(LDA_PATH.relative_to(ROOT)),
@@ -457,12 +456,20 @@ def main() -> None:
         "valid_score": f"each of the three 30-day blocks still has at least {MIN_OBS} days with a measurement",
         "comparison": "each ramp versus the same pipeline run on the initial missingness",
     }
-    (OUT / "design.json").write_text(json.dumps(design, indent=2), encoding="utf-8")
+    summary_path = OUT / "scenario_summary.csv"
+    previous_design = OUT / "design.json"
+    if summary_path.exists() and previous_design.exists():
+        previous = json.loads(previous_design.read_text(encoding="utf-8"))
+        if previous.get("sport_rule") != SPORT_RULE:
+            raise SystemExit(
+                f"{OUT} was built before the sport-zero rule. "
+                "Its cached scenarios are not reusable. Point OUT at a new folder before rerunning."
+            )
+    previous_design.write_text(json.dumps(design, indent=2), encoding="utf-8")
     print(json.dumps({k: design[k] for k in (
         "n_patients", "n_landmarks", "day_missing_rate_mean", "variable_missing_rate_mean"
     )}, indent=2), flush=True)
 
-    summary_path = OUT / "scenario_summary.csv"
     done = set(pd.read_csv(summary_path)["scenario"]) if summary_path.exists() else set()
     ref_path = OUT / "reference_landmarks.csv"
     counts_path = OUT / "reference_code_counts.npy"

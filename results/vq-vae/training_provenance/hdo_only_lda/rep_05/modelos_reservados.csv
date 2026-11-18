@@ -1,0 +1,4 @@
+model,outer_fold,inner_fold,criterio
+outer_0_refit,0,refit,no estimable
+outer_2_inner_0,2,0,no estimable
+outer_3_inner_1,3,1,no estimable

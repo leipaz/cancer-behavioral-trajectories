@@ -20,8 +20,8 @@ from sklearn.metrics import roc_auc_score
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "scripts"))
 
+from sport_missing import SPORT_RULE, load_daily_for_missingness  # noqa: E402
 from vqvae import constants as c  # noqa: E402
-from vqvae.data import aggregate_duplicate_user_days, load_daily_summary  # noqa: E402
 
 DAILY = ROOT / "data/daily_summaries/DB1/daily_summary_checked.csv"
 OBJETIVO = ROOT / "results/lda/val_2/anidada_estratificada/objetivo.csv"
@@ -33,20 +33,32 @@ MEASURE_COLS = list(c.CONTINUOUS_REAL_VALUED_COLS) + list(c.CONTINUOUS_POSITIVE_
 assert len(MEASURE_COLS) == 9
 
 # Provisional provenance map until the SAP dictionary file is wired in.
-# Wearable = device sensors; smartphone = phone / app fields.
+# Sleep, steps and walking can come from the wearable or the phone.
+# They are assigned to the wearable, the primary source. The phone is the
+# fallback when the wearable has no record; that day-level split is not applied.
+# The alternative (no heart rate and no SpO2, with steps or sleep, implies the
+# phone) is not used. Location and app use are mobile. practiced_sport is
+# derived from activity and is not a source of its own.
 SOURCE_OF = {
-    "sleep_start": "wearable",
-    "sleep_duration": "wearable",
-    "activity_walking": "wearable",
-    "steps_steps_total": "wearable",
-    "location_distance": "smartphone",
-    "location_time_home": "smartphone",
-    "location_clusters_count": "smartphone",
-    "app_usage_total": "smartphone",
-    "practiced_sport": "smartphone",
+    "sleep_start": "wearable (primary)",
+    "sleep_duration": "wearable (primary)",
+    "activity_walking": "wearable (primary)",
+    "steps_steps_total": "wearable (primary)",
+    "location_distance": "mobile",
+    "location_time_home": "mobile",
+    "location_clusters_count": "mobile",
+    "app_usage_total": "mobile",
+    "practiced_sport": "derived from activity",
 }
-WEARABLE_COLS = [v for v, s in SOURCE_OF.items() if s == "wearable"]
-SMARTPHONE_COLS = [v for v, s in SOURCE_OF.items() if s == "smartphone"]
+SOURCE_MAP_NOTE = (
+    "sleep_start, sleep_duration, activity_walking and steps_steps_total can come from the wearable or the phone. "
+    "Assigned to the wearable as the primary source. Mobile is the fallback when the wearable has no record; "
+    "that split is not applied day by day. The alternative rule (no heart rate and no SpO2, with steps or sleep present, "
+    "implies the phone) is not used. Location and app use are mobile. practiced_sport is derived from activity, "
+    "not counted in either source mean."
+)
+WEARABLE_COLS = [v for v, s in SOURCE_OF.items() if s.startswith("wearable")]
+MOBILE_COLS = [v for v, s in SOURCE_OF.items() if s == "mobile"]
 
 THR = 1.0596384140662845
 BANDS = (
@@ -177,11 +189,12 @@ def build_patient_matrices(daily: pd.DataFrame) -> dict[int, dict]:
         indexed = indexed.drop_duplicates("date_time", keep="first").set_index("date_time")
         vals = indexed.reindex(calendar)[MEASURE_COLS]
         arr = vals.to_numpy(dtype=float)
-        observed = ~np.isnan(arr)  # True = really present (zeros count as present)
+        observed = ~np.isnan(arr)  # True = really present (real zeros count as present)
         service = str(g["service"].iloc[0]) if "service" in g.columns else ""
         out[int(uid)] = {
             "calendar": calendar.to_numpy(dtype="datetime64[ns]"),
             "observed": observed,  # (T, 9)
+            "has_row": np.asarray(calendar.isin(indexed.index), dtype=bool),
             "service": service,
         }
     return out
@@ -198,22 +211,24 @@ def window_slice(calendar: np.ndarray, decision: np.datetime64, n_days: int):
     return expected, idx, start, decision
 
 
-def coverage_for_window(obs: np.ndarray, calendar: np.ndarray, decision, n_days: int) -> dict:
+def coverage_for_window(obs: np.ndarray, calendar: np.ndarray, has_row: np.ndarray, decision, n_days: int) -> dict:
     expected, idx_on_cal, start, end = window_slice(calendar, decision, n_days)
     n_expected_cells = n_days * len(MEASURE_COLS)
     # Map expected days onto patient calendar (missing days = all-False)
     day_obs = np.zeros((n_days, len(MEASURE_COLS)), dtype=bool)
+    day_row = np.zeros(n_days, dtype=bool)
     cal_index = {np.datetime64(d, "ns"): i for i, d in enumerate(calendar)}
     for t, day in enumerate(expected):
         j = cal_index.get(np.datetime64(day, "ns"))
         if j is not None:
             day_obs[t] = obs[j]
+            day_row[t] = bool(has_row[j])
     n_obs_cells = int(day_obs.sum())
     cov = n_obs_cells / n_expected_cells if n_expected_cells else np.nan
     day_present = day_obs.any(axis=1)
     per_var = day_obs.mean(axis=0)
     wear = day_obs[:, [MEASURE_COLS.index(v) for v in WEARABLE_COLS]]
-    phone = day_obs[:, [MEASURE_COLS.index(v) for v in SMARTPHONE_COLS]]
+    phone = day_obs[:, [MEASURE_COLS.index(v) for v in MOBILE_COLS]]
     return {
         "n_days_window": n_days,
         "n_expected_cells": n_expected_cells,
@@ -221,11 +236,12 @@ def coverage_for_window(obs: np.ndarray, calendar: np.ndarray, decision, n_days:
         "coverage": float(cov),
         "band": band_of(cov),
         "pct_days_with_data": float(day_present.mean()) if n_days else np.nan,
+        "pct_days_with_row": float(day_row.mean()) if n_days else np.nan,
         "longest_empty_run_days": longest_empty_run(day_present),
         "n_gaps_ge_48h": n_gaps_over_48h(day_present),
         "days_since_last_valid": days_since_last_valid(day_present),
         "coverage_wearable": float(wear.mean()) if wear.size else np.nan,
-        "coverage_smartphone": float(phone.mean()) if phone.size else np.nan,
+        "coverage_mobile": float(phone.mean()) if phone.size else np.nan,
         **{f"cov_{col}": float(per_var[i]) for i, col in enumerate(MEASURE_COLS)},
         "window_start": str(pd.Timestamp(start).date()),
         "window_end": str(pd.Timestamp(end).date()),
@@ -239,6 +255,38 @@ def fmt_ci(row: dict, key: str) -> str:
     if np.isfinite(lo) and np.isfinite(hi):
         return f"{v:.3f} [{lo:.3f}, {hi:.3f}]"
     return f"{v:.3f}"
+
+
+def sport_coverage_on_row(decisions: pd.DataFrame) -> pd.Series:
+    """Share of days-with-row on which practiced_sport is a real 0 or 1.
+
+    Kept for checks. The coverage run applies the same rule before the bands.
+    """
+    from sport_missing import erroneous_sport_user_days
+
+    keys = erroneous_sport_user_days(DAILY)
+    bad = set(zip(keys["user"].astype(int), pd.to_datetime(keys["date_time"])))
+    daily = pd.read_csv(DAILY, usecols=["user", "date_time", "practiced_sport"], low_memory=False)
+    daily["user"] = daily["user"].astype(int)
+    daily["date_time"] = pd.to_datetime(daily["date_time"]).dt.normalize()
+    daily["practiced_sport"] = pd.to_numeric(daily["practiced_sport"], errors="coerce")
+    looked = daily.drop_duplicates(["user", "date_time"], keep="first").set_index(["user", "date_time"])
+
+    rates = []
+    for rec in decisions.itertuples(index=False):
+        end = pd.Timestamp(rec.decision_date).normalize()
+        days = pd.date_range(end - pd.Timedelta(days=89), end, freq="D")
+        n_row = n_obs = 0
+        uid = int(rec.id)
+        for day in days:
+            key = (uid, pd.Timestamp(day))
+            if key not in looked.index:
+                continue
+            n_row += 1
+            if key not in bad:
+                n_obs += 1
+        rates.append(n_obs / n_row if n_row else np.nan)
+    return pd.Series(rates, index=decisions.index, dtype=float)
 
 
 def main() -> None:
@@ -263,8 +311,7 @@ def main() -> None:
     subjects["id"] = subjects["S_RECORD_id"].astype(int)
     tumor = subjects.set_index("id")["Cohort"].to_dict()
 
-    daily = aggregate_duplicate_user_days(load_daily_summary(DAILY))
-    daily["date_time"] = pd.to_datetime(daily["date_time"]).dt.normalize()
+    daily = load_daily_for_missingness(DAILY)
     mats = build_patient_matrices(daily)
 
     rows = []
@@ -286,7 +333,7 @@ def main() -> None:
             "tumor": tumor.get(int(rec.id), "Unknown"),
         }
         for w in WINDOWS:
-            cov = coverage_for_window(mat["observed"], mat["calendar"], rec.decision_date, w)
+            cov = coverage_for_window(mat["observed"], mat["calendar"], mat["has_row"], rec.decision_date, w)
             row = dict(base)
             row["window_days"] = w
             row.update(cov)
@@ -295,11 +342,15 @@ def main() -> None:
     cov_df = pd.DataFrame(rows)
     cov_df.to_csv(OUT / "coverage_by_decision.csv", index=False)
 
-    # Descriptive availability by variable / center / tumor (90 d window)
+    # Descriptive availability by variable / center / tumor (90 d window).
+    # The sport-zero rule is already in the observed matrix, so every variable
+    # uses the same days-with-a-row denominator.
     w90 = cov_df.loc[cov_df.window_days == 90].copy()
+    days_with_row = w90["pct_days_with_row"].where(w90["pct_days_with_row"] > 0)
     var_rows = []
     for col in MEASURE_COLS:
         s = w90[f"cov_{col}"]
+        on_row = s / days_with_row
         var_rows.append(
             {
                 "variable": col,
@@ -308,6 +359,11 @@ def main() -> None:
                 "median_coverage": float(s.median()),
                 "p25": float(s.quantile(0.25)),
                 "p75": float(s.quantile(0.75)),
+                "mean_coverage_on_row": float(on_row.mean()),
+                "median_coverage_on_row": float(on_row.median()),
+                "p25_on_row": float(on_row.quantile(0.25)),
+                "p75_on_row": float(on_row.quantile(0.75)),
+                "mean_missing_on_row": float(1.0 - on_row.mean()),
             }
         )
     pd.DataFrame(var_rows).to_csv(OUT / "availability_by_variable.csv", index=False)
@@ -323,7 +379,7 @@ def main() -> None:
                     "mean_coverage_90": float(g.coverage.mean()),
                     "mean_pct_days_with_data": float(g.pct_days_with_data.mean()),
                     "mean_coverage_wearable": float(g.coverage_wearable.mean()),
-                    "mean_coverage_smartphone": float(g.coverage_smartphone.mean()),
+                    "mean_coverage_mobile": float(g.coverage_mobile.mean()),
                 }
             )
         return pd.DataFrame(rows_g)
@@ -481,12 +537,18 @@ def main() -> None:
         "threshold": THR,
         "measure_cols": MEASURE_COLS,
         "source_map": SOURCE_OF,
-        "source_map_note": "Provisional wearable/smartphone map pending explicit SAP dictionary file.",
+        "source_map_note": SOURCE_MAP_NOTE,
+        "source_means": (
+            "coverage_wearable averages the four primary-wearable variables. "
+            "coverage_mobile averages location and app use. practiced_sport is excluded from both."
+        ),
         "bands": ["<50%", "50-80%", ">=80%"],
         "windows_days": list(WINDOWS),
         "expected_cells": {"90": 810, "30": 270},
         "calendar_rule": "Dense expected calendar of N days ending at decision_date; holes kept; not trimmed to last received record.",
-        "zeros": "Observed zeros count as data; imputed values are not present in the raw daily table used here.",
+        "sport_rule": SPORT_RULE,
+        "zeros": "Observed zeros count as data after the range clip; values below the clip floor are blank. practiced_sport has no clip of its own. It is counted only when activity_walking survived [120, 15000] s. A stored sport value on a day whose walking was removed by that filter is missing. A stored 0 with raw walking and running both empty is already missing. This rule is applied before bands, the variable table, centre and tumour means, continuous coverage, and the availability indicators.",
+        "variable_table_denominator": "Same 90-day windows. Variable coverage_on_row divides by days that have a daily row (pct_days_with_row), not by all 90 calendar days. cov_practiced_sport counts only days whose walking survived the activity filter.",
         "uncertainty": f"Patient-clustered bootstrap, n={N_BOOT}, seed={BOOT_SEED}",
         "comparator_block": "Not run here; coordinate with comparator pack (availability vs DCABP vs DCABP+availability).",
     }
@@ -527,11 +589,11 @@ def main() -> None:
         "",
         f"Variables ({len(MEASURE_COLS)}): " + ", ".join(MEASURE_COLS) + ".",
         "",
-        "Fuentes (mapa provisional): wearable = "
+        "Fuentes: wearable (primaria; el móvil es el respaldo, sin separar el día) = "
         + ", ".join(WEARABLE_COLS)
-        + "; smartphone = "
-        + ", ".join(SMARTPHONE_COLS)
-        + ".",
+        + "; móvil = "
+        + ", ".join(MOBILE_COLS)
+        + "; practiced_sport deriva de activity y no entra en ninguna de las dos medias.",
         "",
         "## Conteos por banda",
         "",

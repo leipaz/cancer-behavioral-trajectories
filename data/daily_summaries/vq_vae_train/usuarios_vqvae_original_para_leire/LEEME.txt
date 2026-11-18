@@ -1,0 +1,53 @@
+Usuarios del VQ-VAE original (no causal): entrenamiento y validación
+Extracción: 2026-11-18
+
+ARCHIVOS PARA LEIRE
+usuarios_entrenamiento_postprocesado.csv: 1085 user distintos; 1099 filas.
+usuarios_validacion_postprocesado.csv: 490 user distintos; 498 filas.
+
+COLUMNAS
+user: identificador original con el que el código separó usuarios entre particiones.
+user_uid: segundo identificador original de la extracción eB2 de marzo de 2024.
+service: código numérico original del servicio/cohorte. No se ha recodificado.
+No se ha creado ni renombrado ninguna columna como user_id.
+
+UNIDAD DE CADA FILA
+Una combinación distinta (user, user_uid, service) presente en las observaciones
+originales que sobrevivieron al procesamiento. Un user puede tener varias filas
+si está asociado a distintos user_uid o servicios. Para recuperar los recuentos
+1.085 y 490, contar valores distintos de user, no filas ni valores de user_uid.
+No se han seleccionado IDs ni cohortes por mayoría ni se han eliminado relaciones.
+Se excluyen las relaciones que solo aparecen en secuencias descartadas, aunque
+otras secuencias del mismo user sí hayan sobrevivido.
+
+MÉTODO
+Se ha ejecutado DailyPatientSummaryDataset del proyecto histórico
+vqvae_profiling_cpd_test_w256_d80_e150, usando train_0.csv y validation_0.csv.
+Se preserva el código original, con selected_test=True, split_threshold=1,
+min_length=257 para entrenamiento y min_length=256 para validación.
+Los filtros se aplican a las secuencias construidas por esa implementación.
+Las columnas de auditoría permiten recuperar el user original después de que el
+dataset lo sustituya internamente por un ID de secuencia.
+Los IDs exportados son los originales, no los IDs internos de las secuencias.
+No se ha ejecutado entrenamiento, inferencia, recorte aleatorio ni __getitem__.
+No se ha introducido missingness sintética.
+
+COMPROBACIONES
+Entrenamiento: 1.085 user, 1.095 secuencias; validación: 490 user, 497 secuencias.
+Todos los centros/escalas de entrenamiento coinciden exactamente con el
+normalizador almacenado en el paquete mednat preparado para los revisores.
+El cruce con la base original conserva los registros y tiene cobertura completa.
+Un segundo cruce independiente por intervalos de fechas produce las mismas relaciones.
+No hay ningún user compartido entre entrenamiento y validación.
+Hay 5 valores de user_uid compartidos entre ambas particiones,
+asociados a distintos user. No se ha reinterpretado su identidad ni cambiado el split.
+La correspondencia user/user_uid no es uno a uno; no usar user_uid como sustituto
+directo de user para describir las particiones históricas.
+No se han trasladado IDs ni nombres de cohortes desde la base de 2026.
+
+PROCEDENCIA
+Base original: /mnt/shared/twfmvqse/VQ-VAE-old/vqvae_profiling_cpd_test_w256_d80_e150/2024_03_eB2_completa-20240320T175104Z-001/2024_03_eB2_completa/daily_summary_eb2.csv
+Código original: /mnt/shared/twfmvqse/VQ-VAE-old/vqvae_profiling_cpd_test_w256_d80_e150/data_processing.py
+Particiones originales: /mnt/shared/twfmvqse/VQ-VAE-old/vqvae_profiling_cpd_test_w256_d80_e150/data_partitions
+El script exportar_usuarios.py y la carpeta auditoria/ conservan el procedimiento,
+los hashes de origen, la trazabilidad de secuencias y las comprobaciones.

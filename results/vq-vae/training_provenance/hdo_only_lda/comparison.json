@@ -1,0 +1,62 @@
+{
+  "development_1013_hdo_mean": {
+    "AUROC": 0.6181147522363716,
+    "sensitivity": 0.4570148051790081,
+    "specificity": 0.6916510721840167,
+    "lead": 91.75
+  },
+  "development_1013_hdo_sd": {
+    "AUROC": 0.025514546224009154,
+    "sensitivity": 0.08430242397637829,
+    "specificity": 0.07836329905149368,
+    "lead": 6.516005934108205
+  },
+  "development_1013_external_vocabulary_mean": {
+    "AUROC": 0.6173353020792404,
+    "sensitivity": 0.6384605071200893,
+    "specificity": 0.5243065384355968,
+    "lead": 95.25
+  },
+  "difference_hdo_minus_external": {
+    "AUROC": 0.0007794501571312118,
+    "sensitivity": -0.18144570194108117,
+    "specificity": 0.16734453374841984,
+    "lead": -3.5
+  },
+  "valset_mean": {
+    "AUROC": 0.5955299145299146,
+    "sensitivity": 0.6051111111111112,
+    "specificity": 0.6468803418803419,
+    "lead": 89.75
+  },
+  "valset_sd": {
+    "AUROC": 0.03660875528307425,
+    "sensitivity": 0.09219946171611168,
+    "specificity": 0.04807520309258449,
+    "lead": 7.115124735378854
+  },
+  "development_folds_scored_per_repeat": [
+    5,
+    4,
+    5,
+    5,
+    3,
+    4,
+    4,
+    5,
+    3,
+    4
+  ],
+  "valset_folds_scored_per_repeat": [
+    5,
+    4,
+    5,
+    5,
+    3,
+    4,
+    4,
+    5,
+    3,
+    4
+  ]
+}

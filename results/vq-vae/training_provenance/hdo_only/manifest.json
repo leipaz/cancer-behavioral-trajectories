@@ -1,0 +1,54 @@
+{
+  "status": "fitted",
+  "algorithm": "k-means",
+  "k": 6,
+  "init": "k-means++",
+  "n_init": 1,
+  "max_iter": 300,
+  "tol": 0.0001,
+  "random_state": "lda_seed of the SAP repeat. One initialisation, not a search over starts.",
+  "variables": [
+    "sleep_start",
+    "location_distance",
+    "location_time_home",
+    "sleep_duration",
+    "activity_walking",
+    "app_usage_total",
+    "location_clusters_count",
+    "steps_steps_total"
+  ],
+  "clip": "scripts/vqvae/constants.py CLIP_INFO",
+  "transform": "log1p on the seven positive variables. Mean and standard deviation of the observed training-fold values. A missing value is 0 after that scaling, the training mean.",
+  "days": "The calendar window of user_embeddings_checked_DB1_a0_summary.csv. Its length matches the embedding sequence used by the external-vocabulary alarm.",
+  "partition_source": "results/lda/val_2/anidada_estratificada_sap10",
+  "partition_check": "outer and inner folds recomputed from seeds.csv and matched to partitions.csv",
+  "sap_base_seed": 20261031,
+  "outcome_rule": "3/3 Kaplan-Meier at 365 days on training patients with Tiempo_obs_DB1 >= 28",
+  "youden": "one cut per outer fold, on inner held-out decisions among the 1013 landmarks, lowest cut if tied",
+  "refit": "Each outer test uses a k-means fitted on all 140 training patients of that fold. The 35 external patients are assigned only.",
+  "valset": {
+    "n_valset": 48,
+    "overlap_with_fitting_cohort": []
+  },
+  "accumulation_blocks": 3,
+  "horizon_days": 120,
+  "comparison_landmarks": "1013 (id, block) pairs frozen in the external-vocabulary decisiones.csv. The current decision_points.csv differs by six pairs, so it is not used here. Each repeat has 155 positive and 858 negative external landmarks.",
+  "coverage": {
+    "patients": 175,
+    "days": 52236,
+    "days_with_no_daily_row": 264,
+    "days_all_eight_missing_after_clip": 4188,
+    "fraction_all_eight_missing_after_clip": 0.08017459223524007,
+    "observed_fraction_by_variable": {
+      "sleep_start": 0.7843441304847232,
+      "location_distance": 0.472605099931082,
+      "location_time_home": 0.3891569032850907,
+      "sleep_duration": 0.7877325982081324,
+      "activity_walking": 0.5712535416188069,
+      "app_usage_total": 0.6572861627996018,
+      "location_clusters_count": 0.44339153074508003,
+      "steps_steps_total": 0.8001378359751895
+    }
+  },
+  "tie_on_dominant_cluster": "lowest cluster index"
+}

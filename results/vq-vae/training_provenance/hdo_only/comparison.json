@@ -1,0 +1,32 @@
+{
+  "hdo_only_mean_of_repeat_means": {
+    "AUROC": 0.6030758431547981,
+    "sensitivity": 0.5062251961945491,
+    "specificity": 0.6558598454349817,
+    "lead": 94.45
+  },
+  "hdo_only_sd_of_repeat_means": {
+    "AUROC": 0.06052122585990918,
+    "sensitivity": 0.13472311481882332,
+    "specificity": 0.14987434586737233,
+    "lead": 3.2356520895245278
+  },
+  "external_vocabulary_mean_of_repeat_means": {
+    "AUROC": 0.6173353020792404,
+    "sensitivity": 0.6384605071200893,
+    "specificity": 0.5243065384355968,
+    "lead": 95.25
+  },
+  "external_vocabulary_sd_of_repeat_means": {
+    "AUROC": 0.0479425762543835,
+    "sensitivity": 0.10723444982150553,
+    "specificity": 0.08406243657326207,
+    "lead": 2.1762608095334324
+  },
+  "difference_hdo_minus_external": {
+    "AUROC": -0.014259458924442248,
+    "sensitivity": -0.1322353109255402,
+    "specificity": 0.13155330699938483,
+    "lead": -0.7999999999999972
+  }
+}

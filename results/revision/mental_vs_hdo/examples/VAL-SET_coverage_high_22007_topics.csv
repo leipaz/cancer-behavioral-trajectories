@@ -1,0 +1,2 @@
+role,cohort,id,window,window_index,n_days,n_sensor_days_in_window,sensor_fraction,n_oov_codes,topic_0,topic_1,topic_2,topic_3,topic_4,topic_5,topic_entropy_bits
+coverage_high,VAL-SET,22007,T0,0,30,30,1.0,0,0.027051368728280067,0.005404978524893522,0.00540048535913229,0.26688405871391296,0.06741343438625336,0.6278456449508667,1.4147837409459567

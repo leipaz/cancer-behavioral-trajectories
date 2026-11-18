@@ -1,0 +1,141 @@
+{
+  "baseline": "k-means on every standardized day, mean imputation, no LDA",
+  "fit": "all 175 sequences, one model",
+  "seed": 20261031,
+  "k": 6,
+  "n_init": 1,
+  "standardize": "mean and standard deviation of every observed day, then missing filled with the mean",
+  "prediction": "fitted k-means applied to the days of the 90-day window; score is the sum of the three unfavorable shares",
+  "labels": "pfs_365",
+  "unfavorable_clusters": [
+    0,
+    2,
+    5
+  ],
+  "youden_on_the_same_points": true,
+  "n_fit_days": 52236,
+  "n_imputed_cells": 161623,
+  "inertia": 159566.7843631025,
+  "center": [
+    -4580.45559053965,
+    7.948316402738902,
+    6.875982065820087,
+    10.249913037907103,
+    7.7317595352540325,
+    9.06452417127873,
+    1.140996855347223,
+    8.66804929522981
+  ],
+  "scale": [
+    5862.959664098382,
+    2.170820647182074,
+    0.4331981287499761,
+    0.27957113957424745,
+    1.0037536193557022,
+    0.7880133736652171,
+    0.4408401334131492,
+    0.950128866958383
+  ],
+  "baseline_metrics": {
+    "n_decisions": 1013,
+    "n_positive": 155,
+    "n_negative": 858,
+    "n_patients": 114,
+    "patients_with_event": 45,
+    "patients_detected": 14,
+    "threshold": 1.6999999999999997,
+    "TP": 40,
+    "FN": 115,
+    "FP": 78,
+    "TN": 780,
+    "sensitivity": 0.25806451612903225,
+    "specificity": 0.9090909090909091,
+    "AUROC": 0.5779419505225957,
+    "median_lead_days": 91.0,
+    "n_leads": 14
+  },
+  "normal_pipeline_same_points": {
+    "n_decisions": 1013,
+    "n_positive": 155,
+    "n_negative": 858,
+    "n_patients": 114,
+    "patients_with_event": 45,
+    "patients_detected": 36,
+    "threshold": 1.6,
+    "TP": 105,
+    "FN": 50,
+    "FP": 329,
+    "TN": 529,
+    "sensitivity": 0.6774193548387096,
+    "specificity": 0.6165501165501166,
+    "AUROC": 0.7023310023310023,
+    "median_lead_days": 92.5,
+    "n_leads": 36
+  },
+  "normal_pipeline_threshold": 1.6,
+  "normal_pipeline_source": "results/alarm/runs/Evento_DB1_clock/Bt_vs_mensual/decision_points_collapsed_teb2.csv",
+  "same_pairs": 1013,
+  "bootstrap": {
+    "n_boot": 2000,
+    "seed": 42,
+    "ci_method": "patient-clustered bootstrap percentile 95%",
+    "same_function_as": "scripts/03_analysis/alarm/plot_analysis_figures.py _clustered_auc_ci",
+    "cut_held_fixed": true,
+    "n_patients": 114,
+    "n_decision_points": 1013,
+    "AUROC_baseline": {
+      "point": 0.5779419505225957,
+      "ci_low": 0.48308822247533645,
+      "ci_high": 0.6682768846449932,
+      "n_boot_used": 2000
+    },
+    "AUROC_normal": {
+      "point": 0.7023310023310023,
+      "ci_low": 0.6237503313578623,
+      "ci_high": 0.7746079624283506,
+      "n_boot_used": 2000
+    },
+    "AUROC_baseline_minus_normal": {
+      "point": -0.12438905180840665,
+      "ci_low": -0.21626577372424266,
+      "ci_high": -0.03497742363141509,
+      "n_boot_used": 2000
+    },
+    "sensitivity_baseline": {
+      "point": 0.25806451612903225,
+      "ci_low": 0.14503063479308959,
+      "ci_high": 0.39624722530521633,
+      "n_boot_used": 2000
+    },
+    "sensitivity_normal": {
+      "point": 0.6774193548387096,
+      "ci_low": 0.5519205370900286,
+      "ci_high": 0.7957782408738143,
+      "n_boot_used": 2000
+    },
+    "specificity_baseline": {
+      "point": 0.9090909090909091,
+      "ci_low": 0.85915318860008,
+      "ci_high": 0.9511634455860523,
+      "n_boot_used": 2000
+    },
+    "specificity_normal": {
+      "point": 0.6165501165501166,
+      "ci_low": 0.5294853629231352,
+      "ci_high": 0.6933181268273011,
+      "n_boot_used": 2000
+    },
+    "median_lead_baseline": {
+      "point": 91.0,
+      "ci_low": 58.0,
+      "ci_high": 108.0,
+      "n_boot_used": 2000
+    },
+    "median_lead_normal": {
+      "point": 92.5,
+      "ci_low": 78.0,
+      "ci_high": 100.0,
+      "n_boot_used": 2000
+    }
+  }
+}

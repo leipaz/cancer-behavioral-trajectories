@@ -1,0 +1,49 @@
+{
+  "sap": "17.4 oncology-only representation inside each development training fold",
+  "steps": [
+    "k-means K=6 on the eight HDO variables of the training patients",
+    "LDA K=6 on those cluster sequences, same passes and iterations as the nested SAP LDA",
+    "3/3 labels and Youden cut inside the training fold",
+    "development external folds scored on the frozen 1013 landmarks",
+    "VAL-SET scored with the refit of each outer fold and that fold's already chosen cut"
+  ],
+  "lda_passes": 500,
+  "lda_iterations": 50,
+  "seed": "the SAP lda_seed is the random state of both the single k-means start and the LDA",
+  "sap_base_seed": 20261031,
+  "valset_used_for_fit_labels_or_threshold": false,
+  "valset_overlap_with_development": {
+    "n_valset": 48,
+    "overlap_with_fitting_cohort": []
+  },
+  "valset_patients_scored": 42,
+  "valset_events": 7,
+  "valset_excluded": [
+    {
+      "id": 21003,
+      "reason": "sin ning\u00fan d\u00eda observado"
+    },
+    {
+      "id": 62007,
+      "reason": "sin ning\u00fan d\u00eda observado"
+    },
+    {
+      "id": 63008,
+      "reason": "sin ning\u00fan d\u00eda observado"
+    },
+    {
+      "id": 73013,
+      "reason": "sin ning\u00fan d\u00eda observado"
+    },
+    {
+      "id": 73015,
+      "reason": "sin ning\u00fan d\u00eda observado"
+    },
+    {
+      "id": 91024,
+      "reason": "sin ning\u00fan d\u00eda observado"
+    }
+  ],
+  "valset_event_rule": "Estado == PD Segundo corte. Time is Tiempo_obs_digital, or Fin_datos minus Inicio_datos when that time is blank.",
+  "horizon_days": 120
+}

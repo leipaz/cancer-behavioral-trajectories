@@ -1,0 +1,9 @@
+set,cohort,participants,raw_rows,observed_days,first_day,last_day,published_n
+unfiltered,Eating disorders,2480,494699,310699,2020-04-03,2024-03-13,2464
+unfiltered,Cancer patients,83,14513,13811,2021-07-27,2024-03-13,93
+unfiltered,Prevention of cognitive impairment,181,5408,4804,2023-09-19,2024-03-13,182
+unfiltered,Cognitive impairment follow-up,15,2548,1302,2023-03-16,2024-03-13,15
+unfiltered,Suicide prevention,2547,553974,374849,2016-01-01,2024-03-13,2555
+unfiltered,HIV,24,8418,5870,2022-08-30,2024-03-13,24
+unfiltered,Depression / anxiety disorders,149,27425,19657,2022-10-27,2024-03-13,149
+unfiltered,Bipolar disorder,52,15248,7699,2019-10-04,2024-01-05,51

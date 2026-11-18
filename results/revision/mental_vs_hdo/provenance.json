@@ -1,0 +1,59 @@
+{
+  "question": "How the frozen external model represents D178 and VAL-SET, against mental patients not used in the VQ-VAE fit. SAP 17.4 and the reviewer note are both applied.",
+  "does_not_show": [
+    "Absence of bias.",
+    "Clinical relevance of a reconstruction or of a topic-distribution difference.",
+    "That the cohorts should occupy different codes or topics for the representation to be usable."
+  ],
+  "vqvae": "models/vq-vae/vqvae_a0.pt",
+  "scaler": "models/vq-vae/preprocessing_scaler_vqvae.npz",
+  "preprocessing": "Same clip bounds, log1p and frozen scaler as VQ-VAE inference. Weekend is filled from the calendar and is excluded from the error.",
+  "observed": "A cell counts only when the value is present after the frozen clip. The patient MAE averages the eight continuous features and leaves practiced_sport out, because that binary flag is not on the same scale. Quantization distance is the L2 from the encoder state to the chosen code, on days with at least one of those nine values.",
+  "coverage_definition": "The daily extracts do not store empty calendar days, so sensor-days/span is close to 1. The coverage that can be compared is the length of the record and the fraction of that record on which each variable is present (feature_presence.csv). This is not the study-calendar coverage used in the alarm audit.",
+  "mental_reference": {
+    "split_file": "data/daily_summaries/daily_mental/user_splits.csv",
+    "rule": "user_splits.vqvae == 0, then drop cnio_caspar and PMP_* (oncology services in the same extract)",
+    "n_flagged_vqvae_0": 1439,
+    "n_flagged_vqvae_1_not_used": 5792,
+    "n_excluded_oncology_service": 7,
+    "fit_set_used_as_reference": false
+  },
+  "mental_csv": "/lustre/uc3m/gts_c3_cluster_1-12/lpaz/Transformer_TimeEmotion/data/daily_sum/daily_summary_eb2prod_may26.csv",
+  "n_mental_held_out_with_daily": 1432,
+  "hdo_csv": "data/daily_summaries/DB1/daily_summary_checked.csv",
+  "n_hdo": 175,
+  "hdo_tumor": "Subjects_data.Cohort",
+  "hdo_center": "Hospital on the stratified VAL-2 partition, short name; patients missing from that list take the modal hospital of the same id digit.",
+  "hdo_age": "Subjects_data.Age. Age is not in the mental daily extract or in user_splits, so the age contrast is HDO-only.",
+  "lda": "models/lda/LDA_model_vdec25.gensim and dictionary_LDA_vdec25.dict, not refit.",
+  "windows": "Complete non-overlapping 30-day blocks from the first densified day, labeled T0\u2013T5 in that order. Drop the incomplete tail. These positions are not the oncological F/U.",
+  "lda_codes_absent_from_dictionary": [
+    "239"
+  ],
+  "vocabulary": "Shannon entropy in bits on sensor-observed days only. Effective number is 2^entropy. Gap-day codes are reported separately so a missingness code is visible.",
+  "examples": {
+    "min_sensor_days": 30,
+    "order": [
+      "error_high: highest patient MAE",
+      "error_low: lowest patient MAE",
+      "diversity_low: lowest effective number among patients with at least 60 sensor days",
+      "diversity_high: highest effective number",
+      "coverage_low: coverage < 0.50, patient nearest the median MAE of that subset",
+      "coverage_high: coverage >= 0.80, patient nearest the median MAE of that subset"
+    ],
+    "no_reuse_within_cohort": true,
+    "day_panel": "VQ-VAE code per densified day",
+    "window_panel": "LDA probabilities on T0\u2013T5"
+  },
+  "populations": {
+    "mental_held_out": "user_splits.vqvae == 0, oncology services removed. This is the reviewer external reference.",
+    "HDO": "D178 digital population: Subjects_data ids present in DB1 daily_summary_checked (175 of 178).",
+    "VAL-SET": "The 48 candidates in the DB3 clinical date table, cutoff 2026-09-03, with no id overlap with the 178. Error and topic metrics use the 42 who have a daily row."
+  },
+  "sap_17_4": {
+    "archive": "pretraining_corpus.json",
+    "shifts": "feature levels, feature presence, reconstruction, codebook use, and topic posterior entropy, on the same clipped and scaled variables.",
+    "codebook_vs_topics": "256 VQ-VAE codes are the vocabulary tables. Six LDA topics are the window tables.",
+    "ablations_not_run": "A simple feature model and an oncology-only representation fitted inside each training fold are separate models in SAP 17.4. This run does not fit them."
+  }
+}

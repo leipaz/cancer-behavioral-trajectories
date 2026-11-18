@@ -1,7 +1,9 @@
 {
-  "status": "specified, not fitted",
+  "status": "fitted",
+  "results": "results/vq-vae/training_provenance/hdo_only_lda/comparison.json",
   "sap": "17.4 oncology-only representation, fitted inside each training fold of section 12",
-  "algorithm": "k-means",
+  "steps": ["k-means K=6 on the eight HDO variables", "LDA K=6 on the cluster sequences"],
+  "algorithm": "k-means then LDA",
   "k": 6,
   "variables": [
     "sleep_start",
