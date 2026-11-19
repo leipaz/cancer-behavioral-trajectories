@@ -6,12 +6,13 @@
     "landmarks_csv": "results/alarm/base_analysis/decision_points_collapsed.csv",
     "n_evaluable_landmarks": 1019,
     "n_positive_negative": "159 / 860",
-    "cadence": "monthly collapsed (decision_day = month \u00d7 30)",
+    "cadence": "monthly collapsed (non-overlapping 30-day blocks + short last month)",
     "W_blocks": 3,
     "H_days": 120,
     "threshold_sum_S_m": 1.0596384140662845,
     "threshold_mean_B_m": 0.3532128046887615,
     "threshold_not_retuned_per_replica": true,
+    "scoring": "collapsed monthly pUF \u2192 S_m = sum of last 3 months (not daily sliding)",
     "note": "Youden from prior 1013 set, applied to 1019 collapsed landmarks as in the report table"
   },
   "lda": {
@@ -1938,6 +1939,6 @@
       ]
     ]
   },
-  "models_dir": "results/lda/stability/replica_models",
+  "models_dir": "results/lda/_archive_pre_clean_1019/replica_models",
   "reuse_models": true
 }

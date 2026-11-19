@@ -9,9 +9,15 @@ fixed cut ``S_m = AUC_W >= 1.0596384140662845`` (Youden on the prior 1013 set;
 θ/3 ≈ 0.3532; not re-tuned per replica). Same denominators as §2 of that report
 (159 positive / 860 negative; sens/spec ≈ 0.884 / 0.451 at this θ).
 
+Replica scoring matches the **collapsed** construction (not daily sliding):
+non-overlapping 30-day blocks (+ short last month if present) → monthly pUF,
+then ``S_m`` = sum of the last W=3 monthly pUFs at each landmark month.
+That keeps all 1019 points scoreable (including months whose nominal
+``decision_day = month×30`` falls past the profile end).
+
 For each aligned LDA replicate (Hungarian cosine; F=T0–2, U=T3–5; no outcomes):
   1) monthly pUF and 3-block load vs reference (corr, bias, MAE)
-  2) alarm decision flips on the 1019 base (ref−→rep+, ref+→rep−); missing scores kept
+  2) alarm decision flips on the 1019 base (ref−→rep+, ref+→rep−)
   3) AUROC / sens / spec / PPV / NPV on the same evaluable points
 
 Leave-20%-out: infer on held-out patients too; report in-fit vs held-out separately.
@@ -101,28 +107,47 @@ def train_lda(corpus_bow, dictionary, num_topics: int, passes: int, seed: int) -
     )
 
 
-def puf_series_for_patient(emb_ids: list, lda: LdaModel, dictionary, perm: np.ndarray) -> dict[int, float]:
-    """study_day -> pUF after aligning replica topics to reference indices."""
+def _topic_puf(emb_slice: list, lda: LdaModel, dictionary, perm: np.ndarray) -> float:
+    bow = dictionary.doc2bow([str(t) for t in emb_slice])
+    probs = np.zeros(lda.num_topics)
+    for tid, p in lda.get_document_topics(bow, minimum_probability=0.0):
+        probs[int(tid)] = float(p)
+    aligned = probs[perm]
+    return float(aligned[list(UNFAV)].sum())
+
+
+def monthly_puf_series_for_patient(
+    emb_ids: list, lda: LdaModel, dictionary, perm: np.ndarray
+) -> dict[int, float]:
+    """Collapsed monthly pUF: non-overlapping 30-day blocks (+ short last month).
+
+    Month ``m`` (1-based) uses densified days ``[(m-1)*30, m*30)``. A trailing
+    incomplete block (``len < 30``) is kept if it has ≥1 day — same rule as the
+    paper / DB1 monthly collapsed series. Returns ``{month: pUF}``.
+    """
     n = len(emb_ids)
-    out = {}
-    if n < 15:
+    out: dict[int, float] = {}
+    if n < 1:
         return out
-    if n < WINDOW:
-        bow = dictionary.doc2bow([str(t) for t in emb_ids])
-        probs = np.zeros(lda.num_topics)
-        for tid, p in lda.get_document_topics(bow, minimum_probability=0.0):
-            probs[int(tid)] = float(p)
-        aligned = probs[perm]
-        out[n] = float(aligned[list(UNFAV)].sum())
-        return out
-    for end in range(WINDOW, n + 1):
-        bow = dictionary.doc2bow([str(t) for t in emb_ids[end - WINDOW : end]])
-        probs = np.zeros(lda.num_topics)
-        for tid, p in lda.get_document_topics(bow, minimum_probability=0.0):
-            probs[int(tid)] = float(p)
-        aligned = probs[perm]
-        out[end] = float(aligned[list(UNFAV)].sum())
+    for start in range(0, n, WINDOW):
+        end = min(start + WINDOW, n)
+        length = end - start
+        min_obs = 15 if length == WINDOW else 1
+        if length < min_obs:
+            continue
+        month = start // WINDOW + 1
+        out[month] = _topic_puf(emb_ids[start:end], lda, dictionary, perm)
     return out
+
+
+def three_month_load(q: dict[int, float], month: int) -> tuple[bool, float, tuple[float, float, float]]:
+    """S_m = pUF(m-2)+pUF(m-1)+pUF(m) on the collapsed month index."""
+    m2, m1, m0 = month - 2, month - 1, month
+    ok = m2 in q and m1 in q and m0 in q
+    if not ok:
+        return False, float("nan"), (float("nan"), float("nan"), float("nan"))
+    pufs = (float(q[m2]), float(q[m1]), float(q[m0]))
+    return True, float(sum(pufs)), pufs
 
 
 def clasif(y, score, thr):
@@ -180,25 +205,22 @@ def score_at_points(
     base: pd.DataFrame,
     q_ref: dict[int, dict[int, float]] | None = None,
 ) -> pd.DataFrame:
+    """Score each collapsed landmark with replica (and optional ref) monthly pUF."""
     rows = []
     for r in base.itertuples(index=False):
         pid = int(r.id)
+        month = int(r.month)
         q = qmap.get(pid, {})
         qr = (q_ref or {}).get(pid, {})
-        t = int(r.study_day)
-        ok = (t - 60) in q and (t - 30) in q and t in q
-        if ok:
-            s = float(q[t - 60] + q[t - 30] + q[t])
-            pufs = (q[t - 60], q[t - 30], q[t])
-        else:
-            s = np.nan
-            pufs = (np.nan, np.nan, np.nan)
-        ok_r = (t - 60) in qr and (t - 30) in qr and t in qr
-        pufs_r = (qr.get(t - 60, np.nan), qr.get(t - 30, np.nan), qr.get(t, np.nan)) if ok_r else (np.nan,) * 3
+        ok, s, pufs = three_month_load(q, month)
+        ok_r, _, pufs_r = three_month_load(qr, month) if qr else (False, float("nan"), (np.nan,) * 3)
+        if not ok_r:
+            pufs_r = (np.nan, np.nan, np.nan)
         rows.append(
             {
                 "id": pid,
-                "study_day": t,
+                "month": month,
+                "study_day": int(r.study_day),
                 "y": int(r.y),
                 "score_sum_ref": float(r.score_sum_ref),
                 "alarm_ref": int(r.alarm_ref),
@@ -279,14 +301,15 @@ def monthly_puf_corr_vs_ref(
     q_ref: dict[int, dict[int, float]],
     ids: list[int] | None = None,
 ) -> dict:
+    """Pairwise corr/bias/MAE of collapsed monthly pUF (kept column names for CSV compat)."""
     xs, ys = [], []
     for pid, q in q_rep.items():
         if ids is not None and pid not in ids:
             continue
         qr = q_ref.get(pid, {})
-        for day, p in q.items():
-            if day in qr:
-                xs.append(qr[day])
+        for month, p in q.items():
+            if month in qr:
+                xs.append(qr[month])
                 ys.append(p)
     if len(xs) < 2:
         return dict(puf_day_pearson=np.nan, puf_day_bias=np.nan, puf_day_mae=np.nan, n_day_pairs=0)
@@ -345,14 +368,21 @@ def main() -> None:
     }
     # identity perm for reference
     ref_perm = np.arange(ref_model.num_topics)
-    q_ref = {pid: puf_series_for_patient(ids, ref_model, dictionary, ref_perm) for pid, ids in emb_map.items()}
+    q_ref = {
+        pid: monthly_puf_series_for_patient(ids, ref_model, dictionary, ref_perm)
+        for pid, ids in emb_map.items()
+    }
 
     # sanity: rebuild ref scores on base and compare to stored AUC_W
     chk = score_at_points(q_ref, base, q_ref)
+    n_miss = int(chk.score_missing.sum())
     ok = chk.score_missing == 0
     if ok.any():
         mae = float((chk.loc[ok, "score_sum_rep"] - chk.loc[ok, "score_sum_ref"]).abs().mean())
-        print(f"  ref rebuild vs stored AUC_W MAE={mae:.6f} (near 0 if monthly pUF = 30d sliding end)")
+        print(
+            f"  collapsed rebuild: scored {int(ok.sum())}/{len(chk)} "
+            f"(missing={n_miss}); vs stored AUC_W MAE={mae:.6f}"
+        )
 
     n_docs = len(corpus_bow)
     user_ids = df_profiles["user_id"].astype(int).to_numpy()
@@ -366,12 +396,13 @@ def main() -> None:
             "landmarks_csv": str(COLLAPSED_BASE.relative_to(PROJECT_ROOT)),
             "n_evaluable_landmarks": N_BASE,
             "n_positive_negative": "159 / 860",
-            "cadence": "monthly collapsed (decision_day = month × 30)",
+            "cadence": "monthly collapsed (non-overlapping 30-day blocks + short last month)",
             "W_blocks": 3,
             "H_days": H,
             "threshold_sum_S_m": THR_SUM,
             "threshold_mean_B_m": THR_MEAN,
             "threshold_not_retuned_per_replica": True,
+            "scoring": "collapsed monthly pUF → S_m = sum of last 3 months (not daily sliding)",
             "note": "Youden from prior 1013 set, applied to 1019 collapsed landmarks as in the report table",
         },
         "lda": {
@@ -437,7 +468,10 @@ def main() -> None:
     def run_one(mode: str, key: int, train_idx: np.ndarray, seed: int, held_out_ids: set[int] | None):
         nonlocal summary_rows, point_rows
         model, perm = load_or_train(mode, key, train_idx, seed)
-        q_rep = {pid: puf_series_for_patient(ids, model, dictionary, perm) for pid, ids in emb_map.items()}
+        q_rep = {
+            pid: monthly_puf_series_for_patient(ids, model, dictionary, perm)
+            for pid, ids in emb_map.items()
+        }
         day_corr = monthly_puf_corr_vs_ref(q_rep, q_ref)
         cmp_all = score_at_points(q_rep, base, q_ref)
         cmp_all["mode"] = mode
@@ -513,7 +547,7 @@ def main() -> None:
 - Freeze VQ-VAE day-types + dictionary; re-fit LDA replicates (K=6, {args.passes} passes)
 - Hungarian align topics by cosine of P(day-type|topic); **no outcomes**
 - After alignment: F=T0–2, U=T3–5, pUF = P(U)
-- 30-day block pUF at month ends → 3-block load (`AUC_W` / `S_m`) at each of the {N_BASE} points
+- Collapsed monthly pUF on non-overlapping 30-day blocks (+ short last month) → 3-block load (`AUC_W` / `S_m`) at each of the {N_BASE} points (same construction as the base ledger; not daily sliding)
 - Leave-20%-out: inference on held-out patients allowed; metrics split **in_fit** vs **held_out**
 
 ## Outputs
