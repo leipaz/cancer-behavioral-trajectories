@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Word report for missingness point 1 after the sport-zero rule.
 
-Reads the rerun in results/missingness/ramp_db1_175_sport_filtered/ and writes
+Reads the rerun in results/missingness/ramp_db1_175_sport_keep1/ and writes
 report.md, report.docx and the ramp figures into
 results/missingness/Sensitivity_to_artificial_missingness/.
 """
 
 from __future__ import annotations
 
+import json
 import shutil
 from pathlib import Path
 
@@ -17,16 +18,84 @@ import pandas as pd
 from docx import Document
 from docx.shared import Cm
 from scipy import stats
+from sklearn.metrics import roc_auc_score
 
 import build_punto2_informe as style
 import run_missingness_ramp as ramp
-from sport_missing import SPORT_RULE, load_daily_for_missingness
+from sport_missing import ALARM_SPORT_RULE as SPORT_RULE, load_daily_for_alarm
 
 ROOT = ramp.ROOT
-RUN = ROOT / "results/missingness/ramp_db1_175_sport_filtered"
+RUN = ROOT / "results/missingness/ramp_db1_175_sport_keep1"
 GAPS = RUN / "fixed_gaps"
 OUT = ROOT / "results/missingness/Sensitivity_to_artificial_missingness"
 EXAMPLE_ID = 62004
+FROZEN = OUT / "alarm_scored_objetivo_baseline.csv"
+
+
+THR = 1.0596384140662845
+STORED = ROOT / "results/alarm/base_analysis/decision_points_collapsed.csv"
+KEYS = ("AUROC", "sensitivity", "specificity", "PPV", "NPV")
+
+
+def frozen_scored() -> pd.DataFrame:
+    """The 1013 decisions with the stored load of the original pipeline (the frozen alarm)."""
+    f = pd.read_csv(FROZEN)[["id", "study_day", "y", "load"]].rename(columns={"load": "rerun_load"})
+    st = pd.read_csv(STORED)
+    st["study_day"] = st["decision_day"].astype(int)
+    f = f.merge(st[["id", "study_day", "AUC_W"]], on=["id", "study_day"], how="left", validate="one_to_one")
+    if len(f) != 1013 or f["AUC_W"].isna().any():
+        raise SystemExit("stored load missing for some of the 1013 decisions")
+    return f
+
+
+def frozen_metrics() -> dict[str, float]:
+    """Frozen alarm: stored load and threshold on the 1013 decisions."""
+    f = frozen_scored()
+    y = f["y"].astype(int).to_numpy()
+    a = (f["AUC_W"] >= THR).astype(int).to_numpy()
+    tp, fn = int(((a == 1) & (y == 1)).sum()), int(((a == 0) & (y == 1)).sum())
+    tn, fp = int(((a == 0) & (y == 0)).sum()), int(((a == 1) & (y == 0)).sum())
+    return {
+        "AUROC": float(roc_auc_score(y, f["AUC_W"])),
+        "sensitivity": tp / (tp + fn),
+        "specificity": tn / (tn + fp),
+        "PPV": tp / (tp + fp),
+        "NPV": tn / (tn + fn),
+    }
+
+
+def check_frozen_baseline(table: pd.DataFrame) -> None:
+    """The anchored baseline must be the frozen alarm exactly."""
+    fro = frozen_metrics()
+    base = lookup(table, "initial", 0.0)
+    for k in KEYS:
+        if not np.isclose(base["emitted_" + k], fro[k]):
+            raise SystemExit(f"anchored baseline {k} {base['emitted_' + k]:.4f} is not the frozen {fro[k]:.4f}")
+
+
+def baseline_sentences(table_rerun: pd.DataFrame) -> tuple[str, str]:
+    """Baseline text: the frozen alarm, and how the unmasked re-run relates to it."""
+    rerun = lookup(table_rerun, "initial", 0.0)
+    fro = frozen_metrics()
+    f = frozen_scored()
+    mae = float((f["rerun_load"] - f["AUC_W"]).abs().mean())
+    crossed = f[(f["rerun_load"] >= THR) != (f["AUC_W"] >= THR)]
+    crossed_txt = "one decision crosses" if len(crossed) == 1 else f"{len(crossed)} decisions cross"
+    frozen_txt = ", ".join(f"{k} {fro[k]:.3f}" for k in KEYS)
+    rerun_txt = ", ".join(f"{k} {rerun['emitted_' + k]:.3f}" for k in KEYS)
+    text = (
+        f"The threshold stays at 1.0596384140662845. The baseline is the frozen alarm: the stored load of the "
+        f"original pipeline on the 1,013 decisions, with {frozen_txt}. A mask changes the input, so every scenario "
+        f"is re-encoded with VQ-VAE a0 and the LDA. Re-encoding without any mask does not give back the stored load "
+        f"exactly (MAE {mae:.4f}; {crossed_txt} the threshold), because a few days get other codes. So each masked "
+        "load is anchored to the frozen one: frozen load + (load with the mask − load re-encoded without it). "
+        "The baseline is then the frozen alarm exactly, every alarm metric below refers to it, and each scenario "
+        "carries only the change caused by its mask. Topic and load-change metrics do not depend on the anchor. "
+        "The sport rule does not change the model input: every stored 1 is kept, and a0 reads a missing sport "
+        "cell as 0, which is what was stored there."
+    )
+    return text, text
+
 
 ORDER = (
     ("initial", 0.0, "baseline"),
@@ -264,9 +333,12 @@ def plot_example(daily: pd.DataFrame) -> Path:
 
 def build() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    by_seed = pd.read_csv(RUN / "metrics_by_seed.csv")
+    # Alarm metrics anchored to the frozen alarm (anchor_sensitivity_to_frozen.py).
+    by_seed = pd.read_csv(RUN / "metrics_by_seed_anchored.csv")
     table = aggregate(by_seed, ORDER)
-    gaps = pd.read_csv(GAPS / "gaps_3_7_14_metrics_by_seed.csv")
+    check_frozen_baseline(table)
+    table_rerun = aggregate(pd.read_csv(RUN / "metrics_by_seed.csv"), ORDER)
+    gaps = pd.read_csv(GAPS / "gaps_3_7_14_metrics_by_seed_anchored.csv")
     gap_table = aggregate(gaps, [("fixed_gap", 3, "3 days"), ("fixed_gap", 7, "7 days"), ("fixed_gap", 14, "14 days")])
     base_miss = pd.read_csv(RUN / "reference_missingness.csv")
     q33, q66 = base_miss["variable_missing_rate"].quantile([1 / 3, 2 / 3])
@@ -313,8 +385,9 @@ def build() -> None:
         "ramp_metrics",
         3,
     )
-    daily = load_daily_for_missingness(ramp.DAILY)
+    daily = load_daily_for_alarm(ramp.DAILY)
     example_png = plot_example(daily)
+    baseline_doc, baseline_md = baseline_sentences(table_rerun)
 
     def rows_for(cols: list[tuple[str, int, bool]]) -> list[list[str]]:
         out = []
@@ -347,9 +420,8 @@ def build() -> None:
     )
     style.add_text(
         doc,
-        "practiced_sport counts only when activity_walking survived the filter of 120–15000 seconds. "
-        "A stored 0 or 1 on a day whose walking was removed by that filter is missing, and it is not in the "
-        "pool of observed cells. The extra mask is applied after that rule and before VQ-VAE imputation. "
+        "practiced_sport: a stored 1 is always kept. A stored 0 counts only when activity_walking survived the "
+        "filter of 120–15000 seconds; otherwise it is missing and it is not in the pool of observed cells. The extra mask is applied after that rule and before VQ-VAE imputation. "
         "VQ-VAE a0, the LDA, "
         "the F/U grouping (topics 3–5) and the threshold 1.0596384140662845 stay fixed. Seeds 101–105.",
     )
@@ -429,10 +501,7 @@ def build() -> None:
     style.add_heading(doc, "Alarm", 2)
     style.add_text(
         doc,
-        "The threshold stays at 1.0596384140662845. All 1,013 decisions have a load, and the baseline load matches "
-        "the stored collapsed load (MAE 0.0019). At baseline, AUROC 0.703, sensitivity 0.884, specificity 0.452, "
-        "PPV 0.226, NPV 0.956. Gating sport on the walking filter does not move this baseline: a0 fills "
-        "a missing sport cell with 0, and a stored 0 was already 0.",
+        baseline_doc,
     )
     style.add_text(
         doc,
@@ -494,8 +563,8 @@ def build() -> None:
         doc,
         "Separate from the 10–50% ramp. On each of the 175 patients one run of 3, 7 or 14 days is hidden, "
         "placed at random with seeds 101–105. Two patients have a calendar shorter than 14 days. Every decision "
-        "still has a load. The placement does not depend on which cells were observed, and a0 already reads a "
-        "missing sport cell as 0, so these alarm numbers stay at the same displayed precision as before the sport rule.",
+        "still has a load. The placement does not depend on which cells were observed. Agreement and flips "
+        "refer to the frozen alarm, with the same anchoring as the ramp.",
     )
     gap_rows = []
     for _, row in gap_table.iterrows():
@@ -523,20 +592,32 @@ def build() -> None:
     dest = OUT / "report.docx"
     doc.save(dest)
 
-    shutil.copyfile(RUN / "metrics_by_seed.csv", OUT / "metrics_by_seed.csv")
-    shutil.copyfile(GAPS / "gaps_3_7_14_metrics_by_seed.csv", OUT / "gaps_3_7_14_metrics_by_seed.csv")
+    shutil.copyfile(RUN / "metrics_by_seed_anchored.csv", OUT / "metrics_by_seed.csv")
+    shutil.copyfile(GAPS / "gaps_3_7_14_metrics_by_seed_anchored.csv", OUT / "gaps_3_7_14_metrics_by_seed.csv")
     shutil.copyfile(RUN / "reference_missingness.csv", OUT / "initial_missingness_by_patient.csv")
     mean_cols = [c for c in table.columns if not c.endswith("_lo") and not c.endswith("_hi") and c not in {"label", "n"}]
     table[mean_cols].to_csv(OUT / "metrics_mean.csv", index=False)
+    prov_path = OUT / "PROVENANCE.json"
+    prov = json.loads(prov_path.read_text(encoding="utf-8")) if prov_path.exists() else {}
+    ref_json = json.loads((RUN / "reference_vs_collapsed.json").read_text(encoding="utf-8"))
+    if ref_json.get("sport_rule") != SPORT_RULE:
+        raise SystemExit(f"{RUN} was built with {ref_json.get('sport_rule')}, not {SPORT_RULE}")
+    prov.update({
+        "sport_rule": SPORT_RULE,
+        "run_directory": str(RUN.relative_to(ROOT)),
+        "baseline_mae_vs_collapsed": round(float(ref_json["mae_vs_collapsed_AUC_W"]), 4),
+        "report": "scripts/03_analysis/alarm/build_punto1_informe.py",
+    })
+    prov_path.write_text(json.dumps(prov, indent=2), encoding="utf-8")
     (OUT / "PROVENANCE.md").write_text(
         "# Provenance — sensitivity missingness\n\n"
         "- Pipeline cohort (mask → VQ-VAE → LDA): all DB1 daily patients (n=175)\n"
         f"- Sport rule: {SPORT_RULE}. Applied before the baseline missingness count and before the extra mask.\n"
-        "- A stored 0 or 1 stays observed only when activity_walking survived 120–15000 seconds.\n"
+        "- A stored 1 is always kept. A stored 0 stays observed only when activity_walking survived 120–15000 seconds.\n"
         "- Mask applied before VQ-VAE imputation; learned parameters frozen\n"
         "- Alarm / landmark metrics: the 1013 decisions in objetivo.csv (114 / 155+ / 858−)\n"
         "- Alarm denominator in every scenario/seed: 1013 loads\n"
-        "- Baseline load is unchanged by the sport rule (a0 fills a missing cell with 0)\n"
+        "- Baseline = frozen alarm (stored AUC_W in results/alarm/base_analysis/decision_points_collapsed.csv). Masked loads are anchored: AUC_W + (masked re-encoding − unmasked re-encoding); alarm = anchored load >= threshold. Script: scripts/03_analysis/alarm/anchor_sensitivity_to_frozen.py. The CSVs here are the anchored ones; the raw re-encoding metrics stay in the run directory (metrics_by_seed.csv).\n"
         "- Seed CIs: deletion-experiment variability (Student t, 5 seeds), not a patient bootstrap\n"
         "- Empty-days/variables table: patient-mean rates on each expected calendar\n"
         "- Threshold: 1.0596384140662845\n"
@@ -551,11 +632,11 @@ def build() -> None:
         "",
         "Masks, VQ-VAE a0 and LDA run on all 175 DB1 patients. Topics, pUF, the three-block load, F/U and the alarm use the 1013 decisions in `objetivo.csv`: 114 patients, 155 positive and 858 negative.",
         "",
-        "practiced_sport counts only when activity_walking survived 120–15000 seconds. A stored 0 or 1 on a day whose walking was removed by that filter is missing, so the extra mask cannot select it.",
+        "practiced_sport: a stored 1 is always kept. A stored 0 counts only when activity_walking survived 120–15000 seconds; otherwise it is missing, so the extra mask cannot select it.",
         "",
         "The extra mask is applied before VQ-VAE imputation. The calendar, origin, windows, frozen VQ-VAE a0, LDA, F/U (topics 3–5) and the full threshold **1.0596384140662845** stay fixed. No parameters are re-learned.",
         "",
-        "At baseline, AUROC 0.703, sensitivity 0.884, specificity 0.452, PPV 0.226, NPV 0.956. The baseline load is the same as before this rule, because a0 fills a missing sport cell with 0.",
+        baseline_md,
         "",
         f"On the 175 patients the starting missingness uses the same patient-mean definition in every row. Fully empty days {day_pct:.1f}% ({n_none} with none, {n_some} with at least one). Variables inside a day that still has a measurement {var_pct:.1f}% (median {var_med:.1f}%, tertiles {100 * float(q33):.1f}% and {100 * float(q66):.1f}%). Over the whole calendar, with a fully empty day as nine empty variables, the mean is {fixed_pct:.1f}%.",
         "",

@@ -44,8 +44,43 @@
   },
   "calendar_rule": "Dense expected calendar of N days ending at decision_date; holes kept; not trimmed to last received record.",
   "sport_rule": "practiced_sport_counts_only_when_walking_survives_120_15000",
+  "frozen_load": "stored AUC_W from results/alarm/base_analysis/decision_points_collapsed.csv; alarm = load >= 1.0596384140662845",
+  "progressions": "one progression per patient; n_progressions = patients with at least one positive 120-day horizon in the cell",
   "zeros": "Observed zeros count as data after the range clip; values below the clip floor are blank. practiced_sport has no clip of its own. It is counted only when activity_walking survived [120, 15000] s. A stored sport value on a day whose walking was removed by that filter is missing. A stored 0 with raw walking and running both empty is already missing. This rule is applied before bands, the variable table, centre and tumour means, continuous coverage, and the availability indicators.",
   "variable_table_denominator": "Same 90-day windows. Variable coverage_on_row divides by days that have a daily row (pct_days_with_row), not by all 90 calendar days. cov_practiced_sport counts only days whose walking survived the activity filter.",
   "uncertainty": "Patient-clustered bootstrap, n=1000, seed=20261116",
-  "comparator_block": "Not run here; coordinate with comparator pack (availability vs DCABP vs DCABP+availability)."
+  "comparator_block": "Not run here; coordinate with comparator pack (availability vs DCABP vs DCABP+availability).",
+  "coverage_by_source": {
+    "script": "scripts/03_analysis/alarm/run_coverage_by_source.py",
+    "sources": {
+      "wearable": [
+        "sleep_start",
+        "sleep_duration",
+        "activity_walking",
+        "steps_steps_total"
+      ],
+      "smartphone": [
+        "location_distance",
+        "location_time_home",
+        "location_clusters_count",
+        "app_usage_total"
+      ]
+    },
+    "day_observed": "at least one of the source's variables observed after the range filters",
+    "gap": "run of >= 2 consecutive calendar days with no observation from that source",
+    "denominator": "the calendar days the alarm used: 90 or 30 days ending at the decision, or, in the 6 decisions whose data end earlier, from the start of the first block to the last day with data; every window lies inside the patient's digital monitoring period (first to last daily record), not the clinical follow-up; no separate activation or end date per device is available",
+    "outputs": [
+      "coverage_by_source_by_decision.csv",
+      "coverage_by_source_summary.csv",
+      "coverage_breakdowns.csv"
+    ],
+    "breakdowns": "coverage_breakdowns.csv: variable, source, centre and tumour with the same columns (90 d, full calendar denominator); unit coverage mean, median, IQR across decisions, and share of decisions with a gap of >= 2 days with nothing observed for that unit"
+  },
+  "coverage_interaction": {
+    "script": "scripts/03_analysis/alarm/run_coverage_interaction.py",
+    "model": "logit P(y120) = b0 + b1 load_z + b2 cov_z + b3 load_z*cov_z, no penalty, z-scored on the 1013 decisions per window",
+    "uncertainty": "patient bootstrap percentile (1000, seed 20261119+window) and cluster-robust sandwich SE by patient",
+    "discrimination": "same as the frozen baseline: fixed scores (linear predictor) on the 1013 decisions, no cross-validation; patient bootstrap CI and paired difference vs the frozen load",
+    "replaces": "the earlier fixed score load_z + load_z*cov_z (all weights 1, no coverage main effect, nothing fitted)"
+  }
 }

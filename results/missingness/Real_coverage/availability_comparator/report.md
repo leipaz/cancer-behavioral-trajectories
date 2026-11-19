@@ -1,6 +1,6 @@
 # Comparador disponibilidad vs DCABP (punto 2B)
 
-Mismos **1013** puntos / horizonte **120 d** / solo **DB1**. CV por paciente (GroupKFold 5). IC = bootstrap por paciente sobre scores OOF (o load congelado).
+Mismos **1013** puntos / horizonte **120 d** / solo **DB1**. Modelos ajustados en las 1013 decisiones y evaluados como la carga congelada (sin CV). IC = bootstrap por paciente; diferencia de AUROC emparejada frente a la congelada.
 
 ## Indicadores de disponibilidad (por decisión, ventana 90 d)
 
@@ -19,11 +19,11 @@ Mismos **1013** puntos / horizonte **120 d** / solo **DB1**. CV por paciente (Gr
 ## Rendimiento
 
 ```
-                      model  n_patients  n_scored  n_positive                AUROC          sensitivity          specificity                  PPV                  NPV  threshold
-      availability_only_oof         114      1013         155 0.427 [0.344, 0.504] 0.806 [0.709, 0.886] 0.202 [0.146, 0.257] 0.154 [0.113, 0.202] 0.852 [0.750, 0.922]   0.156717
-          dcabp_load_frozen         114      1013         155 0.703 [0.627, 0.780] 0.884 [0.809, 0.957] 0.452 [0.364, 0.540] 0.226 [0.168, 0.281] 0.956 [0.921, 0.983]   1.059638
-            dcabp_logit_oof         114      1013         155 0.690 [0.615, 0.768] 0.774 [0.664, 0.881] 0.501 [0.408, 0.593] 0.219 [0.160, 0.277] 0.925 [0.877, 0.963]   0.116882
-dcabp_plus_availability_oof         114      1013         155 0.677 [0.600, 0.758] 0.703 [0.578, 0.826] 0.533 [0.440, 0.625] 0.214 [0.155, 0.276] 0.909 [0.858, 0.952]   0.127797
+                  model  n_patients  n_scored  n_positive                AUROC              AUROC_diff          sensitivity          specificity                  PPV                  NPV  threshold
+      availability_only         114      1013         155 0.586 [0.503, 0.662] -0.116 [-0.233, -0.012] 0.845 [0.748, 0.927] 0.287 [0.227, 0.348] 0.176 [0.129, 0.226] 0.911 [0.853, 0.958]   0.139591
+      dcabp_load_frozen         114      1013         155 0.702 [0.627, 0.780]                       — 0.884 [0.809, 0.957] 0.451 [0.362, 0.539] 0.225 [0.168, 0.280] 0.956 [0.921, 0.983]   1.059638
+            dcabp_logit         114      1013         155 0.702 [0.627, 0.780]    0.000 [0.000, 0.000] 0.884 [0.809, 0.957] 0.451 [0.362, 0.539] 0.225 [0.168, 0.280] 0.956 [0.921, 0.983]   0.101954
+dcabp_plus_availability         114      1013         155 0.711 [0.637, 0.786]   0.008 [-0.003, 0.022] 0.794 [0.692, 0.890] 0.548 [0.464, 0.629] 0.241 [0.179, 0.304] 0.936 [0.896, 0.969]   0.127966
 ```
 
 Archivos: `availability_indicators.csv`, `scores_by_decision.csv`, `performance_models.csv`, `emission_overlap.csv`, `coefficients_full_fit_descriptive.csv`, `PROVENANCE.json`.

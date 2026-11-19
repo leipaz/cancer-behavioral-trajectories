@@ -26,6 +26,8 @@ from vqvae import constants as c  # noqa: E402
 DAILY = ROOT / "data/daily_summaries/DB1/daily_summary_checked.csv"
 OBJETIVO = ROOT / "results/lda/val_2/anidada_estratificada/objetivo.csv"
 BASELINE = ROOT / "results/missingness/Sensitivity_to_artificial_missingness/alarm_scored_objetivo_baseline.csv"
+# The frozen alarm is the stored load of the original pipeline, not a recomputation.
+FROZEN_LOAD = ROOT / "results/alarm/base_analysis/decision_points_collapsed.csv"
 SUBJECTS = ROOT / "data/processed/clinical/Subjects_data.xlsx"
 OUT = ROOT / "results/missingness/Real_coverage"
 
@@ -130,6 +132,8 @@ def patient_bootstrap_ci(frame: pd.DataFrame, n_boot: int = N_BOOT, seed: int = 
                 store[k].append(m[k])
     out = dict(base)
     out["n_patients"] = int(frame["id"].nunique())
+    # One progression per patient: distinct progressions = patients with a positive horizon.
+    out["n_progressions"] = int(frame.loc[frame["y"] == 1, "id"].nunique())
     for k in keys:
         arr = np.asarray(store[k], float)
         if len(arr) >= 20:
@@ -176,6 +180,15 @@ def days_since_last_valid(day_present: np.ndarray) -> int:
     return int(len(day_present) - 1 - idx[-1])
 
 
+def days_since_last_valid_at(obs: np.ndarray, calendar: np.ndarray, decision, n_days: int) -> int:
+    """Empty days between the last day with any measurement and the decision date."""
+    expected, _idx, _s, _e = window_slice(calendar, decision, n_days)
+    cal_index = {np.datetime64(d, "ns"): i for i, d in enumerate(calendar)}
+    present = np.array([bool(obs[cal_index[np.datetime64(d, "ns")]].any()) if np.datetime64(d, "ns") in cal_index else False
+                        for d in expected])
+    return days_since_last_valid(present)
+
+
 def build_patient_matrices(daily: pd.DataFrame) -> dict[int, dict]:
     """Full expected calendar first→last daily date; values before any imputation."""
     out = {}
@@ -200,19 +213,28 @@ def build_patient_matrices(daily: pd.DataFrame) -> dict[int, dict]:
     return out
 
 
-def window_slice(calendar: np.ndarray, decision: np.datetime64, n_days: int):
-    """Inclusive window of n_days ending at decision_date; keep holes in the calendar."""
+def window_slice(calendar: np.ndarray, decision, n_days: int, last_day=None):
+    """Calendar days the alarm actually used for this window; holes are kept.
+
+    The alarm reads three 30-day blocks ending at the decision. When the data end
+    before the decision (6 of the 1013 decisions), its last block is the last 30
+    days with data, ending at ``last_day``. The window then runs from the start of
+    the first block used to ``last_day``: 90 d -> decision-89 .. last_day;
+    30 d -> the last block, last_day-29 .. last_day. Otherwise it is the plain
+    n_days ending at the decision.
+    """
     decision = np.datetime64(decision, "ns")
-    start = decision - np.timedelta64(n_days - 1, "D")
-    # indices on the patient calendar that fall inside [start, decision]
-    idx = np.flatnonzero((calendar >= start) & (calendar <= decision))
-    # Build a dense expected grid of n_days even if patient calendar is shorter
-    expected = pd.date_range(pd.Timestamp(start), pd.Timestamp(decision), freq="D").to_numpy(dtype="datetime64[ns]")
-    return expected, idx, start, decision
+    end = decision if last_day is None else min(decision, np.datetime64(last_day, "ns"))
+    start = min(decision - np.timedelta64(n_days - 1, "D"), end - np.timedelta64(min(n_days, 30) - 1, "D"))
+    idx = np.flatnonzero((calendar >= start) & (calendar <= end))
+    expected = pd.date_range(pd.Timestamp(start), pd.Timestamp(end), freq="D").to_numpy(dtype="datetime64[ns]")
+    return expected, idx, start, end
 
 
-def coverage_for_window(obs: np.ndarray, calendar: np.ndarray, has_row: np.ndarray, decision, n_days: int) -> dict:
-    expected, idx_on_cal, start, end = window_slice(calendar, decision, n_days)
+def coverage_for_window(obs: np.ndarray, calendar: np.ndarray, has_row: np.ndarray, decision, n_days: int, last_day=None) -> dict:
+    expected, idx_on_cal, start, end = window_slice(calendar, decision, n_days, last_day)
+    n_requested = n_days
+    n_days = len(expected)
     n_expected_cells = n_days * len(MEASURE_COLS)
     # Map expected days onto patient calendar (missing days = all-False)
     day_obs = np.zeros((n_days, len(MEASURE_COLS)), dtype=bool)
@@ -231,6 +253,7 @@ def coverage_for_window(obs: np.ndarray, calendar: np.ndarray, has_row: np.ndarr
     phone = day_obs[:, [MEASURE_COLS.index(v) for v in MOBILE_COLS]]
     return {
         "n_days_window": n_days,
+        "alarm_window_shifted": bool(n_days != n_requested or pd.Timestamp(end) != pd.Timestamp(decision)),
         "n_expected_cells": n_expected_cells,
         "n_observed_cells": n_obs_cells,
         "coverage": float(cov),
@@ -239,7 +262,8 @@ def coverage_for_window(obs: np.ndarray, calendar: np.ndarray, has_row: np.ndarr
         "pct_days_with_row": float(day_row.mean()) if n_days else np.nan,
         "longest_empty_run_days": longest_empty_run(day_present),
         "n_gaps_ge_48h": n_gaps_over_48h(day_present),
-        "days_since_last_valid": days_since_last_valid(day_present),
+        # Measured at the decision date, not at the end of the alarm's data.
+        "days_since_last_valid": days_since_last_valid_at(obs, calendar, decision, n_requested),
         "coverage_wearable": float(wear.mean()) if wear.size else np.nan,
         "coverage_mobile": float(phone.mean()) if phone.size else np.nan,
         **{f"cov_{col}": float(per_var[i]) for i, col in enumerate(MEASURE_COLS)},
@@ -300,12 +324,22 @@ def main() -> None:
 
     scored = pd.read_csv(BASELINE)
     scored["id"] = scored["id"].astype(int)
-    merge_keys = points[["id", "decision_study_day", "decision_date", "y", "event", "block"]].rename(
+    merge_keys = points[["id", "decision_study_day", "decision_date", "latest_input_date", "y", "event", "block"]].rename(
         columns={"decision_study_day": "study_day"}
     )
     panel = merge_keys.merge(scored, on=["id", "study_day", "y"], how="left", validate="one_to_one")
     if panel["load"].isna().any():
         raise SystemExit("baseline load missing for some objetivo decisions")
+    stored = pd.read_csv(FROZEN_LOAD)
+    stored["id"] = stored["id"].astype(int)
+    stored["study_day"] = stored["decision_day"].astype(int)
+    panel = panel.drop(columns=["load", "alarm"]).merge(
+        stored[["id", "study_day", "AUC_W"]].rename(columns={"AUC_W": "load"}),
+        on=["id", "study_day"], how="left", validate="one_to_one",
+    )
+    if panel["load"].isna().any():
+        raise SystemExit("stored frozen load missing for some objetivo decisions")
+    panel["alarm"] = (panel["load"] >= THR).astype(int)
 
     subjects = pd.read_excel(SUBJECTS)
     subjects["id"] = subjects["S_RECORD_id"].astype(int)
@@ -333,7 +367,8 @@ def main() -> None:
             "tumor": tumor.get(int(rec.id), "Unknown"),
         }
         for w in WINDOWS:
-            cov = coverage_for_window(mat["observed"], mat["calendar"], mat["has_row"], rec.decision_date, w)
+            cov = coverage_for_window(mat["observed"], mat["calendar"], mat["has_row"], rec.decision_date, w,
+                                      last_day=pd.Timestamp(rec.latest_input_date))
             row = dict(base)
             row["window_days"] = w
             row.update(cov)
@@ -547,6 +582,8 @@ def main() -> None:
         "expected_cells": {"90": 810, "30": 270},
         "calendar_rule": "Dense expected calendar of N days ending at decision_date; holes kept; not trimmed to last received record.",
         "sport_rule": SPORT_RULE,
+        "frozen_load": "stored AUC_W from results/alarm/base_analysis/decision_points_collapsed.csv; alarm = load >= 1.0596384140662845",
+        "progressions": "one progression per patient; n_progressions = patients with at least one positive 120-day horizon in the cell",
         "zeros": "Observed zeros count as data after the range clip; values below the clip floor are blank. practiced_sport has no clip of its own. It is counted only when activity_walking survived [120, 15000] s. A stored sport value on a day whose walking was removed by that filter is missing. A stored 0 with raw walking and running both empty is already missing. This rule is applied before bands, the variable table, centre and tumour means, continuous coverage, and the availability indicators.",
         "variable_table_denominator": "Same 90-day windows. Variable coverage_on_row divides by days that have a daily row (pct_days_with_row), not by all 90 calendar days. cov_practiced_sport counts only days whose walking survived the activity filter.",
         "uncertainty": f"Patient-clustered bootstrap, n={N_BOOT}, seed={BOOT_SEED}",

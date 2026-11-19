@@ -72,3 +72,24 @@ def load_daily_for_missingness(path: Path) -> pd.DataFrame:
     daily["date_time"] = pd.to_datetime(daily["date_time"]).dt.normalize()
     daily = apply_erroneous_sport_missing(daily, path)
     return blank_sport_unless_filtered_walking(daily)
+
+
+ALARM_SPORT_RULE = "practiced_sport_walking_gate_but_stored_ones_kept"
+
+
+def load_daily_for_alarm(path: Path) -> pd.DataFrame:
+    """Daily table for anything that feeds the frozen alarm.
+
+    Same as load_daily_for_missingness, except that a stored 1 is never blanked.
+    A stored 0 without filtered walking is missing, and a0 reads it as 0 again,
+    so the VQ-VAE input, and the baseline alarm, match the frozen pipeline.
+    """
+    daily = aggregate_duplicate_user_days(load_daily_summary(path))
+    daily["date_time"] = pd.to_datetime(daily["date_time"]).dt.normalize()
+    daily = apply_erroneous_sport_missing(daily, path)
+    stored = pd.to_numeric(daily["practiced_sport"], errors="coerce").to_numpy(dtype=float)
+    out = blank_sport_unless_filtered_walking(daily)
+    sport = out["practiced_sport"].to_numpy(dtype=float)
+    sport[stored == 1] = 1.0
+    out["practiced_sport"] = sport
+    return out

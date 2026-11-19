@@ -1,0 +1,5 @@
+window_days,source,variables,n_decisions,n_patients,pct_days_observed_mean,pct_days_observed_median,pct_days_observed_p25,pct_days_observed_p75,cell_coverage_mean,n_gaps_ge_48h_mean,pct_decisions_with_gap_ge_48h,longest_empty_run_median,longest_empty_run_p75,longest_empty_run_max
+90,wearable,"sleep_start, sleep_duration, activity_walking, steps_steps_total",1013,114,0.8917603998460326,1.0,0.9444444444444444,1.0,0.7596483814731093,0.7482724580454096,0.2793682132280355,0.0,2.0,90
+90,smartphone,"location_distance, location_time_home, location_clusters_count, app_usage_total",1013,114,0.7732219577557768,0.9888888888888889,0.6666666666666666,1.0,0.5063371862806795,1.1994076999012833,0.42744323790720634,1.0,13.0,90
+30,wearable,"sleep_start, sleep_duration, activity_walking, steps_steps_total",1013,114,0.8821322803553802,1.0,0.9666666666666667,1.0,0.7471043106284961,0.3464955577492596,0.20434353405725567,0.0,1.0,30
+30,smartphone,"location_distance, location_time_home, location_clusters_count, app_usage_total",1013,114,0.7710760118460022,1.0,0.6666666666666666,1.0,0.5019414281013491,0.5409674234945706,0.33168805528134254,0.0,6.0,30

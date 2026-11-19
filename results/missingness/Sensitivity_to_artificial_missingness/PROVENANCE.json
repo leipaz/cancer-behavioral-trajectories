@@ -9,5 +9,8 @@
   "collapsed_overlap": "1013 of decision_points_collapsed; six extra collapsed rows from the t+1 clock are excluded",
   "loads": 1013,
   "baseline_mae_vs_collapsed": 0.0019,
-  "script": "scripts/03_analysis/alarm/run_sensitivity_db1_objetivo.py"
+  "script": "scripts/03_analysis/alarm/run_sensitivity_db1_objetivo.py",
+  "sport_rule": "practiced_sport_walking_gate_but_stored_ones_kept",
+  "run_directory": "results/missingness/ramp_db1_175_sport_keep1",
+  "report": "scripts/03_analysis/alarm/build_punto1_informe.py"
 }

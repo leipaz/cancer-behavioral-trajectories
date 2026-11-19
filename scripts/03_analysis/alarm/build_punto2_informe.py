@@ -34,14 +34,14 @@ FIG_WIDTH_IN = 7.0
 BAND_ORDER = ["<50%", "50-80%", ">=80%"]
 BAND_LABEL = {"<50%": "<50%", "50-80%": "50–80%", ">=80%": "≥80%"}
 MODEL_ORDER = [
-    "availability_only_oof",
+    "availability_only",
     "dcabp_load_frozen",
-    "dcabp_plus_availability_oof",
+    "dcabp_plus_availability",
 ]
 MODEL_LABEL = {
-    "availability_only_oof": "Availability only",
+    "availability_only": "Availability only",
     "dcabp_load_frozen": "DCABP load (frozen cut)",
-    "dcabp_plus_availability_oof": "DCABP + availability",
+    "dcabp_plus_availability": "DCABP + availability",
 }
 THR = 1.0596384140662845
 N_BOOT = 1000
@@ -250,7 +250,7 @@ def _relate_svg(doc: Document, svg: Path) -> str:
     return part.relate_to(svg_part, RT.IMAGE)
 
 
-def add_figure(doc: Document, png: Path, svg: Path | None = None) -> None:
+def add_figure(doc: Document, png: Path, svg: Path | None = None, caption: bool = True) -> None:
     """Embed PNG (+ SVG twin if present), matching the sensitivity informe layout."""
     svg = svg if svg is not None else png.with_suffix(".svg")
     p = doc.add_paragraph(style="Normal")
@@ -282,6 +282,8 @@ def add_figure(doc: Document, png: Path, svg: Path | None = None) -> None:
         )
         ext_lst.append(ext)
 
+    if not caption:
+        return
     cap = doc.add_paragraph(style="Normal")
     run = cap.add_run(f"Figure: {svg.name if svg.exists() else png.name}.")
     _calibri(run, size_pt=10.0)
@@ -571,6 +573,20 @@ def make_figures(by_var_on_row: pd.DataFrame | None = None) -> dict[str, Path]:
     return paths
 
 
+BREAKDOWN_HEADER = ["Patients", "Decisions", "Days observed", "Mean coverage", "Median [IQR]", "Decisions with a gap ≥ 2 d"]
+
+
+def breakdown_cells(r) -> list[str]:
+    return [
+        str(int(r.n_patients)),
+        str(int(r.n_decisions)),
+        fmt(r.mean_days_observed, 3),
+        fmt(r.mean_coverage, 3),
+        f"{r.median_coverage:.3f} [{r.p25:.3f}, {r.p75:.3f}]",
+        f"{100 * r.pct_decisions_with_gap_ge_48h:.1f}%",
+    ]
+
+
 def build_docx(
     figs: dict[str, Path],
     var_band: pd.DataFrame | None = None,
@@ -584,6 +600,10 @@ def build_docx(
     by_ctr = pd.read_csv(COV / "availability_by_center.csv")
     by_tum = pd.read_csv(COV / "availability_by_tumor.csv")
     cont = pd.read_csv(COV / "continuous_coverage_summary.csv")
+    inter = pd.read_csv(COV / "coverage_interaction_coefficients.csv")
+    brk = pd.read_csv(COV / "coverage_breakdowns.csv")
+    models_cv = pd.read_csv(CMP / "performance_models_cv.csv")
+    inter_auc = pd.read_csv(COV / "coverage_interaction_auroc.csv")
     overlap = pd.read_csv(CMP / "emission_overlap.csv").iloc[0]
     models = pd.read_csv(CMP / "performance_models.csv")
     if var_band is None and (COV / "performance_by_variable_band.csv").exists():
@@ -612,9 +632,10 @@ def build_docx(
     add_heading(doc, "What is in this report", level=2)
     add_text(
         doc,
-        "A. Real coverage: for each decision, coverage on the previous 90 days (alarm history) and the last "
-        "30 days (recent coverage), as the share of variable–day cells really observed for the nine input "
-        "variables before imputation, on the expected calendar (up to 810 and 270 opportunities). SAP bands "
+        "A. Real coverage: for each decision, coverage on the 90 days the alarm used (its three 30-day blocks) "
+        "and on its last 30-day block (recent coverage), as the share of variable–day cells really observed for "
+        "the nine input variables before imputation (9 variables × 90 days = 810 expected cells per decision, "
+        "or 270 for the 30-day window). SAP bands "
         "fixed a priori: below 50%, 50% to below 80%, and at least 80%. Same frozen alarm and threshold "
         "(1.0596…). Breakdowns by variable, centre and tumour. Extra (before B): same frozen alarm inside "
         "SAP bands defined by each variable’s own coverage, to see whether the type of missingness matters.",
@@ -622,9 +643,9 @@ def build_docx(
     add_text(
         doc,
         "B. Missingness-only comparator: three scores on the same 1013 points — (1) availability alone "
-        "(logistic on the four indicators), (2) frozen DCABP load with the alarm cut, (3) frozen load plus "
-        "those indicators in one logistic. The DCABP load itself is not refit. Extra models fit in DB1 only, "
-        "with patient-grouped cross-validation; no DB2/DB3 tuning.",
+        "(logistic on the five indicators), (2) frozen DCABP load with the alarm cut, (3) frozen load plus "
+        "those indicators in one logistic. The DCABP load itself is not refit. Extra models fit in DB1 only "
+        "and evaluated on the same decisions as the frozen load; no DB2/DB3 tuning.",
     )
 
     # ----- A -----
@@ -649,10 +670,12 @@ def build_docx(
         "Coverage is the fraction of expected variable–day cells with a real observation. Observed zeros count. "
         "activity_walking outside 120–15000 seconds is missing, and practiced_sport on that day is missing too. "
         "A stored sport 0 with no recorded walking and no recorded running is also missing. "
-        "Imputed values do not count. The expected calendar is the dense 90- or 30-day window ending at the "
-        "decision date; holes are kept and are not trimmed to the last received record.",
+        "Imputed values do not count. The window is the calendar days the alarm used: the 90 (or 30) days ending "
+        "at the decision date, with every empty day kept. In 6 of the 1,013 decisions (6 patients) the data end "
+        "1–18 days before the decision; the alarm then takes the last 30 days with data as its final block, so "
+        "the window runs from the start of its first block to that last day (72–89 days; the 30-day window is "
+        "that final block). Days since the last valid record are still counted up to the decision date.",
     )
-    add_figure(doc, figs["band_counts"])
 
     add_heading(doc, "A. Alarm performance by band", level=2)
     add_text(
@@ -663,6 +686,8 @@ def build_docx(
     rows = []
     for w in (90, 30):
         sub = perf[perf.window_days == w].copy()
+        if w != 90:
+            sub = sub[sub.band != "all"]  # same frozen alarm on the same decisions: shown once, at 90 d
         order = BAND_ORDER + ["all"]
         sub["band"] = pd.Categorical(sub["band"], order, ordered=True)
         for r in sub.sort_values("band").itertuples(index=False):
@@ -674,95 +699,81 @@ def build_docx(
                     str(int(r.n_patients)),
                     str(int(r.n_decisions)),
                     str(int(r.n_positive)),
+                    str(int(r.n_progressions)),
                     band_ci(r.AUROC, r.AUROC_lo, r.AUROC_hi),
                     band_ci(r.sensitivity, r.sensitivity_lo, r.sensitivity_hi),
                     band_ci(r.specificity, r.specificity_lo, r.specificity_hi),
+                    band_ci(r.PPV, r.PPV_lo, r.PPV_hi),
+                    band_ci(r.NPV, r.NPV_lo, r.NPV_hi),
                 ]
             )
     add_table(
         doc,
-        ["Window", "Band", "Patients", "Decisions", "Positive", "AUROC", "Sensitivity", "Specificity"],
+        ["Window", "Band", "Patients", "Decisions", "Positive horizons", "Progressions",
+         "AUROC", "Sensitivity", "Specificity", "PPV", "NPV"],
         rows,
-        [0.9, 1.0, 1.0, 1.1, 1.0, 2.0, 2.0, 2.0],
-        size=8,
+        [0.8, 0.9, 0.9, 0.9, 1.0, 1.1, 1.9, 1.9, 1.9, 1.9, 1.9],
+        size=7,
+    )
+    add_text(
+        doc,
+        "Positive horizons are decisions followed by a progression within 120 days. Each patient has at most one "
+        "progression, so one progression can give several positive horizons; Progressions counts the distinct "
+        "progressions (patients) behind them. The frozen alarm is the stored load of the original pipeline "
+        "with the threshold 1.0596384140662845.",
     )
     add_figure(doc, figs["auroc_band"])
 
-    add_heading(doc, "A. Availability by variable (90 d, days with a row)", level=2)
-    cov90 = pd.read_csv(COV / "coverage_by_decision.csv")
-    cov90 = cov90.loc[cov90.window_days == 90]
-    days_without_row = 1.0 - float(cov90["pct_days_with_row"].mean())
+    add_heading(doc, "A. Availability by variable, source, centre and tumour (90 d)", level=2)
     add_text(
         doc,
-        "Same 1,013 windows of 90 days. For each variable, coverage is the share of days with a non-empty "
-        "value among days that have a daily row, averaged across decisions. Days in the window with no row "
-        f"are {days_without_row:.1%} of the window and stay out of this denominator. practiced_sport is derived "
-        "from activity duration and is counted only after the activity filter. Walking outside 120–15000 seconds "
-        "is missing, and the sport flag on that day is missing too, whether it was stored as 0 or as 1. "
-        "A stored 0 with neither walking nor running recorded is already missing. The coverage bands use the "
-        "same rule on every calendar day. Those sport cells are not observed, and a day whose only filled cell "
-        "was that flag counts as empty.",
+        "The four tables below share the same columns, on the same 1,013 windows of 90 days before each decision "
+        "(full calendar as denominator). Coverage of a decision is the share of its cells really observed: for a "
+        "variable, the share of the 90 days with that variable; for a source, the share of the variable–day cells "
+        "of its variables; for a centre or tumour, the share of all nine variables × 90 days (the coverage of the "
+        "bands). Days observed is the share of the 90 days with at least one value of that variable, source or (for centre and tumour) any variable; for a single variable it equals its coverage. Mean and median [IQR] are across decisions. The last column is the share of decisions with at "
+        "least one run of 2 or more consecutive days with nothing observed for that variable, source or (for "
+        "centre and tumour) any variable. practiced_sport is derived from activity duration and is counted only "
+        "when walking survived the 120–15000 s filter, so it has the same coverage as walking.",
     )
     add_text(
         doc,
         "Source. Sleep start, sleep duration, walking and steps can be recorded by the wearable or by the phone. "
         "They are assigned here to the wearable, the primary source. The phone is the fallback when the wearable "
-        "has no record; that day-level split is not applied. Location and app use come from the phone. "
-        "practiced_sport has no source of its own: it is derived from activity, and it is not included in the "
-        "wearable or mobile means.",
+        "has no record; that day-level split is not recorded. Location and app use come from the phone. "
+        "practiced_sport has no source of its own and is not included in either source. Every window lies inside "
+        "the patient's digital monitoring period, from the first to the last daily record (not the clinical "
+        "follow-up of the study); separate activation and end dates per device are not available, so this "
+        "digital period is the denominator for both sources.",
     )
+    src_of = dict(zip(by_var["variable"], by_var["source"]))
     rows = [
-        [
-            r.variable,
-            r.source,
-            fmt(r.mean_coverage_on_row, 3),
-            fmt(r.mean_missing_on_row, 3),
-            fmt(r.median_coverage_on_row, 3),
-            fmt(r.p25_on_row, 3),
-            fmt(r.p75_on_row, 3),
-        ]
-        for r in by_var.itertuples(index=False)
+        [r.group, src_of.get(r.group, "")] + breakdown_cells(r)
+        for r in brk[brk.level == "variable"].itertuples(index=False)
     ]
-    add_table(
-        doc,
-        ["Variable", "Source", "Mean coverage", "Missing", "Median", "P25", "P75"],
-        rows,
-        [2.2, 1.8, 1.3, 1.1, 1.1, 1.0, 1.0],
-        size=8,
-    )
-    add_figure(doc, figs["by_var"])
+    add_table(doc, ["Variable", "Source"] + BREAKDOWN_HEADER, rows, [2.2, 1.6, 0.9, 0.9, 1.1, 1.1, 1.8, 1.4], size=7)
+    if "by_var" in figs:
+        add_figure(doc, figs["by_var"], caption=False)
 
-    add_heading(doc, "A. Availability by centre and tumour (90 d)", level=2)
-    rows = [
-        [
-            r.center.replace("PMP_", ""),
-            str(int(r.n_patients)),
-            str(int(r.n_decisions)),
-            fmt(r.mean_coverage_90, 3),
-            fmt(r.mean_pct_days_with_data, 3),
-        ]
-        for r in by_ctr.itertuples(index=False)
-    ]
-    add_table(doc, ["Centre", "Patients", "Decisions", "Coverage", "Days with data"], rows, [2.0, 1.2, 1.2, 1.3, 1.5])
-    rows = [
-        [
-            r.tumor,
-            str(int(r.n_patients)),
-            str(int(r.n_decisions)),
-            fmt(r.mean_coverage_90, 3),
-            fmt(r.mean_pct_days_with_data, 3),
-        ]
-        for r in by_tum.itertuples(index=False)
-    ]
-    add_table(doc, ["Tumour", "Patients", "Decisions", "Coverage", "Days with data"], rows, [1.8, 1.2, 1.2, 1.3, 1.5])
+    src_label = {"wearable": "Wearable", "smartphone": "Smartphone"}
+    rows = [[src_label[r.group]] + breakdown_cells(r) for r in brk[brk.level == "source"].itertuples(index=False)]
+    add_table(doc, ["Source"] + BREAKDOWN_HEADER, rows, [2.2, 0.9, 0.9, 1.1, 1.1, 1.8, 1.4], size=7)
+
+    rows = [[r.group] + breakdown_cells(r) for r in brk[brk.level == "center"].itertuples(index=False)]
+    rows += [[r.group] + breakdown_cells(r) for r in brk[brk.level == "tumor"].itertuples(index=False)]
+    rows += [["All"] + breakdown_cells(r) for r in brk[brk.level == "all"].itertuples(index=False)]
+    add_table(doc, ["Centre / tumour"] + BREAKDOWN_HEADER, rows, [2.2, 0.9, 0.9, 1.1, 1.1, 1.8, 1.4], size=7)
 
     add_heading(doc, "A. Continuous coverage and interaction with the score", level=2)
     add_text(
         doc,
         "Besides the SAP bands, coverage is kept as a continuous value. Associations with the load and with the "
-        "120-day outcome, AUROC of coverage alone, AUROC of the frozen load, and an exploratory "
-        "load + load×coverage score are reported. That interaction score is ranked for AUROC only "
-        "(no new classification threshold). All brackets are patient-clustered bootstrap intervals (1000 resamples).",
+        "120-day outcome, AUROC of coverage alone and AUROC of the frozen load are reported. The 90- and 30-day "
+        "windows only change how coverage is measured; the load and the alarm are the same frozen ones in both "
+        "(three 30-day blocks), so the frozen load is shown once, at 90 days, with the "
+        "reference interval. A fitted "
+        "logistic model with load, coverage and their interaction follows. All brackets are patient-clustered bootstrap "
+        "intervals (1000 resamples).",
     )
     add_text(
         doc,
@@ -771,8 +782,10 @@ def build_docx(
         "(−1 to +1). Near 0 means little monotone link; the bootstrap interval crossing 0 means that association "
         "is compatible with none in these data. The same reading applies to ρ(coverage, 120-day outcome).",
     )
+    ref_all = perf[(perf.window_days == 90) & (perf.band == "all")].iloc[0]
     rows = []
     for r in cont.itertuples(index=False):
+        load_cell = band_ci(ref_all.AUROC, ref_all.AUROC_lo, ref_all.AUROC_hi) if int(r.window_days) == 90 else "same as 90"
         rows.append(
             [
                 str(int(r.window_days)),
@@ -780,17 +793,47 @@ def build_docx(
                 band_ci(r.spearman_load_coverage, r.spearman_load_coverage_lo, r.spearman_load_coverage_hi),
                 band_ci(r.spearman_coverage_outcome, r.spearman_coverage_outcome_lo, r.spearman_coverage_outcome_hi),
                 band_ci(r.AUROC_coverage_alone, r.AUROC_coverage_alone_lo, r.AUROC_coverage_alone_hi),
-                band_ci(r.AUROC_load, getattr(r, "AUROC_load_lo", float("nan")), getattr(r, "AUROC_load_hi", float("nan"))),
-                band_ci(r.AUROC_load_plus_loadxcov, r.AUROC_load_plus_loadxcov_lo, r.AUROC_load_plus_loadxcov_hi),
+                load_cell,
             ]
         )
     add_table(
         doc,
-        ["Window", "Mean cov.", "ρ load–cov", "ρ cov–outcome", "AUROC cov.", "AUROC load", "AUROC load+load×cov"],
+        ["Window", "Mean cov.", "ρ load–cov", "ρ cov–outcome", "AUROC cov.", "AUROC load"],
         rows,
-        [0.9, 1.0, 1.7, 1.7, 1.6, 1.1, 2.0],
+        [0.9, 1.0, 1.8, 1.8, 1.7, 1.7],
         size=8,
     )
+
+    i90 = inter[(inter.window_days == 90) & (inter.term == "load_z_x_cov_z")].iloc[0]
+    add_text(
+        doc,
+        "Interaction model. A logistic model of the 120-day outcome is fitted with the load, the coverage and "
+        "their product (load × coverage). Load and coverage are standardised, so each coefficient is per SD. "
+        "The load × coverage coefficient says how much the effect of the load changes per SD of coverage. "
+        "Brackets are 95% patient bootstrap intervals (1000 resamples). "
+        f"At 90 days the interaction is {i90.beta:.2f} [{i90.beta_lo_boot:.2f}, {i90.beta_hi_boot:.2f}]: "
+        "the interval includes 0, so coverage does not change how the load relates to the outcome.",
+    )
+    labels = {"intercept": "Intercept", "load_z": "Load", "cov_z": "Coverage",
+              "load_z_x_cov_z": "Load × coverage"}
+    rows = [
+        [str(int(r.window_days)), labels[r.term], band_ci(r.beta, r.beta_lo_boot, r.beta_hi_boot)]
+        for r in inter.itertuples(index=False)
+        if r.term != "intercept"
+    ]
+    add_table(doc, ["Window", "Term", "Coefficient [95% CI]"], rows, [0.9, 2.0, 2.4], size=8)
+    add_text(
+        doc,
+        "Discrimination is measured exactly as for the frozen baseline: the fitted scores on the same 1,013 "
+        "decisions, no cross-validation, patient bootstrap. The difference is paired (same resampled patients).",
+    )
+    rows = [
+        [str(int(r.window_days)), r.score, band_ci(r.AUROC, r.AUROC_lo, r.AUROC_hi),
+         "—" if pd.isna(r.diff_vs_frozen) else band_ci(r.diff_vs_frozen, r.diff_lo, r.diff_hi)]
+        for r in inter_auc.itertuples(index=False)
+    ]
+    add_table(doc, ["Window", "Score", "AUROC [95% CI]", "Difference vs frozen [95% CI]"], rows,
+              [0.9, 3.0, 2.0, 2.4], size=8)
 
     # ----- A extra: per-variable coverage bands -----
     add_heading(doc, "A. Extra — alarm by per-variable coverage band", level=2)
@@ -840,8 +883,6 @@ def build_docx(
             [1.9, 1.1, 0.9, 0.9, 0.9, 2.3, 1.0, 0.9, 0.9],
             size=7,
         )
-        if "var_band" in figs:
-            add_figure(doc, figs["var_band"])
         add_text(
             doc,
             "CI width is the bootstrap interval length (AUROC_hi − AUROC_lo): larger width means less precise "
@@ -857,7 +898,10 @@ def build_docx(
         doc,
         "For each decision, on the past-only 90-day window before imputation: (1) proportion of absent days; "
         "(2) number of gaps of at least 48 hours; (3) days since the last valid record; "
-        "(4) monitoring interrupted now (current gap ≥ 2 days).",
+        "(4) monitoring interrupted now (current gap ≥ 2 days); (5) cell coverage, the share of the nine variables "
+        "× 90 days really observed (the coverage of section A), which also captures days where only some "
+        "variables are missing. A valid record is a day with at least one of the nine variables observed after "
+        "the range filters; indicators (1)–(4) are built on valid records.",
     )
 
     add_heading(doc, "B. Where each method can emit a prediction", level=2)
@@ -887,14 +931,14 @@ def build_docx(
     add_heading(doc, "B. Comparator performance", level=2)
     add_text(
         doc,
-        "How the three scores are built. The SAP (§17) asks for a missingness-only comparator on the same "
-        "horizon as the alarm, but does not prescribe the formula that combines the availability indicators. "
-        "Section 15 uses a penalised logistic when two digital signals are combined; we follow that practice "
-        "for the missingness arm only. (1) Availability only: logistic on the four indicators, patient-grouped "
-        "5-fold OOF probabilities, Youden cut on the training fold. (2) DCABP: frozen three-block load and "
-        "alarm cut 1.0596… (not replaced by a logistic). (3) DCABP + availability: frozen load plus the four "
-        "indicators in one logistic (same OOF scheme). Brackets are patient-clustered bootstrap intervals on "
-        "those scores — not deletion-seed CIs.",
+        "How the three scores are built. (1) Availability only: a logistic model on the five indicators "
+        "(standardised, mild L2 penalty). (2) DCABP: the frozen load and alarm cut 1.0596…, nothing refitted. "
+        "(3) DCABP + availability: the same logistic on the frozen load plus the five indicators. "
+        "Models (1) and (3) are evaluated exactly as the frozen load: their scores on the same 1,013 decisions, "
+        "no cross-validation, with the cut that maximises sensitivity + specificity (Youden) on those decisions. "
+        "Brackets are patient bootstrap intervals (1000 resamples). The AUROC difference is paired against the "
+        "frozen load (same resampled patients). As a check, the same logistic on the load alone gives exactly "
+        "the frozen alarm: same AUROC, and its Youden cut gives the same sensitivity and specificity.",
     )
     show = models[models["model"].isin(MODEL_ORDER)].copy()
     show["model"] = pd.Categorical(show["model"], MODEL_ORDER, ordered=True)
@@ -907,6 +951,7 @@ def build_docx(
                 str(int(r.n_scored)),
                 str(int(r.n_positive)),
                 band_ci(r.AUROC, r.AUROC_lo, r.AUROC_hi),
+                "—" if pd.isna(r.AUROC_diff_vs_frozen) else band_ci(r.AUROC_diff_vs_frozen, r.AUROC_diff_lo, r.AUROC_diff_hi),
                 band_ci(r.sensitivity, r.sensitivity_lo, r.sensitivity_hi),
                 band_ci(r.specificity, r.specificity_lo, r.specificity_hi),
                 band_ci(r.PPV, r.PPV_lo, r.PPV_hi),
@@ -915,30 +960,81 @@ def build_docx(
         )
     add_table(
         doc,
-        ["Model", "Patients", "N", "Pos.", "AUROC", "Sens.", "Spec.", "PPV", "NPV"],
+        ["Model", "Patients", "N", "Pos.", "AUROC", "AUROC diff. vs frozen", "Sens.", "Spec.", "PPV", "NPV"],
         rows,
-        [2.0, 0.9, 0.7, 0.7, 1.7, 1.5, 1.5, 1.5, 1.5],
-        size=8,
+        [1.9, 0.9, 0.7, 0.7, 1.6, 1.7, 1.5, 1.5, 1.5, 1.5],
+        size=7,
     )
     add_figure(doc, figs["comparator"])
     add_text(
         doc,
         "Availability alone has AUROC "
-        f"{float(show.set_index('model').loc['availability_only_oof', 'AUROC']):.3f}. "
-        "The frozen DCABP load has AUROC "
-        f"{float(show.set_index('model').loc['dcabp_load_frozen', 'AUROC']):.3f}. "
-        "The load plus the availability indicators has AUROC "
-        f"{float(show.set_index('model').loc['dcabp_plus_availability_oof', 'AUROC']):.3f}.",
+        f"{float(show.set_index('model').loc['availability_only', 'AUROC']):.3f}, well below the frozen load "
+        f"({float(show.set_index('model').loc['dcabp_load_frozen', 'AUROC']):.3f}). Adding the availability "
+        "indicators to the load gives "
+        f"{float(show.set_index('model').loc['dcabp_plus_availability', 'AUROC']):.3f}; the paired difference "
+        "interval includes 0, so missingness adds no clear information to the alarm.",
     )
 
-    add_heading(doc, "Files", level=2)
+    add_heading(doc, "B. Added value with patient cross-validation", level=2)
     add_text(
         doc,
-        "Coverage and comparator outputs: results/missingness/Real_coverage/ (comparator CSVs under availability_comparator/). Scripts: run_coverage_real_objetivo.py, "
-        "run_missingness_comparator_objetivo.py, build_punto2_informe.py. Figures in this folder: "
-        "fig_band_counts_90d, fig_auroc_by_band_90d, fig_coverage_by_variable, "
-        "fig_auroc_by_variable_band_90d, fig_comparator_auroc (.png / .svg).",
+        "Separate comparison. Three logistic models are fitted with one shared assignment "
+        "of patients to 5 folds, so every model is evaluated on exactly the same held-out patients: availability "
+        "only, the frozen load alone, and the frozen load plus the five indicators. Scores are the out-of-fold "
+        "probability of progression; the classification cut is the Youden cut of the training folds. The AUROC "
+        "difference (load + availability minus load) is paired, with patient bootstrap intervals (1000 resamples). "
+        "The frozen alarm is shown apart as the reference: it is not refitted, so it is not part of this comparison.",
     )
+    cv_label = {
+        "availability_only_cv": "Availability only",
+        "load_logistic_cv": "Load (logistic)",
+        "load_plus_availability_cv": "Load + availability",
+    }
+    rows = [
+        [
+            cv_label[r.model],
+            band_ci(r.AUROC, r.AUROC_lo, r.AUROC_hi),
+            "—" if pd.isna(r.AUROC_diff_vs_load_cv) else band_ci(r.AUROC_diff_vs_load_cv, r.AUROC_diff_lo, r.AUROC_diff_hi),
+            band_ci(r.sensitivity, r.sensitivity_lo, r.sensitivity_hi),
+            band_ci(r.specificity, r.specificity_lo, r.specificity_hi),
+            band_ci(r.PPV, r.PPV_lo, r.PPV_hi),
+            band_ci(r.NPV, r.NPV_lo, r.NPV_hi),
+        ]
+        for r in models_cv.itertuples(index=False)
+    ]
+    fz = models.set_index("model").loc["dcabp_load_frozen"]
+    rows.append([
+        "Reference: frozen alarm",
+        band_ci(fz.AUROC, fz.AUROC_lo, fz.AUROC_hi),
+        "—",
+        band_ci(fz.sensitivity, fz.sensitivity_lo, fz.sensitivity_hi),
+        band_ci(fz.specificity, fz.specificity_lo, fz.specificity_hi),
+        band_ci(fz.PPV, fz.PPV_lo, fz.PPV_hi),
+        band_ci(fz.NPV, fz.NPV_lo, fz.NPV_hi),
+    ])
+    add_table(
+        doc,
+        ["Model", "AUROC (out-of-fold)", "Difference vs load [95% CI]", "Sens.", "Spec.", "PPV", "NPV"],
+        rows,
+        [1.9, 1.8, 1.9, 1.6, 1.6, 1.6, 1.6],
+        size=7,
+    )
+    cvx = models_cv.set_index("model")
+    d = cvx.loc["load_plus_availability_cv"]
+    add_text(
+        doc,
+        f"With the same folds, adding the availability indicators to the load changes the out-of-fold AUROC from "
+        f"{cvx.loc['load_logistic_cv', 'AUROC']:.3f} to {d.AUROC:.3f} (difference {d.AUROC_diff_vs_load_cv:.3f} "
+        f"[{d.AUROC_diff_lo:.3f}, {d.AUROC_diff_hi:.3f}]). "
+        + ("The interval is below 0: availability does not improve the prediction and, out of fold, makes it slightly worse. "
+           if d.AUROC_diff_hi < 0 else
+           "The interval includes 0: availability does not improve the prediction. "
+           if d.AUROC_diff_lo <= 0 else
+           "The interval is above 0. ")
+        + f"Availability alone has an out-of-fold AUROC of {cvx.loc['availability_only_cv', 'AUROC']:.3f}.",
+    )
+
 
     dest = OUT / "report.docx"
     try:
@@ -967,6 +1063,8 @@ def main() -> None:
         "- Coverage CSVs and figures in this folder\n"
         "- Comparator CSVs: `availability_comparator/`\n"
         "- Extra A: `performance_by_variable_band.csv`\n"
+        "- Load × coverage interaction: `coverage_interaction_coefficients.csv`, `coverage_interaction_auroc.csv` "
+        "(`scripts/03_analysis/alarm/run_coverage_interaction.py`)\n"
     )
     print(f"→ figures: {len(figs)}")
     for k, p in figs.items():

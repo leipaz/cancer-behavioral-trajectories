@@ -7,7 +7,8 @@
     "prop_absent_days_90",
     "n_gaps_ge_48h_90",
     "days_since_last_valid_90",
-    "monitoring_interrupted_now"
+    "monitoring_interrupted_now",
+    "cell_coverage_90"
   ],
   "feature_definitions": {
     "prop_absent_days_90": "1 - (days with \u22651 observed measure / 90 expected calendar days). practiced_sport counts only when activity_walking survived the 120\u201315000 s filter. A stored 0 with no raw walking and no raw running is not an observed measure.",
@@ -16,16 +17,14 @@
     "monitoring_interrupted_now": "1 if days_since_last_valid_90 \u2265 2 (ongoing >48 h gap at the decision); no future withdrawal flag"
   },
   "models": {
-    "availability_only_oof": "logistic, patient GroupKFold 5, OOF probability; classif threshold = Youden on train fold",
+    "availability_only": "standardised logistic (L2, C=1) on the four indicators, fitted on the 1013 decisions; Youden cut on the same decisions",
     "dcabp_load_frozen": "frozen three-block DCABP load; classif at threshold 1.0596\u2026",
-    "dcabp_logit_oof": "logistic on load alone, same CV + Youden train threshold",
-    "dcabp_plus_availability_oof": "logistic on load + availability features, same CV + Youden train threshold"
+    "dcabp_logit": "same logistic on load alone (ranks as the frozen load)",
+    "dcabp_plus_availability": "same logistic on load + the four indicators"
   },
-  "cv": {
-    "type": "GroupKFold",
-    "n_splits": 5,
-    "seed": 20261116
-  },
+  "cross_validated_comparison": "reviewer's design: availability, load and load + availability logistics with one shared patient-to-fold map (5 folds, seed 20261116); out-of-fold probability of progression; Youden cut from the training folds; paired AUROC difference (load + availability minus load) with patient bootstrap. Output: performance_models_cv.csv",
+  "valid_record": "a day with at least one of the nine input variables observed after the range filters",
+  "evaluation": "as the frozen load: fixed scores on the same 1013 decisions, no cross-validation; patient bootstrap CIs; paired AUROC difference vs the frozen load",
   "bootstrap": {
     "n": 1000,
     "seed": 20261116,

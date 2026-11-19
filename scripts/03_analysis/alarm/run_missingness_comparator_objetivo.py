@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Point 2B — missingness-only comparator on the 1013 objetivo decisions.
 
-Three scores on the same 120-day landmarks (DB1 only, patient-grouped CV):
+Three scores on the same 120-day landmarks (DB1 only):
 
 1) availability alone
 2) DCABP load (frozen alarm score)
@@ -13,7 +13,10 @@ Availability indicators (past-only, before imputation), primary window 90 d:
 - days since last valid record (current gap at the decision)
 - monitoring interrupted now (current gap ≥ 2 days)
 
-No DB2/DB3 tuning. Uncertainty uses patient-clustered bootstrap on OOF scores.
+The logistic models are fitted on the 1013 decisions and evaluated exactly as the
+frozen load: fixed scores on the same decisions, no cross-validation, Youden cut on
+those decisions, patient bootstrap, paired AUROC difference vs the frozen load.
+No DB2/DB3 tuning.
 """
 
 from __future__ import annotations
@@ -26,7 +29,6 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
-from sklearn.model_selection import GroupKFold
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -35,8 +37,6 @@ COVERAGE = ROOT / "results/missingness/Real_coverage/coverage_by_decision.csv"
 OUT = ROOT / "results/missingness/Real_coverage/availability_comparator"
 
 THR_LOAD = 1.0596384140662845
-N_SPLITS = 5
-CV_SEED = 20261116
 N_BOOT = 1000
 BOOT_SEED = 20261116
 
@@ -46,7 +46,10 @@ AVAIL_FEATURES = [
     "n_gaps_ge_48h_90",
     "days_since_last_valid_90",
     "monitoring_interrupted_now",
+    "cell_coverage_90",
 ]
+N_SPLITS = 5
+CV_SEED = 20261116
 
 
 def clasif(y, score, thr=None) -> dict:
@@ -146,6 +149,64 @@ def fmt_ci(row: dict, key: str) -> str:
     return f"{v:.3f}"
 
 
+def fitted_logistic(frame: pd.DataFrame, feature_cols: list[str]) -> tuple[np.ndarray, np.ndarray]:
+    """Logistic fitted on all decisions; score and Youden cut on the same decisions (as the frozen load)."""
+    pipe = Pipeline(
+        [
+            ("scaler", StandardScaler()),
+            ("clf", LogisticRegression(C=1.0, solver="lbfgs", max_iter=2000)),
+        ]
+    )
+    y = frame["y"].to_numpy(dtype=int)
+    pipe.fit(frame[feature_cols].to_numpy(dtype=float), y)
+    p = pipe.predict_proba(frame[feature_cols].to_numpy(dtype=float))[:, 1]
+    return p, np.full(len(p), _youden_threshold(y, p))
+
+
+def paired_auc_diff(frame: pd.DataFrame, score_col: str, ref_col: str = "load",
+                    n_boot: int = N_BOOT, seed: int = BOOT_SEED) -> tuple[float, float, float]:
+    """AUROC(score) - AUROC(frozen load) with the same resampled patients."""
+    point = roc_auc_score(frame["y"], frame[score_col]) - roc_auc_score(frame["y"], frame[ref_col])
+    patients = frame["id"].drop_duplicates().to_numpy()
+    by = {pid: g for pid, g in frame.groupby("id", sort=False)}
+    rng = np.random.default_rng(seed)
+    diffs = []
+    for _ in range(n_boot):
+        boot = pd.concat([by[pid] for pid in rng.choice(patients, size=len(patients), replace=True)], ignore_index=True)
+        if boot["y"].nunique() < 2:
+            continue
+        diffs.append(roc_auc_score(boot["y"], boot[score_col]) - roc_auc_score(boot["y"], boot[ref_col]))
+    return float(point), float(np.quantile(diffs, 0.025)), float(np.quantile(diffs, 0.975))
+
+
+def patient_folds(frame: pd.DataFrame) -> np.ndarray:
+    """One fixed patient-to-fold map, shared by every cross-validated model."""
+    ids = np.sort(frame["id"].unique())
+    rng = np.random.default_rng(CV_SEED)
+    rng.shuffle(ids)
+    fold_of = {pid: i % N_SPLITS for i, pid in enumerate(ids)}
+    return frame["id"].map(fold_of).to_numpy()
+
+
+def oof_logistic(frame: pd.DataFrame, feature_cols: list[str], folds: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """Out-of-fold probability of progression; Youden cut chosen on the training folds."""
+    X = frame[feature_cols].to_numpy(dtype=float)
+    y = frame["y"].to_numpy(dtype=int)
+    oof = np.full(len(frame), np.nan)
+    thr = np.full(len(frame), np.nan)
+    for k in range(N_SPLITS):
+        te, tr = folds == k, folds != k
+        pipe = Pipeline([("scaler", StandardScaler()), ("clf", LogisticRegression(C=1.0, solver="lbfgs", max_iter=2000))])
+        pipe.fit(X[tr], y[tr])
+        if list(pipe.named_steps["clf"].classes_) != [0, 1]:
+            raise RuntimeError("class order is not [no progression, progression]")
+        oof[te] = pipe.predict_proba(X[te])[:, 1]
+        thr[te] = _youden_threshold(y[tr], pipe.predict_proba(X[tr])[:, 1])
+    if np.isnan(oof).any():
+        raise RuntimeError("out-of-fold scores incomplete")
+    return oof, thr
+
+
 def _youden_threshold(y: np.ndarray, score: np.ndarray) -> float:
     """Threshold maximising sensitivity + specificity − 1 on the provided set."""
     y = np.asarray(y, int)
@@ -173,51 +234,6 @@ def _youden_threshold(y: np.ndarray, score: np.ndarray) -> float:
     return thr
 
 
-def oof_logistic(frame: pd.DataFrame, feature_cols: list[str], label: str) -> tuple[np.ndarray, np.ndarray]:
-    """Patient-grouped 5-fold OOF probability and fold-wise Youden threshold applied to test."""
-    X = frame[feature_cols].to_numpy(dtype=float)
-    y = frame["y"].to_numpy(dtype=int)
-    groups = frame["id"].to_numpy(dtype=int)
-    oof = np.full(len(frame), np.nan, dtype=float)
-    thr_used = np.full(len(frame), np.nan, dtype=float)
-    gkf = GroupKFold(n_splits=N_SPLITS)
-    rng = np.random.default_rng(CV_SEED)
-    patient_order = frame["id"].drop_duplicates().to_numpy().copy()
-    rng.shuffle(patient_order)
-    order_map = {pid: i for i, pid in enumerate(patient_order)}
-    sort_idx = np.argsort([order_map[pid] for pid in groups])
-    Xs, ys, gs = X[sort_idx], y[sort_idx], groups[sort_idx]
-    oof_sorted = np.full(len(frame), np.nan, dtype=float)
-    thr_sorted = np.full(len(frame), np.nan, dtype=float)
-
-    for train_idx, test_idx in gkf.split(Xs, ys, gs):
-        pipe = Pipeline(
-            [
-                ("scaler", StandardScaler()),
-                (
-                    "clf",
-                    LogisticRegression(
-                        C=1.0,
-                        solver="lbfgs",
-                        max_iter=2000,
-                    ),
-                ),
-            ]
-        )
-        pipe.fit(Xs[train_idx], ys[train_idx])
-        p_train = pipe.predict_proba(Xs[train_idx])[:, 1]
-        p_test = pipe.predict_proba(Xs[test_idx])[:, 1]
-        thr = _youden_threshold(ys[train_idx], p_train)
-        oof_sorted[test_idx] = p_test
-        thr_sorted[test_idx] = thr
-
-    oof[sort_idx] = oof_sorted
-    thr_used[sort_idx] = thr_sorted
-    if np.isnan(oof).any():
-        raise RuntimeError(f"OOF incomplete for {label}")
-    return oof, thr_used
-
-
 def build_indicator_table(cov: pd.DataFrame) -> pd.DataFrame:
     w90 = cov.loc[cov.window_days == 90].copy()
     w30 = cov.loc[cov.window_days == 30, ["id", "study_day", "pct_days_with_data", "n_gaps_ge_48h", "days_since_last_valid"]].copy()
@@ -235,6 +251,8 @@ def build_indicator_table(cov: pd.DataFrame) -> pd.DataFrame:
     panel["days_since_last_valid_90"] = panel["days_since_last_valid"]
     # Known interruption *at the decision*: ongoing gap > 48 h (no future withdrawal used).
     panel["monitoring_interrupted_now"] = (panel["days_since_last_valid_90"] >= 2).astype(int)
+    # Partial missingness: share of the 9 variables x 90 days really observed (same as section A).
+    panel["cell_coverage_90"] = panel["coverage"]
     panel["can_emit_dcabp"] = (panel["emitted"] == 1) & panel["load"].notna()
     # Availability features are defined for every landmark with a 90 d window row.
     panel["can_emit_availability"] = panel[AVAIL_FEATURES].notna().all(axis=1)
@@ -270,11 +288,16 @@ def main() -> None:
     panel["score_dcabp_alarm"] = (panel["load"] >= THR_LOAD).astype(float)
 
     both = panel.loc[panel.can_emit_combined].copy()
-    both["score_avail_oof"], both["thr_avail_oof"] = oof_logistic(both, AVAIL_FEATURES, "availability")
-    both["score_dcabp_logit_oof"], both["thr_dcabp_logit_oof"] = oof_logistic(both, ["load"], "dcabp_logit")
-    both["score_combined_oof"], both["thr_combined_oof"] = oof_logistic(
-        both, ["load"] + AVAIL_FEATURES, "combined"
-    )
+    both["score_avail"], both["thr_avail"] = fitted_logistic(both, AVAIL_FEATURES)
+    both["score_dcabp_logit"], both["thr_dcabp_logit"] = fitted_logistic(both, ["load"])
+    both["score_combined"], both["thr_combined"] = fitted_logistic(both, ["load"] + AVAIL_FEATURES)
+
+    # Reviewer's design: the same patient folds for every logistic, out-of-fold scores.
+    folds = patient_folds(both)
+    both["cv_fold"] = folds
+    both["score_avail_cv"], both["thr_avail_cv"] = oof_logistic(both, AVAIL_FEATURES, folds)
+    both["score_load_cv"], both["thr_load_cv"] = oof_logistic(both, ["load"], folds)
+    both["score_combined_cv"], both["thr_combined_cv"] = oof_logistic(both, ["load"] + AVAIL_FEATURES, folds)
 
     # Persist per-decision scores (NaN where a method cannot emit)
     scores = panel[
@@ -299,12 +322,16 @@ def main() -> None:
             [
                 "id",
                 "study_day",
-                "score_avail_oof",
-                "thr_avail_oof",
-                "score_dcabp_logit_oof",
-                "thr_dcabp_logit_oof",
-                "score_combined_oof",
-                "thr_combined_oof",
+                "score_avail",
+                "thr_avail",
+                "score_dcabp_logit",
+                "thr_dcabp_logit",
+                "score_combined",
+                "thr_combined",
+                "cv_fold",
+                "score_avail_cv",
+                "score_load_cv",
+                "score_combined_cv",
             ]
         ],
         on=["id", "study_day"],
@@ -318,23 +345,43 @@ def main() -> None:
 
     # Performance table
     specs = [
-        ("availability_only_oof", "score_avail_oof", None, "thr_avail_oof", both),
+        ("availability_only", "score_avail", None, "thr_avail", both),
         ("dcabp_load_frozen", "load", THR_LOAD, None, both),
-        ("dcabp_logit_oof", "score_dcabp_logit_oof", None, "thr_dcabp_logit_oof", both),
-        ("dcabp_plus_availability_oof", "score_combined_oof", None, "thr_combined_oof", both),
+        ("dcabp_logit", "score_dcabp_logit", None, "thr_dcabp_logit", both),
+        ("dcabp_plus_availability", "score_combined", None, "thr_combined", both),
     ]
 
     rows = []
     for name, col, thr, thr_col, frame in specs:
         m = patient_bootstrap_ci(frame, col, thr=thr, thr_col=thr_col)
         m["model"] = name
-        m["score_type"] = "oof_prob_youden_train" if thr_col else "frozen_load_threshold"
+        m["score_type"] = "fitted_prob_youden_same_decisions" if thr_col else "frozen_load_threshold"
+        if col == "load":
+            m["AUROC_diff_vs_frozen"] = m["AUROC_diff_lo"] = m["AUROC_diff_hi"] = np.nan
+        else:
+            m["AUROC_diff_vs_frozen"], m["AUROC_diff_lo"], m["AUROC_diff_hi"] = paired_auc_diff(frame, col)
         rows.append(m)
 
     perf = pd.DataFrame(rows)
     perf.to_csv(OUT / "performance_models.csv", index=False)
 
-    # Coefficient snapshot on full DB1 (descriptive; primary metrics are OOF)
+    cv_rows = []
+    for name, col, thr_col, ref in [
+        ("availability_only_cv", "score_avail_cv", "thr_avail_cv", None),
+        ("load_logistic_cv", "score_load_cv", "thr_load_cv", None),
+        ("load_plus_availability_cv", "score_combined_cv", "thr_combined_cv", "score_load_cv"),
+    ]:
+        m = patient_bootstrap_ci(both, col, thr=None, thr_col=thr_col)
+        m["model"] = name
+        if ref is None:
+            m["AUROC_diff_vs_load_cv"] = m["AUROC_diff_lo"] = m["AUROC_diff_hi"] = np.nan
+        else:
+            m["AUROC_diff_vs_load_cv"], m["AUROC_diff_lo"], m["AUROC_diff_hi"] = paired_auc_diff(both, col, ref_col=ref)
+        cv_rows.append(m)
+    perf_cv = pd.DataFrame(cv_rows)
+    perf_cv.to_csv(OUT / "performance_models_cv.csv", index=False)
+
+    # Coefficients of the fitted models (the same fits that give the scores)
     def fit_coefs(cols):
         pipe = Pipeline(
             [
@@ -369,12 +416,14 @@ def main() -> None:
             "monitoring_interrupted_now": "1 if days_since_last_valid_90 ≥ 2 (ongoing >48 h gap at the decision); no future withdrawal flag",
         },
         "models": {
-            "availability_only_oof": "logistic, patient GroupKFold 5, OOF probability; classif threshold = Youden on train fold",
+            "availability_only": "standardised logistic (L2, C=1) on the four indicators, fitted on the 1013 decisions; Youden cut on the same decisions",
             "dcabp_load_frozen": "frozen three-block DCABP load; classif at threshold 1.0596…",
-            "dcabp_logit_oof": "logistic on load alone, same CV + Youden train threshold",
-            "dcabp_plus_availability_oof": "logistic on load + availability features, same CV + Youden train threshold",
+            "dcabp_logit": "same logistic on load alone (ranks as the frozen load)",
+            "dcabp_plus_availability": "same logistic on load + the four indicators",
         },
-        "cv": {"type": "GroupKFold", "n_splits": N_SPLITS, "seed": CV_SEED},
+        "cross_validated_comparison": f"reviewer's design: availability, load and load + availability logistics with one shared patient-to-fold map ({N_SPLITS} folds, seed {CV_SEED}); out-of-fold probability of progression; Youden cut from the training folds; paired AUROC difference (load + availability minus load) with patient bootstrap. Output: performance_models_cv.csv",
+        "valid_record": "a day with at least one of the nine input variables observed after the range filters",
+        "evaluation": "as the frozen load: fixed scores on the same 1013 decisions, no cross-validation; patient bootstrap CIs; paired AUROC difference vs the frozen load",
         "bootstrap": {"n": N_BOOT, "seed": BOOT_SEED, "unit": "patient"},
         "db2_db3": "not used",
         "note": "Coordinate with the broader comparator pack; this file is the missingness arm on the same 1013 points.",
@@ -385,7 +434,8 @@ def main() -> None:
     show = perf.copy()
     for k in ("AUROC", "sensitivity", "specificity", "PPV", "NPV"):
         show[k] = show.apply(lambda r, key=k: fmt_ci(r.to_dict(), key), axis=1)
-    cols = ["model", "n_patients", "n_scored", "n_positive", "AUROC", "sensitivity", "specificity", "PPV", "NPV", "threshold"]
+    show["AUROC_diff"] = show.apply(lambda r: "—" if pd.isna(r["AUROC_diff_vs_frozen"]) else f"{r['AUROC_diff_vs_frozen']:.3f} [{r['AUROC_diff_lo']:.3f}, {r['AUROC_diff_hi']:.3f}]", axis=1)
+    cols = ["model", "n_patients", "n_scored", "n_positive", "AUROC", "AUROC_diff", "sensitivity", "specificity", "PPV", "NPV", "threshold"]
 
     def as_md(df: pd.DataFrame) -> str:
         try:
@@ -397,7 +447,7 @@ def main() -> None:
         "# Comparador disponibilidad vs DCABP (punto 2B)",
         "",
         "Mismos **1013** puntos / horizonte **120 d** / solo **DB1**. "
-        "CV por paciente (GroupKFold 5). IC = bootstrap por paciente sobre scores OOF (o load congelado).",
+        "Modelos ajustados en las 1013 decisiones y evaluados como la carga congelada (sin CV). IC = bootstrap por paciente; diferencia de AUROC emparejada frente a la congelada.",
         "",
         "## Indicadores de disponibilidad (por decisión, ventana 90 d)",
         "",
@@ -422,7 +472,7 @@ def main() -> None:
         "Missingness comparator (2B) on objetivo 1013.\n\n"
         f"Features: {AVAIL_FEATURES}.\n"
         "DCABP = frozen three-block load from the alarm baseline.\n"
-        "No DB2/DB3. Patient GroupKFold OOF + patient bootstrap CIs.\n"
+        "No DB2/DB3. Models fitted on the 1013 decisions and evaluated as the frozen load (no CV); patient bootstrap CIs.\n"
         f"Script: scripts/03_analysis/alarm/run_missingness_comparator_objetivo.py\n"
     )
 
